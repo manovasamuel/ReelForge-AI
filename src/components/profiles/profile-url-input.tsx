@@ -10,9 +10,10 @@ import { cn } from "@/lib/utils";
 interface ProfileUrlInputProps {
   onAnalyze: (url: string) => void;
   isLoading: boolean;
+  onInputChange?: () => void;
 }
 
-export function ProfileUrlInput({ onAnalyze, isLoading }: ProfileUrlInputProps) {
+export function ProfileUrlInput({ onAnalyze, isLoading, onInputChange }: ProfileUrlInputProps) {
   const [url, setUrl] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +21,7 @@ export function ProfileUrlInput({ onAnalyze, isLoading }: ProfileUrlInputProps) 
     setUrl(e.target.value);
     // Clear error as user types
     if (error) setError(null);
+    onInputChange?.();
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -91,7 +93,7 @@ export function ProfileUrlInput({ onAnalyze, isLoading }: ProfileUrlInputProps) 
           ) : (
             <>
               <Search className="h-4 w-4" />
-              Analyze
+              Analyze Profile
             </>
           )}
         </Button>
@@ -112,7 +114,7 @@ export function ProfileUrlInput({ onAnalyze, isLoading }: ProfileUrlInputProps) 
       {/* Helper text */}
       {!error && (
         <p className="mt-2 text-xs text-muted-foreground/60">
-          e.g. https://instagram.com/natgeo
+          Paste any public Instagram profile URL.
         </p>
       )}
     </form>
