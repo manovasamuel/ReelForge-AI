@@ -21,6 +21,10 @@ import {
   CompetitorAnalysisSkeleton,
 } from "@/components/competitor-analysis";
 import {
+  ContentCollectionDashboard,
+  ContentCollectionSkeleton,
+} from "@/components/content-collection";
+import {
   WorkflowTracker,
   StepHeader,
   SummaryPanel,
@@ -31,6 +35,7 @@ import type { InstagramProfile } from "@/types/instagram";
 import type { BrandIntelligenceReport } from "@/types/brand-intelligence";
 import type { Competitor } from "@/types/competitor";
 import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
+import type { CollectedContentItem } from "@/types/content-collection";
 
 // ─── State machine types ───────────────────────────────────────────
 type AnalysisState =
@@ -57,12 +62,19 @@ type CompetitorAnalysisState =
   | { status: "success"; competitor: Competitor; analysis: CompetitorProfileAnalysis }
   | { status: "error"; message: string };
 
+type ContentCollectionState =
+  | { status: "idle" }
+  | { status: "loading"; username: string }
+  | { status: "success"; username: string; items: CollectedContentItem[] }
+  | { status: "error"; message: string };
+
 // ─── Page ──────────────────────────────────────────────────────────
 export default function ProfilesPage() {
   const [state, setState] = useState<AnalysisState>({ status: "idle" });
   const [brandState, setBrandState] = useState<BrandIntelligenceState>({ status: "idle" });
   const [compState, setCompState] = useState<CompetitorsState>({ status: "idle" });
   const [compAnalysisState, setCompAnalysisState] = useState<CompetitorAnalysisState>({ status: "idle" });
+  const [contentCollectionState, setContentCollectionState] = useState<ContentCollectionState>({ status: "idle" });
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
 
   async function handleAnalyze(url: string) {
@@ -70,6 +82,7 @@ export default function ProfilesPage() {
     setBrandState({ status: "idle" });
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
+    setContentCollectionState({ status: "idle" });
     setSelectedCompetitor(null);
 
     try {
@@ -107,6 +120,7 @@ export default function ProfilesPage() {
     setBrandState({ status: "loading" });
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
+    setContentCollectionState({ status: "idle" });
 
     try {
       const response = await fetch("/api/brand-intelligence/analyze", {
@@ -168,6 +182,7 @@ export default function ProfilesPage() {
   async function handleAnalyzeCompetitor(competitor: Competitor) {
     setSelectedCompetitor(competitor.username);
     setCompAnalysisState({ status: "loading", competitor });
+    setContentCollectionState({ status: "idle" });
 
     try {
       const response = await fetch("/api/competitor-analysis/analyze", {
@@ -194,11 +209,40 @@ export default function ProfilesPage() {
     }
   }
 
+  async function handleCollectContent(username: string) {
+    setContentCollectionState({ status: "loading", username });
+
+    try {
+      const response = await fetch("/api/content-collection/collect", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username }),
+      });
+      const json = await response.json();
+
+      if (!response.ok || json.error) {
+        setContentCollectionState({
+          status: "error",
+          message: json.error?.message ?? "Could not collect competitor content.",
+        });
+        return;
+      }
+
+      setContentCollectionState({ status: "success", username, items: json.data });
+    } catch {
+      setContentCollectionState({
+        status: "error",
+        message: "Network error collecting competitor content.",
+      });
+    }
+  }
+
   function handleRetry() {
     setState({ status: "idle" });
     setBrandState({ status: "idle" });
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
+    setContentCollectionState({ status: "idle" });
     setSelectedCompetitor(null);
   }
 
@@ -208,6 +252,7 @@ export default function ProfilesPage() {
       setBrandState({ status: "idle" });
       setCompState({ status: "idle" });
       setCompAnalysisState({ status: "idle" });
+      setContentCollectionState({ status: "idle" });
       setSelectedCompetitor(null);
     }
   }
@@ -238,13 +283,21 @@ export default function ProfilesPage() {
           activeStep = "competitor-analysis";
         } else if (compAnalysisState.status === "success") {
           completedSteps.push("competitor-analysis");
-          activeStep = "competitor-analysis";
+          if (contentCollectionState.status === "idle") {
+            activeStep = "competitor-analysis";
+          } else if (contentCollectionState.status === "loading") {
+            activeStep = "reel-intelligence";
+          } else if (contentCollectionState.status === "success") {
+            completedSteps.push("reel-intelligence");
+            activeStep = "reel-intelligence";
+          }
         }
       }
     }
   }
 
   const isPhase4Complete = compAnalysisState.status === "success";
+  const isPhase5Complete = contentCollectionState.status === "success";
 
   return (
     <PageContainer>
@@ -347,11 +400,43 @@ export default function ProfilesPage() {
                 />
                 {compAnalysisState.status === "loading" && <CompetitorAnalysisSkeleton />}
                 {compAnalysisState.status === "success" && (
-                  <CompetitorAnalysisDashboard analysis={compAnalysisState.analysis} />
+                  <CompetitorAnalysisDashboard
+                    analysis={compAnalysisState.analysis}
+                    onCollectContent={handleCollectContent}
+                  />
                 )}
                 {compAnalysisState.status === "error" && (
                   <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {compAnalysisState.message}
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* Step 5: Content Collection Engine (Phase 5) */}
+            {contentCollectionState.status !== "idle" && (
+              <section aria-labelledby="step-5-title">
+                <StepHeader
+                  step={5}
+                  title={`Content Library & Media Engine: @${
+                    contentCollectionState.status === "loading"
+                      ? contentCollectionState.username
+                      : contentCollectionState.status === "success"
+                      ? contentCollectionState.username
+                      : "Account"
+                  }`}
+                  description="Extracted Instagram media library formatted for multi-item selection and downstream pattern analysis"
+                />
+                {contentCollectionState.status === "loading" && <ContentCollectionSkeleton />}
+                {contentCollectionState.status === "success" && (
+                  <ContentCollectionDashboard
+                    items={contentCollectionState.items}
+                    competitorUsername={contentCollectionState.username}
+                  />
+                )}
+                {contentCollectionState.status === "error" && (
+                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                    {contentCollectionState.message}
                   </div>
                 )}
               </section>
@@ -367,6 +452,7 @@ export default function ProfilesPage() {
               competitorsCount={compState.status === "success" ? compState.competitors.length : 0}
               selectedCompetitor={selectedCompetitor}
               isPhase4Complete={isPhase4Complete}
+              isPhase5Complete={isPhase5Complete}
             />
           </aside>
         </div>

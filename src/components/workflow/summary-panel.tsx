@@ -10,6 +10,7 @@ interface SummaryPanelProps {
   competitorsCount?: number;
   selectedCompetitor?: string | null;
   isPhase4Complete?: boolean;
+  isPhase5Complete?: boolean;
 }
 
 export function SummaryPanel({
@@ -19,6 +20,7 @@ export function SummaryPanel({
   competitorsCount = 0,
   selectedCompetitor,
   isPhase4Complete = false,
+  isPhase5Complete = false,
 }: SummaryPanelProps) {
   return (
     <Card className="w-full overflow-hidden border-violet-500/30 bg-card/90 shadow-xl shadow-violet-950/20 backdrop-blur-md lg:sticky lg:top-20">
@@ -96,12 +98,18 @@ export function SummaryPanel({
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
             <span className="font-bold text-violet-200">
-              {isPhase4Complete ? "Ready for Phase 5" : "Ready for Phase 4"}
+              {isPhase5Complete
+                ? "Ready for Phase 6"
+                : isPhase4Complete
+                ? "Ready for Phase 5"
+                : "Ready for Phase 4"}
             </span>
           </div>
           <p className="mt-1 text-[11px] leading-tight text-violet-300/80">
-            {isPhase4Complete
-              ? "Competitor profile analysis complete. Ready for content repurposing engine."
+            {isPhase5Complete
+              ? "Content collection complete. Ready for Reel Intelligence & Pattern Extraction engine."
+              : isPhase4Complete
+              ? "Competitor profile analysis complete. Ready for Content Collection engine."
               : "Profile ingestion, brand intelligence, and competitor discovery are complete."}
           </p>
         </div>

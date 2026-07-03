@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
@@ -26,9 +27,10 @@ import { cn } from "@/lib/utils";
 
 interface CompetitorAnalysisDashboardProps {
   analysis: CompetitorProfileAnalysis;
+  onCollectContent?: (username: string) => void;
 }
 
-export function CompetitorAnalysisDashboard({ analysis }: CompetitorAnalysisDashboardProps) {
+export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: CompetitorAnalysisDashboardProps) {
   const {
     businessSummary,
     accountOverview,
@@ -454,6 +456,17 @@ export function CompetitorAnalysisDashboard({ analysis }: CompetitorAnalysisDash
           </div>
         </div>
       </Card>
+
+      {/* Primary CTA to proceed to Phase 5: Content Collection Engine */}
+      <div className="flex justify-end pt-4">
+        <Button
+          size="lg"
+          onClick={() => onCollectContent?.(analysis.username)}
+          className="w-full sm:w-auto bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-violet-950/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+        >
+          <span>Collect Content →</span>
+        </Button>
+      </div>
     </div>
   );
 }
