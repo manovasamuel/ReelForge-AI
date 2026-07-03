@@ -15,9 +15,10 @@ interface CompetitorCardProps {
   competitor: Competitor;
   rank: number;
   onSelect?: (username: string, selected: boolean) => void;
+  onAnalyze?: (competitor: Competitor) => void;
 }
 
-export function CompetitorCard({ competitor, rank, onSelect }: CompetitorCardProps) {
+export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: CompetitorCardProps) {
   const [selected, setSelected] = useState(false);
 
   function handleCardClick() {
@@ -28,10 +29,7 @@ export function CompetitorCard({ competitor, rank, onSelect }: CompetitorCardPro
 
   function handleAnalyzeClick(e: React.MouseEvent) {
     e.stopPropagation();
-    showToast(
-      "Coming in Phase 4",
-      `Reel Intelligence & Pattern Engine for @${competitor.username} will be available in the next release.`
-    );
+    onAnalyze?.(competitor);
   }
 
   const formattedFollowers =

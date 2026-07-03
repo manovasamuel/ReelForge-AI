@@ -7,9 +7,10 @@ import { Users, ShieldCheck, TrendingUp, Sparkles, CheckCircle } from "lucide-re
 interface CompetitorListProps {
   competitors: Competitor[];
   onSelectCompetitor?: (username: string, selected: boolean) => void;
+  onAnalyzeCompetitor?: (competitor: Competitor) => void;
 }
 
-export function CompetitorList({ competitors, onSelectCompetitor }: CompetitorListProps) {
+export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompetitor }: CompetitorListProps) {
   if (!competitors || competitors.length === 0) return null;
 
   // Calculate compact statistics (Improvement 4)
@@ -71,6 +72,7 @@ export function CompetitorList({ competitors, onSelectCompetitor }: CompetitorLi
             competitor={comp}
             rank={index + 1}
             onSelect={onSelectCompetitor}
+            onAnalyze={onAnalyzeCompetitor}
           />
         ))}
       </div>
