@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, CheckCircle2, User, Layers, Users, ShieldAlert } from "lucide-react";
+import { Sparkles, CheckCircle2, User, Layers, Users } from "lucide-react";
 
 interface SummaryPanelProps {
   username?: string;
@@ -12,6 +12,9 @@ interface SummaryPanelProps {
   isPhase4Complete?: boolean;
   isPhase5Complete?: boolean;
   isPhase6Complete?: boolean;
+  isPhase7Complete?: boolean;
+  isPhase8Complete?: boolean;
+  isPhase9Complete?: boolean;
 }
 
 export function SummaryPanel({
@@ -23,18 +26,26 @@ export function SummaryPanel({
   isPhase4Complete = false,
   isPhase5Complete = false,
   isPhase6Complete = false,
+  isPhase7Complete = false,
+  isPhase8Complete = false,
+  isPhase9Complete = false,
 }: SummaryPanelProps) {
   return (
     <Card className="w-full overflow-hidden border-violet-500/30 bg-card/90 shadow-xl shadow-violet-950/20 backdrop-blur-md lg:sticky lg:top-20">
       <div className="h-1 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600" />
 
       <CardHeader className="pb-3 pt-4">
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-violet-400" />
-          <h4 className="text-sm font-bold tracking-tight text-foreground">
-            Workflow Intelligence
-          </h4>
+        <div className="flex items-center justify-between">
+          <Badge variant="outline" className="border-violet-500/40 text-violet-300 bg-violet-500/10 text-[10px]">
+            Live Session
+          </Badge>
+          <span className="text-[11px] font-medium text-muted-foreground">
+            {isPhase9Complete ? "Phase 9 Complete" : isPhase8Complete ? "Phase 8 Complete" : isPhase7Complete ? "Phase 7B Complete" : isPhase6Complete ? "Phase 6 Complete" : isPhase5Complete ? "Phase 5 Complete" : isPhase4Complete ? "Phase 4 Complete" : "Phase 3 Complete"}
+          </span>
         </div>
+        <CardTitle className="text-base font-bold text-white flex items-center gap-1.5 mt-2 truncate">
+          @{username}
+        </CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4 text-xs pb-5">
@@ -88,7 +99,7 @@ export function SummaryPanel({
 
           {/* Selected Competitor */}
           <div className="flex items-center justify-between">
-            <span className="text-muted-foreground">Selected Account</span>
+            <span className="text-muted-foreground">Selected Target</span>
             <span className="font-semibold text-violet-300">
               {selectedCompetitor ? `@${selectedCompetitor}` : "None Selected"}
             </span>
@@ -100,8 +111,14 @@ export function SummaryPanel({
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
             <span className="font-bold text-violet-200">
-              {isPhase6Complete
-                ? "Ready for Phase 7"
+              {isPhase9Complete
+                ? "Multi-Platform Suite Ready"
+                : isPhase8Complete
+                ? "Ready for Repurpose Engine"
+                : isPhase7Complete
+                ? "Ready for Script Generation"
+                : isPhase6Complete
+                ? "Ready for Content DNA"
                 : isPhase5Complete
                 ? "Ready for Phase 6"
                 : isPhase4Complete
@@ -110,8 +127,14 @@ export function SummaryPanel({
             </span>
           </div>
           <p className="mt-1 text-[11px] leading-tight text-violet-300/80">
-            {isPhase6Complete
-              ? "Content intelligence complete. Ready for Script Generation & Pattern Extraction engine."
+            {isPhase9Complete
+              ? "Reel package successfully adapted across Instagram, LinkedIn, X, Threads, Facebook, and YouTube Shorts."
+              : isPhase8Complete
+              ? "Strategy & 5-scene shooting script compiled. Click Proceed to Repurpose Engine to generate omnichannel formats."
+              : isPhase7Complete
+              ? "Content DNA blueprint complete. Click Generate Script to compile shooting briefs."
+              : isPhase6Complete
+              ? "Content intelligence complete. Click Generate Content DNA to synthesize winning blueprint."
               : isPhase5Complete
               ? "Content collection complete. Select items to generate Content Intelligence."
               : isPhase4Complete

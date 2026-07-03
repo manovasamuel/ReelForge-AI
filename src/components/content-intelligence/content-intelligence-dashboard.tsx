@@ -114,14 +114,14 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
         ))}
       </div>
 
-      {/* 3. PRIMARY CTA TO PROCEED TO PHASE 7 */}
+      {/* 3. PRIMARY CTA TO GENERATE CONTENT DNA */}
       <div className="flex justify-end pt-4">
         <Button
           size="lg"
           onClick={handleProceed}
           className="w-full sm:w-auto bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-violet-950/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
         >
-          <span>Proceed to Phase 7 →</span>
+          <span>Generate Content DNA →</span>
         </Button>
       </div>
     </div>
