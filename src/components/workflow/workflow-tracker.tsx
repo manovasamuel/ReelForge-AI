@@ -8,7 +8,8 @@ export type WorkflowStepId =
   | "brand"
   | "competitors"
   | "competitor-analysis"
-  | "reel-intelligence"
+  | "content-collection"
+  | "content-intelligence"
   | "pattern-engine"
   | "strategy"
   | "script-generation";
@@ -23,11 +24,12 @@ const STEPS: StepConfig[] = [
   { id: "profile", label: "Profile", phase: 1 },
   { id: "brand", label: "Brand", phase: 2 },
   { id: "competitors", label: "Competitors", phase: 3 },
-  { id: "competitor-analysis", label: "Competitor Analysis", phase: 4 },
-  { id: "reel-intelligence", label: "Reel Intelligence", phase: 4 },
-  { id: "pattern-engine", label: "Pattern Engine", phase: 4 },
-  { id: "strategy", label: "Strategy", phase: 5 },
-  { id: "script-generation", label: "Script Generation", phase: 5 },
+  { id: "competitor-analysis", label: "Analysis", phase: 4 },
+  { id: "content-collection", label: "Collection", phase: 5 },
+  { id: "content-intelligence", label: "Intelligence", phase: 6 },
+  { id: "pattern-engine", label: "Patterns", phase: 7 },
+  { id: "strategy", label: "Strategy", phase: 8 },
+  { id: "script-generation", label: "Scripts", phase: 9 },
 ];
 
 interface WorkflowTrackerProps {

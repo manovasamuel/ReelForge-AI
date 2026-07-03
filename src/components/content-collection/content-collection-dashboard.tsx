@@ -33,11 +33,13 @@ import { cn } from "@/lib/utils";
 interface ContentCollectionDashboardProps {
   items: CollectedContentItem[];
   competitorUsername: string;
+  onAnalyzeSelected?: (items: CollectedContentItem[]) => void;
 }
 
 export function ContentCollectionDashboard({
   items,
   competitorUsername,
+  onAnalyzeSelected,
 }: ContentCollectionDashboardProps) {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<CategoryOption>("all");
@@ -154,6 +156,11 @@ export function ContentCollectionDashboard({
 
   function handleAnalyzeSelected() {
     if (selectedIds.length === 0) return;
+    if (onAnalyzeSelected) {
+      const selectedItems = items.filter((i) => selectedIds.includes(i.id));
+      onAnalyzeSelected(selectedItems);
+      return;
+    }
     showToast(
       "Coming in Phase 6",
       `Deep AI Pattern Extraction & Reel Intelligence for ${selectedIds.length} selected items will be available in Phase 6.`

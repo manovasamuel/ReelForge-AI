@@ -25,6 +25,10 @@ import {
   ContentCollectionSkeleton,
 } from "@/components/content-collection";
 import {
+  ContentIntelligenceDashboard,
+  ContentIntelligenceSkeleton,
+} from "@/components/content-intelligence";
+import {
   WorkflowTracker,
   StepHeader,
   SummaryPanel,
@@ -36,6 +40,7 @@ import type { BrandIntelligenceReport } from "@/types/brand-intelligence";
 import type { Competitor } from "@/types/competitor";
 import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
 import type { CollectedContentItem } from "@/types/content-collection";
+import type { ContentIntelligenceReport } from "@/types/content-intelligence";
 
 // ─── State machine types ───────────────────────────────────────────
 type AnalysisState =
@@ -68,6 +73,12 @@ type ContentCollectionState =
   | { status: "success"; username: string; items: CollectedContentItem[] }
   | { status: "error"; message: string };
 
+type ContentIntelligenceState =
+  | { status: "idle" }
+  | { status: "loading"; count: number }
+  | { status: "success"; reports: ContentIntelligenceReport[] }
+  | { status: "error"; message: string };
+
 // ─── Page ──────────────────────────────────────────────────────────
 export default function ProfilesPage() {
   const [state, setState] = useState<AnalysisState>({ status: "idle" });
@@ -75,6 +86,7 @@ export default function ProfilesPage() {
   const [compState, setCompState] = useState<CompetitorsState>({ status: "idle" });
   const [compAnalysisState, setCompAnalysisState] = useState<CompetitorAnalysisState>({ status: "idle" });
   const [contentCollectionState, setContentCollectionState] = useState<ContentCollectionState>({ status: "idle" });
+  const [contentIntelligenceState, setContentIntelligenceState] = useState<ContentIntelligenceState>({ status: "idle" });
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
 
   async function handleAnalyze(url: string) {
@@ -83,6 +95,7 @@ export default function ProfilesPage() {
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
     setContentCollectionState({ status: "idle" });
+    setContentIntelligenceState({ status: "idle" });
     setSelectedCompetitor(null);
 
     try {
@@ -121,6 +134,7 @@ export default function ProfilesPage() {
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
     setContentCollectionState({ status: "idle" });
+    setContentIntelligenceState({ status: "idle" });
 
     try {
       const response = await fetch("/api/brand-intelligence/analyze", {
@@ -183,6 +197,7 @@ export default function ProfilesPage() {
     setSelectedCompetitor(competitor.username);
     setCompAnalysisState({ status: "loading", competitor });
     setContentCollectionState({ status: "idle" });
+    setContentIntelligenceState({ status: "idle" });
 
     try {
       const response = await fetch("/api/competitor-analysis/analyze", {
@@ -211,6 +226,7 @@ export default function ProfilesPage() {
 
   async function handleCollectContent(username: string) {
     setContentCollectionState({ status: "loading", username });
+    setContentIntelligenceState({ status: "idle" });
 
     try {
       const response = await fetch("/api/content-collection/collect", {
@@ -237,12 +253,41 @@ export default function ProfilesPage() {
     }
   }
 
+  async function handleAnalyzeSelectedContent(items: CollectedContentItem[]) {
+    setContentIntelligenceState({ status: "loading", count: items.length });
+
+    try {
+      const response = await fetch("/api/content-intelligence/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+      const json = await response.json();
+
+      if (!response.ok || json.error) {
+        setContentIntelligenceState({
+          status: "error",
+          message: json.error?.message ?? "Could not generate content intelligence reports.",
+        });
+        return;
+      }
+
+      setContentIntelligenceState({ status: "success", reports: json.data });
+    } catch {
+      setContentIntelligenceState({
+        status: "error",
+        message: "Network error generating content intelligence.",
+      });
+    }
+  }
+
   function handleRetry() {
     setState({ status: "idle" });
     setBrandState({ status: "idle" });
     setCompState({ status: "idle" });
     setCompAnalysisState({ status: "idle" });
     setContentCollectionState({ status: "idle" });
+    setContentIntelligenceState({ status: "idle" });
     setSelectedCompetitor(null);
   }
 
@@ -253,6 +298,7 @@ export default function ProfilesPage() {
       setCompState({ status: "idle" });
       setCompAnalysisState({ status: "idle" });
       setContentCollectionState({ status: "idle" });
+      setContentIntelligenceState({ status: "idle" });
       setSelectedCompetitor(null);
     }
   }
@@ -286,10 +332,17 @@ export default function ProfilesPage() {
           if (contentCollectionState.status === "idle") {
             activeStep = "competitor-analysis";
           } else if (contentCollectionState.status === "loading") {
-            activeStep = "reel-intelligence";
+            activeStep = "content-collection";
           } else if (contentCollectionState.status === "success") {
-            completedSteps.push("reel-intelligence");
-            activeStep = "reel-intelligence";
+            completedSteps.push("content-collection");
+            if (contentIntelligenceState.status === "idle") {
+              activeStep = "content-collection";
+            } else if (contentIntelligenceState.status === "loading") {
+              activeStep = "content-intelligence";
+            } else if (contentIntelligenceState.status === "success") {
+              completedSteps.push("content-intelligence");
+              activeStep = "content-intelligence";
+            }
           }
         }
       }
@@ -298,6 +351,7 @@ export default function ProfilesPage() {
 
   const isPhase4Complete = compAnalysisState.status === "success";
   const isPhase5Complete = contentCollectionState.status === "success";
+  const isPhase6Complete = contentIntelligenceState.status === "success";
 
   return (
     <PageContainer>
@@ -432,11 +486,38 @@ export default function ProfilesPage() {
                   <ContentCollectionDashboard
                     items={contentCollectionState.items}
                     competitorUsername={contentCollectionState.username}
+                    onAnalyzeSelected={handleAnalyzeSelectedContent}
                   />
                 )}
                 {contentCollectionState.status === "error" && (
                   <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {contentCollectionState.message}
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* Step 6: Content Intelligence Engine (Phase 6) */}
+            {contentIntelligenceState.status !== "idle" && (
+              <section aria-labelledby="step-6-title">
+                <StepHeader
+                  step={6}
+                  title={`Content Intelligence Teardown (${
+                    contentIntelligenceState.status === "loading"
+                      ? contentIntelligenceState.count
+                      : contentIntelligenceState.status === "success"
+                      ? contentIntelligenceState.reports.length
+                      : 0
+                  } Selected Items)`}
+                  description="Granular evaluation of hooks, captions, visual pacing, psychology radar, virality & reusability"
+                />
+                {contentIntelligenceState.status === "loading" && <ContentIntelligenceSkeleton />}
+                {contentIntelligenceState.status === "success" && (
+                  <ContentIntelligenceDashboard reports={contentIntelligenceState.reports} />
+                )}
+                {contentIntelligenceState.status === "error" && (
+                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                    {contentIntelligenceState.message}
                   </div>
                 )}
               </section>
@@ -453,6 +534,7 @@ export default function ProfilesPage() {
               selectedCompetitor={selectedCompetitor}
               isPhase4Complete={isPhase4Complete}
               isPhase5Complete={isPhase5Complete}
+              isPhase6Complete={isPhase6Complete}
             />
           </aside>
         </div>
