@@ -72,7 +72,7 @@ export function SaveProjectModal({
                 Snapshot Telemetry
               </span>
               <Badge variant="secondary" className="bg-violet-500/20 text-violet-300 text-[10px]">
-                v1.1.0 Schema
+                v1.2.0 Schema
               </Badge>
             </div>
             <p className="text-[11px] text-violet-300/80 leading-relaxed">

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Instagram URL validation
-const INSTAGRAM_URL_REGEX = /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9._]+\/?$/;
+const INSTAGRAM_URL_REGEX = /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9._]+(\/?|\/?\?.*|\/?#.*)$/;
 
 export const instagramUrlSchema = z
   .string()
@@ -10,7 +10,14 @@ export const instagramUrlSchema = z
 
 // Extract username from Instagram URL
 export function extractUsername(url: string): string {
-  const match = url.match(/instagram\.com\/([a-zA-Z0-9._]+)\/?$/);
+  try {
+    const parsed = new URL(url);
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    if (parts.length > 0 && parts[0]) {
+      return parts[0];
+    }
+  } catch {}
+  const match = url.match(/instagram\.com\/([a-zA-Z0-9._]+)/);
   if (!match || !match[1]) {
     throw new Error("Could not extract username from URL");
   }

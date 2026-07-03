@@ -36,19 +36,21 @@ export function CopyButton({
 
   return (
     <Tooltip>
-      <TooltipTrigger render={<span />}>
-        <Button
-          variant="ghost"
-          size="icon"
-          className={cn("h-7 w-7 text-muted-foreground", className)}
-          onClick={handleCopy}
-        >
-          {copied ? (
-            <Check className="h-3.5 w-3.5 text-emerald-400" />
-          ) : (
-            <Copy className="h-3.5 w-3.5" />
-          )}
-        </Button>
+      <TooltipTrigger
+        render={
+          <Button
+            variant="ghost"
+            size="icon"
+            className={cn("h-7 w-7 text-muted-foreground", className)}
+            onClick={handleCopy}
+          />
+        }
+      >
+        {copied ? (
+          <Check className="h-3.5 w-3.5 text-emerald-400" />
+        ) : (
+          <Copy className="h-3.5 w-3.5" />
+        )}
       </TooltipTrigger>
       <TooltipContent>{copied ? "Copied!" : label}</TooltipContent>
     </Tooltip>

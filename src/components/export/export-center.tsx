@@ -47,7 +47,7 @@ export function ExportCenter({ project }: ExportCenterProps) {
             </div>
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/30 text-[11px] font-bold text-violet-300 mb-1">
-                <Sparkles className="h-3 w-3 text-fuchsia-400" /> ReelForge AI v1.2 Export Center
+                <Sparkles className="h-3 w-3 text-fuchsia-400" /> ReelForge AI v1.3 Export Center
               </div>
               <h2 className="text-xl font-bold text-white">
                 Omnichannel Intelligence Export: &ldquo;{project.name}&rdquo;

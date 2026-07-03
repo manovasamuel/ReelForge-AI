@@ -78,8 +78,8 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
       return;
     }
     showToast(
-      "Coming in Phase 11",
-      "Multi-Platform Repurpose Engine will adapt this reel package to LinkedIn, YouTube Shorts, X, and Threads in Phase 11."
+      "Repurpose Engine Active",
+      "Multi-Platform Repurpose Engine adapts this reel package across platforms."
     );
   }
 

@@ -204,7 +204,7 @@ export default function ProfilesPage() {
 
     const savedProject: SavedProject = {
       id,
-      version: "1.1.0",
+      version: "1.2.0",
       name: projectName,
       instagramUrl: currentInstagramUrl || (state.status === "success" ? `https://instagram.com/${state.profile.username}` : "Unsaved Profile"),
       createdAt: existing?.createdAt || now,
