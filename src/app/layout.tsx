@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ToastContainer } from "@/components/ui/toast";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import "./globals.css";
@@ -53,6 +54,7 @@ export default function RootLayout({
             <Header />
             <div className="flex-1 overflow-y-auto">{children}</div>
           </div>
+          <ToastContainer />
         </TooltipProvider>
       </body>
     </html>
