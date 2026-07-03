@@ -76,7 +76,7 @@ test.describe("Workspace — Project Lifecycle", () => {
 
     // Navigate to Workspace
     await page.getByRole("button", { name: "Workspace" }).click();
-    await expect(page.getByText(PROJECT_NAME)).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: 5000 });
   });
 
   test("Search should filter projects by name", async ({ page }) => {
@@ -90,7 +90,7 @@ test.describe("Workspace — Project Lifecycle", () => {
 
     await page.getByRole("button", { name: "Workspace" }).click();
     await page.getByPlaceholder(/Search by project name/i).fill(PROJECT_NAME.slice(0, 10));
-    await expect(page.getByText(PROJECT_NAME)).toBeVisible({ timeout: 3000 });
+    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: 3000 });
   });
 
   test("Search with no match should show empty results or empty state", async ({ page }) => {
@@ -129,8 +129,8 @@ test.describe("Workspace — Project Lifecycle", () => {
     });
     await page.reload();
     await page.getByRole("button", { name: "Workspace" }).click();
-    // Either "No projects" text or the empty-state component
-    const noProjects = page.getByText(/No projects yet|Start your first/i);
+    // Either "No saved projects yet" text or the empty-state component
+    const noProjects = page.getByText(/No saved projects yet/i);
     await expect(noProjects.first()).toBeVisible({ timeout: 5000 });
   });
 });

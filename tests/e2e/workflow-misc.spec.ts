@@ -29,7 +29,7 @@ test.describe("Workflow Tracker", () => {
     await page.locator("#analyze-button").click();
     await expect(page.getByText(/Profile Snapshot/i).first()).toBeVisible({ timeout: API_TIMEOUT });
     // Workflow tracker should indicate progress
-    await expect(page.getByText(/1\/9|Phase 1/i).first()).toBeVisible({ timeout: API_TIMEOUT });
+    await expect(page.getByText(/Phase 3 Complete/i).first()).toBeVisible({ timeout: API_TIMEOUT });
   });
 });
 

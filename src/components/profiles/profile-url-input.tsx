@@ -40,7 +40,7 @@ export function ProfileUrlInput({ onAnalyze, isLoading, onInputChange }: Profile
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form onSubmit={handleSubmit} className="w-full" noValidate>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
         {/* Input group */}
         <div className="relative flex-1">

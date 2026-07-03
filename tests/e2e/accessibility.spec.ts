@@ -30,7 +30,7 @@ test.describe("Accessibility — ARIA and keyboard", () => {
   test("validation error message should have role='alert'", async ({ page }) => {
     await page.locator("#instagram-url-input").fill("not-a-url");
     await page.locator("#analyze-button").click();
-    const alert = page.locator("[role='alert']");
+    const alert = page.locator("#url-error[role='alert']");
     await expect(alert).toBeVisible({ timeout: 3000 });
   });
 

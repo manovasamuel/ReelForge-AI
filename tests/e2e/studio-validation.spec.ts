@@ -109,6 +109,6 @@ test.describe("Profile Analysis — Phase 1", () => {
   test("should display Competitor Radar after Phases 1-3 complete", async ({ page }) => {
     await page.locator("#instagram-url-input").fill(VALID_INSTAGRAM_URLS[0]);
     await page.locator("#analyze-button").click();
-    await expect(page.getByText(/Competitor Radar/i).first()).toBeVisible({ timeout: API_TIMEOUT * 3 });
+    await expect(page.getByText(/Competitor Discovery Radar/i).first()).toBeVisible({ timeout: API_TIMEOUT * 3 });
   });
 });

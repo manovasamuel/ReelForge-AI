@@ -57,7 +57,11 @@ export class LocalSettingsProvider implements ISettingsProvider {
     try {
       const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
       if (!raw) {
-        this.saveSettings(DEFAULT_APP_SETTINGS);
+        try {
+          localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(DEFAULT_APP_SETTINGS));
+        } catch (e) {
+          console.error("Failed to set initial settings:", e);
+        }
         return DEFAULT_APP_SETTINGS;
       }
       const parsed = JSON.parse(raw);
