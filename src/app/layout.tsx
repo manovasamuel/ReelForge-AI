@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ToastContainer } from "@/components/ui/toast";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
+import { ClerkProviderWrapper } from "@/lib/auth/clerk-provider-wrapper";
 import "./globals.css";
 
 const inter = Inter({
@@ -45,17 +46,19 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex h-full overflow-hidden bg-background text-foreground">
-        <TooltipProvider delay={300}>
-          {/* Desktop sidebar */}
-          <Sidebar />
+        <ClerkProviderWrapper>
+          <TooltipProvider delay={300}>
+            {/* Desktop sidebar */}
+            <Sidebar />
 
-          {/* Main content area */}
-          <div className="flex flex-1 flex-col overflow-hidden">
-            <Header />
-            <div className="flex-1 overflow-y-auto">{children}</div>
-          </div>
-          <ToastContainer />
-        </TooltipProvider>
+            {/* Main content area */}
+            <div className="flex flex-1 flex-col overflow-hidden">
+              <Header />
+              <div className="flex-1 overflow-y-auto">{children}</div>
+            </div>
+            <ToastContainer />
+          </TooltipProvider>
+        </ClerkProviderWrapper>
       </body>
     </html>
   );

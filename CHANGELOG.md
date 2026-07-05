@@ -2,6 +2,35 @@
 
 All notable changes to **ReelForge AI** will be documented in this file.
 
+## [2.0.0] — 2026-07-05 (Official GA Release)
+
+### Added & Hardened
+- **v2.0 Phase 6 — Billing & GA Release**:
+  - Integrated Stripe billing checkout and customer portal endpoints (`/api/billing/checkout`, `/api/billing/portal`, `/api/billing/summary`).
+  - Added `UsageGuard` and `UsageRepository` with atomic SQL quota enforcement (`tryReserveScraperCall`, `refundScraperCall`) and monthly cycle reset.
+  - Implemented Clerk authentication webhook and Stripe subscription webhook (`/api/webhooks/stripe`, `/api/webhooks/clerk`) with L1 memory and L2 PostgreSQL idempotency tracking (`stripe_webhook_events` table).
+- **v2.0 Phase 5 — Multi-Model AI Intelligence Engine**:
+  - Introduced `AIOrchestratorProvider` coordinating Google Gemini (`gemini-2.5-flash`), OpenAI (`gpt-4o-mini`), Anthropic Claude (`claude-3-5-sonnet`), and Deterministic Fallback.
+  - Implemented `PromptBuilder` and `ResponseNormalizer` centralized layers.
+  - Created `CircuitBreakerStore` with hybrid L1 in-memory and L2 Upstash Redis distributed circuit breaking (3 failures -> 60s cooldown).
+  - Implemented `RateLimiter` edge middleware throttling (60 req/min in prod).
+- **v2.0 Phase 4 — Hybrid Instagram Scraping Pipeline**:
+  - Introduced `FailoverInstagramProvider` coordinating Apify, BrightData, RapidAPI, and MockInstagramProvider.
+- **Production Hardening Sprint (Sprint 1 & Sprint 2)**:
+  - Remediated all critical and high audit vulnerabilities (`SEC-001`, `SEC-002`, `SEC-003`, `DB-001`, `DB-002`, `REL-001`, `BILL-001`, `DEVOPS-001`).
+  - Added `LifecycleManager` and `src/instrumentation.ts` for 10-second graceful container shutdown and PostgreSQL pool draining.
+
+## [2.0.0-phase3] — 2026-07-04 (Workspace Cloud Migration)
+
+### Added
+- **v2.0 Phase 3 — Workspace Cloud Migration**:
+  - **Asynchronous Provider Architecture**: Refactored `IProjectProvider` and `LocalProjectProvider` to return promises (`Promise<...>`) and standardized project IDs on UUID v4 (`crypto.randomUUID()`).
+  - **Server-Side ProjectRepository**: Implemented centralized Drizzle ORM query layer (`src/lib/db/repositories/project.repository.ts`) with strict user isolation (`WHERE user_id = :userId`) and automatic normalization across all 9 phase tables.
+  - **REST API Endpoints**: Created collection (`GET/POST /api/v2/projects`) and individual project (`GET/PUT/DELETE /api/v2/projects/[id]`) routes with built-in development identity resolution.
+  - **Hybrid Provider with Offline Fallback**: Created `CloudProjectProvider` and `HybridProjectProvider` (`src/services/projects/providers/`). Automatically routes to Supabase PostgreSQL in authenticated production mode and seamlessly falls back to browser `localStorage` during offline or local development mode.
+  - **Studio & Workspace Integration**: Upgraded `WorkspaceService` and Studio controller (`src/app/profiles/page.tsx`) to await asynchronous operations while preserving 100% of existing UI/UX.
+  - **Database Schema Upgrades**: Generated Drizzle migration `drizzle/0001_bizarre_human_cannonball.sql` adding `metadata` and `state_snapshot` (JSONB) columns to the `projects` table.
+
 ## [1.3.0] — 2026-07-03 (MVP Release)
 
 ### Added

@@ -18,9 +18,9 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
     disabled: boolean;
   }[] = [
     { id: "mock", name: "Mock Instagram Provider", desc: "Deterministic heuristic scraping engine with 24 sample accounts.", status: "Active", disabled: false },
-    { id: "apify", name: "Apify Scraper Engine", desc: "Official residential proxy scraper API integration.", status: "Not Configured", disabled: true },
-    { id: "rapidapi", name: "RapidAPI Instagram v1.2", desc: "Third-party high-throughput JSON endpoint wrapper.", status: "Not Configured", disabled: true },
-    { id: "brightdata", name: "BrightData Web Unlocker", desc: "Enterprise anti-bot bypass crawler network.", status: "Not Configured", disabled: true },
+    { id: "apify", name: "Apify Scraper Engine", desc: "Official residential proxy scraper API integration.", status: "Available", disabled: false },
+    { id: "rapidapi", name: "RapidAPI Instagram v1.2", desc: "Third-party high-throughput JSON endpoint wrapper.", status: "Available", disabled: false },
+    { id: "brightdata", name: "BrightData Web Unlocker", desc: "Enterprise anti-bot bypass crawler network.", status: "Available", disabled: false },
   ];
 
   const aiOptions: {
@@ -31,9 +31,9 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
     disabled: boolean;
   }[] = [
     { id: "disabled", name: "Deterministic Heuristic Engine (No LLM)", desc: "100% client-side deterministic algorithms without external tokens.", status: "Active", disabled: false },
-    { id: "gemini", name: "Google Gemini 2.5 Flash", desc: "Next-gen multimodal script reasoning and creative variations.", status: "Coming Soon", disabled: true },
-    { id: "openai", name: "OpenAI GPT-4o Studio", desc: "Deep creative screenplay writing and emotional cadence tuning.", status: "Coming Soon", disabled: true },
-    { id: "claude", name: "Anthropic Claude 3.5 Sonnet", desc: "Nuanced brand voice mimicry and contrarian hook framing.", status: "Coming Soon", disabled: true },
+    { id: "gemini", name: "Google Gemini 2.5 Flash", desc: "Next-gen multimodal script reasoning and creative variations.", status: "Available", disabled: false },
+    { id: "openai", name: "OpenAI GPT-4o Studio", desc: "Deep creative screenplay writing and emotional cadence tuning.", status: "Available", disabled: false },
+    { id: "claude", name: "Anthropic Claude 3.5 Sonnet", desc: "Nuanced brand voice mimicry and contrarian hook framing.", status: "Available", disabled: false },
   ];
 
   const getStatusBadge = (status: ProviderStatus) => {

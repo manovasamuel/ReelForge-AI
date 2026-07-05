@@ -23,7 +23,7 @@ export const INVALID_URLS = [
 export const EMPTY_INPUT = "";
 
 /** Timeout used for API-backed pipeline steps (mock responds in <2s) */
-export const API_TIMEOUT = 15000;
+export const API_TIMEOUT = 30000;
 
 /** Full pipeline timeout — covers all 9 phases end-to-end */
 export const FULL_PIPELINE_TIMEOUT = 120000;

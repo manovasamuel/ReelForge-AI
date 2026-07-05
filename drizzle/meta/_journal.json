@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1783142130536,
+      "tag": "0000_tough_roulette",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1783144676869,
+      "tag": "0001_bizarre_human_cannonball",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1783191820362,
+      "tag": "0002_free_captain_universe",
+      "breakpoints": true
+    }
+  ]
+}

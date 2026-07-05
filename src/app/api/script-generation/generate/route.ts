@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { ScriptGenerationService, ScriptGenerationError } from "@/services/script-generation/script-generation.service";
+import { AIService } from "@/services/ai/ai.service";
 import type { ContentDNAReport } from "@/types/content-dna";
+import { UsageGuard } from "@/services/billing";
+import { getAuthenticatedUserId } from "@/lib/auth/server-user";
 
 export async function POST(request: Request) {
   try {
@@ -14,10 +17,53 @@ export async function POST(request: Request) {
       );
     }
 
+    // 1. Generate Deterministic Baseline Package (Fallback)
     const service = new ScriptGenerationService();
-    const pkg = await service.generateScript(dnaReport);
+    const fallbackPkg = await service.generateScript(dnaReport);
 
-    return NextResponse.json({ data: pkg });
+    // 2. Resolve user identity and AI preferences
+    const userId = await getAuthenticatedUserId();
+    if (!userId) {
+      return NextResponse.json(
+        { error: { code: "UNAUTHORIZED", message: "Authentication required." } },
+        { status: 401 }
+      );
+    }
+    const aiService = new AIService();
+    const preferredProvider = request.headers.get("x-ai-provider") || body?.aiProvider || "gemini";
+    const modelPreference = request.headers.get("x-ai-model") || body?.aiModel || "gemini-2.5-flash";
+
+    // 3. Execute through UsageGuard (Enforces token limits without blocking)
+    const guardResult = await UsageGuard.guardAiExecution(
+      userId,
+      modelPreference,
+      async () => {
+        const { data, telemetry } = await aiService.generateScriptPackage(
+          dnaReport,
+          fallbackPkg,
+          preferredProvider,
+          modelPreference
+        );
+        return {
+          data,
+          usage: telemetry.usage,
+          costUsd: telemetry.costEstimateUsd,
+          providerId: telemetry.providerId,
+        };
+      },
+      async () => {
+        return fallbackPkg;
+      }
+    );
+
+    return NextResponse.json({
+      data: guardResult.data,
+      telemetry: guardResult.telemetry || {
+        provider: guardResult.provider,
+        reason: guardResult.reason,
+        upgradeAvailable: guardResult.upgradeAvailable,
+      },
+    });
   } catch (err) {
     if (err instanceof ScriptGenerationError) {
       const status = err.code === "INVALID_INPUT" ? 400 : 500;

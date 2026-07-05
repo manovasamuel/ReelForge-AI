@@ -102,7 +102,7 @@ export function WorkspaceSidebar({
               <HardDrive className="h-3.5 w-3.5 text-violet-400" />
               Storage Telemetry
             </span>
-            <span className="text-[10px] text-muted-foreground">localStorage</span>
+            <span className="text-[10px] text-muted-foreground">Supabase Cloud</span>
           </div>
 
           <div className="space-y-2 text-[11px]">

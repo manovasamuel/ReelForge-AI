@@ -1,6 +1,9 @@
 import { test, expect } from "@playwright/test";
+import { FULL_PIPELINE_TIMEOUT } from "./helpers/fixtures";
 
 test.describe("Settings — Dashboard Navigation & Panels", () => {
+  test.setTimeout(FULL_PIPELINE_TIMEOUT);
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");

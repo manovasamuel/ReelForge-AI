@@ -4,35 +4,35 @@ export interface IProjectProvider {
   /**
    * Retrieve all saved workspace projects
    */
-  getProjects(): SavedProject[];
+  getProjects(): Promise<SavedProject[]>;
 
   /**
    * Retrieve a single project by its unique ID
    */
-  getProjectById(id: string): SavedProject | null;
+  getProjectById(id: string): Promise<SavedProject | null>;
 
   /**
    * Persist a new or updated project
    */
-  saveProject(project: SavedProject): SavedProject;
+  saveProject(project: SavedProject): Promise<SavedProject>;
 
   /**
    * Update specific fields of an existing project (e.g. rename)
    */
-  updateProject(id: string, updates: Partial<SavedProject>): SavedProject | null;
+  updateProject(id: string, updates: Partial<SavedProject>): Promise<SavedProject | null>;
 
   /**
    * Delete a project permanently by ID
    */
-  deleteProject(id: string): boolean;
+  deleteProject(id: string): Promise<boolean>;
 
   /**
    * Duplicate an existing project with a new ID and name
    */
-  duplicateProject(id: string, newId: string, newName: string): SavedProject | null;
+  duplicateProject(id: string, newId: string, newName: string): Promise<SavedProject | null>;
 
   /**
    * Retrieve storage telemetry statistics
    */
-  getStorageStats(): StorageStats;
+  getStorageStats(): Promise<StorageStats>;
 }

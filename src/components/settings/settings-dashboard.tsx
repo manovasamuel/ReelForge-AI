@@ -9,9 +9,10 @@ import { WorkspaceSection } from "./workspace-section";
 import { ExportSection } from "./export-section";
 import { StorageSection } from "./storage-section";
 import { AboutSection } from "./about-section";
-import { Moon, Database, Home, FileText, HardDrive, Info, Settings as SettingsIcon } from "lucide-react";
+import { BillingSection } from "./billing-section";
+import { Moon, Database, Home, FileText, HardDrive, Info, Settings as SettingsIcon, CreditCard } from "lucide-react";
 
-type SettingsTab = "appearance" | "providers" | "workspace" | "export" | "storage" | "about";
+type SettingsTab = "appearance" | "providers" | "workspace" | "export" | "storage" | "about" | "billing";
 
 export function SettingsDashboard() {
   const [activeTab, setActiveTab] = useState<SettingsTab>("appearance");
@@ -44,6 +45,7 @@ export function SettingsDashboard() {
   const tabs: { id: SettingsTab; label: string; icon: React.ReactNode }[] = [
     { id: "appearance", label: "Appearance & Theme", icon: <Moon className="h-4 w-4" /> },
     { id: "providers", label: "Pipeline Providers", icon: <Database className="h-4 w-4" /> },
+    { id: "billing", label: "Billing & Subscription", icon: <CreditCard className="h-4 w-4" /> },
     { id: "workspace", label: "Workspace & Auto-Save", icon: <Home className="h-4 w-4" /> },
     { id: "export", label: "Export Formatting", icon: <FileText className="h-4 w-4" /> },
     { id: "storage", label: "Storage & Data", icon: <HardDrive className="h-4 w-4" /> },
@@ -62,11 +64,11 @@ export function SettingsDashboard() {
             <h1 className="text-2xl font-black text-white flex items-center gap-3">
               Settings & Provider Studio
               <span className="px-2.5 py-0.5 text-xs font-bold bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-full">
-                v1.3.0
+                v2.0.0
               </span>
             </h1>
             <p className="text-sm text-gray-400 mt-0.5">
-              Configure deterministic social intelligence backends, studio themes, and browser storage telemetry.
+              Configure deterministic social intelligence backends, subscription tiers, and storage telemetry.
             </p>
           </div>
         </div>
@@ -109,6 +111,10 @@ export function SettingsDashboard() {
               preferences={settings.providers}
               onChange={(providers) => handleUpdateSettings({ providers: { ...settings.providers, ...providers } })}
             />
+          )}
+
+          {activeTab === "billing" && (
+            <BillingSection />
           )}
 
           {activeTab === "workspace" && (

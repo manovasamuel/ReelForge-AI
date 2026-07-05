@@ -84,7 +84,13 @@ const MOCK_POSTS: InstagramPost[] = [
  * in ./index.ts — zero changes required anywhere else.
  */
 export class MockInstagramProvider implements IInstagramProvider {
+  readonly id = "mock";
+  readonly name = "Mock Provider";
   private readonly SIMULATED_DELAY_MS = 1200;
+
+  isAvailable(): boolean {
+    return true;
+  }
 
   async getProfile(username: string): Promise<InstagramProfile> {
     // Simulate realistic network latency

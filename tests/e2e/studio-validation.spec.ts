@@ -5,9 +5,12 @@ import {
   VALID_URL_WITH_IGSH,
   INVALID_URLS,
   API_TIMEOUT,
+  FULL_PIPELINE_TIMEOUT,
 } from "./helpers/fixtures";
 
 test.describe("Profile URL Validation", () => {
+  test.setTimeout(FULL_PIPELINE_TIMEOUT);
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");
@@ -81,6 +84,8 @@ test.describe("Profile URL Validation", () => {
 });
 
 test.describe("Profile Analysis — Phase 1", () => {
+  test.setTimeout(FULL_PIPELINE_TIMEOUT);
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");

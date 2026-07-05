@@ -4,4 +4,5 @@ export * from "./workspace-section";
 export * from "./export-section";
 export * from "./storage-section";
 export * from "./about-section";
+export * from "./billing-section";
 export * from "./settings-dashboard";

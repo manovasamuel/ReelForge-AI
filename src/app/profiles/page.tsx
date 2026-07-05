@@ -160,14 +160,15 @@ export default function ProfilesPage() {
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
   const [currentInstagramUrl, setCurrentInstagramUrl] = useState("");
 
-  function loadWorkspaceData() {
-    const all = WorkspaceService.getAll(searchQuery, sortOption);
+  async function loadWorkspaceData() {
+    const all = await WorkspaceService.getAll(searchQuery, sortOption);
     let filtered = all;
     if (workspaceSection === "recent") {
       filtered = all.slice(0, 5);
     }
     setProjects(filtered);
-    setStats(WorkspaceService.getStats());
+    const st = await WorkspaceService.getStats();
+    setStats(st);
   }
 
   useEffect(() => {
@@ -197,10 +198,10 @@ export default function ProfilesPage() {
     setViewMode("studio");
   }
 
-  function handleSaveProject(projectName: string) {
-    const id = currentProjectId || "proj_" + Math.random().toString(36).substring(2, 11) + "_" + Date.now();
+  async function handleSaveProject(projectName: string) {
+    const id = currentProjectId || crypto.randomUUID();
     const now = new Date().toISOString();
-    const existing = currentProjectId ? WorkspaceService.getById(currentProjectId) : null;
+    const existing = currentProjectId ? await WorkspaceService.getById(currentProjectId) : null;
 
     const savedProject: SavedProject = {
       id,
@@ -223,13 +224,14 @@ export default function ProfilesPage() {
       },
     };
 
-    WorkspaceService.save(savedProject);
+    await WorkspaceService.save(savedProject);
     setCurrentProjectId(id);
     setIsSaveModalOpen(false);
     showToast(
       "Project Saved to Workspace",
-      `Successfully saved "${projectName}" locally to browser storage.`
+      `Successfully saved "${projectName}" to Workspace.`
     );
+    loadWorkspaceData();
   }
 
   function handleOpenProject(project: SavedProject) {
@@ -307,24 +309,24 @@ export default function ProfilesPage() {
     );
   }
 
-  function handleRenameProject(id: string, newName: string) {
-    WorkspaceService.rename(id, newName);
-    loadWorkspaceData();
+  async function handleRenameProject(id: string, newName: string) {
+    await WorkspaceService.rename(id, newName);
+    await loadWorkspaceData();
     showToast("Project Renamed", `Renamed to "${newName}".`);
   }
 
-  function handleDuplicateProject(id: string) {
-    const copy = WorkspaceService.duplicate(id);
+  async function handleDuplicateProject(id: string) {
+    const copy = await WorkspaceService.duplicate(id);
     if (copy) {
-      loadWorkspaceData();
+      await loadWorkspaceData();
       showToast("Project Duplicated", `Created duplicate "${copy.name}".`);
     }
   }
 
-  function handleDeleteProject(id: string) {
-    WorkspaceService.delete(id);
+  async function handleDeleteProject(id: string) {
+    await WorkspaceService.delete(id);
     if (currentProjectId === id) setCurrentProjectId(null);
-    loadWorkspaceData();
+    await loadWorkspaceData();
     showToast("Project Deleted", "Permanent deletion completed.");
   }
 
@@ -341,10 +343,14 @@ export default function ProfilesPage() {
     setSelectedCompetitor(null);
 
     try {
+      const activeProvider = SettingsService.getSettings()?.providers?.instagramProvider || "mock";
       const response = await fetch("/api/profiles/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ instagramUrl: url }),
+        headers: {
+          "Content-Type": "application/json",
+          "x-instagram-provider": activeProvider,
+        },
+        body: JSON.stringify({ instagramUrl: url, provider: activeProvider }),
       });
 
       const json = await response.json();
@@ -381,10 +387,14 @@ export default function ProfilesPage() {
     setScriptGenerationState({ status: "idle" });
 
     try {
+      const aiProvider = SettingsService.getSettings()?.providers?.aiProvider || "disabled";
       const response = await fetch("/api/brand-intelligence/analyze", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile }),
+        headers: {
+          "Content-Type": "application/json",
+          "x-ai-provider": aiProvider,
+        },
+        body: JSON.stringify({ profile, aiProvider }),
       });
       const json = await response.json();
 
@@ -565,10 +575,14 @@ export default function ProfilesPage() {
     setRepurposeState({ status: "idle" });
 
     try {
+      const aiProvider = SettingsService.getSettings()?.providers?.aiProvider || "disabled";
       const response = await fetch("/api/script-generation/generate", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ dnaReport }),
+        headers: {
+          "Content-Type": "application/json",
+          "x-ai-provider": aiProvider,
+        },
+        body: JSON.stringify({ dnaReport, aiProvider }),
       });
       const json = await response.json();
 

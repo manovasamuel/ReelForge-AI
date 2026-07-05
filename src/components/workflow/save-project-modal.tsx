@@ -42,7 +42,7 @@ export function SaveProjectModal({
             </div>
             <div>
               <h3 className="text-base font-bold text-white">Save Project to Workspace</h3>
-              <span className="text-[11px] text-muted-foreground">Persist application state to browser localStorage</span>
+              <span className="text-[11px] text-muted-foreground">Persist application state to your cloud workspace</span>
             </div>
           </div>
           <Button size="icon" variant="ghost" className="h-8 w-8 text-muted-foreground" onClick={onClose}>

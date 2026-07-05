@@ -44,8 +44,8 @@ export function EmptyWorkspaceState({ onCreateNew }: EmptyWorkspaceStateProps) {
 
         <div className="grid grid-cols-3 gap-3 pt-6 border-t border-border/40 text-left text-xs">
           <div className="p-3 rounded-xl bg-background/40 border border-border/40">
-            <span className="font-bold text-violet-300 block">100% Local</span>
-            <span className="text-[11px] text-muted-foreground">Browser localStorage</span>
+            <span className="font-bold text-violet-300 block">Cloud Workspace</span>
+            <span className="text-[11px] text-muted-foreground">Supabase Persistence</span>
           </div>
           <div className="p-3 rounded-xl bg-background/40 border border-border/40">
             <span className="font-bold text-fuchsia-300 block">Complete State</span>

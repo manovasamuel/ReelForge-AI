@@ -63,7 +63,7 @@ export function AboutSection({
             </div>
           </div>
           <span className="px-3 py-1 text-xs font-bold bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-full">
-            v1.3.0
+            v2.0.0
           </span>
         </div>
       </div>

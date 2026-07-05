@@ -1,4 +1,5 @@
 import { MobileNav } from "./sidebar";
+import { UserProfileButton } from "@/components/auth/user-profile-button";
 
 export function Header() {
   return (
@@ -9,13 +10,14 @@ export function Header() {
       {/* Spacer */}
       <div className="flex-1" />
 
-      {/* Right side actions (future: user avatar, notifications) */}
-      <div className="flex items-center gap-2">
-        <div className="flex h-8 items-center rounded-full border border-border/50 bg-accent/50 px-3">
-          <span className="text-xs font-medium text-muted-foreground">
-            v1.0
+      {/* Right side actions (user profile, status) */}
+      <div className="flex items-center gap-3">
+        <div className="flex h-8 items-center rounded-full border border-border/50 bg-accent/50 px-3 shadow-inner">
+          <span className="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
+            v2.0
           </span>
         </div>
+        <UserProfileButton />
       </div>
     </header>
   );

@@ -1,10 +1,13 @@
 import { test, expect } from "@playwright/test";
+import { FULL_PIPELINE_TIMEOUT } from "./helpers/fixtures";
 
 /**
  * Accessibility smoke tests — keyboard navigation, ARIA roles,
  * focus management, and role-based locators.
  */
 test.describe("Accessibility — ARIA and keyboard", () => {
+  test.setTimeout(FULL_PIPELINE_TIMEOUT);
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");

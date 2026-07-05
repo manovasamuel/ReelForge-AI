@@ -10,6 +10,12 @@ import type { InstagramProfile } from "@/types/instagram";
  *   3. Set INSTAGRAM_PROVIDER env var — zero other changes required
  */
 export interface IInstagramProvider {
+  readonly id: string;
+  readonly name: string;
+  /**
+   * Checks whether the provider is configured and available (e.g., API tokens present).
+   */
+  isAvailable(): boolean;
   /**
    * Fetch a public Instagram profile by username.
    * @param username — plain username, no @ prefix, no URL

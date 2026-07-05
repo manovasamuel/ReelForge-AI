@@ -9,8 +9,8 @@ export class WorkspaceService {
   /**
    * Get all projects with optional search filtering and sorting
    */
-  public static getAll(search?: string, sort: ProjectSortOption = "newest"): SavedProject[] {
-    let projects = this.provider.getProjects();
+  public static async getAll(search?: string, sort: ProjectSortOption = "newest"): Promise<SavedProject[]> {
+    let projects = await this.provider.getProjects();
 
     if (search && search.trim() !== "") {
       const q = search.toLowerCase().trim();
@@ -42,28 +42,28 @@ export class WorkspaceService {
   /**
    * Get project by ID
    */
-  public static getById(id: string): SavedProject | null {
+  public static async getById(id: string): Promise<SavedProject | null> {
     return this.provider.getProjectById(id);
   }
 
   /**
    * Save a new or existing project
    */
-  public static save(project: SavedProject): SavedProject {
+  public static async save(project: SavedProject): Promise<SavedProject> {
     return this.provider.saveProject(project);
   }
 
   /**
    * Update project fields
    */
-  public static update(id: string, updates: Partial<SavedProject>): SavedProject | null {
+  public static async update(id: string, updates: Partial<SavedProject>): Promise<SavedProject | null> {
     return this.provider.updateProject(id, updates);
   }
 
   /**
    * Rename a project
    */
-  public static rename(id: string, newName: string): SavedProject | null {
+  public static async rename(id: string, newName: string): Promise<SavedProject | null> {
     if (!newName.trim()) return null;
     return this.provider.updateProject(id, { name: newName.trim() });
   }
@@ -71,18 +71,18 @@ export class WorkspaceService {
   /**
    * Delete a project permanently
    */
-  public static delete(id: string): boolean {
+  public static async delete(id: string): Promise<boolean> {
     return this.provider.deleteProject(id);
   }
 
   /**
    * Duplicate a project
    */
-  public static duplicate(id: string): SavedProject | null {
-    const original = this.provider.getProjectById(id);
+  public static async duplicate(id: string): Promise<SavedProject | null> {
+    const original = await this.provider.getProjectById(id);
     if (!original) return null;
 
-    const newId = "proj_" + Math.random().toString(36).substring(2, 11) + "_" + Date.now();
+    const newId = crypto.randomUUID();
     const newName = `${original.name} (Copy)`;
     return this.provider.duplicateProject(id, newId, newName);
   }
@@ -90,7 +90,7 @@ export class WorkspaceService {
   /**
    * Get storage statistics
    */
-  public static getStats(): StorageStats {
+  public static async getStats(): Promise<StorageStats> {
     return this.provider.getStorageStats();
   }
 }

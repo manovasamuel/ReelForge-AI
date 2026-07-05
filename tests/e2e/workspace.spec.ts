@@ -62,7 +62,7 @@ test.describe("Workspace — Project Lifecycle", () => {
     await nameInput.fill(PROJECT_NAME);
     await page.getByRole("button", { name: "Save Project" }).click();
     // Toast notification should appear
-    await expect(page.getByText(/Project Saved/i)).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText(/Project Saved/i)).toBeVisible({ timeout: API_TIMEOUT });
   });
 
   test("Saved project should appear in Workspace view", async ({ page }) => {
@@ -72,11 +72,11 @@ test.describe("Workspace — Project Lifecycle", () => {
     await nameInput.clear();
     await nameInput.fill(PROJECT_NAME);
     await page.getByRole("button", { name: "Save Project" }).click();
-    await page.getByText(/Project Saved/i).waitFor({ timeout: 5000 });
+    await page.getByText(/Project Saved/i).waitFor({ timeout: API_TIMEOUT });
 
     // Navigate to Workspace
     await page.getByRole("button", { name: "Workspace" }).click();
-    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: 5000 });
+    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: API_TIMEOUT });
   });
 
   test("Search should filter projects by name", async ({ page }) => {
@@ -86,11 +86,11 @@ test.describe("Workspace — Project Lifecycle", () => {
     await nameInput.clear();
     await nameInput.fill(PROJECT_NAME);
     await page.getByRole("button", { name: "Save Project" }).click();
-    await page.getByText(/Project Saved/i).waitFor({ timeout: 5000 });
+    await page.getByText(/Project Saved/i).waitFor({ timeout: API_TIMEOUT });
 
     await page.getByRole("button", { name: "Workspace" }).click();
     await page.getByPlaceholder(/Search by project name/i).fill(PROJECT_NAME.slice(0, 10));
-    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: 3000 });
+    await expect(page.getByText(PROJECT_NAME).first()).toBeVisible({ timeout: API_TIMEOUT });
   });
 
   test("Search with no match should show empty results or empty state", async ({ page }) => {
@@ -100,7 +100,7 @@ test.describe("Workspace — Project Lifecycle", () => {
     await nameInput.clear();
     await nameInput.fill(PROJECT_NAME);
     await page.getByRole("button", { name: "Save Project" }).click();
-    await page.getByText(/Project Saved/i).waitFor({ timeout: 5000 });
+    await page.getByText(/Project Saved/i).waitFor({ timeout: API_TIMEOUT });
 
     await page.getByRole("button", { name: "Workspace" }).click();
     await page.getByPlaceholder(/Search by project name/i).fill("XYZNOTEXISTS99999");
@@ -114,7 +114,7 @@ test.describe("Workspace — Project Lifecycle", () => {
     await page.goto("/profiles");
     await page.getByRole("button", { name: "Workspace" }).click();
     const sortSelect = page.locator("select");
-    await expect(sortSelect).toBeVisible();
+    await expect(sortSelect).toBeVisible({ timeout: API_TIMEOUT });
     const options = await sortSelect.locator("option").allTextContents();
     expect(options.some((o) => o.match(/Newest/i))).toBeTruthy();
     expect(options.some((o) => o.match(/Oldest/i))).toBeTruthy();

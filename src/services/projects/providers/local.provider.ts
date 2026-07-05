@@ -33,23 +33,23 @@ export class LocalProjectProvider implements IProjectProvider {
     }
   }
 
-  public getProjects(): SavedProject[] {
+  public async getProjects(): Promise<SavedProject[]> {
     return this.getRawProjects();
   }
 
-  public getProjectById(id: string): SavedProject | null {
+  public async getProjectById(id: string): Promise<SavedProject | null> {
     const projects = this.getRawProjects();
     return projects.find((p) => p.id === id) || null;
   }
 
-  public saveProject(project: SavedProject): SavedProject {
+  public async saveProject(project: SavedProject): Promise<SavedProject> {
     const projects = this.getRawProjects();
     const index = projects.findIndex((p) => p.id === project.id);
     const now = new Date().toISOString();
 
     const toSave: SavedProject = {
       ...project,
-      version: "1.1.0",
+      version: "1.2.0",
       updatedAt: now,
     };
 
@@ -63,7 +63,7 @@ export class LocalProjectProvider implements IProjectProvider {
     return toSave;
   }
 
-  public updateProject(id: string, updates: Partial<SavedProject>): SavedProject | null {
+  public async updateProject(id: string, updates: Partial<SavedProject>): Promise<SavedProject | null> {
     const projects = this.getRawProjects();
     const index = projects.findIndex((p) => p.id === id);
     if (index === -1) return null;
@@ -72,7 +72,7 @@ export class LocalProjectProvider implements IProjectProvider {
       ...projects[index],
       ...updates,
       id: projects[index].id, // Prevent overriding ID
-      version: "1.1.0",
+      version: "1.2.0",
       updatedAt: new Date().toISOString(),
     };
 
@@ -81,7 +81,7 @@ export class LocalProjectProvider implements IProjectProvider {
     return updated;
   }
 
-  public deleteProject(id: string): boolean {
+  public async deleteProject(id: string): Promise<boolean> {
     const projects = this.getRawProjects();
     const filtered = projects.filter((p) => p.id !== id);
     if (filtered.length === projects.length) return false;
@@ -90,15 +90,15 @@ export class LocalProjectProvider implements IProjectProvider {
     return true;
   }
 
-  public duplicateProject(id: string, newId: string, newName: string): SavedProject | null {
-    const original = this.getProjectById(id);
+  public async duplicateProject(id: string, newId: string, newName: string): Promise<SavedProject | null> {
+    const original = await this.getProjectById(id);
     if (!original) return null;
 
     const now = new Date().toISOString();
     const duplicate: SavedProject = {
       ...original,
       id: newId,
-      version: "1.1.0",
+      version: "1.2.0",
       name: newName,
       createdAt: now,
       updatedAt: now,
@@ -111,7 +111,7 @@ export class LocalProjectProvider implements IProjectProvider {
     return duplicate;
   }
 
-  public getStorageStats(): StorageStats {
+  public async getStorageStats(): Promise<StorageStats> {
     const projects = this.getRawProjects();
     const totalProjects = projects.length;
 

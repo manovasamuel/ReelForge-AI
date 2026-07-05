@@ -1,7 +1,10 @@
 import { test, expect } from "@playwright/test";
 import { StudioPage } from "../pages/studio.page";
+import { FULL_PIPELINE_TIMEOUT } from "./helpers/fixtures";
 
 test.describe("Navigation — 4-way switcher", () => {
+  test.setTimeout(FULL_PIPELINE_TIMEOUT);
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");
@@ -22,24 +25,24 @@ test.describe("Navigation — 4-way switcher", () => {
 
   test("should switch to Workspace view", async ({ page }) => {
     await page.getByRole("button", { name: "Workspace" }).click();
-    await expect(page.getByPlaceholder(/Search by project name/i)).toBeVisible();
+    await expect(page.getByPlaceholder(/Search by project name/i)).toBeVisible({ timeout: 15000 });
   });
 
   test("should switch to Export Center view", async ({ page }) => {
     await page.getByRole("button", { name: /Export Center/ }).click();
     // Without an active project, should show the empty state
-    await expect(page.getByText(/No Active Analysis Selected/i)).toBeVisible();
+    await expect(page.getByText(/No Active Analysis Selected/i)).toBeVisible({ timeout: 15000 });
   });
 
   test("should switch to Settings view", async ({ page }) => {
     await page.getByRole("button", { name: /Settings/ }).click();
-    await expect(page.getByText(/Settings/i).first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Settings/i })).toBeVisible({ timeout: 15000 });
   });
 
   test("should switch back to Studio from any view", async ({ page }) => {
     await page.getByRole("button", { name: "Workspace" }).click();
     await page.getByRole("button", { name: "Studio" }).click();
-    await expect(page.getByText("Instagram Profile Analysis")).toBeVisible();
+    await expect(page.getByText("Instagram Profile Analysis")).toBeVisible({ timeout: 15000 });
   });
 
   test("should display page title 'ReelForge AI'", async ({ page }) => {
