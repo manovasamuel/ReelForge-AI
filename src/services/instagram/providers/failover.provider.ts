@@ -86,16 +86,22 @@ export class FailoverInstagramProvider implements IInstagramProvider {
 
       this.log("INFO", `Attempting profile ingestion for @${username} via [${provider.name}]...`);
 
+      // Determine provider-specific timeout and retry rules
+      // Apify requires a 50s outer boundary (with 45s internal fetch abort) and 0 retries to prevent duplicate billing.
+      const isApify = provider.id === "apify";
+      const timeoutMs = isApify ? 50000 : this.TIMEOUT_MS;
+      const maxRetries = isApify ? 0 : this.MAX_RETRIES;
+
       // 3. Execute with retry strategy and timeout
-      for (let attempt = 0; attempt <= this.MAX_RETRIES; attempt++) {
+      for (let attempt = 0; attempt <= maxRetries; attempt++) {
         if (attempt > 0) {
           const backoffMs = Math.pow(2, attempt - 1) * 1000; // Exponential backoff: 1000ms
-          this.log("WARN", `Retrying [${provider.name}] attempt ${attempt + 1}/${this.MAX_RETRIES + 1} after ${backoffMs}ms backoff...`);
+          this.log("WARN", `Retrying [${provider.name}] attempt ${attempt + 1}/${maxRetries + 1} after ${backoffMs}ms backoff...`);
           await this.delay(backoffMs);
         }
 
         try {
-          const profile = await this.executeWithTimeout(provider.getProfile(username), this.TIMEOUT_MS);
+          const profile = await this.executeWithTimeout(provider.getProfile(username), timeoutMs);
           
           // Success: reset health status
           this.recordSuccess(provider.id);
@@ -112,7 +118,7 @@ export class FailoverInstagramProvider implements IInstagramProvider {
 
           this.log("WARN", `[${provider.name}] Attempt ${attempt + 1} failed for @${username}: ${message}`);
           
-          if (attempt === this.MAX_RETRIES) {
+          if (attempt === maxRetries) {
             errors.push(`[${provider.name}]: ${message}`);
             this.recordFailure(provider.id);
           }

@@ -22,15 +22,24 @@ export class ApifyProvider implements IInstagramProvider {
 
     const endpoint = `https://api.apify.com/v2/acts/apify~instagram-profile-scraper/run-sync-get-dataset-items?token=${token}`;
 
+    const controller = new AbortController();
+    const abortTimeout = setTimeout(() => controller.abort(), 45000);
+
     let response: Response;
     try {
       response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ usernames: [username] }),
+        signal: controller.signal,
       });
     } catch (e) {
+      if (e instanceof Error && e.name === "AbortError") {
+        throw new InstagramError("Apify request timed out after 45000ms.");
+      }
       throw new InstagramError(`Apify network failure: ${e instanceof Error ? e.message : "Unknown error"}`);
+    } finally {
+      clearTimeout(abortTimeout);
     }
 
     if (response.status === 429) {
