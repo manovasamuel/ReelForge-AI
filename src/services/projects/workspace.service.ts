@@ -90,7 +90,7 @@ export class WorkspaceService {
   /**
    * Get storage statistics
    */
-  public static async getStats(): Promise<StorageStats> {
-    return this.provider.getStorageStats();
+  public static async getStats(projects?: SavedProject[]): Promise<StorageStats> {
+    return this.provider.getStorageStats(projects);
   }
 }

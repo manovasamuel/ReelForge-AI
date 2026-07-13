@@ -91,15 +91,15 @@ export class HybridProjectProvider implements IProjectProvider {
     }
   }
 
-  public async getStorageStats(): Promise<StorageStats> {
+  public async getStorageStats(projectsInput?: SavedProject[]): Promise<StorageStats> {
     if (this.isOfflineOrLocalOnly()) {
-      return this.local.getStorageStats();
+      return this.local.getStorageStats(projectsInput);
     }
     try {
-      return await this.cloud.getStorageStats();
+      return await this.cloud.getStorageStats(projectsInput);
     } catch (error) {
       console.warn("Cloud provider getStorageStats failed or unavailable, falling back to local:", error);
-      return this.local.getStorageStats();
+      return this.local.getStorageStats(projectsInput);
     }
   }
 }

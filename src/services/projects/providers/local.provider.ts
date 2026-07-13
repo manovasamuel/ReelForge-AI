@@ -111,8 +111,8 @@ export class LocalProjectProvider implements IProjectProvider {
     return duplicate;
   }
 
-  public async getStorageStats(): Promise<StorageStats> {
-    const projects = this.getRawProjects();
+  public async getStorageStats(projectsInput?: SavedProject[]): Promise<StorageStats> {
+    const projects = projectsInput ?? this.getRawProjects();
     const totalProjects = projects.length;
 
     if (totalProjects === 0) {

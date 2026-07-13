@@ -34,5 +34,5 @@ export interface IProjectProvider {
   /**
    * Retrieve storage telemetry statistics
    */
-  getStorageStats(): Promise<StorageStats>;
+  getStorageStats(projects?: SavedProject[]): Promise<StorageStats>;
 }

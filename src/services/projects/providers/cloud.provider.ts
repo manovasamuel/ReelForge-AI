@@ -88,8 +88,8 @@ export class CloudProjectProvider implements IProjectProvider {
     return data.project || null;
   }
 
-  public async getStorageStats(): Promise<StorageStats> {
-    const projects = await this.getProjects();
+  public async getStorageStats(projectsInput?: SavedProject[]): Promise<StorageStats> {
+    const projects = projectsInput ?? (await this.getProjects());
     const totalProjects = projects.length;
 
     if (totalProjects === 0) {

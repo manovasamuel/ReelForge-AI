@@ -28,7 +28,7 @@ export function PrintReportView({ project }: PrintReportViewProps) {
         <div className="space-y-2 text-sm text-gray-600">
           <div><strong>Report Date:</strong> {now}</div>
           <div><strong>Schema Version:</strong> {project.version}</div>
-          <div><strong>Platform Engine:</strong> ReelForge AI v1.2</div>
+          <div><strong>Platform Engine:</strong> ReelForge AI v2.0</div>
         </div>
       </section>
 
@@ -174,7 +174,7 @@ export function PrintReportView({ project }: PrintReportViewProps) {
 
       {/* Footer */}
       <footer className="pt-12 border-t border-gray-400 text-xs text-gray-500 flex justify-between items-center">
-        <div>Generated deterministically by ReelForge AI v1.2 Export Center</div>
+        <div>Compiled by ReelForge AI v2.0 Export Center</div>
         <div>Generation Date: {now} | Version: {project.version}</div>
       </footer>
     </div>

@@ -18,9 +18,9 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
     status: ProviderStatus;
     disabled: boolean;
   }[] = [
-    { id: "mock", name: "Mock Instagram Provider", desc: "Deterministic heuristic scraping engine with 24 sample accounts.", status: "Active", disabled: false },
+    { id: "mock", name: "Mock Instagram Provider", desc: "Deterministic heuristic scraping engine with 24 sample accounts.", status: "Available", disabled: false },
     { id: "apify", name: "Apify Scraper Engine", desc: "Official residential proxy scraper API integration.", status: "Available", disabled: false },
-    { id: "rapidapi", name: "RapidAPI Instagram v1.2", desc: "Third-party high-throughput JSON endpoint wrapper.", status: "Available", disabled: false },
+    { id: "rapidapi", name: "RapidAPI Scraper Engine", desc: "Third-party high-throughput JSON endpoint wrapper.", status: "Available", disabled: false },
     { id: "brightdata", name: "BrightData Web Unlocker", desc: "Enterprise anti-bot bypass crawler network.", status: "Available", disabled: false },
   ];
 
@@ -31,8 +31,8 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
     status: ProviderStatus;
     disabled: boolean;
   }[] = [
-    { id: "disabled", name: "Deterministic Heuristic Engine (No LLM)", desc: "100% client-side deterministic algorithms without external tokens.", status: "Active", disabled: false },
-    { id: "gemini", name: "Google Gemini 2.5 Flash", desc: "Next-gen multimodal script reasoning and creative variations.", status: "Available", disabled: false },
+    { id: "disabled", name: "Deterministic Heuristic Engine (No LLM)", desc: "100% client-side deterministic algorithms without external tokens.", status: "Available", disabled: false },
+    { id: "gemini", name: "Google Gemini 3.1 Flash Lite", desc: "Next-gen high-speed multimodal script reasoning and creative variations.", status: "Available", disabled: false },
     { id: "openai", name: "OpenAI GPT-4o Studio", desc: "Deep creative screenplay writing and emotional cadence tuning.", status: "Available", disabled: false },
     { id: "claude", name: "Anthropic Claude 3.5 Sonnet", desc: "Nuanced brand voice mimicry and contrarian hook framing.", status: "Available", disabled: false },
   ];
@@ -83,7 +83,7 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                     <p className="text-xs text-gray-400 mt-0.5">{opt.desc}</p>
                   </div>
                 </div>
-                <div>{getStatusBadge(opt.status)}</div>
+                <div>{getStatusBadge(active ? "Active" : opt.status)}</div>
               </div>
             );
           })}
@@ -121,7 +121,7 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                     <p className="text-xs text-gray-400 mt-0.5">{opt.desc}</p>
                   </div>
                 </div>
-                <div>{getStatusBadge(opt.status)}</div>
+                <div>{getStatusBadge(active ? "Active" : opt.status)}</div>
               </div>
             );
           })}

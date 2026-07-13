@@ -30,7 +30,7 @@ export class AIOrchestratorProvider implements IAIProvider {
   public readonly name = "ReelForge AI Multi-Model Orchestrator";
 
   private readonly providers: IAIProvider[];
-  private readonly preferredProvider?: AIProviderId;
+  private readonly preferredProvider?: string;
   private readonly modelPreference?: AIModelPreference;
 
   private static readonly FAILURE_THRESHOLD = 3;
@@ -39,7 +39,7 @@ export class AIOrchestratorProvider implements IAIProvider {
   private static readonly MAX_RETRIES = 1;
 
   constructor(preferredProvider?: string, modelPreference?: string) {
-    this.preferredProvider = (preferredProvider || process.env.AI_PROVIDER || undefined) as AIProviderId | undefined;
+    this.preferredProvider = preferredProvider || process.env.AI_PROVIDER || undefined;
     this.modelPreference = (modelPreference || process.env.AI_MODEL_PREFERENCE || "default") as AIModelPreference;
 
     this.providers = [
@@ -115,6 +115,10 @@ export class AIOrchestratorProvider implements IAIProvider {
   }
 
   private async buildPriorityQueue(): Promise<IAIProvider[]> {
+    if (this.preferredProvider === "disabled" || this.preferredProvider === "deterministic" || this.preferredProvider === "mock") {
+      return [];
+    }
+
     const queue: IAIProvider[] = [];
     const availablePool: IAIProvider[] = [];
     for (const p of this.providers) {

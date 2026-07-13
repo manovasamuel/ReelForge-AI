@@ -42,7 +42,7 @@ export function WorkspaceSidebar({
             </CardTitle>
           </div>
           <Badge variant="outline" className="border-fuchsia-500/40 text-fuchsia-300 bg-fuchsia-500/10 text-[10px]">
-            v1.1.0
+            v2.0.0
           </Badge>
         </div>
       </CardHeader>
@@ -154,7 +154,7 @@ export function WorkspaceSidebar({
             </div>
           </div>
           <Badge variant="outline" className="border-violet-500/40 text-violet-300 text-[10px]">
-            v1.1.0
+            v2.0.0
           </Badge>
         </div>
       </CardContent>

@@ -22,7 +22,7 @@ export function EmptyWorkspaceState({ onCreateNew }: EmptyWorkspaceStateProps) {
         <div className="space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-xs font-semibold text-violet-300">
             <Sparkles className="h-3.5 w-3.5 text-fuchsia-400" />
-            ReelForge AI v1.1 Workspace
+            ReelForge AI v2.0 Workspace
           </div>
           <h3 className="text-xl md:text-2xl font-extrabold text-white tracking-tight">
             No saved projects yet.

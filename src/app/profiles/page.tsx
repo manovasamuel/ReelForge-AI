@@ -167,7 +167,7 @@ export default function ProfilesPage() {
       filtered = all.slice(0, 5);
     }
     setProjects(filtered);
-    const st = await WorkspaceService.getStats();
+    const st = await WorkspaceService.getStats(all);
     setStats(st);
   }
 
@@ -180,7 +180,7 @@ export default function ProfilesPage() {
 
   useEffect(() => {
     loadWorkspaceData();
-  }, [searchQuery, sortOption, workspaceSection, viewMode]);
+  }, [searchQuery, sortOption, workspaceSection]);
 
   function handleCreateNewAnalysis() {
     setState({ status: "idle" });
