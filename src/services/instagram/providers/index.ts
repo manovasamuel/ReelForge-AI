@@ -10,7 +10,10 @@ import { FailoverInstagramProvider } from "./failover.provider";
  * The orchestrator manages dynamic priority, retry, health tracking,
  * and permanent fallback to MockProvider.
  */
-export function getInstagramProvider(preferredType?: string): IInstagramProvider {
-  return new FailoverInstagramProvider(preferredType);
+export function getInstagramProvider(
+  preferredType?: string,
+  allowMockFallback: boolean = true
+): IInstagramProvider {
+  return new FailoverInstagramProvider(preferredType, allowMockFallback);
 }
 

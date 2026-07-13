@@ -29,7 +29,10 @@ export class FailoverInstagramProvider implements IInstagramProvider {
   private readonly allProviders: IInstagramProvider[];
   private readonly mockProvider: MockInstagramProvider;
 
-  constructor(preferredProviderType?: string) {
+  constructor(
+    preferredProviderType?: string,
+    private readonly allowMockFallback: boolean = true
+  ) {
     this.mockProvider = new MockInstagramProvider();
     const apify = new ApifyProvider();
     const brightdata = new BrightDataProvider();
@@ -38,7 +41,7 @@ export class FailoverInstagramProvider implements IInstagramProvider {
     // Determine dynamic priority chain:
     // 1. Preferred provider (from UI request/Settings or INSTAGRAM_PROVIDER env)
     // 2. Remaining live providers
-    // 3. Permanent fallback to MockProvider
+    // 3. Permanent fallback to MockProvider (only when allowMockFallback is true)
     const activePreference = (preferredProviderType || process.env.INSTAGRAM_PROVIDER || "mock").toLowerCase();
 
     const liveMap: Record<string, IInstagramProvider> = {
@@ -59,12 +62,17 @@ export class FailoverInstagramProvider implements IInstagramProvider {
       }
     }
 
-    // Always terminate with MockProvider
-    ordered.push(this.mockProvider);
+    // Terminate with MockProvider only when fallback is allowed
+    if (this.allowMockFallback) {
+      ordered.push(this.mockProvider);
+    }
     this.allProviders = ordered;
   }
 
   isAvailable(): boolean {
+    if (!this.allowMockFallback) {
+      return this.allProviders.some((provider) => provider.isAvailable());
+    }
     return true;
   }
 
