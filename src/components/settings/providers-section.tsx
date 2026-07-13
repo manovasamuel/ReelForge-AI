@@ -3,6 +3,7 @@
 import React from "react";
 import { ProviderPreferences, InstagramProviderType, AIProviderType, ProviderStatus } from "@/types/settings";
 import { Database, Sparkles, CheckCircle2, Lock, Clock } from "lucide-react";
+import { AiTelemetryPanel } from "./ai-telemetry-panel";
 
 interface ProvidersSectionProps {
   preferences: ProviderPreferences;
@@ -49,7 +50,9 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
 
   return (
     <div className="space-y-8 animate-fade-in">
-      <div>
+      <AiTelemetryPanel />
+
+      <div className="border-t border-gray-800 pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
           <Database className="h-5 w-5 text-purple-400" /> Instagram Data Ingestion Provider
         </h3>

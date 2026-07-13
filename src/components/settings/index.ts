@@ -6,3 +6,4 @@ export * from "./storage-section";
 export * from "./about-section";
 export * from "./billing-section";
 export * from "./settings-dashboard";
+export * from "./ai-telemetry-panel";
