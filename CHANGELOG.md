@@ -2,6 +2,23 @@
 
 All notable changes to **ReelForge AI** will be documented in this file.
 
+## [2.0.0-milestone5] — 2026-07-13 (Core AI Workflow Pipeline & Telemetry Dashboard)
+
+### Added & Verified
+- **Stage 1 — Backend Workflow Integration**:
+  - Successfully wired all 4 remaining content engine endpoints (`/api/competitor-analysis/analyze`, `/api/content-intelligence/analyze`, `/api/content-dna/analyze`, `/api/repurpose/generate`) through `AIService`, `AIOrchestratorProvider` (`gemini-3.1-flash-lite`), and `UsageGuard`.
+  - Enforced baseline `HTTP 401 Unauthorized` rejection and clean schema/telemetry reporting across all 6 core workflows.
+- **Stage 2 — Telemetry Summary API (`GET /api/ai/telemetry/summary`)**:
+  - Implemented authenticated, user-scoped endpoint reporting `persistedUsage` (`promptTokens`, `completionTokens`, `totalTokens`, `usagePercentage`, `totalEstimatedCostUsd`) and `runtimeHealth` circuit breaker states.
+  - Implementation-level user isolation verified by code inspection (`userId` query scoping inside `UsageRepository.getCurrentUsage`).
+  - Stripped internal database identifiers (`userId`) and ensured zero API key/secret leakage.
+- **Stage 3 — Telemetry Dashboard UI (`AiTelemetryPanel`)**:
+  - Built modern client-side dashboard inside `Settings → Pipeline Providers` displaying historical database token metrics and live provider circuit states (`gemini-3.1-flash-lite`, `gpt-4o-mini`, `claude-3-5-sonnet`).
+  - Verified via Playwright against Vercel Production with zero DOM secret leakage.
+- **Stage 4 — Production Hardening & Sign-Off**:
+  - Completed consolidated regression verification (`verify-milestone5-stage1.ts`, `verify-milestone5-stage2.ts`, `verify-milestone5-stage3.ts`) with 100% pass rate and zero redundant Gemini quota consumption.
+  - Published `milestone5_verification_report.md` recording exact token invariants (`totalTokens = promptTokens + completionTokens`) and architectural guarantees.
+
 ## [2.0.0] — 2026-07-05 (Official GA Release)
 
 ### Added & Hardened

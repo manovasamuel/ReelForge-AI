@@ -45,6 +45,8 @@ Cloud Providers (Supabase PostgreSQL / Clerk Auth / Drizzle ORM)
 - **Content DNA Blueprint**: Computes sample virality, reusability indexes, dominant hooks, CTAs, and psychology triggers.
 - **Studio Script Generator**: Produces frame-by-frame Reel scripts with timestamps, B-roll cues, audio notes, and a **Teleprompter Reading View**.
 - **Omnichannel Repurpose Engine**: Automatically adapts winning formulas for **Instagram**, **LinkedIn**, **X (Twitter Threads)**, **Threads**, **Facebook**, and **YouTube Shorts**.
+- **Core AI Workflow Pipeline (`v2.0 Milestone 5`)**: All 6 studio workflows are wired through `AIService`, `AIOrchestratorProvider` (`gemini-3.1-flash-lite`), and `UsageGuard` with automatic schema normalization and deterministic failover.
+- **Telemetry Dashboard UI (`v2.0 Milestone 5`)**: Real-time quota and token consumption monitoring inside `Settings → Pipeline Providers` with strict multi-tenant isolation (`GET /api/ai/telemetry/summary`) and zero-secret leakage.
 
 ### 4. Project Workspace (v2.0 Phase 3 Cloud Migration)
 - **Cloud & Hybrid Persistence**: Asynchronous repository layer (`ProjectRepository`) backed by Supabase PostgreSQL and Drizzle ORM with strict user isolation (`WHERE user_id = :userId`).
