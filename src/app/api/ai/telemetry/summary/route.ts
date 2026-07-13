@@ -55,7 +55,7 @@ export async function GET() {
       usagePercentage = null;
     } else if (aiTokenLimit > 0) {
       remainingTokens = Math.max(0, aiTokenLimit - totalTokens);
-      usagePercentage = Number(Math.min(100, (totalTokens / aiTokenLimit) * 100).toFixed(2));
+      usagePercentage = Number(Math.min(100, Math.max(0, (totalTokens / aiTokenLimit) * 100)).toFixed(2));
     } else {
       // Limit is explicitly 0
       remainingTokens = 0;
@@ -79,7 +79,6 @@ export async function GET() {
       {
         status: "ok",
         data: {
-          userId,
           planId: sub.planId,
           planName: plan.name,
           persistedUsage: {
