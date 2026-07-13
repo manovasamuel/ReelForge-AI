@@ -25,7 +25,7 @@ export class PlanRepository {
         "Single Workspace Project",
       ],
       priceUsd: 0,
-      modelAccess: ["gemini-2.5-flash", "deterministic-fallback"],
+      modelAccess: ["gemini-2.5-flash", "gemini-3.1-flash-lite", "gemini-2.5-flash-lite", "gemini-2.0-flash-lite", "deterministic-fallback"],
       priorityQueue: false,
     },
     pro: {
@@ -44,6 +44,9 @@ export class PlanRepository {
       priceUsd: 29,
       modelAccess: [
         "gemini-2.5-flash",
+        "gemini-3.1-flash-lite",
+        "gemini-2.5-flash-lite",
+        "gemini-2.0-flash-lite",
         "gemini-2.5-pro",
         "gpt-4o-mini",
         "gpt-4o",

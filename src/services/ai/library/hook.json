@@ -1,0 +1,810 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Attention Hook",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: High-Impact Statement\nTarget Audience: {{audience}}\nObjective: Stop the scroll immediately within the first 2 seconds by making a bold, relevant promise to {{audience}} regarding {{goal}}.\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "curiosity_1": {
+    "id": "curiosity_1",
+    "name": "Curiosity — The Hidden Secret",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (The Hidden Secret)\nTarget Audience: {{audience}}\nTemplate: 'The 99% of {{audience}} don't know this one secret about achieving {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "curiosity_2": {
+    "id": "curiosity_2",
+    "name": "Curiosity — Why Nobody Is Talking About This",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Why Nobody Is Talking About This)\nTarget Audience: {{audience}}\nTemplate: 'Why is nobody in {{industry}} talking about this breakthrough method for {{goal}}?'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "curiosity_3": {
+    "id": "curiosity_3",
+    "name": "Curiosity — The Unexplained Phenomenon",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (The Unexplained Phenomenon)\nTarget Audience: {{audience}}\nTemplate: 'I spent 5 years in {{industry}} trying to figure out why this bizarre trick works...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "curiosity_4": {
+    "id": "curiosity_4",
+    "name": "Curiosity — What Happens When You Change One Thing",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (One Variable Change)\nTarget Audience: {{audience}}\nTemplate: 'Watch what happens to your {{goal}} when you change just this one daily habit...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "curiosity_5": {
+    "id": "curiosity_5",
+    "name": "Curiosity — The Forbidden Advice",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Forbidden Advice)\nTarget Audience: {{audience}}\nTemplate: 'Traditional {{industry}} experts hate when {{audience}} discover this simple shortcut...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "curiosity_6": {
+    "id": "curiosity_6",
+    "name": "Curiosity — The Weird Experiment",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Weird Experiment)\nTarget Audience: {{audience}}\nTemplate: 'I tested 50 different {{industry}} strategies so {{audience}} don't have to. Here is the shocking winner...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "curiosity_7": {
+    "id": "curiosity_7",
+    "name": "Curiosity — The Missing Link",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Missing Link)\nTarget Audience: {{audience}}\nTemplate: 'You are doing everything right for {{goal}}, except for this one missing ingredient...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "curiosity_8": {
+    "id": "curiosity_8",
+    "name": "Curiosity — The 3-Second Test",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (3-Second Test)\nTarget Audience: {{audience}}\nTemplate: 'Do this 3-second test right now to see if your {{industry}} strategy is secretly failing...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "curiosity_9": {
+    "id": "curiosity_9",
+    "name": "Curiosity — The Insider Confession",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Insider Confession)\nTarget Audience: {{audience}}\nTemplate: 'Confessions of a 10-year {{industry}} veteran: What we never tell {{audience}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "curiosity_10": {
+    "id": "curiosity_10",
+    "name": "Curiosity — The Counterintuitive Truth",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Curiosity Gap (Counterintuitive Truth)\nTarget Audience: {{audience}}\nTemplate: 'Why doing LESS in {{industry}} actually gets {{audience}} 3x better results...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "authority_1": {
+    "id": "authority_1",
+    "name": "Authority — The Proven Track Record",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority & Social Proof (Proven Track Record)\nTarget Audience: {{audience}}\nTemplate: 'After helping over 500+ {{audience}} master {{goal}}, here is the #1 rule I swear by...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "authority_2": {
+    "id": "authority_2",
+    "name": "Authority — The Executive Blueprint",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Executive Blueprint)\nTarget Audience: {{audience}}\nTemplate: 'Here is the exact executive framework top {{industry}} leaders use to achieve {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "authority_3": {
+    "id": "authority_3",
+    "name": "Authority — The Data-Backed Discovery",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Data-Backed Discovery)\nTarget Audience: {{audience}}\nTemplate: 'We analyzed 10,000+ data points in {{industry}}, and the results for {{goal}} will shock you...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "authority_4": {
+    "id": "authority_4",
+    "name": "Authority — The Industry Leader Perspective",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Industry Leader Perspective)\nTarget Audience: {{audience}}\nTemplate: 'If I had to start over in {{industry}} today with zero connections, here is my exact 3-step blueprint...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "authority_5": {
+    "id": "authority_5",
+    "name": "Authority — The Case Study Breakdown",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Case Study Breakdown)\nTarget Audience: {{audience}}\nTemplate: 'How we helped one of our clients in {{industry}} scale to {{goal}} in just 60 days...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "authority_6": {
+    "id": "authority_6",
+    "name": "Authority — The Scientific Consensus",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Scientific Consensus)\nTarget Audience: {{audience}}\nTemplate: 'The science is finally settled on how {{audience}} can achieve {{goal}} without burning out...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "authority_7": {
+    "id": "authority_7",
+    "name": "Authority — The Multi-Million Dollar Lesson",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Multi-Million Dollar Lesson)\nTarget Audience: {{audience}}\nTemplate: 'It cost us $100,000+ in mistakes to learn this {{industry}} lesson, but I am giving it to {{audience}} for free...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "authority_8": {
+    "id": "authority_8",
+    "name": "Authority — The Certified Method",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Certified Method)\nTarget Audience: {{audience}}\nTemplate: 'As a certified expert in {{industry}}, this is the ONLY routine I recommend for {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "authority_9": {
+    "id": "authority_9",
+    "name": "Authority — The Behind-the-Scenes Access",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Behind-the-Scenes Access)\nTarget Audience: {{audience}}\nTemplate: 'Here is a peek inside our private boardroom where we plan {{goal}} for top {{industry}} brands...'\n</hook_guidance>",
+    "requiredVariables": ["goal", "industry"]
+  },
+  "authority_10": {
+    "id": "authority_10",
+    "name": "Authority — The Masterclass Preview",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Authority (Masterclass Preview)\nTarget Audience: {{audience}}\nTemplate: 'This 60-second breakdown is worth more than most $1,000 courses on {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "fear_1": {
+    "id": "fear_1",
+    "name": "Fear — The Costly Mistake",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Costly Mistake)\nTarget Audience: {{audience}}\nTemplate: 'Stop doing THIS immediately if you want to avoid destroying your chances of {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "fear_2": {
+    "id": "fear_2",
+    "name": "Fear — The Silent Killer",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Silent Killer)\nTarget Audience: {{audience}}\nTemplate: 'The silent killer of {{goal}} in {{industry}} that 90% of {{audience}} ignore until it is too late...'\n</hook_guidance>",
+    "requiredVariables": ["goal", "industry", "audience"]
+  },
+  "fear_3": {
+    "id": "fear_3",
+    "name": "Fear — Falling Behind",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Falling Behind)\nTarget Audience: {{audience}}\nTemplate: 'If you are not using this new {{industry}} strategy in 2026, your competitors will leave you behind...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "fear_4": {
+    "id": "fear_4",
+    "name": "Fear — The Wasted Effort",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Wasted Effort)\nTarget Audience: {{audience}}\nTemplate: 'You are wasting 80% of your time on {{goal}} if you are still making this rookie mistake...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "fear_5": {
+    "id": "fear_5",
+    "name": "Fear — The Impending Shift",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Impending Shift)\nTarget Audience: {{audience}}\nTemplate: 'The {{industry}} landscape is about to change forever, and most {{audience}} are completely unprepared...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "fear_6": {
+    "id": "fear_6",
+    "name": "Fear — The Financial Drain",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Financial Drain)\nTarget Audience: {{audience}}\nTemplate: 'How this common {{industry}} habit is quietly draining your bank account every single month...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "fear_7": {
+    "id": "fear_7",
+    "name": "Fear — The Irreversible Damage",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Irreversible Damage)\nTarget Audience: {{audience}}\nTemplate: 'Do not touch another {{industry}} tool until you check for this critical red flag...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "fear_8": {
+    "id": "fear_8",
+    "name": "Fear — The Burnout Trap",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Burnout Trap)\nTarget Audience: {{audience}}\nTemplate: 'Why trying harder at {{goal}} is actually pushing you closer to complete exhaustion...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "fear_9": {
+    "id": "fear_9",
+    "name": "Fear — The Algorithm Penalty",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Algorithm Penalty)\nTarget Audience: {{audience}}\nTemplate: 'Are you accidentally penalizing your own growth in {{industry}}? Check these 3 signs...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "fear_10": {
+    "id": "fear_10",
+    "name": "Fear — The Opportunity Cost",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Fear of Loss (Opportunity Cost)\nTarget Audience: {{audience}}\nTemplate: 'Every day you delay fixing this one thing, you lose another opportunity for {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "story_1": {
+    "id": "story_1",
+    "name": "Story — The Humble Beginning",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Humble Beginning)\nTarget Audience: {{audience}}\nTemplate: '3 years ago, I was broke, burnt out, and failing at {{goal}}. Here is the exact moment everything changed...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "story_2": {
+    "id": "story_2",
+    "name": "Story — The Unexpected Epiphany",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Unexpected Epiphany)\nTarget Audience: {{audience}}\nTemplate: 'I was sitting in a coffee shop when I realized why everything we knew about {{industry}} was wrong...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "story_3": {
+    "id": "story_3",
+    "name": "Story — The Client Transformation",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Client Transformation)\nTarget Audience: {{audience}}\nTemplate: 'Meet Sarah. She tried every {{industry}} trick without success until we applied this 1 simple change...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "story_4": {
+    "id": "story_4",
+    "name": "Story — The Worst Advice I Took",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Worst Advice Taken)\nTarget Audience: {{audience}}\nTemplate: 'The worst advice I ever followed in {{industry}} cost me 6 months of progress towards {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "story_5": {
+    "id": "story_5",
+    "name": "Story — The Breakthrough Moment",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Breakthrough Moment)\nTarget Audience: {{audience}}\nTemplate: 'Here is the exact conversation that helped me finally unlock {{goal}} after years of struggling...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "story_6": {
+    "id": "story_6",
+    "name": "Story — The Mentor Secret",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Mentor Secret)\nTarget Audience: {{audience}}\nTemplate: 'My mentor pulled me aside and whispered the one sentence that changed how I approach {{industry}} forever...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "story_7": {
+    "id": "story_7",
+    "name": "Story — The Near-Failure",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Near-Failure)\nTarget Audience: {{audience}}\nTemplate: 'We were 24 hours away from shutting down our {{industry}} business before we discovered this lifeline...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "story_8": {
+    "id": "story_8",
+    "name": "Story — The Daily Routine Evolution",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Routine Evolution)\nTarget Audience: {{audience}}\nTemplate: 'How I went from 14-hour workdays to achieving {{goal}} in just 4 hours a day...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "story_9": {
+    "id": "story_9",
+    "name": "Story — The Viral Turning Point",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Viral Turning Point)\nTarget Audience: {{audience}}\nTemplate: 'I posted 100 videos with zero views until I made this tiny tweak to my {{industry}} content...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "story_10": {
+    "id": "story_10",
+    "name": "Story — The Skeptic Converted",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Narrative Storytelling (Skeptic Converted)\nTarget Audience: {{audience}}\nTemplate: 'I used to think {{goal}} was impossible for ordinary {{audience}}, until I saw this happen...'\n</hook_guidance>",
+    "requiredVariables": ["goal", "audience"]
+  },
+  "contrarian_1": {
+    "id": "contrarian_1",
+    "name": "Contrarian — The Popular Myth",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Popular Myth)\nTarget Audience: {{audience}}\nTemplate: 'Everything you have been told about achieving {{goal}} in {{industry}} is a lie. Here is the real truth...'\n</hook_guidance>",
+    "requiredVariables": ["goal", "industry"]
+  },
+  "contrarian_2": {
+    "id": "contrarian_2",
+    "name": "Contrarian — Why Hard Work Fails",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Why Hard Work Fails)\nTarget Audience: {{audience}}\nTemplate: 'Why working harder is actually the WORST way for {{audience}} to achieve {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "contrarian_3": {
+    "id": "contrarian_3",
+    "name": "Contrarian — Stop Following Advice",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Stop Following Advice)\nTarget Audience: {{audience}}\nTemplate: 'Stop listening to conventional {{industry}} gurus. Do this opposite routine instead...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "contrarian_4": {
+    "id": "contrarian_4",
+    "name": "Contrarian — The Unpopular Opinion",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Unpopular Opinion)\nTarget Audience: {{audience}}\nTemplate: 'Unpopular opinion: You do NOT need more money or time to achieve {{goal}} in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["goal", "industry"]
+  },
+  "contrarian_5": {
+    "id": "contrarian_5",
+    "name": "Contrarian — The Overhyped Trend",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Overhyped Trend)\nTarget Audience: {{audience}}\nTemplate: 'Why the biggest trend in {{industry}} is actually a complete waste of your time...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "contrarian_6": {
+    "id": "contrarian_6",
+    "name": "Contrarian — The Lazy Advantage",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Lazy Advantage)\nTarget Audience: {{audience}}\nTemplate: 'The lazy person blueprint to mastering {{goal}} without sacrificing your weekends...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "contrarian_7": {
+    "id": "contrarian_7",
+    "name": "Contrarian — Why Consistency Is Overrated",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Consistency Overrated)\nTarget Audience: {{audience}}\nTemplate: 'Why blind consistency in {{industry}} will destroy your creativity. Focus on intensity instead...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "contrarian_8": {
+    "id": "contrarian_8",
+    "name": "Contrarian — The Expensive Illusion",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Expensive Illusion)\nTarget Audience: {{audience}}\nTemplate: 'You do not need premium {{industry}} tools. Here is how to beat the pros using free resources...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "contrarian_9": {
+    "id": "contrarian_9",
+    "name": "Contrarian — The Goal Reset",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Goal Reset)\nTarget Audience: {{audience}}\nTemplate: 'Stop trying to achieve {{goal}}. Aim for this much simpler milestone first...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "contrarian_10": {
+    "id": "contrarian_10",
+    "name": "Contrarian — The Anti-Routine",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Contrarian Provocation (Anti-Routine)\nTarget Audience: {{audience}}\nTemplate: 'Why waking up at 5 AM is hurting your performance in {{industry}}. Try this sleep schedule instead...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "numbers_1": {
+    "id": "numbers_1",
+    "name": "Numbers — The 3-Step Formula",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List & Specificity (3-Step Formula)\nTarget Audience: {{audience}}\nTemplate: 'Here are the exact 3 steps to double your {{goal}} in the next 30 days...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "numbers_2": {
+    "id": "numbers_2",
+    "name": "Numbers — The 5 Essential Tools",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (5 Essential Tools)\nTarget Audience: {{audience}}\nTemplate: '5 free tools every {{audience}} in {{industry}} needs to bookmark right now...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "numbers_3": {
+    "id": "numbers_3",
+    "name": "Numbers — The 80/20 Rule",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (80/20 Rule)\nTarget Audience: {{audience}}\nTemplate: 'The 20% of effort that drives 80% of your results in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "numbers_4": {
+    "id": "numbers_4",
+    "name": "Numbers — 7 Days to Mastery",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (7 Days to Mastery)\nTarget Audience: {{audience}}\nTemplate: 'If you give me 7 days, I will teach you how to master {{goal}} from scratch...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "numbers_5": {
+    "id": "numbers_5",
+    "name": "Numbers — 3 Things to Stop Doing",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (3 Things to Stop)\nTarget Audience: {{audience}}\nTemplate: '3 daily habits you must stop doing today if you want to succeed in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "numbers_6": {
+    "id": "numbers_6",
+    "name": "Numbers — 4 Levels of Growth",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (4 Levels of Growth)\nTarget Audience: {{audience}}\nTemplate: 'There are 4 distinct levels of {{audience}} in {{industry}}. Which one are you currently on?'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "numbers_7": {
+    "id": "numbers_7",
+    "name": "Numbers — The 10-Minute Routine",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (10-Minute Routine)\nTarget Audience: {{audience}}\nTemplate: 'The simple 10-minute morning routine that guarantees progress towards {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "numbers_8": {
+    "id": "numbers_8",
+    "name": "Numbers — 5 Signs You Are Ready",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (5 Signs You Are Ready)\nTarget Audience: {{audience}}\nTemplate: 'Here are 5 undeniable signs that you are ready to scale to {{goal}} in 2026...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "numbers_9": {
+    "id": "numbers_9",
+    "name": "Numbers — The 90-Day Roadmap",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (90-Day Roadmap)\nTarget Audience: {{audience}}\nTemplate: 'The complete 90-day step-by-step roadmap for any beginner entering {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "numbers_10": {
+    "id": "numbers_10",
+    "name": "Numbers — 2 Rules Never to Break",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Numerical List (2 Golden Rules)\nTarget Audience: {{audience}}\nTemplate: 'There are only 2 golden rules in {{industry}} you must never break if you want {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "identity_1": {
+    "id": "identity_1",
+    "name": "Identity — Direct Audience Callout",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity & Community Callout (Direct Audience)\nTarget Audience: {{audience}}\nTemplate: 'If you are a {{audience}} struggling with {{goal}}, this video was made specifically for you...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "identity_2": {
+    "id": "identity_2",
+    "name": "Identity — The Ambitious Creator",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Ambitious Creator)\nTarget Audience: {{audience}}\nTemplate: 'Calling all ambitious {{audience}} in {{industry}} who refuse to settle for average results...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "identity_3": {
+    "id": "identity_3",
+    "name": "Identity — The Frustrated Practitioner",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Frustrated Practitioner)\nTarget Audience: {{audience}}\nTemplate: 'This is for every {{audience}} who feels stuck and exhausted trying to achieve {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "identity_4": {
+    "id": "identity_4",
+    "name": "Identity — The High Performer",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (High Performer)\nTarget Audience: {{audience}}\nTemplate: 'How high-performing {{audience}} maintain top-tier results in {{industry}} without burnout...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "identity_5": {
+    "id": "identity_5",
+    "name": "Identity — The Beginner Journey",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Beginner Journey)\nTarget Audience: {{audience}}\nTemplate: 'If you are a total beginner in {{industry}}, here is how to start acting like a seasoned pro today...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "identity_6": {
+    "id": "identity_6",
+    "name": "Identity — The Rebel Thinker",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Rebel Thinker)\nTarget Audience: {{audience}}\nTemplate: 'For the independent {{audience}} who want to disrupt traditional {{industry}} rules...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "identity_7": {
+    "id": "identity_7",
+    "name": "Identity — The Visionary Leader",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Visionary Leader)\nTarget Audience: {{audience}}\nTemplate: 'True leaders in {{industry}} know that achieving {{goal}} requires this foundational mindset...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "identity_8": {
+    "id": "identity_8",
+    "name": "Identity — The Solo Founder",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Solo Founder)\nTarget Audience: {{audience}}\nTemplate: 'How solo {{audience}} are outperforming massive teams in {{industry}} using this lean setup...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "identity_9": {
+    "id": "identity_9",
+    "name": "Identity — The Perfectionist",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Perfectionist)\nTarget Audience: {{audience}}\nTemplate: 'If you are a perfectionist in {{industry}}, here is why your high standards might be sabotaging {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry", "goal"]
+  },
+  "identity_10": {
+    "id": "identity_10",
+    "name": "Identity — The Future Top 1%",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Identity Callout (Future Top 1%)\nTarget Audience: {{audience}}\nTemplate: 'Who else wants to join the top 1% of {{audience}} dominating {{industry}} in 2026?'\n</hook_guidance>",
+    "requiredVariables": ["audience", "industry"]
+  },
+  "pain_1": {
+    "id": "pain_1",
+    "name": "Pain Point — Tired of No Results",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Tired of No Results)\nTarget Audience: {{audience}}\nTemplate: 'Are you sick and tired of putting in endless hours for {{goal}} and seeing zero payoff?'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "pain_2": {
+    "id": "pain_2",
+    "name": "Pain Point — The Overwhelming Confusion",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Overwhelming Confusion)\nTarget Audience: {{audience}}\nTemplate: 'Feeling completely overwhelmed by all the conflicting advice in {{industry}}? Let us simplify it...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_3": {
+    "id": "pain_3",
+    "name": "Pain Point — The Plateau Frustration",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Plateau Frustration)\nTarget Audience: {{audience}}\nTemplate: 'Have you hit an irritating plateau in your {{industry}} growth? Here is how to smash through it...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_4": {
+    "id": "pain_4",
+    "name": "Pain Point — Wasting Budget",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Wasting Budget)\nTarget Audience: {{audience}}\nTemplate: 'Stop throwing hard-earned money at expensive {{industry}} solutions that do not move the needle...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_5": {
+    "id": "pain_5",
+    "name": "Pain Point — The Imposter Syndrome",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Imposter Syndrome)\nTarget Audience: {{audience}}\nTemplate: 'Do you ever feel like an imposter in {{industry}}? Here is the truth about why you feel that way...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_6": {
+    "id": "pain_6",
+    "name": "Pain Point — Constant Exhaustion",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Constant Exhaustion)\nTarget Audience: {{audience}}\nTemplate: 'If pursuing {{goal}} is making you exhausted and stressed, your system is fundamentally broken...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "pain_7": {
+    "id": "pain_7",
+    "name": "Pain Point — The Ghosted Client",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Ghosted Client)\nTarget Audience: {{audience}}\nTemplate: 'Why potential clients in {{industry}} keep ghosting you right after you send your proposal...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_8": {
+    "id": "pain_8",
+    "name": "Pain Point — Inconsistent Income",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Inconsistent Results)\nTarget Audience: {{audience}}\nTemplate: 'Tired of the unpredictable rollercoaster of results in {{industry}}? Here is how to stabilize your growth...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "pain_9": {
+    "id": "pain_9",
+    "name": "Pain Point — The Technical Tech Headache",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Tech Headache)\nTarget Audience: {{audience}}\nTemplate: 'You do not need to be a tech wizard to master {{goal}}. Here is the zero-headache approach...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "pain_10": {
+    "id": "pain_10",
+    "name": "Pain Point — The Comparison Trap",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Pain Point Agitation (Comparison Trap)\nTarget Audience: {{audience}}\nTemplate: 'Stop comparing your Chapter 1 in {{industry}} to someone else’s Chapter 20. Do this instead...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_1": {
+    "id": "aspiration_1",
+    "name": "Aspiration — The Dream Outcome",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration & Dream Transformation (Dream Outcome)\nTarget Audience: {{audience}}\nTemplate: 'Imagine waking up every day knowing your {{goal}} is completely automated and scaling...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "aspiration_2": {
+    "id": "aspiration_2",
+    "name": "Aspiration — The Ultimate Lifestyle",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Ultimate Lifestyle)\nTarget Audience: {{audience}}\nTemplate: 'Here is what your life in {{industry}} looks like once you finally master this 1 skill...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_3": {
+    "id": "aspiration_3",
+    "name": "Aspiration — Effortless Authority",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Effortless Authority)\nTarget Audience: {{audience}}\nTemplate: 'How to become the go-to respected authority in {{industry}} without begging for attention...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_4": {
+    "id": "aspiration_4",
+    "name": "Aspiration — Total Financial Freedom",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Total Freedom)\nTarget Audience: {{audience}}\nTemplate: 'The exact roadmap to build a stress-free, highly profitable presence in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_5": {
+    "id": "aspiration_5",
+    "name": "Aspiration — Unstoppable Confidence",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Unstoppable Confidence)\nTarget Audience: {{audience}}\nTemplate: 'Unlock the unwavering confidence to charge what you are truly worth in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_6": {
+    "id": "aspiration_6",
+    "name": "Aspiration — The Automated Machine",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Automated Machine)\nTarget Audience: {{audience}}\nTemplate: 'How to turn your {{industry}} brand into an automated client-generating machine 24/7...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_7": {
+    "id": "aspiration_7",
+    "name": "Aspiration — The Legacy Builder",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Legacy Builder)\nTarget Audience: {{audience}}\nTemplate: 'Stop just trading time for money. Here is how to build a lasting legacy in {{industry}}...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_8": {
+    "id": "aspiration_8",
+    "name": "Aspiration — The VIP Experience",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (VIP Experience)\nTarget Audience: {{audience}}\nTemplate: 'How to attract dream, high-ticket clients in {{industry}} who love paying your full rates...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "aspiration_9": {
+    "id": "aspiration_9",
+    "name": "Aspiration — Mastery Without Stress",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Mastery Without Stress)\nTarget Audience: {{audience}}\nTemplate: 'Achieve total mastery over {{goal}} while enjoying more free time than ever before...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "aspiration_10": {
+    "id": "aspiration_10",
+    "name": "Aspiration — The Industry Benchmark",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Aspiration (Industry Benchmark)\nTarget Audience: {{audience}}\nTemplate: 'Here is how to set the gold standard in {{industry}} so everyone else tries to copy you...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_1": {
+    "id": "mistake_1",
+    "name": "Mistakes — The #1 Rookie Flaw",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning & Correction (#1 Rookie Flaw)\nTarget Audience: {{audience}}\nTemplate: 'The #1 rookie mistake 95% of {{audience}} make when trying to achieve {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["audience", "goal"]
+  },
+  "mistake_2": {
+    "id": "mistake_2",
+    "name": "Mistakes — The Silent Trap",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Silent Trap)\nTarget Audience: {{audience}}\nTemplate: 'You are falling into this silent {{industry}} trap if you are doing this every morning...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_3": {
+    "id": "mistake_3",
+    "name": "Mistakes — Why Your Ads Fail",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Why Ads/Posts Fail)\nTarget Audience: {{audience}}\nTemplate: 'Why your {{industry}} content is getting zero engagement (and the 5-second fix)...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_4": {
+    "id": "mistake_4",
+    "name": "Mistakes — The Overcomplication Error",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Overcomplication)\nTarget Audience: {{audience}}\nTemplate: 'Stop making {{goal}} way more complicated than it needs to be. Drop these 2 steps...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "mistake_5": {
+    "id": "mistake_5",
+    "name": "Mistakes — The Misleading Metric",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Misleading Metric)\nTarget Audience: {{audience}}\nTemplate: 'Why tracking vanity metrics in {{industry}} is sabotaging your real bottom-line growth...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_6": {
+    "id": "mistake_6",
+    "name": "Mistakes — The Wrong Timing",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Wrong Timing)\nTarget Audience: {{audience}}\nTemplate: 'Doing this at the wrong time of day will completely ruin your results for {{goal}}...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "mistake_7": {
+    "id": "mistake_7",
+    "name": "Mistakes — The Copycat Flaw",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Copycat Flaw)\nTarget Audience: {{audience}}\nTemplate: 'Why blindly copying viral trends in {{industry}} is actually hurting your brand authority...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_8": {
+    "id": "mistake_8",
+    "name": "Mistakes — The Underpricing Blunder",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Underpricing Blunder)\nTarget Audience: {{audience}}\nTemplate: 'If you are underpricing your services in {{industry}}, you are making this fatal psychological error...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  },
+  "mistake_9": {
+    "id": "mistake_9",
+    "name": "Mistakes — The Premature Scaling",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Premature Scaling)\nTarget Audience: {{audience}}\nTemplate: 'Never try to scale to {{goal}} before you have fixed this foundational leaky bucket...'\n</hook_guidance>",
+    "requiredVariables": ["goal"]
+  },
+  "mistake_10": {
+    "id": "mistake_10",
+    "name": "Mistakes — The Ignored Feedback",
+    "category": "hook",
+    "version": "1.0.0",
+    "template": "<hook_guidance>\nHook Strategy: Mistake Warning (Ignored Feedback)\nTarget Audience: {{audience}}\nTemplate: 'The #1 signal from your market in {{industry}} that you are ignoring right now at your own peril...'\n</hook_guidance>",
+    "requiredVariables": ["industry"]
+  }
+}

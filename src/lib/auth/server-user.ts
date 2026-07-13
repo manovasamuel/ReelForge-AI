@@ -3,23 +3,21 @@ import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repository";
 
-const isPlaceholderAuth =
-  !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
-  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.includes("placeholder");
+import { isOfflineDevMode } from "@/lib/auth/config";
 
 const subRepo = new SubscriptionRepository();
 
 /**
  * Resolves the authenticated user's internal database UUID.
- * In Development Placeholder Mode (or when Clerk is unconfigured), maps to the development identity.
- * In Live Mode, queries the database by clerkId, auto-creating the user record and default free subscription if needed.
+ * In Development Placeholder Mode (when explicitly configured or in offline dev), maps to the development identity.
+ * In Live Mode or Production, queries the database by clerkId, auto-creating the user record and default free subscription if needed.
  */
 export async function getAuthenticatedUserId(): Promise<string | null> {
   let clerkId = "dev_user_placeholder";
   let email = "dev@reelforge.ai";
   let fullName = "Development User";
 
-  if (!isPlaceholderAuth) {
+  if (!isOfflineDevMode()) {
     try {
       const { auth, currentUser } = await import("@clerk/nextjs/server");
       const authState = await auth();

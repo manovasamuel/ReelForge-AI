@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     }
     const aiService = new AIService();
     const preferredProvider = request.headers.get("x-ai-provider") || body?.aiProvider || "gemini";
-    const modelPreference = request.headers.get("x-ai-model") || body?.aiModel || "gemini-2.5-flash";
+    const modelPreference = request.headers.get("x-ai-model") || body?.aiModel || "gemini-3.1-flash-lite";
 
     // 3. Execute through UsageGuard (Enforces token limits without blocking)
     const guardResult = await UsageGuard.guardAiExecution(

@@ -1,0 +1,170 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Industry Profile",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: {{industry}}\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEnsure all analysis, vocabulary, and recommendations align with the standards and terminology of the {{industry}} vertical.\n</industry_context>",
+    "requiredVariables": ["industry", "audience"]
+  },
+  "fashion": {
+    "id": "fashion",
+    "name": "Fashion & Apparel",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Fashion & Apparel\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEmphasize visual aesthetics, trend styling, fabric drape, seasonal versatility, and aspirational lifestyle presentation. Focus on personal identity expression.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "jewellery": {
+    "id": "jewellery",
+    "name": "Jewellery & Luxury Watches",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Jewellery & Luxury Watches\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight artisan craftsmanship, timeless elegance, precious metal purity, emotional heirloom gifting, and subtle status signaling. Avoid aggressive discount framing.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "beauty": {
+    "id": "beauty",
+    "name": "Cosmetics & Makeup",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Cosmetics & Makeup\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on pigment payoff, effortless application techniques, skin-enhancing finishes, shade inclusivity, and transformative before-and-after visual contrast.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "skincare": {
+    "id": "skincare",
+    "name": "Skincare & Dermatology",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Skincare & Dermatology\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight clinical efficacy, active ingredient science (niacinamide, retinol, hyaluronic acid), skin barrier repair, non-comedogenic safety, and realistic long-term glow.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "restaurant": {
+    "id": "restaurant",
+    "name": "Fine Dining & Restaurants",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Fine Dining & Restaurants\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEmphasize sensory vocabulary (sizzle, savory, crisp, melt-in-your-mouth), chef craftsmanship, farm-to-table freshness, ambient hospitality, and reservation urgency.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "cafe": {
+    "id": "cafe",
+    "name": "Coffee Shops & Cafes",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Coffee Shops & Cafes\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on specialty bean origins, barista latte art precision, cozy community ambiance, morning ritual comfort, and artisan pastry pairings.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "fitness": {
+    "id": "fitness",
+    "name": "Fitness & Athletics",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Fitness & Athletics\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on physical and mental discipline, overcoming workout resistance, quantifiable performance milestones, proper anatomical form, and high-energy athletic identity.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "gym": {
+    "id": "gym",
+    "name": "Gyms & Training Studios",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Gyms & Training Studios\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight state-of-the-art equipment, motivating group class energy, welcoming community culture, expert personal trainers, and beginner-friendly onboarding.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "education": {
+    "id": "education",
+    "name": "Online Education & Courses",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Online Education & Courses\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on actionable skill acquisition, pedagogical clarity, myth-busting industry dogma, step-by-step frameworks, and tangible career/income transformation.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "coaching": {
+    "id": "coaching",
+    "name": "Business & Life Coaching",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Business & Life Coaching\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEmphasize mindset breakthrough, accountability, proven executive blueprints, eliminating self-sabotage, and high-ticket consultative authority.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "finance": {
+    "id": "finance",
+    "name": "Personal Finance & Fintech",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Personal Finance & Fintech\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on wealth accumulation, tax efficiency, compounding returns, risk mitigation, and financial freedom. Enforce strict financial educational disclaimers.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "real_estate": {
+    "id": "real_estate",
+    "name": "Real Estate & Property",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Real Estate & Property\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight spatial architectural flow, neighborhood lifestyle amenities, investment property appreciation, turnkey luxury features, and emotional concept of home.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "travel": {
+    "id": "travel",
+    "name": "Travel & Tourism",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Travel & Tourism\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEmphasize hidden gem destinations, cultural immersion, breathtaking scenic cinematography, itinerary simplicity, and escapist wanderlust.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "medical": {
+    "id": "medical",
+    "name": "Medical & Clinics",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Medical & Clinics\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on clinical authority, patient safety, cutting-edge diagnostic technology, empathetic bedside manner, and clear health outcomes. Enforce strict medical disclaimers.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "dental": {
+    "id": "dental",
+    "name": "Dental & Orthodontics",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Dental & Orthodontics\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight painless cosmetic dentistry, invisible aligner precision, smile transformation confidence, oral health preventative care, and gentle clinic hospitality.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "saas": {
+    "id": "saas",
+    "name": "SaaS & Tech Software",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: SaaS & Tech Software\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on workflow automation, time saved per team, ROI calculations, intuitive UI/UX, feature-to-benefit translation, and effortless API integration.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "ecommerce": {
+    "id": "ecommerce",
+    "name": "E-Commerce & Retail",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: E-Commerce & Retail\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight unboxing excitement, product durability, social proof reviews, seamless checkout, fast shipping, and risk-free satisfaction guarantees.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "personal_brand": {
+    "id": "personal_brand",
+    "name": "Personal Branding & Creators",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Personal Branding & Creators\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nFocus on authentic storytelling, founder journey vulnerability, unique intellectual property, behind-the-scenes reality, and building parasocial community trust.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "photography": {
+    "id": "photography",
+    "name": "Photography & Videography",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Photography & Videography\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nHighlight lighting mastery, composition storytelling, color grading aesthetics, capturing fleeting emotional moments, and professional camera gear techniques.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  },
+  "interior_design": {
+    "id": "interior_design",
+    "name": "Interior Design & Architecture",
+    "category": "industry",
+    "version": "1.0.0",
+    "template": "<industry_context>\nIndustry Vertical: Interior Design & Architecture\nTarget Audience Profile: {{audience}}\nCompetitor Ecosystem: {{competitors}}\nEmphasize spatial harmony, bespoke material textures, lighting mood curation, functional ergonomics, and transforming raw living spaces into curated sanctuaries.\n</industry_context>",
+    "requiredVariables": ["audience"]
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "general": {
+    "id": "general",
+    "name": "Balanced Professional & Engaging",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Balanced Professional & Engaging\nTarget Brand Voice: {{brand_voice}}\nEnsure vocabulary is accessible, professional, and warmly confident without excessive jargon.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "authoritative": {
+    "id": "authoritative",
+    "name": "Authoritative & Educational",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Authoritative & Educational\nTarget Brand Voice: {{brand_voice}}\nSpeak with commanding expertise, clarity, and precision. Position the speaker as a seasoned industry veteran imparting non-negotiable wisdom.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "empathetic": {
+    "id": "empathetic",
+    "name": "Empathetic & Inspirational",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Empathetic & Inspirational\nTarget Brand Voice: {{brand_voice}}\nUse warm, encouraging, and deeply understanding language. Validate the audience's struggles and inspire genuine hope and self-belief.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "high_energy": {
+    "id": "high_energy",
+    "name": "High-Energy & Bold",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: High-Energy & Bold\nTarget Brand Voice: {{brand_voice}}\nUse punchy, fast-paced sentences with dynamic verbs and unapologetic enthusiasm. Keep pacing rapid and electrifying.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "conversational": {
+    "id": "conversational",
+    "name": "Conversational & Relatable",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Conversational & Relatable\nTarget Brand Voice: {{brand_voice}}\nSpeak like a close friend over coffee. Use natural phrasing, everyday idioms, and authentic warmth that dissolves corporate barriers.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "sophisticated": {
+    "id": "sophisticated",
+    "name": "Sophisticated & Luxury",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Sophisticated & Luxury\nTarget Brand Voice: {{brand_voice}}\nUse refined, elegant, and understated vocabulary. Evoke exclusivity, artisan quality, and timeless prestige without loud hype.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "contrarian": {
+    "id": "contrarian",
+    "name": "Contrarian & Provocative",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Contrarian & Provocative\nTarget Brand Voice: {{brand_voice}}\nChallenge industry dogma with sharp, intellectually provocative statements. Be unapologetically direct and fearless in debunking myths.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "humorous": {
+    "id": "humorous",
+    "name": "Humorous & Witty",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Humorous & Witty\nTarget Brand Voice: {{brand_voice}}\nWeave clever wordplay, relatable observational humor, and lighthearted irony into the script while maintaining core value delivery.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "urgent": {
+    "id": "urgent",
+    "name": "Urgent & Action-Driven",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Urgent & Action-Driven\nTarget Brand Voice: {{brand_voice}}\nCreate immediate momentum using time-sensitive framing, high stakes, and decisive imperatives. Every second counts.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "calm": {
+    "id": "calm",
+    "name": "Calm & Soothing",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Calm & Soothing\nTarget Brand Voice: {{brand_voice}}\nUse measured, peaceful, and grounding vocabulary. Provide a serene antidote to overwhelming social media noise.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "data_driven": {
+    "id": "data_driven",
+    "name": "Data-Driven & Analytical",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Data-Driven & Analytical\nTarget Brand Voice: {{brand_voice}}\nBase arguments on empirical statistics, logical deductions, and structured frameworks. Speak with clinical precision and objectivity.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "storyteller": {
+    "id": "storyteller",
+    "name": "Narrative Storyteller",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Narrative Storyteller\nTarget Brand Voice: {{brand_voice}}\nUse sensory descriptions, dramatic tension, character arcs, and vivid scene-setting to captivate the audience from start to finish.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "minimalist": {
+    "id": "minimalist",
+    "name": "Minimalist & Direct",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Minimalist & Direct\nTarget Brand Voice: {{brand_voice}}\nStrip away all fluff and filler words. Use ultra-concise, hard-hitting sentences that respect the viewer's time and deliver immediate clarity.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "visionary": {
+    "id": "visionary",
+    "name": "Visionary & Futuristic",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Visionary & Futuristic\nTarget Brand Voice: {{brand_voice}}\nSpeak about emerging horizons, paradigm shifts, and transformative possibilities. Inspire excitement for what lies ahead.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "friendly": {
+    "id": "friendly",
+    "name": "Warm & Friendly Neighbor",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Warm & Friendly Neighbor\nTarget Brand Voice: {{brand_voice}}\nBe approachable, cheerful, and helpful. Use inviting language that makes every viewer feel personally welcomed and valued.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "exclusive": {
+    "id": "exclusive",
+    "name": "Exclusive & VIP Status",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Exclusive & VIP Status\nTarget Brand Voice: {{brand_voice}}\nFrame insights as insider secrets reserved for an elite inner circle. Use language that confers prestige and privilege.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "coach": {
+    "id": "coach",
+    "name": "Tough-Love Mentor / Coach",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Tough-Love Mentor / Coach\nTarget Brand Voice: {{brand_voice}}\nCombine uncompromising accountability with genuine dedication to the viewer's growth. Challenge excuses while showing unwavering belief in their potential.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "scientific": {
+    "id": "scientific",
+    "name": "Scientific & Evidence-Based",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Scientific & Evidence-Based\nTarget Brand Voice: {{brand_voice}}\nUtilize peer-reviewed terminology, biological or psychological principles, and rigorous methodology to establish unquestionable credibility.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "playful": {
+    "id": "playful",
+    "name": "Playful & Energetic",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Playful & Energetic\nTarget Brand Voice: {{brand_voice}}\nKeep the vibe light, fun, and buoyant. Use lively expressions and buoyant optimism that energize the feed.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "dramatic": {
+    "id": "dramatic",
+    "name": "Dramatic & Cinematic",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Dramatic & Cinematic\nTarget Brand Voice: {{brand_voice}}\nUse cinematic pacing, emotional gravitas, and powerful pauses. Frame the subject matter as an epic struggle with profound consequences.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  },
+  "corporate": {
+    "id": "corporate",
+    "name": "Professional & Executive",
+    "category": "tone",
+    "version": "1.0.0",
+    "template": "<tone_profile>\nTone & Delivery Style: Professional & Executive\nTarget Brand Voice: {{brand_voice}}\nMaintain polished executive decorum suitable for boardroom presentations and B2B stakeholders. Emphasize governance, ROI, and strategic alignment.\n</tone_profile>",
+    "requiredVariables": ["brand_voice"]
+  }
+}

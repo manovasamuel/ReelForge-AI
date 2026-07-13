@@ -1,0 +1,90 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Narrative Arc",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: Standard 3-Act Short-Form Narrative\nStructure:\n1. Hook (0-3s): Capture immediate attention.\n2. Body (3-45s): Deliver core value, insight, or story related to {{goal}}.\n3. Climax & CTA (45-60s): Deliver strong payoff and direct action prompt for {{audience}}.\n</copywriting_framework>",
+    "requiredVariables": ["goal", "audience"]
+  },
+  "pas": {
+    "id": "pas",
+    "name": "PAS (Problem - Agitation - Solution)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: PAS (Problem - Agitation - Solution)\nStructure:\n1. Problem (0-5s): State a sharp, painful problem facing {{audience}} in {{industry}}.\n2. Agitation (5-35s): Deepen the emotional and practical cost of ignoring this problem. Why do standard fixes fail?\n3. Solution (35-60s): Present the breakthrough solution that resolves the pain and achieves {{goal}}, transitioning to the CTA.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal"]
+  },
+  "hormozi": {
+    "id": "hormozi",
+    "name": "Hormozi Value Equation",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: Alex Hormozi Value Equation & Grand Slam Offer\nStructure:\n1. Dream Outcome (0-10s): Paint a vivid picture of achieving {{goal}} without usual trade-offs.\n2. Perceived Likelihood of Achievement (10-25s): Provide undeniable proof, case studies, or logical certainty for {{audience}}.\n3. Time Delay & Effort Reduction (25-45s): Show how this eliminates waiting, friction, and hard labor in {{industry}}.\n4. No-Brainer CTA (45-60s): Make an irresistible offer that would be foolish to ignore.\n</copywriting_framework>",
+    "requiredVariables": ["goal", "audience", "industry"]
+  },
+  "storybrand": {
+    "id": "storybrand",
+    "name": "StoryBrand Narrative",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: Donald Miller StoryBrand Narrative Arc\nStructure:\n1. The Hero & The Problem (0-10s): Position {{audience}} as the hero facing an external and internal struggle in {{industry}}.\n2. The Guide (10-25s): Introduce {{brand}} as the empathetic, authoritative guide who understands their struggle.\n3. The Plan (25-40s): Give the hero a simple 3-step roadmap to overcome the obstacle and achieve {{goal}}.\n4. Call to Action & Stakes (40-60s): Call them to action, painting the success they will enjoy and the failure they will avoid.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "brand", "goal"]
+  },
+  "aida": {
+    "id": "aida",
+    "name": "AIDA (Attention - Interest - Desire - Action)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: AIDA (Attention - Interest - Desire - Action)\nStructure:\n1. Attention (0-3s): Hook {{audience}} with an arresting statement or visual pattern interrupt.\n2. Interest (3-20s): Engage intellectual curiosity with unusual facts, industry shifts in {{industry}}, or counterintuitive insights.\n3. Desire (20-45s): Trigger emotional yearning by showing the transformation and benefits of achieving {{goal}}.\n4. Action (45-60s): Deliver a clear, urgent directive telling them exactly what step to take next.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal"]
+  },
+  "bab": {
+    "id": "bab",
+    "name": "BAB (Before - After - Bridge)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: BAB (Before - After - Bridge)\nStructure:\n1. Before (0-15s): Describe the current frustrating reality of {{audience}} struggling in {{industry}}.\n2. After (15-35s): Describe a world where the struggle is gone and {{goal}} has been completely achieved.\n3. Bridge (35-60s): Reveal the exact mechanism, product, or strategy that bridges the gap from Before to After, closing with a CTA.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal"]
+  },
+  "quest": {
+    "id": "quest",
+    "name": "QUEST Copywriting Formula",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: QUEST (Qualify - Understand - Educate - Stimulate - Transition)\nStructure:\n1. Qualify (0-5s): Call out the exact target profile: 'If you are a {{audience}} in {{industry}}...'\n2. Understand (5-15s): Show deep empathy for their daily challenges and aspirations towards {{goal}}.\n3. Educate (15-35s): Teach a valuable, actionable concept or framework that changes their perspective.\n4. Stimulate (35-50s): Build excitement and urgency around implementing this insight immediately.\n5. Transition (50-60s): Seamlessly transition to the call to action.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal"]
+  },
+  "fab": {
+    "id": "fab",
+    "name": "FAB (Features - Advantages - Benefits)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: FAB (Features - Advantages - Benefits)\nStructure:\n1. Features (0-15s): Introduce the tangible characteristics of the solution or method in {{industry}}.\n2. Advantages (15-35s): Explain why these features are superior to conventional alternatives for {{audience}}.\n3. Benefits (35-60s): Translate advantages into emotional, real-world payoffs (saving time, making money, achieving {{goal}}), leading into the CTA.\n</copywriting_framework>",
+    "requiredVariables": ["industry", "audience", "goal"]
+  },
+  "4u": {
+    "id": "4u",
+    "name": "4U (Urgent - Useful - Ultra-specific - Unique)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: 4U (Urgent - Useful - Ultra-specific - Unique)\nStructure:\n1. Urgent (0-10s): Why {{audience}} must pay attention right now in 2026.\n2. Useful (10-25s): How this immediately solves a pressing bottleneck in {{industry}}.\n3. Ultra-specific (25-45s): Provide exact numbers, steps, or data points to achieve {{goal}}.\n4. Unique (45-60s): Highlight the proprietary differentiator of {{brand}}, closing with an urgent CTA.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal", "brand"]
+  },
+  "acca": {
+    "id": "acca",
+    "name": "ACCA (Awareness - Comprehension - Conviction - Action)",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: ACCA (Awareness - Comprehension - Conviction - Action)\nStructure:\n1. Awareness (0-10s): Make {{audience}} aware of a critical trend or hidden problem in {{industry}}.\n2. Comprehension (10-30s): Explain clearly why this is happening and how it impacts their journey towards {{goal}}.\n3. Conviction (30-45s): Present undeniable evidence, logic, or social proof to create absolute belief in the solution.\n4. Action (45-60s): Give a direct, unmistakable command on how to take the next step.\n</copywriting_framework>",
+    "requiredVariables": ["audience", "industry", "goal"]
+  },
+  "russell_brunson": {
+    "id": "russell_brunson",
+    "name": "Russell Brunson Epiphany Bridge",
+    "category": "framework",
+    "version": "1.0.0",
+    "template": "<copywriting_framework>\nFramework: Russell Brunson Epiphany Bridge Arc\nStructure:\n1. Backstory & The Wall (0-15s): Share the relatable struggle of hitting a brick wall trying to achieve {{goal}} using traditional {{industry}} advice.\n2. The Epiphany (15-35s): Describe the aha-moment discovery that destroyed the old belief and revealed the new opportunity.\n3. The New Opportunity (35-50s): Show how this new vehicle makes achieving {{goal}} faster, easier, and more certain for {{audience}}.\n4. The Offer & CTA (50-60s): Invite them to step into the new opportunity today.\n</copywriting_framework>",
+    "requiredVariables": ["goal", "industry", "audience"]
+  }
+}

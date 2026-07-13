@@ -43,7 +43,7 @@ export class AIOrchestratorProvider implements IAIProvider {
     this.modelPreference = (modelPreference || process.env.AI_MODEL_PREFERENCE || "default") as AIModelPreference;
 
     this.providers = [
-      new GeminiProvider(),
+      new GeminiProvider(modelPreference),
       new OpenAIProvider(),
       new ClaudeProvider(),
     ];
@@ -54,8 +54,9 @@ export class AIOrchestratorProvider implements IAIProvider {
   }
 
   public static getHealthStatus(): AIProviderHealthStatus[] {
+    const geminiModel = process.env.GEMINI_MODEL || process.env.AI_MODEL || "gemini-3.1-flash-lite";
     const defaultIds: { id: AIProviderId; name: string }[] = [
-      { id: "gemini", name: "Google Gemini (gemini-2.5-flash)" },
+      { id: "gemini", name: `Google Gemini (${geminiModel})` },
       { id: "openai", name: "OpenAI (gpt-4o-mini)" },
       { id: "claude", name: "Anthropic Claude (claude-3-5-sonnet)" },
     ];
@@ -172,9 +173,10 @@ export class AIOrchestratorProvider implements IAIProvider {
     const startTime = performance.now();
     const queue = await this.buildPriorityQueue();
 
+    let lastErrorReason = "No live AI providers available or healthy.";
     if (queue.length === 0) {
       console.info("[AIOrchestrator] No live AI providers available or healthy. Executing clean Deterministic Fallback.");
-      return this.executeDeterministicFallback(payload, startTime);
+      return this.executeDeterministicFallback(payload, startTime, lastErrorReason);
     }
 
     for (const provider of queue) {
@@ -188,6 +190,7 @@ export class AIOrchestratorProvider implements IAIProvider {
         } catch (error: any) {
           attempts++;
           const errMessage = error instanceof Error ? error.message : String(error);
+          lastErrorReason = `Provider ${provider.id} failed: ${errMessage}`;
           const isRateLimit = errMessage.includes("429") || errMessage.toLowerCase().includes("rate limit");
 
           if (isRateLimit) {
@@ -209,10 +212,10 @@ export class AIOrchestratorProvider implements IAIProvider {
     }
 
     console.warn("[AIOrchestrator] All live AI providers failed in queue. Executing clean Deterministic Fallback.");
-    return this.executeDeterministicFallback(payload, startTime);
+    return this.executeDeterministicFallback(payload, startTime, lastErrorReason);
   }
 
-  private executeDeterministicFallback<T>(payload: AIPromptPayload<T>, startTime: number): AIResponse<T> {
+  private executeDeterministicFallback<T>(payload: AIPromptPayload<T>, startTime: number, reason?: string): AIResponse<T> {
     const latencyMs = Math.round(performance.now() - startTime);
     return {
       data: payload.fallbackData,
@@ -223,6 +226,7 @@ export class AIOrchestratorProvider implements IAIProvider {
         usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
         costEstimateUsd: 0,
         fallbackUsed: true,
+        reason,
       },
     };
   }

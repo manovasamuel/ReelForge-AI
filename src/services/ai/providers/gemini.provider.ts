@@ -10,13 +10,13 @@ import { ResponseNormalizer } from "../response.normalizer";
  */
 export class GeminiProvider implements IAIProvider {
   public readonly id: AIProviderId = "gemini";
-  public readonly name = "Google Gemini (gemini-2.5-flash)";
+  public readonly name = "Google Gemini";
   private readonly apiKey: string | undefined;
   private readonly model: string;
 
-  constructor(model = "gemini-2.5-flash") {
+  constructor(model = "gemini-3.1-flash-lite") {
     this.apiKey = process.env.GEMINI_API_KEY;
-    this.model = process.env.AI_MODEL || model;
+    this.model = (model && model !== "default") ? model : (process.env.GEMINI_MODEL || process.env.AI_MODEL || "gemini-3.1-flash-lite");
   }
 
   public isAvailable(): boolean {
@@ -29,7 +29,8 @@ export class GeminiProvider implements IAIProvider {
     }
 
     const startTime = performance.now();
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${this.model}:generateContent?key=${this.apiKey}`;
+    const activeModel = this.model;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${activeModel}:generateContent?key=${this.apiKey}`;
 
     const requestBody = {
       contents: [
@@ -68,7 +69,7 @@ export class GeminiProvider implements IAIProvider {
     const completionTokens = json?.usageMetadata?.candidatesTokenCount || Math.round(rawText.length / 4);
     const totalTokens = json?.usageMetadata?.totalTokenCount || (promptTokens + completionTokens);
 
-    // Gemini 2.5 Flash pricing: ~$0.075 / 1M prompt tokens, ~$0.30 / 1M completion tokens
+    // Gemini 2.5 Flash / Flash Lite pricing approximation
     const costEstimateUsd = Number(((promptTokens / 1_000_000) * 0.075 + (completionTokens / 1_000_000) * 0.30).toFixed(6));
 
     // Normalize via ResponseNormalizer
@@ -78,7 +79,8 @@ export class GeminiProvider implements IAIProvider {
       data: normalizedData,
       telemetry: {
         providerId: this.id,
-        modelUsed: this.model,
+        requestedModel: this.model,
+        modelUsed: activeModel,
         latencyMs,
         usage: { promptTokens, completionTokens, totalTokens },
         costEstimateUsd,

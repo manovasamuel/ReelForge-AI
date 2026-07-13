@@ -1,0 +1,410 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Call to Action",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCall to Action Strategy: Direct Conversion\nPrimary Directive: {{cta}}\nEnsure the CTA is spoken clearly in the final 5 seconds and displayed visually on screen with high contrast.\n</cta_instruction>",
+    "requiredVariables": ["cta"]
+  },
+  "eng_1": {
+    "id": "eng_1",
+    "name": "Engagement — Comment Your Opinion",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Comment Opinion)\nTemplate: 'Do you agree or disagree with this? Drop your honest opinion in the comments below!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "eng_2": {
+    "id": "eng_2",
+    "name": "Engagement — Answer the Question",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Answer Question)\nTemplate: 'What is the biggest challenge you are facing with {{goal}} right now? Tell me below so I can make a video about it!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "eng_3": {
+    "id": "eng_3",
+    "name": "Engagement — Vote in Comments",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Vote in Comments)\nTemplate: 'Type 1 if you prefer strategy A, or type 2 if you prefer strategy B in the comments!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "eng_4": {
+    "id": "eng_4",
+    "name": "Engagement — Tag a Friend",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Tag a Friend)\nTemplate: 'Tag a friend or business partner who needs to see this before tomorrow!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "eng_5": {
+    "id": "eng_5",
+    "name": "Engagement — Fill in the Blank",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Fill in the Blank)\nTemplate: 'Fill in the blank: My #1 goal for 2026 is ________. Let us see who dreams the biggest!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "eng_6": {
+    "id": "eng_6",
+    "name": "Engagement — Rate Your Experience",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Rate Experience)\nTemplate: 'On a scale of 1 to 10, how satisfied are you with your current {{goal}}? Be honest!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "eng_7": {
+    "id": "eng_7",
+    "name": "Engagement — Challenge the Host",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Challenge Host)\nTemplate: 'Think I missed a step? Prove me wrong in the comments below!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "eng_8": {
+    "id": "eng_8",
+    "name": "Engagement — Emoji Reaction",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Engagement (Emoji Reaction)\nTemplate: 'Drop a 🔥 emoji in the comments if you are going to test this today!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "lead_1": {
+    "id": "lead_1",
+    "name": "Leads — Keyword DM Automation",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Keyword DM)\nTemplate: 'Comment the word \"GUIDE\" below and I will instantly DM you my free blueprint for {{goal}}!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "lead_2": {
+    "id": "lead_2",
+    "name": "Leads — Link in Bio Checklist",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Link in Bio Checklist)\nTemplate: 'Click the link in my bio to download the free checklist and start {{goal}} today!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "lead_3": {
+    "id": "lead_3",
+    "name": "Leads — Masterclass Registration",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Masterclass Registration)\nTemplate: 'We are hosting a live masterclass this Thursday on {{goal}}. Comment \"LIVE\" to grab your seat!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "lead_4": {
+    "id": "lead_4",
+    "name": "Leads — Free Audit Offer",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Free Audit Offer)\nTemplate: 'Comment \"AUDIT\" and my team will do a free video review of your current strategy!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "lead_5": {
+    "id": "lead_5",
+    "name": "Leads — Newsletter Signup",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Newsletter Signup)\nTemplate: 'Join 10,000+ {{audience}} receiving our weekly tips. Hit the link in bio to subscribe free!'\n</cta_instruction>",
+    "requiredVariables": ["audience"]
+  },
+  "lead_6": {
+    "id": "lead_6",
+    "name": "Leads — Template Download",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Template Download)\nTemplate: 'Want the exact Notion template I showed in this video? Comment \"TEMPLATE\" and it is yours!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "lead_7": {
+    "id": "lead_7",
+    "name": "Leads — Quiz Assessment",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Quiz Assessment)\nTemplate: 'Take the 60-second assessment in my bio to find out what is holding back your {{goal}}!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "lead_8": {
+    "id": "lead_8",
+    "name": "Leads — Case Study Breakdown",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Lead Generation (Case Study Breakdown)\nTemplate: 'Comment \"CASE STUDY\" and I will send you the private 15-minute breakdown video!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sale_1": {
+    "id": "sale_1",
+    "name": "Sales — Limited Time Discount",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Limited Time Discount)\nTemplate: 'We are offering 50% off for the next 24 hours only! Click the link in bio to claim your spot before it closes!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sale_2": {
+    "id": "sale_2",
+    "name": "Sales — Book a Discovery Call",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Discovery Call)\nTemplate: 'Ready to scale to {{goal}} this quarter? Click the link in bio to book your 1-on-1 strategy call with our team!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "sale_3": {
+    "id": "sale_3",
+    "name": "Sales — Product Launch Drop",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Product Launch Drop)\nTemplate: 'The new collection is officially live! Head to the link in bio to shop before your size sells out!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sale_4": {
+    "id": "sale_4",
+    "name": "Sales — VIP Waitlist Enrollment",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (VIP Waitlist)\nTemplate: 'Doors open next Monday. Comment \"VIP\" to get early access and our exclusive founder discount!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sale_5": {
+    "id": "sale_5",
+    "name": "Sales — Risk-Free Guarantee Offer",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Risk-Free Guarantee)\nTemplate: 'Try it 100% risk-free for 30 days. If you do not achieve {{goal}}, we refund every penny. Link in bio!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "sale_6": {
+    "id": "sale_6",
+    "name": "Sales — Bundle Upgrade",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Bundle Upgrade)\nTemplate: 'Get the complete toolkit bundle for 60% off today only. Check the bio link to upgrade!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sale_7": {
+    "id": "sale_7",
+    "name": "Sales — Founder Consultation",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Direct Sales (Founder Consultation)\nTemplate: 'I am taking on 3 private clients this month to help them achieve {{goal}}. DM me \"GROWTH\" to apply!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "comm_1": {
+    "id": "comm_1",
+    "name": "Community — Join Discord/Telegram",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Join Discord/Telegram)\nTemplate: 'Join our free Discord community of 5,000+ {{audience}} sharing daily tips! Link in bio!'\n</cta_instruction>",
+    "requiredVariables": ["audience"]
+  },
+  "comm_2": {
+    "id": "comm_2",
+    "name": "Community — Share Your Milestone",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Share Milestone)\nTemplate: 'What was your biggest win this week? Celebrate in the comments so our community can cheer you on!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "comm_3": {
+    "id": "comm_3",
+    "name": "Community — Attend Weekly Q&A",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Weekly Q&A)\nTemplate: 'We go live every Friday at 2 PM for community Q&A. Drop your questions below and set your reminder!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "comm_4": {
+    "id": "comm_4",
+    "name": "Community — Founder Story Feedback",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Story Feedback)\nTemplate: 'Did this story resonate with your journey? Let me know in the comments below!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "comm_5": {
+    "id": "comm_5",
+    "name": "Community — Member Spotlight Nomination",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Spotlight Nomination)\nTemplate: 'Know a {{audience}} who deserves a shoutout? Tag them below for our weekly community spotlight!'\n</cta_instruction>",
+    "requiredVariables": ["audience"]
+  },
+  "comm_6": {
+    "id": "comm_6",
+    "name": "Community — Co-Create Next Video",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Co-Create Video)\nTemplate: 'What topic should we cover in Part 2? Vote for your favorite idea in the comments!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "comm_7": {
+    "id": "comm_7",
+    "name": "Community — Accountability Partner",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Community Building (Accountability Partner)\nTemplate: 'Comment \"READY\" below and reply to someone else to find your accountability partner for {{goal}}!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "fol_1": {
+    "id": "fol_1",
+    "name": "Follow — Part 2 Reminder",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Part 2 Reminder)\nTemplate: 'Hit that follow button right now so you do not miss Part 2 tomorrow!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "fol_2": {
+    "id": "fol_2",
+    "name": "Follow — Daily Value Promise",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Daily Value Promise)\nTemplate: 'Follow me for daily, no-BS breakdowns on how to achieve {{goal}} without stress!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "fol_3": {
+    "id": "fol_3",
+    "name": "Follow — Join the Movement",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Join the Movement)\nTemplate: 'Follow our page to join 50,000+ {{audience}} mastering their craft every single day!'\n</cta_instruction>",
+    "requiredVariables": ["audience"]
+  },
+  "fol_4": {
+    "id": "fol_4",
+    "name": "Follow — Behind the Scenes Access",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Behind the Scenes)\nTemplate: 'Follow along as I document my raw 90-day journey to scaling {{brand}} to $1M!'\n</cta_instruction>",
+    "requiredVariables": ["brand"]
+  },
+  "fol_5": {
+    "id": "fol_5",
+    "name": "Follow — The Anti-Guru Feed",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Anti-Guru Feed)\nTemplate: 'Tired of generic advice? Follow me for actionable, data-backed strategies that actually work!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "fol_6": {
+    "id": "fol_6",
+    "name": "Follow — Weekly Case Studies",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Weekly Case Studies)\nTemplate: 'Follow now to get our weekly real-world case studies delivered right to your feed!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "fol_7": {
+    "id": "fol_7",
+    "name": "Follow — Turn on Notifications",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Follow Growth (Turn on Notifications)\nTemplate: 'Hit follow and tap the bell icon so you never miss an urgent industry alert!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sav_1": {
+    "id": "sav_1",
+    "name": "Save — Bookmark for Later Reference",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Later Reference)\nTemplate: 'Save this reel right now so you can use this exact formula when you plan your next campaign!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sav_2": {
+    "id": "sav_2",
+    "name": "Save — Cheat Sheet Bookmark",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Cheat Sheet)\nTemplate: 'Hit the save button—this is your permanent cheat sheet for mastering {{goal}}!'\n</cta_instruction>",
+    "requiredVariables": ["goal"]
+  },
+  "sav_3": {
+    "id": "sav_3",
+    "name": "Save — Step-by-Step Recipe/Routine",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Recipe/Routine)\nTemplate: 'Save this video so you do not forget the measurements when you try this tomorrow morning!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sav_4": {
+    "id": "sav_4",
+    "name": "Save — Tool Stack List",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Tool Stack List)\nTemplate: 'Save this post! You will want to refer back to these 5 AI tools every single week!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sav_5": {
+    "id": "sav_5",
+    "name": "Save — Emergency Troubleshooting",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Emergency Troubleshooting)\nTemplate: 'Bookmark this reel so you know exactly how to fix your strategy when engagement drops!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "sav_6": {
+    "id": "sav_6",
+    "name": "Save — Weekly Workout/Routine",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Save / Bookmark (Weekly Routine)\nTemplate: 'Save this video to your workout folder and crush this routine at the gym on Monday!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_1": {
+    "id": "shr_1",
+    "name": "Share — Send to a Co-Founder/Partner",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Send to Partner)\nTemplate: 'Share this reel with your business partner or co-founder so you are both on the same page!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_2": {
+    "id": "shr_2",
+    "name": "Share — Post to Your IG Story",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Post to Story)\nTemplate: 'Share this to your story right now to help another {{audience}} who might be struggling!'\n</cta_instruction>",
+    "requiredVariables": ["audience"]
+  },
+  "shr_3": {
+    "id": "shr_3",
+    "name": "Share — Send to Someone Who Needs This",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Send to Someone in Need)\nTemplate: 'DM this video to a friend who needs a boost of motivation today!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_4": {
+    "id": "shr_4",
+    "name": "Share — Team Slack/Discord Drop",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Team Slack Drop)\nTemplate: 'Drop this video into your team Slack channel to upgrade your workflow this week!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_5": {
+    "id": "shr_5",
+    "name": "Share — Challenge a Competitor/Friend",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Challenge Friend)\nTemplate: 'Send this to a friend and challenge them to complete this 7-day sprint with you!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_6": {
+    "id": "shr_6",
+    "name": "Share — Spread the Awareness",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Spread Awareness)\nTemplate: 'Help us spread the truth! Share this video to educate your audience!'\n</cta_instruction>",
+    "requiredVariables": []
+  },
+  "shr_7": {
+    "id": "shr_7",
+    "name": "Share — Viral Gift Drop",
+    "category": "cta",
+    "version": "1.0.0",
+    "template": "<cta_instruction>\nCTA Objective: Share / Amplification (Viral Gift)\nTemplate: 'Share this reel with 3 friends and comment \"DONE\" to enter our weekly giveaway!'\n</cta_instruction>",
+    "requiredVariables": []
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Output Style:\nEnsure all responses maintain high analytical depth, clear structuring, and actionable takeaways tailored to {{industry}}.\n</few_shot_examples>",
+    "requiredVariables": ["industry"]
+  },
+  "brand_intelligence_examples": {
+    "id": "brand_intelligence_examples",
+    "name": "Brand Intelligence Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Brand Intelligence Output Structure:\n{\n  \"positioning\": \"Premium eco-conscious athletic apparel designed for high-performing urban professionals.\",\n  \"contentPillars\": [\"Performance Discipline\", \"Sustainable Innovation\", \"Urban Athlete Lifestyle\"],\n  \"toneProfile\": \"Authoritative, clean, and motivating with zero fluff.\",\n  \"targetAudience\": \"Driven professionals aged 25-40 balancing demanding careers with daily endurance training.\"\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "script_generation_examples": {
+    "id": "script_generation_examples",
+    "name": "Script Generation Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Script Section Formatting:\n\"hook\": {\n  \"audio\": \"Stop doing standard cardio if you want to lose stubborn body fat this month.\",\n  \"visual\": \"Close-up quick zoom on speaker holding a stopwatch in a modern gym, shaking head with a serious expression.\",\n  \"duration\": 3\n},\n\"problem\": {\n  \"audio\": \"Most professionals spend 45 minutes on the treadmill and wonder why their energy crashes and their waistline stays exactly the same.\",\n  \"visual\": \"B-roll of someone looking exhausted on a cardio machine, checking their phone in frustration.\",\n  \"duration\": 7\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "luxury_example": {
+    "id": "luxury_example",
+    "name": "Luxury & High-End Brands Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Luxury & Jewellery Script Pacing:\n\"hook\": {\n  \"audio\": \"True luxury does not shout for attention. It speaks in timeless craftsmanship.\",\n  \"visual\": \"Slow, cinematic macro panning shot across the intricate golden bezel of an artisan timepiece under moody studio lighting.\",\n  \"duration\": 4\n},\n\"value\": {\n  \"audio\": \"Every piece is handcrafted by third-generation Swiss horologists over 400 meticulous hours.\",\n  \"visual\": \"Split screen showing an artisan assembling microscopic gears alongside a gentleman wearing the watch with tailored formalwear.\",\n  \"duration\": 8\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "education_example": {
+    "id": "education_example",
+    "name": "Online Education & Coaching Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Education & Coaching Script Pacing:\n\"hook\": {\n  \"audio\": \"Here is the exact 3-step executive framework our students use to scale to $10k/month without paid ads.\",\n  \"visual\": \"Speaker standing at a glass whiteboard with 3 bold steps outlined, pointing directly at the camera with high energy.\",\n  \"duration\": 4\n},\n\"proof\": {\n  \"audio\": \"Just last week, Mark applied Step 2 and closed his first high-ticket retainer in 48 hours.\",\n  \"visual\": \"Screen recording overlay showing a verified Stripe dashboard notification and a celebratory Slack screenshot.\",\n  \"duration\": 6\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "fitness_example": {
+    "id": "fitness_example",
+    "name": "Fitness & Gym Training Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Fitness Script Pacing:\n\"hook\": {\n  \"audio\": \"Your deadlift form is quietly destroying your lower back. Fix it with this 2-second cue.\",\n  \"visual\": \"Side-profile shot of a lifter in a gym rounding their back, overlaid with a bold red 'X' graphic and warning buzzer sound.\",\n  \"duration\": 3\n},\n\"solution\": {\n  \"audio\": \"Instead of pulling from your arms, imagine pushing the floor away through your heels while engaging your lats.\",\n  \"visual\": \"Side-by-side comparison showing incorrect rounded spine vs. locked-in neutral spine with green checkmark graphic.\",\n  \"duration\": 8\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "ecommerce_example": {
+    "id": "ecommerce_example",
+    "name": "E-Commerce & Physical Products Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample E-Commerce Product Showcase Pacing:\n\"hook\": {\n  \"audio\": \"I finally found the only travel backpack you will ever need for 7-day trips without checked baggage fees.\",\n  \"visual\": \"Fast-paced unboxing transition where the backpack is dropped onto a table, instantly unzipping to reveal 5 organized packing cubes.\",\n  \"duration\": 4\n},\n\"cta\": {\n  \"audio\": \"We just restocked in matte black. Click the link in bio to grab yours before it sells out again!\",\n  \"visual\": \"Speaker wearing the sleek backpack at an airport terminal, smiling and pointing down towards the link in bio overlay.\",\n  \"duration\": 5\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  },
+  "personal_branding_example": {
+    "id": "personal_branding_example",
+    "name": "Personal Branding & Creators Few-Shot Example",
+    "category": "examples",
+    "version": "1.0.0",
+    "template": "<few_shot_examples>\nExample Personal Branding Storytelling Pacing:\n\"hook\": {\n  \"audio\": \"5 years ago, I quit my corporate job with $800 in my savings account. Here is what nobody tells you about starting over.\",\n  \"visual\": \"Vlog-style handheld selfie shot walking down a bustling city street, speaking with authentic vulnerability and eye contact.\",\n  \"duration\": 4\n},\n\"value\": {\n  \"audio\": \"Your network is not about who you know. It is about who you have genuinely helped without asking for anything in return.\",\n  \"visual\": \"Montage of speaking on stage, collaborating with mentors, and working late at a coffee shop laptop.\",\n  \"duration\": 8\n}\n</few_shot_examples>",
+    "requiredVariables": []
+  }
+}

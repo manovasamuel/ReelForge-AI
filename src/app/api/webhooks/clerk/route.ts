@@ -3,11 +3,16 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { db, schema } from "@/lib/db";
 import { eq } from "drizzle-orm";
+import { isOfflineDevMode } from "@/lib/auth/config";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
-  const isPlaceholder = !WEBHOOK_SECRET || WEBHOOK_SECRET.includes("placeholder");
+  if ((process.env.NODE_ENV === "production" || process.env.VERCEL_ENV === "production") && (!WEBHOOK_SECRET || WEBHOOK_SECRET.includes("placeholder"))) {
+    return new Response("Error: CLERK_WEBHOOK_SECRET must be configured in production", { status: 500 });
+  }
+
+  const isPlaceholder = isOfflineDevMode() || !WEBHOOK_SECRET || WEBHOOK_SECRET.includes("placeholder");
 
   // Get the headers
   const headerPayload = await headers();
@@ -18,7 +23,7 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-  // If in live mode, verify the Svix cryptographic signature
+  // In production or when configured, verify the Svix cryptographic signature
   if (!isPlaceholder) {
     if (!svix_id || !svix_timestamp || !svix_signature) {
       return new Response("Error occured -- no svix headers", { status: 400 });

@@ -1,0 +1,82 @@
+{
+  "general": {
+    "id": "general",
+    "name": "General Script Generation Constraints",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<production_constraints>\n1. Script Length: Target {{script_length}} seconds total duration.\n2. Language: Output entirely in {{language}}.\n3. Formatting: Return valid JSON strictly matching the schema without markdown or extra commentary.\n4. Audio & Visuals: Provide specific visual cues and B-roll descriptions for every section.\n</production_constraints>",
+    "requiredVariables": ["script_length", "language"]
+  },
+  "brand_intelligence_constraints": {
+    "id": "brand_intelligence_constraints",
+    "name": "Brand Intelligence Strategic Constraints",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<strategic_constraints>\n1. Output Language: Analyze and output entirely in {{language}}.\n2. Analytical Rigor: Do not invent metrics or facts not implied by the profile data.\n3. JSON Schema Compliance: Must return ONLY a valid JSON object matching the Brand Intelligence schema.\n4. Strategic Depth: Ensure positioning recommendations provide actionable differentiation.\n</strategic_constraints>",
+    "requiredVariables": ["language"]
+  },
+  "script_generation_constraints": {
+    "id": "script_generation_constraints",
+    "name": "Script Generation Strategic Constraints",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<script_constraints>\n1. Duration Compliance: Ensure the pacing fits within {{script_length}} seconds (approx. 130-150 words per minute).\n2. Language: Output entirely in {{language}}.\n3. Schema Enforcement: Exactly 9 structured sections (Hook, Problem, Agitation, Solution, Value, Proof, CTA, B-Roll, Audio).\n4. Voice Alignment: Adhere strictly to the brand voice and tone profile without breaking character.\n</script_constraints>",
+    "requiredVariables": ["script_length", "language"]
+  },
+  "instagram_best_practices": {
+    "id": "instagram_best_practices",
+    "name": "Instagram Algorithm & Feed Best Practices",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<platform_constraints>\nInstagram Best Practices:\n1. 9:16 Vertical Video Optimization: All visual cues and text overlays must be positioned in the center safe zone (avoiding bottom caption overlays and side icon clipping).\n2. Native Audio Pairing: Recommend trending or atmospheric audio styles that elevate viewer immersion.\n3. High-Contrast Hook Text: Recommend bold on-screen hook text during the first 3 seconds to capture muted auto-play viewers.\n4. Seamless Looping: Design the final sentence to flow naturally back into the opening hook for loop restarts.\n</platform_constraints>",
+    "requiredVariables": []
+  },
+  "reel_duration_guidance": {
+    "id": "reel_duration_guidance",
+    "name": "Reel Duration & Pacing Guidance",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<duration_guidance>\nDuration & Pacing Rules for {{script_length}}s Reel:\n- 15-30s Reels: Ultra-fast pacing. Max 60-75 words. 1 core tip or punchline. Zero intro fluff.\n- 30-45s Reels: Standard educational pacing. Approx. 90-110 words. Clear problem-solution arc with 2 supporting points.\n- 60-90s Reels: Deep-dive storytelling or tutorial pacing. Approx. 140-200 words. Comprehensive step-by-step breakdown with strong emotional resonance.\n</duration_guidance>",
+    "requiredVariables": ["script_length"]
+  },
+  "platform_safety": {
+    "id": "platform_safety",
+    "name": "Platform Safety & Community Guidelines",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<safety_constraints>\nPlatform Safety & Compliance:\n1. Zero Engagement Baiting: Avoid prohibited algorithmic engagement baiting (e.g., 'Like this video or else...'). Use authentic conversational prompts.\n2. Claim Verification: Enforce appropriate disclaimers for financial, legal, or medical topics. Avoid absolute guarantees of income or cure.\n3. Community Standards: Strictly adhere to Instagram Community Guidelines regarding hate speech, harassment, copyright, and regulated goods.\n</safety_constraints>",
+    "requiredVariables": []
+  },
+  "readability_rules": {
+    "id": "readability_rules",
+    "name": "Readability & Caption Formatting Rules",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<readability_rules>\nCaption & Text Overlay Formatting:\n1. Short Paragraphs: Break caption text into single or double-sentence stanzas for effortless mobile scanning.\n2. Visual Bullet Points: Use clean bullet points or emojis to structure lists and steps.\n3. Hook in First Line: Place the primary hook in the very first sentence of the caption before the 'more' truncation break.\n4. On-Screen Legibility: Specify high-contrast sans-serif fonts with subtle text shadows or boxes for on-screen B-roll text.\n</readability_rules>",
+    "requiredVariables": []
+  },
+  "hook_timing_rules": {
+    "id": "hook_timing_rules",
+    "name": "Hook Timing & Visual Pattern Interrupt Rules",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<hook_timing>\nHook Execution & Pattern Interrupts:\n1. 0-1.5 Seconds: The visual pattern interrupt MUST occur within the first 1.5 seconds (e.g., sudden movement, zoom, text slam, or unexpected prop).\n2. Verbal Hook Delivery: The spoken hook must conclude by second 3.\n3. Zero Logo Intros: Never start with a static branded title card or animated logo splash screen.\n</hook_timing>",
+    "requiredVariables": []
+  },
+  "retention_rules": {
+    "id": "retention_rules",
+    "name": "Viewer Retention & Drop-off Prevention Rules",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<retention_rules>\nRetention Optimization:\n1. 3-Second Cut Rule: Introduce a visual change (camera angle switch, B-roll overlay, zoom in/out, or text graphic) every 3 to 4 seconds.\n2. Open Loops: Maintain curiosity by teasing the climax or #1 tip until the final third of the video.\n3. Eliminate Pauses: Remove all dead air, filler words ('um', 'so today we are going to talk about'), and repetitive introductions.\n</retention_rules>",
+    "requiredVariables": []
+  },
+  "caption_limits": {
+    "id": "caption_limits",
+    "name": "Caption Length & Hashtag Limit Rules",
+    "category": "constraints",
+    "version": "1.0.0",
+    "template": "<caption_limits>\nCaption & Hashtag Specifications:\n1. Caption Character Count: Aim for 300 to 800 characters total for optimal engagement and SEO indexing.\n2. Hashtag Strategy: Include exactly 3 to 5 hyper-relevant, niche-specific hashtags at the very bottom of the caption. Avoid spammy 30-tag blocks.\n3. SEO Keywords: Integrate primary industry keywords naturally into the first 2 sentences of the caption for Instagram search discovery.\n</caption_limits>",
+    "requiredVariables": []
+  }
+}

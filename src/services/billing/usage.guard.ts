@@ -117,6 +117,7 @@ export class UsageGuard {
     IUsageGuardResult<T> & {
       telemetry?: {
         providerId: string;
+        requestedModel?: string;
         modelUsed: string;
         latencyMs: number;
         usage?: { promptTokens?: number; completionTokens?: number; totalTokens?: number };
@@ -152,6 +153,7 @@ export class UsageGuard {
           data,
           telemetry: {
             providerId: "deterministic",
+            requestedModel,
             modelUsed: "deterministic-fallback",
             latencyMs,
             usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
@@ -180,16 +182,18 @@ export class UsageGuard {
       return {
         authorized: true,
         provider: result.providerId,
-        reason: "ok",
+        reason: (result as any).telemetry?.reason || "ok",
         upgradeAvailable: false,
         data: result.data,
         telemetry: {
           providerId: result.providerId,
-          modelUsed: requestedModel,
+          requestedModel: (result as any).telemetry?.requestedModel || requestedModel,
+          modelUsed: (result as any).telemetry?.modelUsed || requestedModel,
           latencyMs,
           usage: usageData,
           costEstimateUsd: costUsd,
-          fallbackUsed: false,
+          fallbackUsed: (result as any).telemetry?.fallbackUsed ?? (result.providerId === "deterministic"),
+          reason: (result as any).telemetry?.reason,
         },
       };
     } catch (error) {
@@ -205,11 +209,14 @@ export class UsageGuard {
         data,
         telemetry: {
           providerId: "deterministic",
+          requestedModel,
           modelUsed: "deterministic-fallback",
           latencyMs,
           usage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
           costEstimateUsd: 0,
           fallbackUsed: true,
+          reason: "zero_key_fallback",
+          upgradeAvailable: false,
         },
       };
     }

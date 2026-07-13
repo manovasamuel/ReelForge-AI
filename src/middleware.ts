@@ -8,9 +8,7 @@ import { RateLimiter } from "@/lib/security/rate-limiter";
  * In development placeholder mode, authentication blocking is bypassed to ensure
  * local development, npm run build, and Playwright E2E tests run without interruption.
  */
-const isPlaceholderAuth =
-  !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ||
-  process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY.includes("placeholder");
+import { isOfflineDevMode } from "@/lib/auth/config";
 
 const isProtectedRoute = createRouteMatcher([
   "/profiles(.*)",
@@ -52,16 +50,32 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
     }
   }
 
-  // If Clerk keys are absent or placeholder, bypass authentication blocking
+  // If in offline dev mode, bypass authentication blocking
   // to allow local development, static builds, and Playwright tests to execute cleanly.
-  if (isPlaceholderAuth) {
+  // In production, isOfflineDevMode() always returns false.
+  if (isOfflineDevMode()) {
     return NextResponse.next();
   }
 
   // When live Clerk API keys are configured, enforce route protection via Clerk
   return clerkMiddleware(async (auth, request) => {
     if (!isPublicRoute(request) && isProtectedRoute(request)) {
-      await auth.protect();
+      if (request.nextUrl.pathname.startsWith("/api/")) {
+        const { userId } = await auth();
+        if (!userId) {
+          return NextResponse.json(
+            { error: "Unauthorized — Authentication required via Clerk session or token" },
+            { status: 401 }
+          );
+        }
+      } else {
+        const { userId } = await auth();
+        if (!userId) {
+          const signInUrl = new URL("/sign-in", request.url);
+          signInUrl.searchParams.set("redirect_url", request.url);
+          return NextResponse.redirect(signInUrl);
+        }
+      }
     }
   })(req, event);
 }
