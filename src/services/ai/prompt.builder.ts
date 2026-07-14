@@ -257,7 +257,7 @@ export class PromptBuilder {
     fallbackData: ContentIntelligenceReport[]
   ): AIPromptPayload<ContentIntelligenceReport[]> {
     const itemsSummary = items
-      .slice(0, 10)
+      .slice(0, 6)
       .map((it, idx) => {
         const viewsStr =
           it.viewsAvailable === false || (!it.viewsAvailable && it.views === 0)
@@ -294,7 +294,7 @@ export class PromptBuilder {
       expectedSchemaDescription,
       schemaType: "content-intelligence",
       temperature: 0.3,
-      maxOutputTokens: 1200,
+      maxOutputTokens: 2500,
       fallbackData,
       compiledResult,
     };

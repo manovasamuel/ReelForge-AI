@@ -245,15 +245,15 @@ export class ResponseNormalizer {
     try {
       const parsed = typeof input === "string" ? JSON.parse(this.cleanRawOutput(input)) : input;
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed.map((item: any, idx: number) => ({
-          ...fallbackData[idx % fallbackData.length],
-          ...item,
+        return fallbackData.map((fbItem: any, idx: number) => ({
+          ...fbItem,
+          ...(parsed[idx] || {}),
         }));
       }
       if (parsed && typeof parsed === "object" && Array.isArray(parsed.reports) && parsed.reports.length > 0) {
-        return parsed.reports.map((item: any, idx: number) => ({
-          ...fallbackData[idx % fallbackData.length],
-          ...item,
+        return fallbackData.map((fbItem: any, idx: number) => ({
+          ...fbItem,
+          ...(parsed.reports[idx] || {}),
         }));
       }
       return fallbackData;
