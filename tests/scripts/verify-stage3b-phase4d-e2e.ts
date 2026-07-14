@@ -248,11 +248,14 @@ async function runPhase4DE2E() {
   const noAutoVerified = candidates.filter(c => c.discoveryState === "AI_SUGGESTED").every(c => c.isVerifiedAccount === false);
   assert(noAutoVerified, "Step 2: AI_SUGGESTED candidates carry isVerifiedAccount=false (Truthfulness Rule)");
 
-  // Select @adidas or first available
-  let selected = candidates.find((c) => c.username === PREFERRED_COMPETITOR);
+  // Select known intended candidate (@adidas, @puma, @underarmour, @newbalance, @lululemon, @gymshark) or STOP
+  const INTENDED_CANDIDATES = [PREFERRED_COMPETITOR, "puma", "underarmour", "newbalance", "lululemon", "gymshark"];
+  const selected = candidates.find((c) => INTENDED_CANDIDATES.includes(c.username?.toLowerCase()));
   if (!selected) {
-    console.warn(`  [Selection] @${PREFERRED_COMPETITOR} not in candidates — selecting first: @${candidates[0]?.username}`);
-    selected = candidates[0];
+    console.error(`\n❌ [ABORT] Controlled intended candidate (${INTENDED_CANDIDATES.join(", ")}) not found in candidate list.`);
+    console.error(`   To prevent blindly scraping arbitrary fallback candidates per safety guardrail, stopping right now.`);
+    await browser.close();
+    process.exit(1);
   }
   assert(!!selected, `Step 2: Competitor selected (@${selected?.username})`);
   console.log(`\n  [Selection] ✅ Selected: @${selected?.username} | State: ${selected?.discoveryState} | Verified: ${selected?.isVerifiedAccount}`);
