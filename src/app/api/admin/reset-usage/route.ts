@@ -41,6 +41,10 @@ export async function POST() {
     // Get BEFORE state
     const beforeUsage = await usageRepo.getCurrentUsage(userId);
 
+    const isoStart = beforeUsage.billingPeriodStart instanceof Date
+      ? beforeUsage.billingPeriodStart.toISOString()
+      : String(beforeUsage.billingPeriodStart);
+
     // Execute exact approved SQL update
     await db.execute(sql`
       UPDATE usage
@@ -48,7 +52,7 @@ export async function POST() {
           ai_completion_tokens = 0,
           updated_at = NOW()
       WHERE user_id = ${userId}
-        AND billing_period_start = ${beforeUsage.billingPeriodStart}
+        AND id = ${beforeUsage.id}
     `);
 
     // Get AFTER state
