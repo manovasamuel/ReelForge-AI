@@ -5,7 +5,7 @@
  * response normalization, telemetry (tokens, latency, cost), and circuit breaker health tracking.
  */
 
-export type AIProviderId = "gemini" | "openai" | "claude" | "mock" | "deterministic";
+export type AIProviderId = "gemini" | "openai" | "claude" | "mock" | "deterministic" | "cache" | "ai-cache";
 
 export type AIModelPreference = "fast" | "powerful" | "cost-effective" | "default";
 

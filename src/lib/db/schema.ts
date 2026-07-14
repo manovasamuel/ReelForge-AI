@@ -357,6 +357,23 @@ export const profileCache = pgTable(
 );
 
 // ============================================================================
+// 19. AI CACHE TABLE (Stage 3B Phase 4D - 14-Day Intelligence Cache)
+// ============================================================================
+export const aiCache = pgTable(
+  "ai_cache",
+  {
+    key: varchar("key", { length: 255 }).primaryKey(),
+    type: varchar("type", { length: 100 }).notNull(),
+    data: jsonb("data").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  },
+  (table) => ({
+    expiresAtIdx: index("idx_ai_cache_expires_at").on(table.expiresAt),
+  })
+);
+
+// ============================================================================
 // RELATIONS DEFINITIONS
 // ============================================================================
 export const usersRelations = relations(users, ({ many, one }) => ({

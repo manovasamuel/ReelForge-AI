@@ -140,13 +140,13 @@ export class AIOrchestratorProvider implements IAIProvider {
     if (this.modelPreference === "cost-effective" || this.modelPreference === "fast") {
       // Gemini -> OpenAI -> Claude
       remaining.sort((a, b) => {
-        const order = { gemini: 1, openai: 2, claude: 3, mock: 4, deterministic: 5 };
+        const order: Record<string, number> = { gemini: 1, openai: 2, claude: 3, mock: 4, deterministic: 5, cache: 0, "ai-cache": 0 };
         return (order[a.id] || 9) - (order[b.id] || 9);
       });
     } else if (this.modelPreference === "powerful") {
       // Claude -> OpenAI -> Gemini
       remaining.sort((a, b) => {
-        const order = { claude: 1, openai: 2, gemini: 3, mock: 4, deterministic: 5 };
+        const order: Record<string, number> = { claude: 1, openai: 2, gemini: 3, mock: 4, deterministic: 5, cache: 0, "ai-cache": 0 };
         return (order[a.id] || 9) - (order[b.id] || 9);
       });
     }
@@ -175,6 +175,11 @@ export class AIOrchestratorProvider implements IAIProvider {
 
   public async generateStructured<T>(payload: AIPromptPayload<T>): Promise<AIResponse<T>> {
     const startTime = performance.now();
+    if (this.preferredProvider === "deterministic" || process.env.AI_PROVIDER === "deterministic") {
+      console.info("[AIOrchestrator] Explicit deterministic mode selected. Executing clean Deterministic Fallback.");
+      return this.executeDeterministicFallback(payload, startTime, "Explicit deterministic mode selected");
+    }
+
     const queue = await this.buildPriorityQueue();
 
     let lastErrorReason = "No live AI providers available or healthy.";

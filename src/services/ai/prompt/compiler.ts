@@ -66,6 +66,14 @@ export class PromptCompiler {
     // Stage 2: Prompt Modules Loading
     const loadedModules: PromptModuleDefinition[] = [];
     for (const category of categories) {
+      // If the category is not explicitly requested, skip it unless it's the mandatory system or constraints category
+      if (selection[category] === undefined && category !== "system" && category !== "constraints") {
+        continue;
+      }
+      if (selection[category] === "none") {
+        continue;
+      }
+
       const moduleId = selection[category] || "general";
       const categoryLibrary = PROMPT_LIBRARY[category] || {};
       const moduleDef =

@@ -25,22 +25,27 @@ export class LiveCompetitorProvider implements ICompetitorProvider {
   async discoverCompetitors(report: BrandIntelligenceReport): Promise<Competitor[]> {
     let rawCandidates: Competitor[] = [];
 
-    // 1. Attempt AI candidate generation via AIOrchestratorProvider
-    try {
-      const aiProvider = getAIOrchestrator();
-      if (aiProvider.isAvailable() || process.env.AI_PROVIDER === "gemini" || process.env.COMPETITORS_PROVIDER === "live") {
-        const fallback = inferCompetitors(report);
-        const payload = PromptBuilder.buildCompetitorDiscoveryPrompt(report, fallback);
-        const response = await aiProvider.generateStructured<Competitor[]>(payload);
-        if (response?.data && Array.isArray(response.data) && response.data.length > 0) {
-          rawCandidates = response.data;
+    // 1. Check if deterministic mode is explicitly preferred
+    const isDeterministicMode = process.env.COMPETITORS_PROVIDER === "deterministic" || process.env.AI_PROVIDER === "deterministic";
+
+    if (!isDeterministicMode) {
+      // 2. Attempt AI candidate generation via AIOrchestratorProvider
+      try {
+        const aiProvider = getAIOrchestrator();
+        if (aiProvider.isAvailable() || process.env.AI_PROVIDER === "gemini" || process.env.COMPETITORS_PROVIDER === "live") {
+          const fallback = inferCompetitors(report);
+          const payload = PromptBuilder.buildCompetitorDiscoveryPrompt(report, fallback);
+          const response = await aiProvider.generateStructured<Competitor[]>(payload);
+          if (response?.data && Array.isArray(response.data) && response.data.length > 0) {
+            rawCandidates = response.data;
+          }
         }
+      } catch (err) {
+        console.warn("[LiveCompetitorProvider] AI candidate generation failed or unavailable. Using heuristic candidate fallback.", err);
       }
-    } catch (err) {
-      console.warn("[LiveCompetitorProvider] AI candidate generation failed or unavailable. Using heuristic candidate fallback.", err);
     }
 
-    // 2. Fallback to heuristic candidate generator if AI candidates are not returned
+    // 3. Fallback to heuristic candidate generator if deterministic or AI candidates are not returned
     if (!rawCandidates || rawCandidates.length === 0) {
       rawCandidates = inferCompetitors(report);
     }

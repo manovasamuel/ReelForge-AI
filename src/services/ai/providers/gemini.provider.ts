@@ -32,13 +32,17 @@ export class GeminiProvider implements IAIProvider {
     const activeModel = this.model;
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${activeModel}:generateContent?key=${this.apiKey}`;
 
+    const requestText = payload.userPrompt.includes(payload.expectedSchemaDescription)
+      ? `${payload.systemPrompt}\n\n${payload.userPrompt}`
+      : `${payload.systemPrompt}\n\n${payload.userPrompt}\n\nExpected JSON Schema:\n${payload.expectedSchemaDescription}`;
+
     const requestBody = {
       contents: [
         {
           role: "user",
           parts: [
             {
-              text: `${payload.systemPrompt}\n\n${payload.userPrompt}\n\nExpected JSON Schema:\n${payload.expectedSchemaDescription}`,
+              text: requestText,
             },
           ],
         },

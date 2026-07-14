@@ -31,6 +31,21 @@ export function inferCompetitors(report: BrandIntelligenceReport): Competitor[] 
     isVerifiedAccount: false,
   });
 
+  if (industry.includes("Sportswear") || industry.includes("Athletic") || industry.includes("Sports")) {
+    return [
+      createComp(1, "adidas", "adidas", 28000000, 96, 95, "Matches direct global sportswear performance and lifestyle streetwear."),
+      createComp(2, "puma", "Puma", 12000000, 93, 93, "Direct overlap targeting athletic performance and urban streetwear."),
+      createComp(3, "underarmour", "Under Armour", 8500000, 91, 91, "Identical focus on training, gym performance, and athletic grit."),
+      createComp(4, "newbalance", "New Balance", 7200000, 89, 89, "Competes for running innovation and lifestyle sneaker enthusiasts."),
+      createComp(5, "lululemon", "lululemon", 4900000, 87, 88, "Shares high-engagement community fitness and athletic apparel demographic."),
+      createComp(6, "asics", "ASICS Running", 1800000, 85, 85, "Overlap in technical marathon running and footwear energy return."),
+      createComp(7, "reebok", "Reebok", 4100000, 83, 84, "Similar training, functional fitness, and classic footwear heritage."),
+      createComp(8, "gymshark", "Gymshark", 6800000, 81, 83, "Competes directly on social-first fitness creator challenges and gymwear."),
+      createComp(9, "salomon", "Salomon", 2100000, 79, 81, "Overlap in trail running, outdoor endurance, and technical performance."),
+      createComp(10, "hoka", "HOKA", 1500000, 77, 79, "Direct competitor in maximum cushion running shoe innovation."),
+    ];
+  }
+
   if (industry.includes("Technology") || industry.includes("SaaS")) {
     return [
       createComp(1, "saas_architects", "SaaS Growth Lab", 245000, 96, 94, "Matches B2B SaaS founder breakdowns and high-converting product demo hooks."),

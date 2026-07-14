@@ -11,6 +11,7 @@ import type { AITelemetry } from "./provider.interface";
 import { PromptBuilder } from "./prompt.builder";
 import { getAIOrchestrator } from "./providers";
 import { DevPromptLogger } from "./logger/dev-prompt.logger";
+import { AICacheService } from "./ai-cache.service";
 
 /**
  * AI Service Layer — ReelForge AI v2.1 Phase 8.
@@ -41,12 +42,26 @@ export class AIService {
     preferredProvider?: string,
     modelPreference?: string
   ): Promise<{ data: BrandIntelligenceReport; telemetry: AITelemetry }> {
+    // 1. Check AI Intelligence Cache
+    const cached = await AICacheService.get<BrandIntelligenceReport>("brand-intelligence", profile.username);
+    if (cached) {
+      const telemetry: AITelemetry = {
+        providerId: "ai-cache",
+        modelUsed: "cached-report",
+        latencyMs: 0,
+      };
+      this.logTelemetry("Brand Intelligence", telemetry);
+      return { data: cached, telemetry };
+    }
+
     const promptPayload = PromptBuilder.buildBrandIntelligencePrompt(profile, fallbackData);
     const orchestrator = getAIOrchestrator(preferredProvider, modelPreference);
 
     try {
       const response = await orchestrator.generateStructured<BrandIntelligenceReport>(promptPayload);
       this.logTelemetry("Brand Intelligence", response.telemetry);
+
+      await AICacheService.set("brand-intelligence", profile.username, response.data);
 
       // Phase 8: Development Prompt Logging
       DevPromptLogger.log({
@@ -151,11 +166,24 @@ export class AIService {
     preferredProvider?: string,
     modelPreference?: string
   ): Promise<{ data: CompetitorProfileAnalysis; telemetry: AITelemetry }> {
+    const cached = await AICacheService.get<CompetitorProfileAnalysis>("competitor-analysis", competitor.username);
+    if (cached) {
+      const telemetry: AITelemetry = {
+        providerId: "ai-cache",
+        modelUsed: "cached-report",
+        latencyMs: 0,
+      };
+      this.logTelemetry("Competitor Analysis", telemetry);
+      return { data: cached, telemetry };
+    }
+
     const promptPayload = PromptBuilder.buildCompetitorAnalysisPrompt(competitor, fallbackData);
     const orchestrator = getAIOrchestrator(preferredProvider, modelPreference);
 
     try {
       const response = await orchestrator.generateStructured<CompetitorProfileAnalysis>(promptPayload);
+
+      await AICacheService.set("competitor-analysis", competitor.username, response.data);
 
       DevPromptLogger.log({
         domain: "Competitor Analysis",
@@ -259,11 +287,25 @@ export class AIService {
     preferredProvider?: string,
     modelPreference?: string
   ): Promise<{ data: ContentDNAReport; telemetry: AITelemetry }> {
+    const cacheKey = reports.map(r => r.contentItemId || r.id).sort().join("_").slice(0, 100) || "default-dna";
+    const cached = await AICacheService.get<ContentDNAReport>("content-dna", cacheKey);
+    if (cached) {
+      const telemetry: AITelemetry = {
+        providerId: "ai-cache",
+        modelUsed: "cached-report",
+        latencyMs: 0,
+      };
+      this.logTelemetry("Content DNA", telemetry);
+      return { data: cached, telemetry };
+    }
+
     const promptPayload = PromptBuilder.buildContentDNAPrompt(reports, fallbackData);
     const orchestrator = getAIOrchestrator(preferredProvider, modelPreference);
 
     try {
       const response = await orchestrator.generateStructured<ContentDNAReport>(promptPayload);
+
+      await AICacheService.set("content-dna", cacheKey, response.data);
 
       DevPromptLogger.log({
         domain: "Content DNA",
@@ -313,6 +355,17 @@ export class AIService {
     preferredProvider?: string,
     modelPreference?: string
   ): Promise<{ data: RepurposeReport; telemetry: AITelemetry }> {
+    if (preferredProvider === "deterministic" || process.env.REPURPOSE_PROVIDER === "deterministic" || process.env.AI_PROVIDER === "deterministic") {
+      const telemetry: AITelemetry = {
+        providerId: "deterministic",
+        modelUsed: "deterministic-engine",
+        latencyMs: 0,
+        fallbackUsed: true,
+      };
+      this.logTelemetry("Repurpose Studio", telemetry);
+      return { data: fallbackData, telemetry };
+    }
+
     const promptPayload = PromptBuilder.buildRepurposePrompt(pkg, fallbackData);
     const orchestrator = getAIOrchestrator(preferredProvider, modelPreference);
 
