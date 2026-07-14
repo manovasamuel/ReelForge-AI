@@ -21,7 +21,8 @@ import { InstagramError } from "@/lib/errors";
  *     - publishDate: post.timestamp || "" (Missing timestamp is explicitly preserved as empty string "" within the string type contract, preventing recency fabrication via new Date().toISOString()).
  * - Permalink safety: post.url is an Instagram permalink (not a direct playable MP4 video file), so videoUrl is not fabricated.
  */
-import { normalizeInstagramUsername } from "@/services/instagram/instagram.utils";
+import { normalizeInstagramUsername, isValidInstagramProfile } from "@/services/instagram/instagram.utils";
+import { ProfileRepository } from "@/lib/db/repositories/profile.repository";
 
 export class LiveContentCollectionProvider implements IContentCollectionProvider {
   constructor(private readonly instagramProvider?: IInstagramProvider) {}
@@ -32,18 +33,29 @@ export class LiveContentCollectionProvider implements IContentCollectionProvider
       throw new InstagramError("Competitor username cannot be empty or invalid.");
     }
 
-    // 1. Resolve live Instagram provider (disallowing silent fallback to MockProvider when not testing with fixture)
-    const provider =
-      this.instagramProvider ??
-      getInstagramProvider(process.env.INSTAGRAM_PROVIDER || "apify", false);
+    // 1. Check existing profile_cache before invoking any Instagram provider
+    const cachedProfile = await ProfileRepository.getFreshByUsername(cleaned);
+    let profile = cachedProfile;
 
-    if (!this.instagramProvider && provider.id === "mock") {
-      throw new InstagramError(
-        "LiveContentCollectionProvider requires a configured live Instagram provider, but 'mock' was resolved."
-      );
+    if (!profile) {
+      // 2. Cache miss: resolve live Instagram provider (disallowing silent fallback to MockProvider when not testing with fixture)
+      const provider =
+        this.instagramProvider ??
+        getInstagramProvider(process.env.INSTAGRAM_PROVIDER || "apify", false);
+
+      if (!this.instagramProvider && provider.id === "mock") {
+        throw new InstagramError(
+          "LiveContentCollectionProvider requires a configured live Instagram provider, but 'mock' was resolved."
+        );
+      }
+
+      profile = await provider.getProfile(cleaned);
+
+      // Save to empirical cache if fetched via direct non-mock/non-fixture provider
+      if (profile && provider.id !== "mock" && provider.id !== "fixture" && isValidInstagramProfile(profile)) {
+        await ProfileRepository.save(profile);
+      }
     }
-
-    const profile = await provider.getProfile(cleaned);
 
     if (!profile.posts || !Array.isArray(profile.posts)) {
       return [];
