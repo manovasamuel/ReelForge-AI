@@ -253,7 +253,13 @@ export class PromptBuilder {
   ): AIPromptPayload<ContentIntelligenceReport[]> {
     const itemsSummary = items
       .slice(0, 10)
-      .map((it, idx) => `Item ${idx + 1} (${it.type}): "${(it.caption || "").slice(0, 120)}..." | Views: ${it.views || 0}, Likes: ${it.likes || 0}, Comments: ${it.comments || 0}`)
+      .map((it, idx) => {
+        const viewsStr =
+          it.viewsAvailable === false || (!it.viewsAvailable && it.views === 0)
+            ? "unavailable (profile scraper)"
+            : `${it.views || 0}`;
+        return `Item ${idx + 1} (${it.type}): "${(it.caption || "").slice(0, 120)}..." | Views: ${viewsStr}, Likes: ${it.likes || 0}, Comments: ${it.comments || 0}`;
+      })
       .join("\n");
 
     const compiledResult = PromptCompiler.compileFromSelection({
@@ -270,7 +276,7 @@ export class PromptBuilder {
 
     const systemPrompt = `You are ReelForge AI, an expert content intelligence and viral video teardown specialist.\nYour task is to analyze selected short-form video items and output an array of detailed Content Intelligence Reports in strict JSON format.\nYou must return ONLY valid JSON matching the required schema description, without any markdown formatting, backticks, or explanatory text.`;
 
-    const userPrompt = `${compiledResult.compiledText}\n\nSelected Content Items (${items.length} total):\n${itemsSummary}\n\nGenerate an array of Content Intelligence Reports corresponding to each analyzed item in strict JSON format.`;
+    const userPrompt = `${compiledResult.compiledText}\n\nSelected Content Items (${items.length} total):\n${itemsSummary}\n\nIMPORTANT METRIC PROVENANCE:\nWhere 'Views' are listed as 'unavailable (profile scraper)', you MUST obey these rules:\n1. Do not interpret unavailable views as zero views or zero reach.\n2. Do not invent or fabricate missing view counts.\n3. Do not claim a precise view-based engagement rate, virality score, save rate, or share rate when views or reach are unavailable.\n4. Analyze virality, psychology, and winning/failure factors strictly based on available engagement signals (Likes, Comments, Caption structure, and Content Type).\n5. Treat save counts, share counts, view counts, and total reach as unavailable unless explicitly provided in the input item metrics.\n\nGenerate an array of Content Intelligence Reports corresponding to each analyzed item in strict JSON format.`;
 
     const expectedSchemaDescription = `[
   {
@@ -283,9 +289,9 @@ export class PromptBuilder {
     "hook": { "hookType": "string", "hookStrength": 85, "patternInterrupt": "string", "first3Seconds": "string" },
     "captionIntelligence": { "length": "string", "cta": "string", "emojiUsage": "string", "storytelling": "string", "readability": "string" },
     "visual": { "editingPace": "string", "cameraStyle": "string", "textOverlay": "string", "colorStyle": "string" },
-    "engagement": { "views": 10000, "likes": 500, "comments": 50, "estimatedSaveRate": 4.5, "estimatedShareRate": 2.5 },
+    "engagement": { "views": 0, "viewsAvailable": false, "likes": 500, "comments": 50, "estimatedSaveRate": 0, "estimatedShareRate": 0 },
     "psychology": { "curiosity": 85, "emotion": 80, "authority": 75, "socialProof": 70, "scarcity": 60, "relatability": 90 },
-    "virality": { "viralityScore": 88, "successProbability": "High", "confidence": 90 },
+    "virality": { "viralityScore": 0, "viralityAvailable": false, "successProbability": "Unavailable (No Reach/View Data)", "confidence": 0 },
     "winningFactors": ["string"],
     "failureFactors": ["string"],
     "reusability": { "score": 88, "reusabilityLevel": "High", "confidence": 90 },

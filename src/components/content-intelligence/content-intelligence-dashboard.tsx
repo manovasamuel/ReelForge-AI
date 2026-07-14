@@ -17,11 +17,21 @@ interface ContentIntelligenceDashboardProps {
 export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: ContentIntelligenceDashboardProps) {
   const stats = useMemo(() => {
     const total = reports.length;
-    if (total === 0) return { total: 0, avgVirality: 0, avgReusability: 0, avgSaveRate: 0, dominantHook: "N/A" };
+    if (total === 0) return { total: 0, avgVirality: 0, hasVirality: false, avgReusability: 0, avgSaveRate: 0, hasSaveRate: false, dominantHook: "N/A" };
 
-    const avgVirality = Math.round(reports.reduce((acc, r) => acc + r.virality.viralityScore, 0) / total);
+    const reportsWithVirality = reports.filter((r) => r.virality.viralityAvailable !== false);
+    const hasVirality = reportsWithVirality.length > 0;
+    const avgVirality = hasVirality
+      ? Math.round(reportsWithVirality.reduce((acc, r) => acc + r.virality.viralityScore, 0) / reportsWithVirality.length)
+      : 0;
+
     const avgReusability = Math.round(reports.reduce((acc, r) => acc + r.reusability.score, 0) / total);
-    const avgSaveRate = Number((reports.reduce((acc, r) => acc + r.engagement.estimatedSaveRate, 0) / total).toFixed(1));
+
+    const reportsWithViews = reports.filter((r) => r.engagement.viewsAvailable !== false);
+    const hasSaveRate = reportsWithViews.length > 0;
+    const avgSaveRate = hasSaveRate
+      ? Number((reportsWithViews.reduce((acc, r) => acc + r.engagement.estimatedSaveRate, 0) / reportsWithViews.length).toFixed(1))
+      : 0;
 
     // Find most frequent hook type
     const hookCounts: Record<string, number> = {};
@@ -37,7 +47,7 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
       }
     });
 
-    return { total, avgVirality, avgReusability, avgSaveRate, dominantHook };
+    return { total, avgVirality, hasVirality, avgReusability, avgSaveRate, hasSaveRate, dominantHook };
   }, [reports]);
 
   function handleProceed() {
@@ -79,7 +89,7 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
               <p className="text-xs font-medium text-muted-foreground">Avg Virality Score</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-violet-400">
                 <Sparkles className="h-4 w-4" />
-                {stats.avgVirality} / 100
+                {stats.hasVirality ? `${stats.avgVirality} / 100` : "N/A"}
               </p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
@@ -93,7 +103,7 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
               <p className="text-xs font-medium text-muted-foreground">Est. Batch Save Rate</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-emerald-400">
                 <Bookmark className="h-4 w-4" />
-                {stats.avgSaveRate}%
+                {stats.hasSaveRate ? `${stats.avgSaveRate}%` : "N/A"}
               </p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">

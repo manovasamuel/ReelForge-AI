@@ -69,6 +69,7 @@ export class LiveContentCollectionProvider implements IContentCollectionProvider
         type,
         // views: 0 is strictly treated as unavailable/defaulted, NOT empirically measured zero views.
         views: 0,
+        viewsAvailable: false,
         likes: typeof post.likes === "number" ? post.likes : 0,
         comments: typeof post.comments === "number" ? post.comments : 0,
         // Smallest type-safe solution: preserve missing timestamp as empty string "" within string contract.

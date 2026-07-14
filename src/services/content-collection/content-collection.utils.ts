@@ -61,6 +61,7 @@ export function inferContentCollection(competitorUsername: string): CollectedCon
       thumbnailUrl: `https://picsum.photos/seed/${username}-media-${index + 101}/400/600`,
       type,
       views: Math.round(views),
+      viewsAvailable: true,
       likes,
       comments,
       publishDate,

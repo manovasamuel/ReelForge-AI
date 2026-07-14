@@ -26,10 +26,12 @@ export interface VisualIntelligence {
 
 export interface EngagementIntelligence {
   views: number;
+  viewsAvailable?: boolean; // true when empirically measured, false when unavailable
   likes: number;
   comments: number;
-  estimatedSaveRate: number; // percentage e.g. 4.8
-  estimatedShareRate: number; // percentage e.g. 3.2
+  estimatedSaveRate: number; // percentage e.g. 4.8 (0 when viewsAvailable is false to avoid synthetic rates)
+  estimatedShareRate: number; // percentage e.g. 3.2 (0 when viewsAvailable is false to avoid synthetic rates)
+  interactionProxyRate?: number; // clearly labelled relative interaction ratio/heuristic when viewsAvailable is false
 }
 
 export interface PsychologyMetrics {
@@ -42,9 +44,11 @@ export interface PsychologyMetrics {
 }
 
 export interface ViralityScore {
-  viralityScore: number; // 0 to 100
+  viralityScore: number; // 0 to 100 (0 when viralityAvailable is false / reach is unavailable)
   successProbability: string; // e.g. "Very High (88% chance of top tier reach)"
   confidence: number; // 0 to 100
+  viralityAvailable?: boolean; // true when calculated from measured views/reach, false when unavailable
+  interactionProxyScore?: number; // relative interaction benchmark (likes + comments) when virality is unavailable
 }
 
 export interface ReusabilityScore {

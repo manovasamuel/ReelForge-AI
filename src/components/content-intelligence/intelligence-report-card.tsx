@@ -86,7 +86,16 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             <Sparkles className="h-4 w-4 text-violet-400 animate-pulse" />
             <div>
               <p className="text-[10px] uppercase font-bold text-violet-300">Virality Score</p>
-              <p className="text-base font-black text-white leading-none">{virality.viralityScore} / 100</p>
+              {virality.viralityAvailable !== false ? (
+                <p className="text-base font-black text-white leading-none">{virality.viralityScore} / 100</p>
+              ) : (
+                <div>
+                  <p className="text-sm font-bold text-muted-foreground leading-none">N/A (No Reach)</p>
+                  {virality.interactionProxyScore !== undefined && (
+                    <p className="text-[9px] text-violet-300/80 mt-0.5">*Proxy Score: {virality.interactionProxyScore}/100</p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -253,7 +262,9 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             <div className="grid grid-cols-3 gap-2 text-center text-xs">
               <div className="rounded-lg bg-muted/30 p-2">
                 <span className="text-[10px] text-muted-foreground">Views</span>
-                <p className="text-sm font-bold text-foreground mt-0.5">{formatNum(engagement.views)}</p>
+                <p className="text-sm font-bold text-foreground mt-0.5">
+                  {engagement.viewsAvailable !== false ? formatNum(engagement.views) : "N/A"}
+                </p>
               </div>
               <div className="rounded-lg bg-muted/30 p-2">
                 <span className="text-[10px] text-muted-foreground">Likes</span>
@@ -265,19 +276,33 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
-              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-2.5 flex items-center justify-between">
-                <span className="flex items-center gap-1 text-emerald-300">
-                  <Bookmark className="h-3.5 w-3.5" />
-                  Save Rate
-                </span>
-                <span className="font-bold text-white">{engagement.estimatedSaveRate}%</span>
+              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-2.5 flex flex-col justify-center">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1 text-emerald-300">
+                    <Bookmark className="h-3.5 w-3.5" />
+                    Save Rate
+                  </span>
+                  <span className="font-bold text-white">
+                    {engagement.viewsAvailable !== false ? `${engagement.estimatedSaveRate}%` : "N/A"}
+                  </span>
+                </div>
+                {engagement.viewsAvailable === false && (
+                  <span className="text-[9px] text-emerald-300/70 mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
+                )}
               </div>
-              <div className="rounded-lg border border-violet-500/20 bg-violet-500/10 p-2.5 flex items-center justify-between">
-                <span className="flex items-center gap-1 text-violet-300">
-                  <Share2 className="h-3.5 w-3.5" />
-                  Share Rate
-                </span>
-                <span className="font-bold text-white">{engagement.estimatedShareRate}%</span>
+              <div className="rounded-lg border border-violet-500/20 bg-violet-500/10 p-2.5 flex flex-col justify-center">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-1 text-violet-300">
+                    <Share2 className="h-3.5 w-3.5" />
+                    Share Rate
+                  </span>
+                  <span className="font-bold text-white">
+                    {engagement.viewsAvailable !== false ? `${engagement.estimatedShareRate}%` : "N/A"}
+                  </span>
+                </div>
+                {engagement.viewsAvailable === false && (
+                  <span className="text-[9px] text-violet-300/70 mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
+                )}
               </div>
             </div>
           </div>

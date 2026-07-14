@@ -54,18 +54,25 @@ export function ContentCollectionDashboard({
     const total = items.length;
     const reelsCount = items.filter((i) => i.type === "reel").length;
     const postsCount = items.filter((i) => i.type === "post").length;
-    const totalViews = items.reduce((acc, i) => acc + i.views, 0);
-    const avgViews = total > 0 ? Math.round(totalViews / total) : 0;
-    const highestViews = total > 0 ? Math.max(...items.map((i) => i.views)) : 0;
+    const itemsWithViews = items.filter((i) => i.viewsAvailable !== false);
+    const hasViewsAvailable = itemsWithViews.length > 0;
+    const totalViews = itemsWithViews.reduce((acc, i) => acc + i.views, 0);
+    const avgViews = hasViewsAvailable ? Math.round(totalViews / itemsWithViews.length) : 0;
+    const highestViews = hasViewsAvailable ? Math.max(...itemsWithViews.map((i) => i.views)) : 0;
+    const avgEngagementProxy = total > 0 ? Math.round(items.reduce((acc, i) => acc + i.likes + i.comments, 0) / total) : 0;
 
     // Calculate newest content age
     let newestAge = "2h ago";
     if (total > 0) {
-      const timestamps = items.map((i) => new Date(i.publishDate).getTime());
-      const maxTime = Math.max(...timestamps);
-      const diffHours = Math.round((Date.now() - maxTime) / (1000 * 60 * 60));
-      if (diffHours < 24) newestAge = `${Math.max(1, diffHours)}h ago`;
-      else newestAge = `${Math.round(diffHours / 24)}d ago`;
+      const timestamps = items.map((i) => new Date(i.publishDate).getTime()).filter((t) => !isNaN(t) && t > 0);
+      if (timestamps.length > 0) {
+        const maxTime = Math.max(...timestamps);
+        const diffHours = Math.round((Date.now() - maxTime) / (1000 * 60 * 60));
+        if (diffHours < 24) newestAge = `${Math.max(1, diffHours)}h ago`;
+        else newestAge = `${Math.round(diffHours / 24)}d ago`;
+      } else {
+        newestAge = "Unknown";
+      }
     }
 
     return {
@@ -74,6 +81,8 @@ export function ContentCollectionDashboard({
       postsCount,
       avgViews,
       highestViews,
+      hasViewsAvailable,
+      avgEngagementProxy,
       newestAge,
     };
   }, [items]);
@@ -91,7 +100,13 @@ export function ContentCollectionDashboard({
 
         // Filter option filtering (Additional Requirement 1)
         if (activeFilter === "pinned" && !item.isPinned) return false;
-        if (activeFilter === "high-engagement" && item.views < stats.avgViews * 1.2) return false;
+        if (activeFilter === "high-engagement") {
+          if (item.viewsAvailable !== false) {
+            if (item.views < stats.avgViews * 1.2) return false;
+          } else {
+            if ((item.likes + item.comments) < stats.avgEngagementProxy * 1.2) return false;
+          }
+        }
 
         // Search Query filtering
         if (searchQuery.trim()) {
@@ -111,32 +126,43 @@ export function ContentCollectionDashboard({
           case "comments":
             return b.comments - a.comments;
           case "newest":
-            return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+            return new Date(b.publishDate || 0).getTime() - new Date(a.publishDate || 0).getTime();
           case "oldest":
-            return new Date(a.publishDate).getTime() - new Date(b.publishDate).getTime();
+            return new Date(a.publishDate || 0).getTime() - new Date(b.publishDate || 0).getTime();
           case "views":
-          default:
-            return b.views - a.views;
+          default: {
+            const aViewsAvail = a.viewsAvailable !== false;
+            const bViewsAvail = b.viewsAvailable !== false;
+            if (aViewsAvail && bViewsAvail) {
+              return b.views - a.views;
+            } else if (!aViewsAvail && !bViewsAvail) {
+              return (b.likes + b.comments) - (a.likes + a.comments);
+            } else {
+              return aViewsAvail ? -1 : 1;
+            }
+          }
         }
       });
-  }, [items, activeCategory, activeFilter, searchQuery, sortBy, stats.avgViews]);
+  }, [items, activeCategory, activeFilter, searchQuery, sortBy, stats.avgViews, stats.avgEngagementProxy]);
 
   // 3. Selection Summary metrics (Additional Requirement 4)
   const selectionSummary = useMemo(() => {
     const selectedItems = items.filter((i) => selectedIds.includes(i.id));
     const count = selectedItems.length;
-    const totalViews = selectedItems.reduce((acc, i) => acc + i.views, 0);
+    const itemsWithViews = selectedItems.filter((i) => i.viewsAvailable !== false);
+    const hasViews = itemsWithViews.length > 0;
+    const totalViews = itemsWithViews.reduce((acc, i) => acc + i.views, 0);
     const avgLikes = count > 0 ? Math.round(selectedItems.reduce((acc, i) => acc + i.likes, 0) / count) : 0;
     const avgComments = count > 0 ? Math.round(selectedItems.reduce((acc, i) => acc + i.comments, 0) / count) : 0;
 
-    // Calculate approximate average engagement rate percentage
+    // Calculate approximate average engagement rate percentage ONLY when real views exist
     let avgEngRate = 0;
-    if (count > 0) {
-      const totalEng = selectedItems.reduce((acc, i) => acc + i.likes + i.comments, 0);
-      avgEngRate = Number(((totalEng / Math.max(1, totalViews)) * 100).toFixed(1));
+    if (hasViews && totalViews > 0) {
+      const totalEng = itemsWithViews.reduce((acc, i) => acc + i.likes + i.comments, 0);
+      avgEngRate = Number(((totalEng / totalViews) * 100).toFixed(1));
     }
 
-    return { count, totalViews, avgLikes, avgComments, avgEngRate };
+    return { count, totalViews, avgLikes, avgComments, avgEngRate, hasViews };
   }, [items, selectedIds]);
 
   function handleToggleSelect(id: string) {
@@ -204,11 +230,15 @@ export function ContentCollectionDashboard({
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Average Views</p>
-              <p className="mt-1 text-lg font-bold text-fuchsia-400">{formatNum(stats.avgViews)}</p>
+              <p className="mt-1 text-lg font-bold text-fuchsia-400">
+                {stats.hasViewsAvailable ? formatNum(stats.avgViews) : "N/A"}
+              </p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Highest Views</p>
-              <p className="mt-1 text-lg font-bold text-emerald-400">{formatNum(stats.highestViews)}</p>
+              <p className="mt-1 text-lg font-bold text-emerald-400">
+                {stats.hasViewsAvailable ? formatNum(stats.highestViews) : "N/A"}
+              </p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Newest Content Age</p>
@@ -246,7 +276,7 @@ export function ContentCollectionDashboard({
                 <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
                   <div className="flex items-center gap-1.5 text-violet-300">
                     <Eye className="h-3.5 w-3.5" />
-                    <span>Total Views: {formatNum(selectionSummary.totalViews)}</span>
+                    <span>Total Views: {selectionSummary.hasViews ? formatNum(selectionSummary.totalViews) : "N/A"}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-rose-300">
                     <TrendingUp className="h-3.5 w-3.5" />
@@ -254,7 +284,12 @@ export function ContentCollectionDashboard({
                   </div>
                   <div className="flex items-center gap-1.5 text-emerald-300">
                     <Sparkles className="h-3.5 w-3.5" />
-                    <span>Avg Engagement: {selectionSummary.avgEngRate}%</span>
+                    <span>
+                      Avg Engagement:{" "}
+                      {selectionSummary.hasViews
+                        ? `${selectionSummary.avgEngRate}%`
+                        : `${formatNum(selectionSummary.avgLikes + selectionSummary.avgComments)} interactions`}
+                    </span>
                   </div>
                 </div>
               </>

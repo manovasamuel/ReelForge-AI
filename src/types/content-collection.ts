@@ -22,6 +22,7 @@ export interface CollectedContentItem {
   thumbnailUrl: string;
   type: ContentType;
   views: number;
+  viewsAvailable?: boolean; // true when empirically measured, false when unavailable/defaulted (e.g. Apify profile scraper)
   likes: number;
   comments: number;
   publishDate: string; // ISO string
