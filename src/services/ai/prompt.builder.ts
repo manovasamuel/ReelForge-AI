@@ -244,6 +244,53 @@ export class PromptBuilder {
   }
 
   /**
+   * Generates a provider-independent prompt payload for Competitor Candidate Discovery.
+   * Enforces that suggested handles are candidates (`AI_SUGGESTED`) until verified via cache.
+   */
+  public static buildCompetitorDiscoveryPrompt(
+    report: BrandIntelligenceReport,
+    fallbackData: Competitor[]
+  ): AIPromptPayload<Competitor[]> {
+    const compiledResult = PromptCompiler.compileFromSelection({
+      system: "system.default",
+      industry: "industry.general",
+      tone: "tone.authoritative",
+    }, {
+      brand: `${report.industry} (${report.subIndustry})`,
+      industry: report.industry || "Social Media Creators",
+      audience: report.targetAudience || "Target social media followers",
+      goal: "Propose high-relevance Instagram competitor handles based on niche overlap",
+      tone: "Strategic, analytical, and objective",
+    });
+
+    const systemPrompt = `You are ReelForge AI, an elite competitive intelligence researcher.\nYour task is to propose up to 10 high-overlap Instagram candidate handles for the specified industry niche.\nYou must return ONLY valid JSON matching the required schema description, without any markdown formatting, backticks, or explanatory text.`;
+
+    const userPrompt = `${compiledResult.compiledText}\n\nIndustry: ${report.industry}\nSub-Industry: ${report.subIndustry}\nBrand Type: ${report.brandType}\nTarget Audience: ${report.targetAudience}\nBrand Tone: ${report.brandTone}\n\nPropose up to 10 top relevant real-world Instagram candidate handles in strict JSON format.`;
+
+    const expectedSchemaDescription = `[
+  {
+    "username": "handle_without_at",
+    "displayName": "Brand Name",
+    "industry": "string",
+    "similarityScore": 92,
+    "reasonMatch": "string explanation of overlap",
+    "confidenceScore": 88
+  }
+]`;
+
+    return {
+      systemPrompt,
+      userPrompt,
+      expectedSchemaDescription,
+      schemaType: "competitor-discovery",
+      temperature: 0.4,
+      maxOutputTokens: 1536,
+      fallbackData,
+      compiledResult,
+    };
+  }
+
+  /**
    * Generates a provider-independent prompt payload for Content Intelligence analysis
    * using automatic module selection and PromptCompiler.
    */

@@ -34,6 +34,7 @@ export interface AIResponse<T> {
 export type AISchemaType =
   | "brand-intelligence"
   | "script-generation"
+  | "competitor-discovery"
   | "competitor-analysis"
   | "content-intelligence"
   | "content-dna"

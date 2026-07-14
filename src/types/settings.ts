@@ -46,7 +46,7 @@ export interface DeveloperFeatureFlag {
 }
 
 export interface DeveloperInfo {
-  buildType: "Development" | "Staging" | "Production";
+  buildType: "Development" | "Staging" | "Production" | string;
   storageEngine: string;
   activeProviders: string[];
   workspaceVersion: string;
@@ -68,7 +68,7 @@ export interface StorageUsageDetails {
 }
 
 export interface AppSettings {
-  version: "1.3.0";
+  version: "1.3.0" | "2.0.0" | string;
   appearance: AppearancePreferences;
   workspace: WorkspacePreferences;
   export: ExportPreferences;

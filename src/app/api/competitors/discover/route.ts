@@ -21,7 +21,8 @@ export async function POST(request: Request) {
       );
     }
 
-    const provider = getCompetitorProvider();
+    const providerId = body?.provider || request.headers.get("x-competitors-provider") || undefined;
+    const provider = getCompetitorProvider(providerId);
     const service = new CompetitorService(provider);
     const competitors = await service.discoverCompetitors(brandReport);
 

@@ -106,9 +106,10 @@ export function AboutSection({
           </div>
 
           <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-xl">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Mock Mode</div>
-            <div className="text-lg font-bold text-emerald-400 mt-1 flex items-center gap-1.5">
-              <CheckCircle2 className="h-4 w-4" /> Enabled (Client-Only)
+            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Mock Mode / Fallback</div>
+            <div className="text-sm font-bold text-emerald-400 mt-1 flex items-center gap-1.5">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              {developer.mockMode ? "Mixed / Hybrid (Transitional Phase 4C)" : "Disabled (100% Live Production)"}
             </div>
           </div>
         </div>

@@ -9,7 +9,6 @@ export function inferCompetitors(report: BrandIntelligenceReport): Competitor[] 
   const industry = report.industry;
   const sub = report.subIndustry;
 
-  // Base generator helper
   const createComp = (
     idx: number,
     username: string,
@@ -28,6 +27,8 @@ export function inferCompetitors(report: BrandIntelligenceReport): Competitor[] 
     similarityScore: simScore,
     reasonMatch: reason,
     confidenceScore: confScore,
+    discoveryState: "UNVERIFIED",
+    isVerifiedAccount: false,
   });
 
   if (industry.includes("Technology") || industry.includes("SaaS")) {

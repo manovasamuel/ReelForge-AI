@@ -6,7 +6,7 @@ const PROJECTS_STORAGE_KEY = "reelforge_projects";
 const EXPORT_HISTORY_KEY = "reelforge_export_history";
 
 export const DEFAULT_APP_SETTINGS: AppSettings = {
-  version: "1.3.0",
+  version: "2.0.0",
   appearance: {
     theme: "dark",
     accentColor: "purple",
@@ -22,21 +22,28 @@ export const DEFAULT_APP_SETTINGS: AppSettings = {
     includeMetadata: true,
   },
   providers: {
-    instagramProvider: "mock",
-    aiProvider: "disabled",
+    instagramProvider: "apify",
+    aiProvider: "gemini",
   },
   developer: {
-    buildType: "Development",
-    storageEngine: "Browser localStorage (Client-Side Only)",
-    activeProviders: ["MockInstagramProvider", "MockBrandIntelligenceProvider", "MockCompetitorProvider", "MockScriptProvider", "LocalExportProvider"],
-    workspaceVersion: "1.3.0",
-    mockMode: true,
+    buildType: "Transitional Verification Gate (Stage 3B Phase 4C)",
+    storageEngine: "Hybrid (Supabase DB Profile Cache + Browser LocalStorage)",
+    activeProviders: [
+      "FailoverInstagramProvider (Apify + Cache)",
+      "AIOrchestratorProvider (Gemini Milestone 5)",
+      "LiveCompetitorProvider (AI Candidate Bridge)",
+      "LiveContentCollectionProvider (Single-Scrape Bridge)",
+      "LocalExportProvider",
+    ],
+    workspaceVersion: "2.0.0",
+    mockMode: true, // Remains true in mixed transitional state until Phase 4D full production E2E verification
     featureFlags: [
       { key: "deterministic_engine", label: "Deterministic Heuristic Engine", enabled: true },
       { key: "teleprompter_mode", label: "Studio Teleprompter Reading View", enabled: true },
       { key: "print_stylesheet", label: "HTML+Print PDF Generator", enabled: true },
-      { key: "real_ai_llm", label: "External LLM Synthesis (OpenAI/Gemini)", enabled: false },
-      { key: "cloud_sync", label: "Cloud Workspace Sync", enabled: false },
+      { key: "real_ai_llm", label: "External LLM Synthesis (OpenAI/Gemini)", enabled: true },
+      { key: "shared_profile_cache", label: "Shared Supabase Profile Cache (Phase 4A/4B)", enabled: true },
+      { key: "ai_candidate_bridge", label: "AI Candidate Competitor Discovery (Phase 4C)", enabled: true },
     ],
   },
 };

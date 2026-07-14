@@ -4,6 +4,7 @@ import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
 import type { ContentIntelligenceReport } from "@/types/content-intelligence";
 import type { ContentDNAReport } from "@/types/content-dna";
 import type { RepurposeReport } from "@/types/repurpose";
+import type { Competitor } from "@/types/competitor";
 import type { AIPromptPayload } from "./provider.interface";
 
 /**
@@ -60,6 +61,10 @@ export class ResponseNormalizer {
     if (payload.schemaType === "script-generation") {
       this.validateScriptGenerationFields(parsed);
       return this.normalizeScriptGeneration(parsed, payload.fallbackData as unknown as ReelContentPackage) as unknown as T;
+    }
+
+    if (payload.schemaType === "competitor-discovery") {
+      return this.normalizeCompetitorDiscovery(parsed, payload.fallbackData as unknown as Competitor[]) as unknown as T;
     }
 
     if (payload.schemaType === "competitor-analysis") {
@@ -313,4 +318,49 @@ export class ResponseNormalizer {
       return fallbackData;
     }
   }
+
+  /**
+   * Normalizes raw LLM output into AI-suggested competitor candidates.
+   * Enforces the Critical Truthfulness Rule: AI-generated handles are NOT verified until checked against ProfileRepository.
+   */
+  public static normalizeCompetitorDiscovery(
+    input: string | any,
+    fallbackData: Competitor[]
+  ): Competitor[] {
+    try {
+      const parsed = typeof input === "string" ? JSON.parse(this.cleanRawOutput(input)) : input;
+      const list = Array.isArray(parsed)
+        ? parsed
+        : Array.isArray(parsed?.competitors)
+        ? parsed.competitors
+        : Array.isArray(parsed?.candidates)
+        ? parsed.candidates
+        : null;
+
+      if (!list || !Array.isArray(list) || list.length === 0) {
+        return fallbackData;
+      }
+
+      return list.map((item: any, idx: number) => {
+        const rawUsername = String(item.username || item.handle || `candidate_${idx + 1}`).trim().replace(/^@+/, "").toLowerCase();
+        return {
+          id: `ai-cand-${idx + 1}-${Date.now()}`,
+          username: rawUsername,
+          displayName: String(item.displayName || item.name || `@${rawUsername}`),
+          profilePictureUrl: String(item.profilePictureUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80"),
+          followers: Number(item.followers) || 0,
+          industry: String(item.industry || "Related Industry"),
+          similarityScore: Math.min(100, Math.max(0, Number(item.similarityScore) || 85)),
+          reasonMatch: String(item.reasonMatch || item.reason || "Identified by AI as high-overlap niche candidate based on Brand Intelligence."),
+          confidenceScore: Math.min(100, Math.max(0, Number(item.confidenceScore) || 80)),
+          discoveryState: "AI_SUGGESTED",
+          isVerifiedAccount: false,
+        };
+      });
+    } catch (error) {
+      console.warn("[ResponseNormalizer] Fallback parsing in normalizeCompetitorDiscovery:", error);
+      return fallbackData;
+    }
+  }
 }
+
