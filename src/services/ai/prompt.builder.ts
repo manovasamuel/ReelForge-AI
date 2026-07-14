@@ -257,7 +257,7 @@ export class PromptBuilder {
     fallbackData: ContentIntelligenceReport[]
   ): AIPromptPayload<ContentIntelligenceReport[]> {
     const itemsSummary = items
-      .slice(0, 4)
+      .slice(0, 3)
       .map((it, idx) => {
         const viewsStr =
           it.viewsAvailable === false || (!it.viewsAvailable && it.views === 0)
@@ -286,7 +286,7 @@ export class PromptBuilder {
 
     const expectedSchemaDescription = `[{"id":"string","contentItemId":"string","thumbnailUrl":"string","type":"reel | video | carousel","caption":"string","publishDate":"string","hook":{"hookType":"string","hookStrength":85,"patternInterrupt":"string","first3Seconds":"string"},"captionIntelligence":{"length":"string","cta":"string","emojiUsage":"string","storytelling":"string","readability":"string"},"visual":{"editingPace":"string","cameraStyle":"string","textOverlay":"string","colorStyle":"string"},"engagement":{"views":0,"viewsAvailable":false,"likes":500,"comments":50,"estimatedSaveRate":0,"estimatedShareRate":0},"psychology":{"curiosity":85,"emotion":80,"authority":75,"socialProof":70,"scarcity":60,"relatability":90},"virality":{"viralityScore":0,"viralityAvailable":false,"successProbability":"string","confidence":0},"winningFactors":["string"],"failureFactors":["string"],"reusability":{"score":88,"reusabilityLevel":"High","confidence":90},"whyItWorked":["string"]}]`;
 
-    const userPrompt = `${compiledResult.compiledText}\n\nSelected Content Items (${items.length} total):\n${itemsSummary}\n\nIMPORTANT METRIC PROVENANCE:\nWhere 'Views' are listed as 'unavailable (profile scraper)', you MUST obey these rules:\n1. Do not interpret unavailable views as zero views or zero reach.\n2. Do not invent or fabricate missing view counts.\n3. Do not claim a precise view-based engagement rate, virality score, save rate, or share rate when views or reach are unavailable.\n4. Analyze virality, psychology, and winning/failure factors strictly based on available engagement signals (Likes, Comments, Caption structure, and Content Type).\n5. Treat save counts, share counts, view counts, and total reach as unavailable unless explicitly provided in the input item metrics.\n\nExpected JSON Schema:\n${expectedSchemaDescription}`;
+    const userPrompt = `${compiledResult.compiledText}\n\nSelected Content Items (analyze exactly 3 items):\n${itemsSummary}\n\nIMPORTANT METRIC PROVENANCE:\nWhere 'Views' are listed as 'unavailable (profile scraper)', you MUST obey these rules:\n1. Do not interpret unavailable views as zero views or zero reach.\n2. Do not invent or fabricate missing view counts.\n3. Do not claim a precise view-based engagement rate, virality score, save rate, or share rate when views or reach are unavailable.\n4. Analyze virality, psychology, and winning/failure factors strictly based on available engagement signals (Likes, Comments, Caption structure, and Content Type).\n5. Treat save counts, share counts, view counts, and total reach as unavailable unless explicitly provided in the input item metrics.\n\nExpected JSON Schema:\n${expectedSchemaDescription}`;
 
     return {
       systemPrompt,
