@@ -257,7 +257,7 @@ export class PromptBuilder {
     fallbackData: ContentIntelligenceReport[]
   ): AIPromptPayload<ContentIntelligenceReport[]> {
     const itemsSummary = items
-      .slice(0, 6)
+      .slice(0, 4)
       .map((it, idx) => {
         const viewsStr =
           it.viewsAvailable === false || (!it.viewsAvailable && it.views === 0)
