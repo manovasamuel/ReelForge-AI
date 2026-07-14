@@ -349,7 +349,7 @@ export class PromptBuilder {
       expectedSchemaDescription,
       schemaType: "content-dna",
       temperature: 0.3,
-      maxOutputTokens: 1024,
+      maxOutputTokens: 2500,
       fallbackData,
       compiledResult,
     };
