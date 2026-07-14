@@ -6,6 +6,8 @@ import { BrightDataProvider } from "./brightdata.provider";
 import { RapidApiProvider } from "./rapidapi.provider";
 import { MockInstagramProvider } from "./mock.provider";
 import { CircuitBreakerStore } from "@/lib/reliability/circuit-breaker";
+import { ProfileRepository } from "@/lib/db/repositories/profile.repository";
+import { normalizeInstagramUsername, isValidInstagramProfile } from "../instagram.utils";
 
 /**
  * FailoverInstagramProvider — Dedicated Provider Orchestrator for Live Instagram Data Ingestion.
@@ -15,6 +17,7 @@ import { CircuitBreakerStore } from "@/lib/reliability/circuit-breaker";
  * - Configurable timeout per provider attempt (default 15s)
  * - Exponential backoff retry strategy (1 retry per provider on transient failures)
  * - In-memory provider health tracking & circuit breaking (60s cooldown on 3 consecutive failures)
+ * - Stage 3B Phase 4A: Shared Supabase Empirical Profile Cache lookup & upsert (0 scraper calls on hit)
  * - Structured logging & telemetry
  * - Graceful degradation to permanent MockProvider fallback
  */
@@ -77,6 +80,18 @@ export class FailoverInstagramProvider implements IInstagramProvider {
   }
 
   async getProfile(username: string): Promise<InstagramProfile> {
+    const cleanUsername = normalizeInstagramUsername(username);
+    if (!cleanUsername) {
+      throw new InstagramError(`"${username}" is not a valid Instagram username or URL.`);
+    }
+
+    // 0. Check empirical profile cache before making any live scraper calls
+    const cachedProfile = await ProfileRepository.getFreshByUsername(cleanUsername);
+    if (cachedProfile) {
+      this.log("INFO", `Serving @${cleanUsername} from Supabase empirical profile cache (0 scraper calls).`);
+      return cachedProfile;
+    }
+
     const errors: string[] = [];
 
     for (const provider of this.allProviders) {
@@ -92,7 +107,7 @@ export class FailoverInstagramProvider implements IInstagramProvider {
         continue;
       }
 
-      this.log("INFO", `Attempting profile ingestion for @${username} via [${provider.name}]...`);
+      this.log("INFO", `Attempting profile ingestion for @${cleanUsername} via [${provider.name}]...`);
 
       // Determine provider-specific timeout and retry rules
       // Apify requires a 50s outer boundary (with 45s internal fetch abort) and 0 retries to prevent duplicate billing.
@@ -109,22 +124,28 @@ export class FailoverInstagramProvider implements IInstagramProvider {
         }
 
         try {
-          const profile = await this.executeWithTimeout(provider.getProfile(username), timeoutMs);
+          const profile = await this.executeWithTimeout(provider.getProfile(cleanUsername), timeoutMs);
           
           // Success: reset health status
           this.recordSuccess(provider.id);
-          this.log("INFO", `Successfully ingested @${username} via [${provider.name}].`);
+          this.log("INFO", `Successfully ingested @${cleanUsername} via [${provider.name}].`);
+
+          // Cache successful live profile results (never cache mock provider results or malformed/error responses)
+          if (provider.id !== "mock" && isValidInstagramProfile(profile)) {
+            await ProfileRepository.save(profile);
+          }
+
           return profile;
         } catch (error) {
           const message = error instanceof Error ? error.message : "Unknown provider error";
           
           // If the account is private or not found, do NOT fail over or mark unhealthy — throw immediately!
           if (message.toLowerCase().includes("private") || message.toLowerCase().includes("not found")) {
-            this.log("INFO", `Account @${username} returned fatal business error via [${provider.name}]: ${message}`);
+            this.log("INFO", `Account @${cleanUsername} returned fatal business error via [${provider.name}]: ${message}`);
             throw new InstagramError(message);
           }
 
-          this.log("WARN", `[${provider.name}] Attempt ${attempt + 1} failed for @${username}: ${message}`);
+          this.log("WARN", `[${provider.name}] Attempt ${attempt + 1} failed for @${cleanUsername}: ${message}`);
           
           if (attempt === maxRetries) {
             errors.push(`[${provider.name}]: ${message}`);

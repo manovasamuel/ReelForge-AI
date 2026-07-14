@@ -21,13 +21,15 @@ import { InstagramError } from "@/lib/errors";
  *     - publishDate: post.timestamp || "" (Missing timestamp is explicitly preserved as empty string "" within the string type contract, preventing recency fabrication via new Date().toISOString()).
  * - Permalink safety: post.url is an Instagram permalink (not a direct playable MP4 video file), so videoUrl is not fabricated.
  */
+import { normalizeInstagramUsername } from "@/services/instagram/instagram.utils";
+
 export class LiveContentCollectionProvider implements IContentCollectionProvider {
   constructor(private readonly instagramProvider?: IInstagramProvider) {}
 
   async collectContent(competitorUsername: string): Promise<CollectedContentItem[]> {
-    const cleaned = competitorUsername.trim().replace(/^@/, "").toLowerCase();
+    const cleaned = normalizeInstagramUsername(competitorUsername);
     if (!cleaned) {
-      throw new InstagramError("Competitor username cannot be empty.");
+      throw new InstagramError("Competitor username cannot be empty or invalid.");
     }
 
     // 1. Resolve live Instagram provider (disallowing silent fallback to MockProvider when not testing with fixture)

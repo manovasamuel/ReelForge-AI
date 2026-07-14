@@ -341,6 +341,22 @@ export const stripeWebhookEvents = pgTable("stripe_webhook_events", {
 });
 
 // ============================================================================
+// 18. PROFILE CACHE TABLE (Stage 3B Phase 4A - Scraper TTL Cache)
+// ============================================================================
+export const profileCache = pgTable(
+  "profile_cache",
+  {
+    usernameClean: varchar("username_clean", { length: 255 }).primaryKey(),
+    rawProfile: jsonb("raw_profile").notNull(),
+    lastScrapedAt: timestamp("last_scraped_at", { withTimezone: true }).defaultNow().notNull(),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  },
+  (table) => ({
+    expiresAtIdx: index("idx_profile_cache_expires_at").on(table.expiresAt),
+  })
+);
+
+// ============================================================================
 // RELATIONS DEFINITIONS
 // ============================================================================
 export const usersRelations = relations(users, ({ many, one }) => ({

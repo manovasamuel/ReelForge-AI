@@ -1,6 +1,7 @@
 import type { IInstagramProvider } from "./provider.interface";
 import type { InstagramProfile } from "@/types/instagram";
 import { InstagramError } from "@/lib/errors";
+import { normalizeInstagramUsername } from "./instagram.utils";
 
 /**
  * InstagramService — orchestration layer for Instagram profile data.
@@ -19,15 +20,11 @@ export class InstagramService {
    * @throws InstagramError with a user-friendly message
    */
   async fetchProfile(username: string): Promise<InstagramProfile> {
-    const cleaned = username.trim().replace(/^@/, "").toLowerCase();
+    const cleaned = normalizeInstagramUsername(username);
 
     if (!cleaned || cleaned.length < 1) {
-      throw new InstagramError("Username cannot be empty.");
-    }
-
-    if (!/^[a-zA-Z0-9._]{1,30}$/.test(cleaned)) {
       throw new InstagramError(
-        `"${cleaned}" is not a valid Instagram username.`
+        `"${username}" is not a valid Instagram username or URL.`
       );
     }
 
