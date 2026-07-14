@@ -8,27 +8,39 @@ import type { ContentDNAReport } from "@/types/content-dna";
 export function aggregateContentDNA(reports: ContentIntelligenceReport[]): ContentDNAReport {
   const sampleSize = reports.length || 1;
 
-  // Aggregate Virality & Reusability
+  // Check empirical reach / virality availability from Phase 2 reports
+  const hasMeasuredVirality = reports.some((r) => r.virality.viralityAvailable !== false);
+
+  // Aggregate Virality, Interaction Proxies & Reusability
   const totalVirality = reports.reduce((acc, r) => acc + r.virality.viralityScore, 0);
-  const avgVirality = Math.round(totalVirality / sampleSize);
+  const avgVirality = hasMeasuredVirality ? Math.round(totalVirality / sampleSize) : 0;
+
+  const totalProxyScore = reports.reduce((acc, r) => acc + (r.virality.interactionProxyScore ?? 0), 0);
+  const avgProxyScore = Math.round(totalProxyScore / sampleSize);
+
+  const totalProxyRate = reports.reduce((acc, r) => acc + (r.engagement.interactionProxyRate ?? 0), 0);
+  const avgProxyRate = Math.round((totalProxyRate / sampleSize) * 10) / 10;
 
   const totalReusability = reports.reduce((acc, r) => acc + r.reusability.score, 0);
   const avgReusability = Math.round(totalReusability / sampleSize);
 
-  // Hook frequency calculation
-  const hookCounts: Record<string, { count: number; totalVirality: number }> = {};
+  // Hook frequency & proxy tracking calculation
+  const hookCounts: Record<string, { count: number; totalVirality: number; totalProxy: number }> = {};
   reports.forEach((r) => {
     const ht = r.hook.hookType;
-    if (!hookCounts[ht]) hookCounts[ht] = { count: 0, totalVirality: 0 };
+    if (!hookCounts[ht]) hookCounts[ht] = { count: 0, totalVirality: 0, totalProxy: 0 };
     hookCounts[ht].count += 1;
     hookCounts[ht].totalVirality += r.virality.viralityScore;
+    hookCounts[ht].totalProxy += (r.virality.interactionProxyScore ?? 0);
   });
 
   const sortedHooks = Object.entries(hookCounts)
     .map(([hookType, data]) => ({
       hookType,
       frequency: Math.round((data.count / sampleSize) * 100),
-      avgVirality: Math.round(data.totalVirality / data.count),
+      avgVirality: hasMeasuredVirality ? Math.round(data.totalVirality / data.count) : 0,
+      viralityAvailable: hasMeasuredVirality,
+      interactionProxyScore: Math.round(data.totalProxy / data.count),
     }))
     .sort((a, b) => b.frequency - a.frequency);
 
@@ -37,7 +49,13 @@ export function aggregateContentDNA(reports: ContentIntelligenceReport[]): Conte
   // Top 5 Hook Types
   const topHooks = sortedHooks.slice(0, 5);
   if (topHooks.length === 0) {
-    topHooks.push({ hookType: dominantHook, frequency: 100, avgVirality });
+    topHooks.push({
+      hookType: dominantHook,
+      frequency: 100,
+      avgVirality: hasMeasuredVirality ? avgVirality : 0,
+      viralityAvailable: hasMeasuredVirality,
+      interactionProxyScore: avgProxyScore,
+    });
   }
 
   // CTAs aggregation
@@ -66,7 +84,9 @@ export function aggregateContentDNA(reports: ContentIntelligenceReport[]): Conte
   psychScores.sort((a, b) => b.val - a.val);
   const dominantPsychology = psychScores[0].name;
 
-  const overallDNAScore = Math.min(99, Math.max(82, Math.round((avgVirality * 0.5) + (avgReusability * 0.5) + 3)));
+  const overallDNAScore = hasMeasuredVirality
+    ? Math.min(99, Math.max(82, Math.round((avgVirality * 0.5) + (avgReusability * 0.5) + 3)))
+    : Math.min(96, Math.max(78, Math.round((avgProxyScore * 0.4) + (avgReusability * 0.6) + 2)));
 
   const baseConfidence = Math.min(98, Math.max(85, 80 + Math.min(15, sampleSize * 2)));
   const reliabilityStr = sampleSize >= 10 ? "Very High" : sampleSize >= 4 ? "High" : "Moderate";
@@ -81,12 +101,15 @@ export function aggregateContentDNA(reports: ContentIntelligenceReport[]): Conte
     id: `dna-report-${Date.now()}`,
     snapshot: {
       sampleSize,
-      avgVirality,
+      avgVirality: hasMeasuredVirality ? avgVirality : 0,
       avgReusability,
       dominantHook,
       dominantCTA,
       dominantPsychology,
       overallDNAScore,
+      viralityAvailable: hasMeasuredVirality,
+      interactionProxyScore: avgProxyScore,
+      interactionProxyRate: avgProxyRate,
     },
     winningHooks: {
       topHooks,

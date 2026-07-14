@@ -14,12 +14,22 @@ export interface DNASnapshot {
   dominantCTA: string;
   dominantPsychology: string;
   overallDNAScore: number;
+  /** True when items have empirical reach/views. False when derived from profile scraper where views are unavailable. */
+  viralityAvailable?: boolean;
+  /** Relative interaction proxy score (0-100) based on likes and comments density when reach is unavailable. */
+  interactionProxyScore?: number;
+  /** Relative interaction proxy rate (likes + comments density) when reach is unavailable. */
+  interactionProxyRate?: number;
 }
 
 export interface WinningHookItem {
   hookType: string;
   frequency: number;
   avgVirality: number;
+  /** True when items have empirical reach/views. False when derived from profile scraper where views are unavailable. */
+  viralityAvailable?: boolean;
+  /** Relative interaction proxy score (0-100) for this hook type when reach is unavailable. */
+  interactionProxyScore?: number;
 }
 
 export interface WinningHooksSection {

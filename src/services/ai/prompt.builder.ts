@@ -319,9 +319,15 @@ export class PromptBuilder {
     reports: ContentIntelligenceReport[],
     fallbackData: ContentDNAReport
   ): AIPromptPayload<ContentDNAReport> {
+    const hasMeasuredVirality = reports.some((r) => r.virality.viralityAvailable !== false);
     const topHooks = reports
       .slice(0, 5)
-      .map((r, idx) => `Report ${idx + 1}: Hook Type -> ${r.hook?.hookType || "General"} | Strength: ${r.hook?.hookStrength || 80}`)
+      .map((r, idx) => {
+        const viralityStr = r.virality.viralityAvailable === false
+          ? `Virality Score: 0 (Profile Scraper - Unmeasured) | Interaction Proxy Score: ${r.virality.interactionProxyScore ?? "N/A"}`
+          : `Virality Score: ${r.virality.viralityScore}`;
+        return `Report ${idx + 1}: Hook Type -> ${r.hook?.hookType || "General"} | Strength: ${r.hook?.hookStrength || 80} | ${viralityStr}`;
+      })
       .join("\n");
 
     const compiledResult = PromptCompiler.compileFromSelection({
@@ -338,22 +344,26 @@ export class PromptBuilder {
 
     const systemPrompt = `You are ReelForge AI, the master strategist behind viral short-form Content DNA synthesis.\nYour task is to aggregate multiple Content Intelligence reports into a unified, high-precision Content DNA blueprint in strict JSON format.\nYou must return ONLY valid JSON matching the required schema description, without any markdown formatting, backticks, or explanatory text.`;
 
-    const userPrompt = `${compiledResult.compiledText}\n\nAnalyzed Reports Count: ${reports.length}\nTop Performing Hook Signatures:\n${topHooks}\n\nSynthesize the complete Content DNA Master Formula in strict JSON format.`;
+    const provenanceBlock = !hasMeasuredVirality
+      ? `\n\nIMPORTANT METRIC PROVENANCE:\nThe input Content Intelligence reports were derived from profile-scraper content where measured reach and view counts are unavailable (viralityAvailable = false). You MUST obey these rules:\n1. Do not interpret unavailable virality or reach as zero virality or zero performance.\n2. Do not invent or fabricate view counts, reach percentages, save counts, share counts, or measured virality scores in the Content DNA blueprint.\n3. Keep measured 'avgVirality' and 'expectedAvgVirality' at 0 or clearly indicate that reach metrics are unavailable.\n4. Derive qualitative DNA findings (such as winning hooks, dominant CTA, caption matrix, structure, and psychology profiles) strictly from available qualitative evidence (hook patterns, caption styles, content formats, psychology triggers, likes/comments density, and explicitly labelled interaction proxies).\n5. Do not inflate 'overallDNAScore' with synthetic reach weighting.`
+      : "";
+
+    const userPrompt = `${compiledResult.compiledText}\n\nAnalyzed Reports Count: ${reports.length}\nTop Performing Hook Signatures:\n${topHooks}${provenanceBlock}\n\nSynthesize the complete Content DNA Master Formula in strict JSON format.`;
 
     const expectedSchemaDescription = `{
   "id": "string",
   "generatedAt": "ISO timestamp",
   "analyzedPostCount": 10,
-  "winningHooks": { "dominantHookType": "string", "avgHookScore": 88, "topHooks": [{ "hookType": "string", "example": "string", "avgVirality": 90, "whyItWorks": "string" }] },
+  "winningHooks": { "dominantHookType": "string", "avgHookScore": 88, "topHooks": [{ "hookType": "string", "example": "string", "avgVirality": 0, "viralityAvailable": false, "interactionProxyScore": 85, "whyItWorks": "string" }] },
   "winningStructure": { "primaryFramework": "string", "avgPacing": "string", "formulaString": "Hook -> Agitate -> Value -> CTA", "retentionTactics": ["string"] },
   "topConversionAccelerators": [{ "ctaStyle": "string", "conversionScore": 88, "bestUsedFor": "string" }],
   "audiencePsychologyProfile": { "coreDesire": "string", "primaryFear": "string", "emotionalDriver": "string", "persuasionTrigger": "string" },
-  "contentPillarsMatrix": [{ "pillarName": "string", "recommendedShare": "40%", "expectedAvgVirality": 85, "sampleHookAngles": ["string"] }],
+  "contentPillarsMatrix": [{ "pillarName": "string", "recommendedShare": "40%", "expectedAvgVirality": 0, "sampleHookAngles": ["string"] }],
   "optimalPostingSchedule": { "bestDays": ["string"], "bestTimeWindows": ["string"], "recommendedFrequency": "string" },
   "productionChecklist": ["string"],
   "captionFormulaMatrix": [{ "formulaName": "string", "structure": "string", "bestFor": "string" }],
   "recommendedNextSteps": ["string"],
-  "snapshot": { "dominantHook": "string", "dominantPsychology": "string", "bestFramework": "string", "overallDNAScore": 91 }
+  "snapshot": { "dominantHook": "string", "dominantPsychology": "string", "bestFramework": "string", "overallDNAScore": 88, "viralityAvailable": false, "interactionProxyScore": 85, "interactionProxyRate": 4.2 }
 }`;
 
     return {
