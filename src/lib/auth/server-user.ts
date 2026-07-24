@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { users } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repository";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 
 import { isOfflineDevMode } from "@/lib/auth/config";
 
@@ -63,9 +64,11 @@ export async function getAuthenticatedUserId(): Promise<string | null> {
     })
     .returning({ id: users.id });
 
-  // Initialize default free subscription
+  // Initialize default free subscription and workspace
   try {
+    const workspace = await WorkspaceService.createWorkspace("Personal Workspace", created.id);
     await subRepo.upsertSubscription({
+      workspaceId: workspace.id,
       userId: created.id,
       status: "active",
       planId: "free",

@@ -7,7 +7,8 @@ import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
 import type { CollectedContentItem } from "@/types/content-collection";
 import type { ContentIntelligenceReport } from "@/types/content-intelligence";
 import type { RepurposeReport } from "@/types/repurpose";
-import type { AIPromptPayload } from "./provider.interface";
+import type { VisionResult } from "@/types/brand-knowledge";
+import type { AIPromptPayload, ImagePayload } from "./provider.interface";
 import {
   PromptCompiler,
   PromptSelectionEngine,
@@ -214,7 +215,8 @@ export class PromptBuilder {
    */
   public static buildCompetitorDiscoveryPrompt(
     report: BrandIntelligenceReport,
-    fallbackData: Competitor[]
+    fallbackData: Competitor[],
+    strategy?: import("@/types/competitor-intelligence").ProfileClassificationResult
   ): AIPromptPayload<Competitor[]> {
     const compiledResult = PromptCompiler.compileFromSelection({
       system: "system.default",
@@ -234,7 +236,21 @@ export class PromptBuilder {
 
     const expectedSchemaDescription = `[{"username":"string","displayName":"string","industry":"string","similarityScore":92,"reasonMatch":"string","confidenceScore":88}]`;
 
-    const userPrompt = `${compiledResult.compiledText}\n\nIndustry: ${report.industry}\nSub-Industry: ${report.subIndustry}\nBrand Type: ${report.brandType}\nTarget Audience: ${report.targetAudience}\nBrand Tone: ${report.brandTone}\n\nExpected JSON Schema:\n${expectedSchemaDescription}`;
+    let userPrompt = `${compiledResult.compiledText}\n\nIndustry: ${report.industry}\nSub-Industry: ${report.subIndustry}\nBrand Type: ${report.brandType}\nTarget Audience: ${report.targetAudience}\nBrand Tone: ${report.brandTone}`;
+
+    if (strategy && strategy.matrix) {
+      userPrompt += `\n\n--- ADAPTIVE COMPETITOR STRATEGY ---
+Current Growth Stage: ${strategy.growthStage}
+Primary Objective: ${strategy.nextObjective}
+You MUST select 10 competitors strictly following this required ratio (10 total):
+- ${Math.round(strategy.matrix.peerRatio / 10)} Peer accounts (Similar size/stage)
+- ${Math.round(strategy.matrix.aspirationalRatio / 10)} Aspirational accounts (Next level up)
+- ${Math.round(strategy.matrix.leaderRatio / 10)} Market Leaders (Top of industry)
+- ${Math.round(strategy.matrix.emergingRatio / 10)} Emerging/Challengers (Fast growing micro accounts)
+Provide exactly 10 candidates fulfilling these ratios.`;
+    }
+
+    userPrompt += `\n\nExpected JSON Schema:\n${expectedSchemaDescription}`;
 
     return {
       systemPrompt,
@@ -396,6 +412,89 @@ export class PromptBuilder {
   }
 
   /**
+   * Constructs a targeted revision prompt for the Adaptive Intelligence Engine.
+   * Instructs the LLM to fix specific failed rules while preserving the structure and successful content.
+   */
+  public static buildAdaptiveRevisionPrompt<T>(
+    originalPayload: AIPromptPayload<T>,
+    originalOutput: any,
+    failedRules: string[]
+  ): AIPromptPayload<T> {
+    const systemPrompt = originalPayload.systemPrompt;
+    const userPrompt = `[ADAPTIVE INTELLIGENCE REVISION]
+The previous generation failed specific quality heuristics.
+
+Your task is to REVISE the generated output to fix ONLY the following failed rules:
+${failedRules.map(r => `- ${r}`).join("\n")}
+
+ORIGINAL OUTPUT TO REVISE:
+${JSON.stringify(originalOutput, null, 2)}
+
+CRITICAL CONSTRAINTS:
+1. Fix ONLY the failed rules listed above.
+2. PRESERVE all other successful content exactly as it was.
+3. PRESERVE the user's original intent and tone.
+4. DO NOT rewrite sections that did not fail.
+5. Return the full, complete JSON object according to the schema.
+
+ORIGINAL INSTRUCTIONS (For Context):
+${originalPayload.userPrompt}`;
+
+    return {
+      systemPrompt,
+      userPrompt,
+      expectedSchemaDescription: originalPayload.expectedSchemaDescription,
+      schemaType: originalPayload.schemaType,
+      temperature: originalPayload.temperature,
+      maxOutputTokens: originalPayload.maxOutputTokens,
+      fallbackData: originalPayload.fallbackData,
+      compiledResult: originalPayload.compiledResult
+    };
+  }
+
+  /**
+   * Constructs a targeted micro-revision prompt for the Interactive Studio Copilot.
+   * Provides minimal structural context and explicitly isolates the targeted node.
+   */
+  public static buildCopilotRevisionPrompt(
+    targetNode: any,
+    contextSummary: string,
+    instruction: string,
+    fallbackData: any
+  ): AIPromptPayload<any> {
+    const systemPrompt = `You are ReelForge AI, an interactive studio copilot and elite creative editor.\nYour task is to revise a highly specific JSON node based on direct user feedback. You must return ONLY the revised valid JSON structure for this specific node. DO NOT return the entire project or script.`;
+
+    const userPrompt = `[INTERACTIVE STUDIO COPILOT REVISION]
+The user has requested a targeted revision to a specific section of their content.
+
+--- CONTEXT SUMMARY ---
+${contextSummary}
+
+--- ORIGINAL NODE TO REVISE ---
+${JSON.stringify(targetNode, null, 2)}
+
+--- USER REVISION INSTRUCTION ---
+"${instruction}"
+
+CRITICAL CONSTRAINTS:
+1. Apply the user's feedback to the ORIGINAL NODE provided above.
+2. Maintain the exact same schema structure as the original node.
+3. If the user asks to change the tone or length, apply it only to this specific node.
+4. Output ONLY the strictly typed revised JSON object or array. Do not include markdown code blocks (e.g. \`\`\`json) or extra conversational text.`;
+
+    return {
+      systemPrompt,
+      userPrompt,
+      expectedSchemaDescription: "DYNAMIC_COPILOT_NODE",
+      schemaType: "copilot-revision" as any,
+      temperature: 0.5, // Slightly higher for creative revisions
+      maxOutputTokens: 1024,
+      fallbackData,
+      compiledResult: { compiledText: userPrompt, variables: {} }
+    };
+  }
+
+  /**
    * Development utility to preview and inspect a compiled prompt before sending to AI providers.
    * Throws an error if invoked in production environments.
    */
@@ -405,5 +504,51 @@ export class PromptBuilder {
     selectionOverride?: Partial<PromptModuleSelection>
   ): PromptPreviewPayload {
     return PromptCompiler.preview(context, variables, selectionOverride);
+  }
+
+  /**
+   * Constructs a vision analysis prompt to analyze brand assets using multi-modal AI capabilities.
+   */
+  public static buildVisionAnalysisPrompt(
+    image: ImagePayload,
+    fallbackData: VisionResult
+  ): AIPromptPayload<VisionResult> {
+    const systemPrompt = `You are ReelForge AI, an expert brand strategist, designer, and visual asset analyst.
+Your task is to analyze the provided visual asset (image, logo, or document).
+You must output your findings as a strict JSON object matching the requested schema.`;
+
+    const userPrompt = `Please analyze the provided image.
+Extract the following:
+- caption: A brief description of the image content.
+- tags: Relevant keywords for search.
+- ocr: Any readable text found in the image.
+- dominantColors: Up to 5 dominant HEX color codes.
+- logoDetected: true/false if a brand logo is present.
+- objectsDetected: Array of key objects.
+- peopleDetected: true/false.
+- typographyStyle: Description of font style if text is present.
+- visualMood: The mood or aesthetic (e.g., 'minimalist', 'energetic').
+- imageOrientation: 'portrait', 'landscape', or 'square'.
+- estimatedQuality: 'low', 'medium', or 'high'.
+- textLanguage: The language of the text, if detected.
+- brandingConfidenceScore: 0-100 indicating how strongly this functions as a brand asset.
+
+Return ONLY a valid JSON object. Do not include markdown code blocks.`;
+
+    return {
+      systemPrompt,
+      userPrompt,
+      expectedSchemaDescription: "VISION_RESULT",
+      schemaType: "vision-analysis",
+      temperature: 0.1,
+      maxOutputTokens: 2048,
+      fallbackData,
+      images: [image],
+      capabilities: {
+        requiresVision: true,
+        reasoning: "low",
+        latency: "medium"
+      }
+    };
   }
 }

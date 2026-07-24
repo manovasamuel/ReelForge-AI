@@ -2,6 +2,7 @@ export interface CircuitBreakerEntry {
   consecutiveFailures: number;
   lastFailureTime?: number;
   lastSuccessTime?: number;
+  qualityScores?: Record<string, number>;
 }
 
 /**
@@ -130,5 +131,54 @@ export class CircuitBreakerStore {
     }
 
     return false;
+  }
+
+  /**
+   * Updates the EMA quality score for a specific provider and schema domain.
+   * Calculates the Exponential Moving Average: (alpha * newScore) + ((1 - alpha) * currentScore)
+   */
+  public static async updateQualityScore(
+    providerId: string,
+    schemaType: string,
+    newScore: number,
+    alpha: number = 0.3
+  ): Promise<{ before: number; after: number }> {
+    if (providerId === "mock" || providerId === "deterministic") {
+      return { before: 100, after: 100 };
+    }
+
+    const current = await this.getEntry(providerId);
+    const scores = current.qualityScores || {};
+    
+    // Default starting score is typically considered 85 if no history exists
+    const before = scores[schemaType] !== undefined ? scores[schemaType] : 85;
+    
+    // EMA Formula
+    const after = Math.round(alpha * newScore + (1 - alpha) * before);
+    
+    const entry: CircuitBreakerEntry = {
+      ...current,
+      qualityScores: {
+        ...scores,
+        [schemaType]: after
+      }
+    };
+    
+    this.l1Cache.set(providerId, entry);
+
+    if (this.isRedisConfigured()) {
+      try {
+        const url = `${process.env.UPSTASH_REDIS_REST_URL}/set/cb:${providerId}`;
+        await fetch(url, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}` },
+          body: JSON.stringify(JSON.stringify(entry)),
+        });
+      } catch (err) {
+        console.warn(`[CircuitBreakerStore] L2 Redis updateQualityScore failed for ${providerId}:`, err);
+      }
+    }
+    
+    return { before, after };
   }
 }

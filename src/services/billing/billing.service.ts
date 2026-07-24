@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repository";
 import { PlanRepository } from "@/lib/db/repositories/plan.repository";
 import { UsageRepository } from "@/lib/db/repositories/usage.repository";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 import type { IBillingSummary, PlanId } from "./plan.interface";
 
 /**
@@ -26,9 +27,12 @@ export class BillingService {
    * Retrieves complete billing summary for a user (tier, subscription status, usage counters).
    */
   public static async getBillingSummary(userId: string): Promise<IBillingSummary> {
-    const sub = await this.subRepo.getSubscriptionByUserId(userId);
+    const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+    if (!workspace) throw new Error("No active workspace found");
+    const workspaceId = workspace.id;
+    const sub = await this.subRepo.getSubscriptionByWorkspaceId(workspaceId);
     const plan = await this.planRepo.getPlan(sub.planId);
-    const usage = await this.usageRepo.getCurrentUsage(userId);
+    const usage = await this.usageRepo.getCurrentUsage(workspaceId);
 
     const totalTokens = usage.aiPromptTokens + usage.aiCompletionTokens;
     const totalCostUsd = typeof usage.totalCostUsd === "string" ? parseFloat(usage.totalCostUsd) : usage.totalCostUsd;
@@ -73,7 +77,10 @@ export class BillingService {
       throw new Error(`Stripe Price ID not configured for plan ${planId}`);
     }
 
-    const sub = await this.subRepo.getSubscriptionByUserId(userId);
+    const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+    if (!workspace) throw new Error("No active workspace found");
+    const workspaceId = workspace.id;
+    const sub = await this.subRepo.getSubscriptionByWorkspaceId(workspaceId);
 
     const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       mode: "subscription",
@@ -82,7 +89,7 @@ export class BillingService {
       success_url: `${returnUrl}?billing=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${returnUrl}?billing=cancelled`,
       client_reference_id: userId,
-      metadata: { userId, planId },
+      metadata: { userId, planId, workspaceId },
     };
 
     if (sub.stripeCustomerId) {
@@ -109,7 +116,10 @@ export class BillingService {
       return { url: `${returnUrl}?portal=mock_opened` };
     }
 
-    const sub = await this.subRepo.getSubscriptionByUserId(userId);
+    const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+    if (!workspace) throw new Error("No active workspace found");
+    const workspaceId = workspace.id;
+    const sub = await this.subRepo.getSubscriptionByWorkspaceId(workspaceId);
     if (!sub.stripeCustomerId) {
       throw new Error("No Stripe customer associated with this user account.");
     }

@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { StudioPage } from "../pages/studio.page";
 import { FULL_PIPELINE_TIMEOUT } from "./helpers/fixtures";
 
 test.describe("Navigation — 4-way switcher", () => {

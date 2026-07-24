@@ -1,6 +1,7 @@
 import type { IInstagramProvider } from "../provider.interface";
 import type { InstagramProfile, InstagramPost } from "@/types/instagram";
 import { InstagramError } from "@/lib/errors";
+import { normalizationService } from "@/services/intelligence/normalization.service";
 
 /**
  * ApifyProvider — Live Instagram data ingestion via Apify Instagram Profile Scraper Actor.
@@ -67,33 +68,7 @@ export class ApifyProvider implements IInstagramProvider {
       throw new InstagramError("This Instagram account is private.");
     }
 
-    // Map raw Apify item to internal InstagramProfile domain model
-    const posts: InstagramPost[] = Array.isArray(item.latestPosts)
-      ? item.latestPosts.slice(0, 12).map((post: any, index: number): InstagramPost => ({
-          id: String(post.id || post.shortCode || `apify_${index}`),
-          thumbnail_url: post.displayUrl || post.thumbnailUrl || null,
-          url: post.url || (post.shortCode ? `https://www.instagram.com/p/${post.shortCode}/` : null),
-          caption: post.caption || null,
-          likes: Number(post.likesCount || 0),
-          comments: Number(post.commentsCount || 0),
-          timestamp: post.timestamp ? new Date(post.timestamp).toISOString() : null,
-          type: post.type === "Video" ? "video" : post.type === "Sidecar" ? "carousel" : "image",
-        }))
-      : [];
-
-    return {
-      username: item.username || username,
-      display_name: item.fullName || item.username || username,
-      bio: item.biography || null,
-      profile_picture_url: item.profilePicUrl || item.profilePicUrlHD || null,
-      follower_count: Number(item.followersCount || 0),
-      following_count: Number(item.followsCount || 0),
-      post_count: Number(item.postsCount || 0),
-      category: item.businessCategoryName || null,
-      external_url: item.externalUrl || null,
-      is_private: Boolean(item.isPrivate),
-      is_verified: Boolean(item.isVerified),
-      posts,
-    };
+    // Map raw Apify item to internal InstagramProfile domain model using NormalizationService
+    return normalizationService.mapApifyProfile(username, item);
   }
 }

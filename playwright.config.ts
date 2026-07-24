@@ -1,4 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, ".env.local") });
+
+// Set a deterministic bypass token for E2E tests
+process.env.E2E_TEST_BYPASS_TOKEN = "aios-e2e-bypass-123";
 
 /**
  * ReelForge AI v1.3.1 — Playwright Configuration
@@ -14,6 +21,9 @@ export default defineConfig({
   reporter: [["list"], ["html", { outputFolder: "playwright-report", open: "never" }]],
   use: {
     baseURL: "http://localhost:3000",
+    extraHTTPHeaders: {
+      "x-e2e-bypass": "aios-e2e-bypass-123",
+    },
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "on-first-retry",
@@ -21,7 +31,7 @@ export default defineConfig({
     navigationTimeout: 30000,
   },
   webServer: {
-    command: "npm run start",
+    command: "npm run dev",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

@@ -5,7 +5,7 @@ import type { PlanId } from "@/services/billing/plan.interface";
 
 export interface ISubscriptionRecord {
   id: string;
-  userId: string;
+  workspaceId: string;
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   status: string; // 'active' | 'past_due' | 'canceled' | 'free'
@@ -28,11 +28,11 @@ export class SubscriptionRepository {
    * Retrieves subscription record for a user.
    * If none exists (or database is unreachable in dev/offline), returns a default Free tier object.
    */
-  public async getSubscriptionByUserId(userId: string): Promise<ISubscriptionRecord> {
+  public async getSubscriptionByWorkspaceId(workspaceId: string): Promise<ISubscriptionRecord> {
     if (!db) {
       return {
         id: "offline-free-sub",
-        userId,
+        workspaceId,
         stripeCustomerId: null,
         stripeSubscriptionId: null,
         status: "active",
@@ -48,20 +48,20 @@ export class SubscriptionRepository {
       const records = await db
         .select()
         .from(subscriptions)
-        .where(eq(subscriptions.userId, userId))
+        .where(eq(subscriptions.userId, workspaceId))
         .limit(1);
 
       if (records && records.length > 0) {
-        return records[0] as ISubscriptionRecord;
+        return { ...records[0], workspaceId: records[0].userId } as unknown as ISubscriptionRecord;
       }
     } catch (error) {
-      console.warn(`[SubscriptionRepository] Failed to fetch subscription for user ${userId}, falling back to free:`, error);
+      console.warn(`[SubscriptionRepository] Failed to fetch subscription for workspace ${workspaceId}, falling back to free:`, error);
     }
 
     // Default fallback for new or offline users
     return {
       id: "offline-free-sub",
-      userId,
+      workspaceId,
       stripeCustomerId: null,
       stripeSubscriptionId: null,
       status: "active",
@@ -78,7 +78,8 @@ export class SubscriptionRepository {
    * Also synchronizes `users.tier`.
    */
   public async upsertSubscription(data: {
-    userId: string;
+    workspaceId: string;
+    userId?: string; // Optional for syncing user tier if still needed
     stripeCustomerId?: string | null;
     stripeSubscriptionId?: string | null;
     status: string;
@@ -96,7 +97,7 @@ export class SubscriptionRepository {
       const existing = await db
         .select()
         .from(subscriptions)
-        .where(eq(subscriptions.userId, data.userId))
+        .where(eq(subscriptions.userId, data.workspaceId))
         .limit(1);
 
       if (existing && existing.length > 0) {
@@ -111,10 +112,10 @@ export class SubscriptionRepository {
             cancelAtPeriodEnd: data.cancelAtPeriodEnd !== undefined ? data.cancelAtPeriodEnd : existing[0].cancelAtPeriodEnd,
             updatedAt: new Date(),
           })
-          .where(eq(subscriptions.userId, data.userId));
+          .where(eq(subscriptions.userId, data.workspaceId));
       } else {
         await db.insert(subscriptions).values({
-          userId: data.userId,
+          userId: data.workspaceId,
           stripeCustomerId: data.stripeCustomerId || null,
           stripeSubscriptionId: data.stripeSubscriptionId || null,
           status: data.status,
@@ -124,15 +125,17 @@ export class SubscriptionRepository {
         });
       }
 
-      // 2. Sync user tier
-      await db
-        .update(users)
-        .set({ tier: data.planId, updatedAt: new Date() })
-        .where(eq(users.id, data.userId));
+      // 2. Sync user tier if userId is provided
+      if (data.userId) {
+        await db
+          .update(users)
+          .set({ tier: data.planId, updatedAt: new Date() })
+          .where(eq(users.id, data.userId));
+      }
 
-      console.log(`[SubscriptionRepository] Upserted subscription & tier (${data.planId}) for user ${data.userId}`);
+      console.log(`[SubscriptionRepository] Upserted subscription & tier (${data.planId}) for workspace ${data.workspaceId}`);
     } catch (error) {
-      console.error(`[SubscriptionRepository] Error upserting subscription for user ${data.userId}:`, error);
+      console.error(`[SubscriptionRepository] Error upserting subscription for workspace ${data.workspaceId}:`, error);
       throw error;
     }
   }
@@ -163,7 +166,7 @@ export class SubscriptionRepository {
         return;
       }
 
-      const userId = existing[0].userId;
+      const workspaceId = existing[0].userId;
 
       await db
         .update(subscriptions)
@@ -176,11 +179,8 @@ export class SubscriptionRepository {
         })
         .where(eq(subscriptions.id, existing[0].id));
 
-      // Sync user tier
-      await db
-        .update(users)
-        .set({ tier: data.planId, updatedAt: new Date() })
-        .where(eq(users.id, userId));
+      // Sync user tier is harder here without knowing which users belong to the workspace and should get the tier,
+      // skipping user tier sync for webhook updates for now.
 
       console.log(`[SubscriptionRepository] Updated subscription ${stripeSubscriptionId} to status ${data.status} (${data.planId})`);
     } catch (error) {
@@ -204,7 +204,7 @@ export class SubscriptionRepository {
 
       if (!existing || existing.length === 0) return;
 
-      const userId = existing[0].userId;
+      const workspaceId = existing[0].userId;
 
       await db
         .update(subscriptions)
@@ -216,12 +216,9 @@ export class SubscriptionRepository {
         })
         .where(eq(subscriptions.id, existing[0].id));
 
-      await db
-        .update(users)
-        .set({ tier: "free", updatedAt: new Date() })
-        .where(eq(users.id, userId));
+      // Skipping user tier sync for webhook updates for now
 
-      console.log(`[SubscriptionRepository] Downgraded subscription ${stripeSubscriptionId} (User ${userId}) to Free tier.`);
+      console.log(`[SubscriptionRepository] Downgraded subscription ${stripeSubscriptionId} (Workspace ${workspaceId}) to Free tier.`);
     } catch (error) {
       console.error(`[SubscriptionRepository] Error downgrading subscription ${stripeSubscriptionId}:`, error);
       throw error;

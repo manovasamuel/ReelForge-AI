@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, Page } from "@playwright/test";
 import { VALID_INSTAGRAM_URLS, API_TIMEOUT, FULL_PIPELINE_TIMEOUT } from "./helpers/fixtures";
 
 /**
@@ -10,7 +10,7 @@ test.describe("Workspace — Project Lifecycle", () => {
   const PROJECT_NAME = `QA Test Project ${Date.now()}`;
 
   /** Helper: Run Phase 1 only and get to a saveable state */
-  async function runToPhase1(page: Parameters<Parameters<typeof test>[1]>[0]) {
+  async function runToPhase1(page: Page) {
     await page.goto("/profiles");
     await page.waitForLoadState("networkidle");
     await page.locator("#instagram-url-input").fill(VALID_INSTAGRAM_URLS[0]);

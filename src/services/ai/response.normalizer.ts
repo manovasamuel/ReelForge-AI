@@ -63,6 +63,44 @@ export class ResponseNormalizer {
       return this.normalizeScriptGeneration(parsed, payload.fallbackData as unknown as ReelContentPackage) as unknown as T;
     }
 
+    // ========================================================================
+    // Phase 2: Blueprint Architecture Normalizers
+    // ========================================================================
+    if (payload.schemaType === "blueprint-strategy") {
+      return (parsed !== undefined ? parsed : payload.fallbackData) as unknown as T;
+    }
+    
+    if (payload.schemaType === "creative-concepts") {
+      if (!parsed.concepts || !Array.isArray(parsed.concepts)) {
+         throw new Error("AI response validation failed: Missing 'concepts' array for creative-concepts schema.");
+      }
+      return (parsed !== undefined ? parsed : payload.fallbackData) as unknown as T;
+    }
+    
+    if (payload.schemaType === "blueprint-core") {
+      const missing: string[] = [];
+      if (!parsed.production) missing.push("production");
+      if (!parsed.dialogue) missing.push("dialogue");
+      if (!parsed.visualFlow) missing.push("visualFlow");
+      if (!parsed.retention) missing.push("retention");
+      if (!parsed.cta) missing.push("cta");
+      if (missing.length > 0) {
+        throw new Error(`AI response validation failed: Missing required fields for Blueprint Core (${missing.join(", ")}).`);
+      }
+      return (parsed !== undefined ? parsed : payload.fallbackData) as unknown as T;
+    }
+    
+    if (payload.schemaType === "blueprint-discovery") {
+      const missing: string[] = [];
+      if (!parsed.caption) missing.push("caption");
+      if (!parsed.discovery) missing.push("discovery");
+      if (missing.length > 0) {
+        throw new Error(`AI response validation failed: Missing required fields for Blueprint Discovery (${missing.join(", ")}).`);
+      }
+      return (parsed !== undefined ? parsed : payload.fallbackData) as unknown as T;
+    }
+    // ========================================================================
+
     if (payload.schemaType === "competitor-discovery") {
       return this.normalizeCompetitorDiscovery(parsed, payload.fallbackData as unknown as Competitor[]) as unknown as T;
     }
@@ -83,7 +121,9 @@ export class ResponseNormalizer {
       return this.normalizeRepurpose(parsed, payload.fallbackData as unknown as RepurposeReport) as unknown as T;
     }
 
-    return payload.fallbackData;
+    // If no specific domain schema validation is requested, just return the parsed JSON.
+    // This supports the MVP agents (ScriptAgent, CaptionAgent, etc.) that don't pass schemaType.
+    return (parsed !== undefined ? parsed : payload.fallbackData) as unknown as T;
   }
 
   /**

@@ -55,6 +55,8 @@ export const ROUTES = {
   HOME: "/",
   PROFILES: "/profiles",
   PROFILE: (id: string) => `/profiles/${id}`,
+  BRANDS: "/brands",
+  BRAND: (id: string) => `/brands/${id}`,
   COMPETITORS: (id: string) => `/profiles/${id}/competitors`,
   ANALYSIS: (id: string) => `/profiles/${id}/analysis`,
   ANALYSIS_SESSION: (profileId: string, sessionId: string) =>

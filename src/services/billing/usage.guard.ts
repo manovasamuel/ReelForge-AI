@@ -1,6 +1,7 @@
 import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repository";
 import { PlanRepository } from "@/lib/db/repositories/plan.repository";
 import { UsageRepository } from "@/lib/db/repositories/usage.repository";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 import type { IUsageGuardResult } from "./plan.interface";
 
 /**
@@ -50,10 +51,13 @@ export class UsageGuard {
     }
 
     try {
-      const sub = await this.subRepo.getSubscriptionByUserId(userId);
+      const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+      if (!workspace) throw new Error("No active workspace found");
+      const workspaceId = workspace.id;
+      const sub = await this.subRepo.getSubscriptionByWorkspaceId(workspaceId);
       const plan = await this.planRepo.getPlan(sub.planId);
       // Atomically check and reserve scraper quota (DB-001)
-      const isReserved = await this.usageRepo.tryReserveScraperCall(userId, plan.monthlyScraperLimit);
+      const isReserved = await this.usageRepo.tryReserveScraperCall(workspaceId, plan.monthlyScraperLimit);
 
       if (!isReserved) {
         console.warn(`[UsageGuard] Scraper quota exceeded for user ${userId}. Redirecting to mock.`);
@@ -79,7 +83,8 @@ export class UsageGuard {
         };
       } catch (liveError) {
         // Refund atomic reservation if live provider execution failed
-        await this.usageRepo.refundScraperCall(userId);
+        const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+        if (workspace) await this.usageRepo.refundScraperCall(workspace.id);
         throw liveError; // Re-throw to be caught by outer catch block for mock fallback
       }
     } catch (error) {
@@ -131,9 +136,12 @@ export class UsageGuard {
     const startMs = Date.now();
 
     try {
-      const sub = await this.subRepo.getSubscriptionByUserId(userId);
+      const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+      if (!workspace) throw new Error("No active workspace found");
+      const workspaceId = workspace.id;
+      const sub = await this.subRepo.getSubscriptionByWorkspaceId(workspaceId);
       const plan = await this.planRepo.getPlan(sub.planId);
-      const usage = await this.usageRepo.getCurrentUsage(userId);
+      const usage = await this.usageRepo.getCurrentUsage(workspaceId);
 
       const totalUsedTokens = usage.aiPromptTokens + usage.aiCompletionTokens;
       const isExceeded = plan.monthlyAiTokenLimit !== -1 && totalUsedTokens >= plan.monthlyAiTokenLimit;
@@ -172,12 +180,15 @@ export class UsageGuard {
       const costUsd = result.costUsd ?? 0;
 
       // Record Usage
-      await this.usageRepo.recordAiUsage(
-        userId,
-        usageData.promptTokens || 0,
-        usageData.completionTokens || 0,
-        costUsd
-      );
+      const workspaceForRecord = await WorkspaceService.resolveActiveWorkspace(userId);
+      if (workspaceForRecord) {
+        await this.usageRepo.recordAiUsage(
+          workspaceForRecord.id,
+          usageData.promptTokens || 0,
+          usageData.completionTokens || 0,
+          costUsd
+        );
+      }
 
       return {
         authorized: true,

@@ -63,3 +63,43 @@ export type AddCompetitorInput = z.infer<typeof addCompetitorSchema>;
 export type GenerateContentInput = z.infer<typeof generateContentSchema>;
 export type RepurposeContentInput = z.infer<typeof repurposeContentSchema>;
 export type PaginationInput = z.infer<typeof paginationSchema>;
+
+// Brand Knowledge Base schemas
+export const brandMetadataSchema = z.object({
+  toneOfVoice: z.array(z.string()).default([]),
+  messagingPillars: z.array(z.string()).default([]),
+  productsServices: z.array(z.string()).default([]),
+  audienceProfiles: z.array(z.string()).default([]),
+});
+
+export const brandVisualIdentitySchema = z.object({
+  primaryColors: z.array(z.string().regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, "Invalid HEX color")).default([]),
+  typography: z.array(z.string()).default([]),
+});
+
+export const createBrandProfileSchema = z.object({
+  name: z.string().min(1, "Brand name is required").max(100),
+  metadata: brandMetadataSchema.default({
+    toneOfVoice: [],
+    messagingPillars: [],
+    productsServices: [],
+    audienceProfiles: []
+  }),
+  visualIdentity: brandVisualIdentitySchema.default({
+    primaryColors: [],
+    typography: []
+  }),
+});
+
+export const updateBrandProfileSchema = createBrandProfileSchema.partial();
+
+export const uploadAssetMetadataSchema = z.object({
+  assetType: z.enum(["document", "logo", "image", "font", "other"]),
+  displayName: z.string().min(1, "Display name is required"),
+  description: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+});
+
+export type CreateBrandProfileInput = z.infer<typeof createBrandProfileSchema>;
+export type UpdateBrandProfileInput = z.infer<typeof updateBrandProfileSchema>;
+export type UploadAssetMetadataInput = z.infer<typeof uploadAssetMetadataSchema>;

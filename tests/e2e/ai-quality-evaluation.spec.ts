@@ -17,8 +17,12 @@ test.describe("Phase 8 — AI Quality Testing & Evaluation Suite", () => {
     following_count: 320,
     post_count: 540,
     is_verified: true,
+    profile_picture_url: "",
+    category: "",
+    external_url: "",
+    is_private: false,
     posts: [
-      { id: "1", caption: "3 biggest mistakes you make when cutting fat... #fitness", likes: 4500, comments: 320, timestamp: "2026-07-01", type: "Reel" },
+      { id: "1", caption: "3 biggest mistakes you make when cutting fat... #fitness", likes: 4500, comments: 320, timestamp: "2026-07-01", type: "video", thumbnail_url: "", url: "" },
     ],
   };
 
@@ -36,22 +40,24 @@ test.describe("Phase 8 — AI Quality Testing & Evaluation Suite", () => {
     confidenceScore: 92,
   };
 
-  const sampleDNA: ContentDNAReport = {
+  const sampleDNA = {
     id: "viral_fitness_coach",
-    timestamp: "2026-07-01",
     snapshot: {
       overallDNAScore: 94,
+      sampleSize: 10,
+      avgVirality: 90,
+      avgReusability: 80,
+      dominantCTA: "Follow for more",
       dominantHook: "Contrarian Myth-Busting",
       dominantPsychology: "Curiosity Gap & Authority",
-      dominantFormat: "Listicle Talking Head",
-      topKeywords: ["fat loss", "protein", "carbs", "workout"],
     },
     winningHooks: {
       topHooks: [
-        { hookType: "Contrarian Statement", avgVirality: 98, example: "Stop doing cardio for fat loss." },
+        { hookType: "Contrarian Statement", avgVirality: 98, frequency: 1 },
       ],
+      confidenceMeta: { confidence: 90, sampleCount: 10, reliability: "High" }
     },
-  };
+  } as unknown as ContentDNAReport;
 
   const sampleScriptFallback: ReelContentPackage = {
     id: "test-script-123",

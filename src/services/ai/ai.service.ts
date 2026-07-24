@@ -7,11 +7,15 @@ import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
 import type { CollectedContentItem } from "@/types/content-collection";
 import type { ContentIntelligenceReport } from "@/types/content-intelligence";
 import type { RepurposeReport } from "@/types/repurpose";
-import type { AITelemetry } from "./provider.interface";
+import type { VisionResult } from "@/types/brand-knowledge";
+import type { AITelemetry, ImagePayload } from "./provider.interface";
 import { PromptBuilder } from "./prompt.builder";
 import { getAIOrchestrator } from "./providers";
 import { DevPromptLogger } from "./logger/dev-prompt.logger";
 import { AICacheService } from "./ai-cache.service";
+import { getAdaptiveConfig } from "@/config/adaptive.config";
+import { getHeuristicEvaluator } from "./adaptive/evaluator.registry";
+import { CircuitBreakerStore } from "@/lib/reliability/circuit-breaker";
 
 /**
  * AI Service Layer — ReelForge AI v2.1 Phase 8.
@@ -26,6 +30,60 @@ import { AICacheService } from "./ai-cache.service";
  *   4. Development Prompt Logging (compiled prompt, score, response, latency, tokens)
  */
 export class AIService {
+  /**
+   * Orchestrates vision intelligence to extract rich metadata from visual assets.
+   */
+  public async analyzeVisionAsset(
+    image: ImagePayload,
+    fallbackData: VisionResult,
+    preferredProvider?: string,
+    modelPreference?: string
+  ): Promise<{ data: VisionResult; telemetry: AITelemetry }> {
+    const promptPayload = PromptBuilder.buildVisionAnalysisPrompt(image, fallbackData);
+    const orchestrator = getAIOrchestrator(preferredProvider, modelPreference);
+
+    try {
+      const response = await orchestrator.generateStructured<VisionResult>(promptPayload);
+      this.logTelemetry("Vision Analysis", response.telemetry);
+
+      DevPromptLogger.log({
+        domain: "Vision Analysis",
+        providerId: response.telemetry.providerId,
+        model: response.telemetry.modelUsed,
+        compiledPrompt: `${promptPayload.systemPrompt}\n\n${promptPayload.userPrompt}`,
+        aiResponse: response.data,
+        promptScore: promptPayload.compiledResult?.evaluation?.overallScore,
+        evaluationReport: promptPayload.compiledResult?.evaluation,
+        latencyMs: response.telemetry.latencyMs,
+        tokenUsage: response.telemetry.usage,
+      });
+
+      return { data: response.data, telemetry: response.telemetry };
+    } catch (error) {
+      console.error("[AIService] Critical error in analyzeVisionAsset orchestration. Reverting to fallback:", error);
+      const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
+        providerId: "deterministic",
+        modelUsed: "deterministic-fallback",
+        latencyMs: 0,
+        fallbackUsed: true,
+      };
+
+      DevPromptLogger.log({
+        domain: "Vision Analysis",
+        providerId: "deterministic",
+        model: "deterministic-fallback",
+        compiledPrompt: `${promptPayload.systemPrompt}\n\n${promptPayload.userPrompt}`,
+        aiResponse: fallbackData,
+        latencyMs: 0,
+        tokenUsage: { promptTokens: 0, completionTokens: 0, totalTokens: 0 },
+      });
+
+      return { data: fallbackData, telemetry };
+    }
+  }
+
   /**
    * Orchestrates multi-model AI generation for Brand Intelligence.
    *
@@ -46,6 +104,8 @@ export class AIService {
     const cached = await AICacheService.get<BrandIntelligenceReport>("brand-intelligence", profile.username);
     if (cached) {
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "ai-cache",
         modelUsed: "cached-report",
         latencyMs: 0,
@@ -80,6 +140,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Critical error in generateBrandIntelligence orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -116,6 +178,110 @@ export class AIService {
 
     try {
       const response = await orchestrator.generateStructured<ReelContentPackage>(promptPayload);
+
+      // Phase 2 & 3: Adaptive Intelligence Observation and Revision Mode
+      const config = getAdaptiveConfig();
+      const domainConfig = config.domains["script-generation"];
+      const evaluator = getHeuristicEvaluator("script-generation");
+
+      if ((config.mode === "observe" || config.mode === "adaptive") && evaluator && domainConfig) {
+        const evaluation = evaluator.evaluate(response.data);
+        
+        response.telemetry.baseHeuristicScore = evaluation.score;
+        response.telemetry.finalHeuristicScore = evaluation.score;
+        response.telemetry.failedRules = evaluation.failedRules;
+        response.telemetry.adaptiveRevisionsCount = 0;
+        response.telemetry.revisionAttempted = false;
+        response.telemetry.revisionSucceeded = false;
+        
+        // Phase 3: Adaptive Revision
+        if (config.mode === "adaptive" && evaluation.score < domainConfig.acceptanceThreshold && config.maxRevisions > 0) {
+          response.telemetry.revisionAttempted = true;
+          const startTime = Date.now();
+          
+          try {
+            const revisionPrompt = PromptBuilder.buildAdaptiveRevisionPrompt(
+              promptPayload,
+              response.data,
+              evaluation.failedRules
+            );
+            
+            // Execute bounded single-revision call
+            const revisionResponse = await orchestrator.generateStructured<ReelContentPackage>(revisionPrompt);
+            const revisionEvaluation = evaluator.evaluate(revisionResponse.data);
+            
+            response.telemetry.revisionLatencyMs = Date.now() - startTime;
+            
+            const improvement = revisionEvaluation.score - evaluation.score;
+            
+            // Only accept revision if the score strictly improved by the configured threshold
+            if (improvement >= config.minimumImprovementScore) {
+              response.data = revisionResponse.data;
+              response.telemetry.finalHeuristicScore = revisionEvaluation.score;
+              response.telemetry.failedRules = revisionEvaluation.failedRules;
+              response.telemetry.adaptiveRevisionsCount = 1;
+              response.telemetry.revisionSucceeded = true;
+              response.telemetry.scoreImprovement = improvement;
+              response.telemetry.revisionRejectedReason = "ACCEPTED";
+              
+              // Accumulate tokens for accurate quota guard tracking
+              if (response.telemetry.usage && revisionResponse.telemetry.usage) {
+                response.telemetry.usage.promptTokens += revisionResponse.telemetry.usage.promptTokens;
+                response.telemetry.usage.completionTokens += revisionResponse.telemetry.usage.completionTokens;
+                response.telemetry.usage.totalTokens += revisionResponse.telemetry.usage.totalTokens;
+              }
+              if (response.telemetry.costEstimateUsd && revisionResponse.telemetry.costEstimateUsd) {
+                response.telemetry.costEstimateUsd += revisionResponse.telemetry.costEstimateUsd;
+              }
+            } else {
+              response.telemetry.revisionSucceeded = false;
+              response.telemetry.scoreImprovement = improvement > 0 ? improvement : 0;
+              response.telemetry.revisionRejectedReason = improvement > 0 ? "BELOW_THRESHOLD" : "NO_IMPROVEMENT";
+            }
+          } catch (revisionError) {
+             // Safe Exit: If revision fails or times out, swallow error and keep original output.
+             console.warn("[AIService] Adaptive revision failed. Falling back to original generation.", revisionError);
+             response.telemetry.revisionSucceeded = false;
+             response.telemetry.revisionLatencyMs = Date.now() - startTime;
+             response.telemetry.revisionRejectedReason = "REVISION_FAILED";
+          }
+        }
+      }
+
+        // Phase 4: Provider Learning (EMA and Routing)
+        if (config.mode === "adaptive" && response.telemetry.finalHeuristicScore !== undefined) {
+          try {
+            if (response.telemetry.fallbackUsed) {
+              response.telemetry.learningApplied = false;
+              response.telemetry.learningSkippedReason = "FALLBACK_USED";
+            } else if (response.telemetry.providerId === "ai-cache") {
+              response.telemetry.learningApplied = false;
+              response.telemetry.learningSkippedReason = "CACHED_RESPONSE";
+            } else if (response.telemetry.providerId === "deterministic" || response.telemetry.providerId === "mock") {
+              response.telemetry.learningApplied = false;
+              response.telemetry.learningSkippedReason = "PROVIDER_ERROR";
+            } else {
+              const learningResult = await CircuitBreakerStore.updateQualityScore(
+                response.telemetry.providerId,
+                "script-generation",
+                response.telemetry.finalHeuristicScore,
+                config.emaAlpha
+              );
+              response.telemetry.learningApplied = true;
+              response.telemetry.providerQualityBefore = learningResult.before;
+              response.telemetry.providerQualityAfter = learningResult.after;
+              response.telemetry.qualityDelta = learningResult.after - learningResult.before;
+            }
+          } catch (learningError) {
+             console.warn("[AIService] Provider learning failed.", learningError);
+             response.telemetry.learningApplied = false;
+             response.telemetry.learningSkippedReason = "PROVIDER_ERROR";
+          }
+        } else if (config.mode !== "adaptive") {
+          response.telemetry.learningApplied = false;
+          response.telemetry.learningSkippedReason = "ADAPTIVE_DISABLED";
+        }
+
       this.logTelemetry("Script Generation", response.telemetry);
 
       // Phase 8: Development Prompt Logging
@@ -135,6 +301,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Critical error in generateScriptPackage orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -169,6 +337,8 @@ export class AIService {
     const cached = await AICacheService.get<CompetitorProfileAnalysis>("competitor-analysis", competitor.username);
     if (cached) {
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "ai-cache",
         modelUsed: "cached-report",
         latencyMs: 0,
@@ -202,6 +372,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Error in generateCompetitorAnalysis orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -256,6 +428,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Error in generateContentIntelligence orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -291,6 +465,8 @@ export class AIService {
     const cached = await AICacheService.get<ContentDNAReport>("content-dna", cacheKey);
     if (cached) {
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "ai-cache",
         modelUsed: "cached-report",
         latencyMs: 0,
@@ -324,6 +500,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Error in generateContentDNA orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -357,6 +535,8 @@ export class AIService {
   ): Promise<{ data: RepurposeReport; telemetry: AITelemetry }> {
     if (preferredProvider === "deterministic" || process.env.REPURPOSE_PROVIDER === "deterministic" || process.env.AI_PROVIDER === "deterministic") {
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-engine",
         latencyMs: 0,
@@ -389,6 +569,8 @@ export class AIService {
     } catch (error) {
       console.error("[AIService] Error in generateRepurposePackage orchestration. Reverting to fallback:", error);
       const telemetry: AITelemetry = {
+        telemetryVersion: 1,
+        timestamp: new Date().toISOString(),
         providerId: "deterministic",
         modelUsed: "deterministic-fallback",
         latencyMs: 0,
@@ -415,8 +597,9 @@ export class AIService {
    * Structured logging for AI telemetry, token consumption, and cost estimation.
    */
   private logTelemetry(domain: string, telemetry: AITelemetry): void {
+    const scoreStr = telemetry.finalHeuristicScore !== undefined ? ` | Score: ${telemetry.finalHeuristicScore}` : '';
     console.info(
-      `[AIService Telemetry] Domain: [${domain}] | Provider: [${telemetry.providerId}] | Model: [${telemetry.modelUsed}] | Latency: ${telemetry.latencyMs}ms | Tokens: ${telemetry.usage?.totalTokens || 0} (Prompt: ${telemetry.usage?.promptTokens || 0}, Comp: ${telemetry.usage?.completionTokens || 0}) | Est. Cost: $${telemetry.costEstimateUsd || 0} | Fallback Used: ${telemetry.fallbackUsed}`
+      `[AIService Telemetry] Domain: [${domain}] | Provider: [${telemetry.providerId}] | Model: [${telemetry.modelUsed}] | Latency: ${telemetry.latencyMs}ms | Tokens: ${telemetry.usage?.totalTokens || 0} (Prompt: ${telemetry.usage?.promptTokens || 0}, Comp: ${telemetry.usage?.completionTokens || 0}) | Est. Cost: $${telemetry.costEstimateUsd || 0} | Fallback Used: ${telemetry.fallbackUsed}${scoreStr}`
     );
   }
 }

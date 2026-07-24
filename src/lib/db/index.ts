@@ -30,7 +30,7 @@ if (process.env.NODE_ENV !== "production" && client) {
  * Type-safe Drizzle ORM database instance.
  * Will be null if DATABASE_URL is not configured.
  */
-export const db = client ? drizzle(client, { schema }) : null;
+export const db = drizzle(client || postgres("postgres://dummy:dummy@localhost:5432/dummy"), { schema });
 
 /**
  * Gracefully terminates the PostgreSQL connection pool (DEVOPS-001).

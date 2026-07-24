@@ -55,10 +55,10 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. BUSINESS SUMMARY (Additional Requirement 1) */}
-      <Card className="border-violet-500/40 bg-gradient-to-br from-violet-950/30 via-card/90 to-card/90 p-6 shadow-xl shadow-violet-950/20 backdrop-blur-md">
+      <Card className="border-accent/40 bg-gradient-to-br from-accent/30 via-card/90 to-card/90 p-6 shadow-xl shadow-accent/20 backdrop-blur-md">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/20 text-violet-300">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/20 text-accent">
               <Compass className="h-4 w-4" />
             </div>
             <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
@@ -72,7 +72,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Market Position</p>
-              <p className="mt-1 text-sm font-bold text-violet-300">{businessSummary.marketPosition}</p>
+              <p className="mt-1 text-sm font-bold text-accent">{businessSummary.marketPosition}</p>
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Primary Audience</p>
@@ -84,7 +84,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             </div>
             <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Content Maturity</p>
-              <p className="mt-1 text-sm font-bold text-fuchsia-300">{businessSummary.contentMaturity}</p>
+              <p className="mt-1 text-sm font-bold text-accent">{businessSummary.contentMaturity}</p>
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-violet-500/40">
+            <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-accent/40">
               <Image
                 src={accountOverview.profilePictureUrl}
                 alt={accountOverview.username}
@@ -108,7 +108,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-bold text-foreground">@{accountOverview.username}</h3>
                 {accountOverview.verifiedStatus && (
-                  <Badge className="bg-violet-600 text-[10px] text-white">Verified</Badge>
+                  <Badge className="bg-accent text-[10px] text-white">Verified</Badge>
                 )}
               </div>
               <p className="text-sm text-muted-foreground">{accountOverview.displayName}</p>
@@ -130,7 +130,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Account Age</p>
-              <p className="text-lg font-bold text-violet-300">{accountOverview.estimatedAccountAge}</p>
+              <p className="text-lg font-bold text-accent">{accountOverview.estimatedAccountAge}</p>
             </div>
           </div>
         </div>
@@ -139,13 +139,13 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       {/* 3. PERFORMANCE METRICS */}
       <div>
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
-          <TrendingUp className="h-4 w-4 text-violet-400" />
+          <TrendingUp className="h-4 w-4 text-accent" />
           Performance Metrics
         </h4>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           <Card className="border-border/50 bg-card/70 p-4">
             <p className="text-xs font-medium text-muted-foreground">Est. Engagement Rate</p>
-            <p className="mt-1 text-2xl font-black text-violet-400">{performanceMetrics.estimatedEngagementRate}%</p>
+            <p className="mt-1 text-2xl font-black text-accent">{performanceMetrics.estimatedEngagementRate}%</p>
           </Card>
           <Card className="border-border/50 bg-card/70 p-4">
             <p className="text-xs font-medium text-muted-foreground">Avg Likes</p>
@@ -199,14 +199,14 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       {/* 4. BRAND POSITION */}
       <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
-          <Award className="h-4 w-4 text-fuchsia-400" />
+          <Award className="h-4 w-4 text-accent" />
           Brand Positioning Matrix
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-1">
             <span className="text-xs text-muted-foreground">Industry & Brand Type</span>
             <p className="text-sm font-bold text-foreground">{brandPosition.industry}</p>
-            <Badge variant="outline" className="border-violet-500/30 text-[11px] text-violet-300">
+            <Badge variant="outline" className="border-accent/30 text-[11px] text-accent">
               {brandPosition.brandType}
             </Badge>
           </div>
@@ -223,7 +223,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           <div className="space-y-1">
             <span className="text-xs text-muted-foreground">Price & Market Position</span>
             <p className="text-sm font-bold text-foreground">{brandPosition.pricePosition}</p>
-            <Badge className="bg-fuchsia-500/20 text-fuchsia-300 border border-fuchsia-500/30">
+            <Badge className="bg-accent/20 text-accent border border-accent/30">
               {brandPosition.marketPosition}
             </Badge>
           </div>
@@ -233,7 +233,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       {/* 5. CONTENT PILLARS */}
       <div>
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
-          <Layers className="h-4 w-4 text-violet-400" />
+          <Layers className="h-4 w-4 text-accent" />
           Primary Content Pillars
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -241,7 +241,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             <Card key={idx} className="border-border/50 bg-card/70 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-foreground">{pillar.name}</span>
-                <Badge className="bg-violet-500/15 text-violet-300 font-bold">{pillar.estimatedPercentage}%</Badge>
+                <Badge className="bg-accent/15 text-accent font-bold">{pillar.estimatedPercentage}%</Badge>
               </div>
               <div className="space-y-1">
                 <div className="flex justify-between text-[11px] text-muted-foreground">
@@ -272,7 +272,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           </div>
           <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
             <p className="text-xs text-muted-foreground">CTA Frequency</p>
-            <p className="mt-1 text-sm font-bold text-violet-300">{captionAnalysis.ctaFrequency}</p>
+            <p className="mt-1 text-sm font-bold text-accent">{captionAnalysis.ctaFrequency}</p>
           </div>
           <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
             <p className="text-xs text-muted-foreground">Hashtag Density</p>
@@ -284,7 +284,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           </div>
           <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
             <p className="text-xs text-muted-foreground">Storytelling Arc</p>
-            <p className="mt-1 text-sm font-bold text-fuchsia-300">{captionAnalysis.storytellingLevel}</p>
+            <p className="mt-1 text-sm font-bold text-accent">{captionAnalysis.storytellingLevel}</p>
           </div>
         </div>
       </Card>
@@ -292,7 +292,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       {/* 7. AUDIENCE PSYCHOLOGY */}
       <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
-          <BrainCircuit className="h-4 w-4 text-fuchsia-400" />
+          <BrainCircuit className="h-4 w-4 text-accent" />
           Audience Psychology & Drivers
         </h4>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -303,13 +303,13 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             </div>
             <div>
               <p className="text-xs font-medium text-muted-foreground">Buying Intent</p>
-              <p className="text-sm font-bold text-violet-300 mt-0.5">{audiencePsychology.buyingIntent}</p>
+              <p className="text-sm font-bold text-accent mt-0.5">{audiencePsychology.buyingIntent}</p>
             </div>
             <div>
               <p className="text-xs font-medium text-muted-foreground mb-1.5">Emotional Triggers</p>
               <div className="flex flex-wrap gap-1.5">
                 {audiencePsychology.emotionalTriggers.map((t, i) => (
-                  <span key={i} className="rounded-md bg-violet-500/10 px-2.5 py-1 text-xs text-violet-200 border border-violet-500/20">
+                  <span key={i} className="rounded-md bg-accent/10 px-2.5 py-1 text-xs text-accent border border-accent/20">
                     {t}
                   </span>
                 ))}
@@ -322,7 +322,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
               <p className="text-xs font-medium text-muted-foreground mb-1.5">Decision Drivers & Proof</p>
               <div className="flex flex-wrap gap-1.5">
                 {audiencePsychology.decisionDrivers.map((d, i) => (
-                  <span key={i} className="rounded-md bg-fuchsia-500/10 px-2.5 py-1 text-xs text-fuchsia-200 border border-fuchsia-500/20">
+                  <span key={i} className="rounded-md bg-accent/10 px-2.5 py-1 text-xs text-foreground border border-accent/20">
                     {d}
                   </span>
                 ))}
@@ -376,15 +376,15 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </div>
 
       {/* 10. RECOMMENDATIONS (Additional Requirement 2) */}
-      <Card className="border-violet-500/30 bg-gradient-to-r from-violet-950/20 via-card/80 to-card/80 p-6">
-        <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-violet-300 uppercase tracking-wide">
+      <Card className="border-accent/30 bg-gradient-to-r from-accent/20 via-card/80 to-card/80 p-6">
+        <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-wide">
           <Lightbulb className="h-4 w-4 text-amber-400 animate-pulse" />
           Strategic Recommendations & Action Plan
         </h4>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {recommendations.map((rec, idx) => (
-            <div key={idx} className="flex items-center gap-3 rounded-xl border border-violet-500/20 bg-card/60 p-3.5">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-violet-600/20 text-violet-300 font-bold text-xs">
+            <div key={idx} className="flex items-center gap-3 rounded-xl border border-accent/20 bg-card/60 p-3.5">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-accent font-bold text-xs">
                 {idx + 1}
               </div>
               <span className="text-xs font-semibold text-foreground leading-snug">{rec}</span>
@@ -394,10 +394,10 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </Card>
 
       {/* 11. OVERALL INTELLIGENCE SCORE */}
-      <Card className="overflow-hidden border-violet-500/50 bg-gradient-to-br from-violet-950/40 via-card to-card p-8 shadow-2xl shadow-violet-950/30">
+      <Card className="overflow-hidden border-accent/50 bg-gradient-to-br from-accent/40 via-card to-card p-8 shadow-2xl shadow-accent/30">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
-            <Badge className="bg-violet-500/20 text-violet-300 border border-violet-500/40">
+            <Badge className="bg-accent/20 text-accent border border-accent/40">
               Composite Benchmark
             </Badge>
             <h3 className="text-2xl font-black tracking-tight text-foreground sm:text-3xl">
@@ -409,9 +409,9 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           </div>
 
           <div className="flex items-center gap-6 shrink-0">
-            <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full border-4 border-violet-500/60 bg-violet-950/50 shadow-inner">
+            <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full border-4 border-accent/60 bg-accent/50 shadow-inner">
               <span className="text-3xl font-black text-white">{overallIntelligenceScore.overallScore}</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-violet-300">Score</span>
+              <span className="text-[10px] font-bold uppercase tracking-wider text-accent">Score</span>
             </div>
           </div>
         </div>
@@ -451,7 +451,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             <span className="text-xs text-muted-foreground">AI Confidence</span>
             <div className="flex items-center gap-2">
               <Progress value={overallIntelligenceScore.confidence} className="h-1.5 flex-1" />
-              <span className="text-xs font-bold text-violet-400">{overallIntelligenceScore.confidence}%</span>
+              <span className="text-xs font-bold text-accent">{overallIntelligenceScore.confidence}%</span>
             </div>
           </div>
         </div>
@@ -462,7 +462,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
         <Button
           size="lg"
           onClick={() => onCollectContent?.(analysis.username)}
-          className="w-full sm:w-auto bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-violet-950/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+          className="w-full sm:w-auto bg-accent hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-accent/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Collect Content →</span>
         </Button>

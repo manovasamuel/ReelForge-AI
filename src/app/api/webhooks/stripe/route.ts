@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repository";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 import type { PlanId } from "@/services/billing/plan.interface";
 import { db } from "@/lib/db";
 import { stripeWebhookEvents } from "@/lib/db/schema";
@@ -92,13 +93,19 @@ export async function POST(req: NextRequest) {
         const session = event.data.object as any;
         if (session.mode === "subscription") {
           const userId = session.client_reference_id || (session.metadata?.userId as string);
+          let workspaceId = session.metadata?.workspaceId as string | undefined;
+          if (!workspaceId && userId) {
+            const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+            if (workspace) workspaceId = workspace.id;
+          }
           const planId = (session.metadata?.planId || "pro") as PlanId;
           const customerId = typeof session.customer === "string" ? session.customer : session.customer?.id;
           const subscriptionId = typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
 
-          if (userId && subscriptionId) {
+          if (workspaceId && subscriptionId) {
             await subRepo.upsertSubscription({
-              userId,
+              workspaceId: workspaceId as string,
+              userId: userId as string | undefined,
               stripeCustomerId: customerId,
               stripeSubscriptionId: subscriptionId,
               status: "active",

@@ -4,6 +4,7 @@ import { SubscriptionRepository } from "@/lib/db/repositories/subscription.repos
 import { PlanRepository } from "@/lib/db/repositories/plan.repository";
 import { UsageRepository } from "@/lib/db/repositories/usage.repository";
 import { AIOrchestratorProvider } from "@/services/ai/providers/orchestrator.provider";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 
 const subRepo = new SubscriptionRepository();
 const planRepo = new PlanRepository();
@@ -35,12 +36,17 @@ export async function GET() {
       );
     }
 
-    // 1. Query persisted subscription, plan, and usage records for the authenticated user
-    const sub = await subRepo.getSubscriptionByUserId(userId);
-    const plan = await planRepo.getPlan(sub.planId);
-    const usage = await usageRepo.getCurrentUsage(userId);
+    // 1. Resolve active workspace
+    const workspace = await WorkspaceService.resolveActiveWorkspace(userId);
+    if (!workspace) throw new Error("No active workspace found");
+    const workspaceId = workspace.id;
 
-    // 2. Perform safe token accounting and quota calculations
+    // 2. Query persisted subscription, plan, and usage records for the authenticated workspace
+    const sub = await subRepo.getSubscriptionByWorkspaceId(workspaceId);
+    const plan = await planRepo.getPlan(sub.planId);
+    const usage = await usageRepo.getCurrentUsage(workspaceId);
+
+    // 3. Perform safe token accounting and quota calculations
     const promptTokens = Number(usage.aiPromptTokens || 0);
     const completionTokens = Number(usage.aiCompletionTokens || 0);
     const totalTokens = promptTokens + completionTokens;
@@ -71,10 +77,10 @@ export async function GET() {
       totalEstimatedCostUsd = !isNaN(parsedCost) ? parsedCost.toFixed(4) : "0.0000";
     }
 
-    // 3. Retrieve production-safe runtime health from AIOrchestratorProvider
+    // 4. Retrieve production-safe runtime health from AIOrchestratorProvider
     const runtimeHealth = AIOrchestratorProvider.getHealthStatus();
 
-    // 4. Return structured summary distinguishing persisted metrics from runtime health
+    // 5. Return structured summary distinguishing persisted metrics from runtime health
     return NextResponse.json(
       {
         status: "ok",

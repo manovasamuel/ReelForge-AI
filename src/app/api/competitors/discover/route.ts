@@ -24,7 +24,9 @@ export async function POST(request: Request) {
     const providerId = body?.provider || request.headers.get("x-competitors-provider") || undefined;
     const provider = getCompetitorProvider(providerId);
     const service = new CompetitorService(provider);
-    const competitors = await service.discoverCompetitors(brandReport);
+    
+    const baseProfile = body?.baseProfile || undefined;
+    const competitors = await service.discoverCompetitors(brandReport, baseProfile);
 
     return NextResponse.json({ data: competitors }, { status: 200 });
   } catch (error) {

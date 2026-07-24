@@ -1,4 +1,5 @@
 // Domain types for Phase 8 — Strategy + Script Generation Engine (MVP)
+// @deprecated: ReelContentPackage and related interfaces are deprecated in favor of ProductionBlueprint (v1.0).
 
 export interface ContentStrategySection {
   contentGoal: string;
@@ -89,6 +90,9 @@ export interface ProductionScoreSection {
   estimatedPerformance: string;
 }
 
+/**
+ * @deprecated Use ProductionBlueprint instead.
+ */
 export interface ReelContentPackage {
   id: string;
   createdAt: string;
@@ -103,4 +107,115 @@ export interface ReelContentPackage {
   checklist: ContentChecklistSection;
   productionSummary: ProductionSummarySection;
   productionScore: ProductionScoreSection;
+}
+
+// ============================================================================
+// REELFORGE PRODUCT TRANSFORMATION: PRODUCTION BLUEPRINT (v1.0)
+// ============================================================================
+
+export interface GenerationMetadata {
+  confidence: number;
+  reasoning: string;
+  generatedAt: string;
+  model: string;
+  version: string;
+}
+
+export interface CreativeConcept {
+  id: string;
+  title: string;
+  hook: string;
+  coreIdea: string;
+  audienceEmotion: string;
+  visualHook: string;
+  whyItWorks: string;
+}
+
+export interface BlueprintStrategy {
+  objective: string;
+  targetAudience: string;
+  desiredEmotion: string;
+  competitorInsight: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintHook {
+  hookText: string;
+  whyItWorks: string;
+  patternInterrupt: string;
+  first3Seconds: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintProduction {
+  openingShot: string;
+  cameraAngle: string;
+  cameraMovement: string;
+  lighting: string;
+  background: string;
+  actorPosition: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintDialogue {
+  tanglishVersion: string;
+  englishVersion: string;
+  deliveryNotes: string;
+  pauseTiming: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintVisualFlow {
+  sceneBreakdown: string[];
+  bRoll: string[];
+  textOverlays: string[];
+  transitions: string[];
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintRetention {
+  curiosityLoops: string;
+  patternInterrupts: string;
+  engagementMoments: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintCTA {
+  spokenCTA: string;
+  visualCTA: string;
+  endScreen: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintCaption {
+  captionText: string;
+  emojiStrategy: string;
+  keywords: string[];
+  metadata?: GenerationMetadata;
+}
+
+export interface BlueprintDiscovery {
+  hashtags: string[];
+  seoKeywords: string[];
+  postingSuggestions: string;
+  metadata?: GenerationMetadata;
+}
+
+export interface ProductionBlueprint {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  version: "1.0"; // Enforces versioning
+  
+  // Independent modular sections
+  // Optional to support incremental generation
+  strategy?: BlueprintStrategy;
+  hook?: BlueprintHook;
+  production?: BlueprintProduction;
+  dialogue?: BlueprintDialogue;
+  visualFlow?: BlueprintVisualFlow;
+  retention?: BlueprintRetention;
+  cta?: BlueprintCTA;
+  caption?: BlueprintCaption;
+  discovery?: BlueprintDiscovery;
 }

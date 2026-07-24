@@ -1,8 +1,10 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
-import { db, schema } from "@/lib/db";
+import { db } from "@/lib/db";
+import * as schema from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
+import { WorkspaceService } from "@/services/workspaces/workspace.service";
 import { isOfflineDevMode } from "@/lib/auth/config";
 
 export async function POST(req: Request) {
@@ -89,7 +91,14 @@ export async function POST(req: Request) {
           const now = new Date();
           const periodEnd = new Date(now.getFullYear(), now.getMonth() + 1, now.getDate());
 
-          // 1. Initialize Subscriptions (tier = "free")
+          // 1. Create Personal Workspace
+          const workspace = await WorkspaceService.createWorkspace(
+            "Personal Workspace",
+            newUser.id,
+            newUser.avatarUrl || undefined
+          );
+
+          // 2. Initialize Subscriptions (tier = "free")
           await db.insert(schema.subscriptions).values({
             userId: newUser.id,
             status: "active",
@@ -98,7 +107,7 @@ export async function POST(req: Request) {
             cancelAtPeriodEnd: false,
           });
 
-          // 2. Initialize Usage metrics (generic counters only, 0 balances/limits)
+          // 3. Initialize Usage metrics (generic counters only, 0 balances/limits)
           await db.insert(schema.usage).values({
             userId: newUser.id,
             billingPeriodStart: now,
@@ -109,7 +118,7 @@ export async function POST(req: Request) {
             totalCostUsd: "0.0000",
           });
 
-          // 3. Initialize User Preferences
+          // 4. Initialize User Preferences
           await db.insert(schema.userPreferences).values({
             userId: newUser.id,
             activeScraperProvider: "apify",

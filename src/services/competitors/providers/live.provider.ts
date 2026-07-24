@@ -1,6 +1,7 @@
 import type { ICompetitorProvider } from "../provider.interface";
 import type { Competitor } from "@/types/competitor";
 import type { BrandIntelligenceReport } from "@/types/brand-intelligence";
+import type { ProfileClassificationResult } from "@/types/competitor-intelligence";
 import { getAIOrchestrator } from "@/services/ai/providers";
 import { PromptBuilder } from "@/services/ai/prompt.builder";
 import { normalizeInstagramUsername } from "@/services/instagram/instagram.utils";
@@ -22,7 +23,7 @@ export class LiveCompetitorProvider implements ICompetitorProvider {
   readonly id = "live";
   readonly name = "Live AI Candidate & Cache Bridge";
 
-  async discoverCompetitors(report: BrandIntelligenceReport): Promise<Competitor[]> {
+  async discoverCompetitors(report: BrandIntelligenceReport, strategy?: ProfileClassificationResult): Promise<Competitor[]> {
     let rawCandidates: Competitor[] = [];
 
     // 1. Check if deterministic mode is explicitly preferred
@@ -34,7 +35,7 @@ export class LiveCompetitorProvider implements ICompetitorProvider {
         const aiProvider = getAIOrchestrator();
         if (aiProvider.isAvailable() || process.env.AI_PROVIDER === "gemini" || process.env.COMPETITORS_PROVIDER === "live") {
           const fallback = inferCompetitors(report);
-          const payload = PromptBuilder.buildCompetitorDiscoveryPrompt(report, fallback);
+          const payload = PromptBuilder.buildCompetitorDiscoveryPrompt(report, fallback, strategy);
           const response = await aiProvider.generateStructured<Competitor[]>(payload);
           if (response?.data && Array.isArray(response.data) && response.data.length > 0) {
             rawCandidates = response.data;
