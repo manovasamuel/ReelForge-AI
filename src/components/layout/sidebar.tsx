@@ -13,6 +13,9 @@ import {
   X,
   Film,
   ChevronLeft,
+  BarChart3,
+  Settings as SettingsIcon,
+  Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -39,10 +42,34 @@ const NAV_ITEMS: NavItem[] = [
     pattern: /^\/$/,
   },
   {
-    label: "Profiles",
-    href: ROUTES.PROFILES,
-    icon: Users,
-    pattern: /^\/profiles/,
+    label: "Workspace",
+    href: "/workspace",
+    icon: Users, // Or any appropriate icon like LayoutGrid
+    pattern: /^\/workspace/,
+  },
+  {
+    label: "Studio",
+    href: "/studio/new",
+    icon: Sparkles,
+    pattern: /^\/studio/,
+  },
+  {
+    label: "Analytics",
+    href: "/analytics",
+    icon: BarChart3,
+    pattern: /^\/analytics/,
+  },
+  {
+    label: "Settings",
+    href: "/settings",
+    icon: SettingsIcon,
+    pattern: /^\/settings/,
+  },
+  {
+    label: "Export",
+    href: "/export",
+    icon: Download,
+    pattern: /^\/export/,
   },
 ];
 

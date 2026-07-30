@@ -1,63 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
 import { PageContainer, PageHeader } from "@/components/layout";
-import {
-  ProfileUrlInput,
-  ProfileCard,
-  ProfileSkeleton,
-  ProfileError,
-} from "@/components/profiles";
-import {
-  BrandIntelligenceCard,
-  BrandIntelligenceSkeleton,
-} from "@/components/brand-intelligence";
-import {
-  CompetitorList,
-  CompetitorSkeleton,
-} from "@/components/competitors";
-import {
-  CompetitorAnalysisDashboard,
-  CompetitorAnalysisSkeleton,
-} from "@/components/competitor-analysis";
-import {
-  ContentCollectionDashboard,
-  ContentCollectionSkeleton,
-} from "@/components/content-collection";
-import {
-  ContentIntelligenceDashboard,
-  ContentIntelligenceSkeleton,
-} from "@/components/content-intelligence";
-import {
-  ContentDNADashboard,
-  ContentDNASkeleton,
-} from "@/components/content-dna";
-import {
-  ScriptGenerationDashboard,
-  ScriptGenerationSkeleton,
-} from "@/components/script-generation";
-import {
-  RepurposeDashboard,
-  RepurposeSkeleton,
-} from "@/components/repurpose";
-import {
-  WorkflowTracker,
-  StepHeader,
-  SummaryPanel,
-  EmptyOnboarding,
-  SaveProjectModal,
-  type WorkflowStepId,
-} from "@/components/workflow";
+import { ProfileUrlInput, ProfileCard, ProfileSkeleton, ProfileError } from "@/components/profiles";
+import { BrandIntelligenceCard, BrandIntelligenceSkeleton } from "@/components/brand-intelligence";
+import { CompetitorList, CompetitorSkeleton } from "@/components/competitors";
+import { CompetitorAnalysisDashboard, CompetitorAnalysisSkeleton } from "@/components/competitor-analysis";
+import { ContentCollectionDashboard, ContentCollectionSkeleton } from "@/components/content-collection";
+import { ContentIntelligenceDashboard, ContentIntelligenceSkeleton } from "@/components/content-intelligence";
+import { ContentDNADashboard, ContentDNASkeleton } from "@/components/content-dna";
+import { ScriptGenerationDashboard, ScriptGenerationSkeleton } from "@/components/script-generation";
+import { RepurposeDashboard, RepurposeSkeleton } from "@/components/repurpose";
+import { WorkflowTracker, StepHeader, SummaryPanel, EmptyOnboarding, SaveProjectModal, type WorkflowStepId } from "@/components/workflow";
 import { Button } from "@/components/ui/button";
-import { FolderGit2, Save, LayoutGrid, Download, Settings as SettingsIcon } from "lucide-react";
+import { FolderGit2, Save } from "lucide-react";
 import { WorkspaceService } from "@/services/projects";
-import {
-  WorkspaceSidebar,
-  WorkspaceDashboard,
-  type WorkspaceSection,
-} from "@/components/workspace";
-import { ExportCenter } from "@/components/export";
-import { SettingsDashboard } from "@/components/settings";
 import { SettingsService } from "@/services/settings";
 import { showToast } from "@/components/ui/toast";
 import type { InstagramProfile } from "@/types/instagram";
@@ -69,65 +27,25 @@ import type { ContentIntelligenceReport } from "@/types/content-intelligence";
 import type { ContentDNAReport } from "@/types/content-dna";
 import type { ReelContentPackage } from "@/types/script-generation";
 import type { RepurposeReport } from "@/types/repurpose";
-import type { SavedProject, ProjectSortOption, StorageStats } from "@/types/project";
+import type { SavedProject } from "@/types/project";
 
-// ─── State machine types ───────────────────────────────────────────
-type AnalysisState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; profile: InstagramProfile }
-  | { status: "error"; message: string };
+type AnalysisState = { status: "idle" } | { status: "loading" } | { status: "success"; profile: InstagramProfile } | { status: "error"; message: string };
+type BrandIntelligenceState = { status: "idle" } | { status: "loading" } | { status: "success"; report: BrandIntelligenceReport } | { status: "error"; message: string };
+type CompetitorsState = { status: "idle" } | { status: "loading" } | { status: "success"; competitors: Competitor[] } | { status: "error"; message: string };
+type CompetitorAnalysisState = { status: "idle" } | { status: "loading"; competitor: Competitor } | { status: "success"; competitor: Competitor; analysis: CompetitorProfileAnalysis } | { status: "error"; message: string };
+type ContentCollectionState = { status: "idle" } | { status: "loading"; username: string } | { status: "success"; username: string; items: CollectedContentItem[] } | { status: "error"; message: string };
+type ContentIntelligenceState = { status: "idle" } | { status: "loading"; count: number } | { status: "success"; reports: ContentIntelligenceReport[] } | { status: "error"; message: string };
+type ContentDNAState = { status: "idle" } | { status: "loading"; count: number } | { status: "success"; report: ContentDNAReport } | { status: "error"; message: string };
+type ScriptGenerationState = { status: "idle" } | { status: "loading" } | { status: "success"; pkg: ReelContentPackage } | { status: "error"; message: string };
+type RepurposeState = { status: "idle" } | { status: "loading" } | { status: "success"; report: RepurposeReport } | { status: "error"; message: string };
 
-type BrandIntelligenceState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; report: BrandIntelligenceReport }
-  | { status: "error"; message: string };
+export default function StudioPage() {
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const id = params?.id as string;
+  const activeStepParam = searchParams?.get("step") || "profile";
 
-type CompetitorsState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; competitors: Competitor[] }
-  | { status: "error"; message: string };
-
-type CompetitorAnalysisState =
-  | { status: "idle" }
-  | { status: "loading"; competitor: Competitor }
-  | { status: "success"; competitor: Competitor; analysis: CompetitorProfileAnalysis }
-  | { status: "error"; message: string };
-
-type ContentCollectionState =
-  | { status: "idle" }
-  | { status: "loading"; username: string }
-  | { status: "success"; username: string; items: CollectedContentItem[] }
-  | { status: "error"; message: string };
-
-type ContentIntelligenceState =
-  | { status: "idle" }
-  | { status: "loading"; count: number }
-  | { status: "success"; reports: ContentIntelligenceReport[] }
-  | { status: "error"; message: string };
-
-type ContentDNAState =
-  | { status: "idle" }
-  | { status: "loading"; count: number }
-  | { status: "success"; report: ContentDNAReport }
-  | { status: "error"; message: string };
-
-type ScriptGenerationState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; pkg: ReelContentPackage }
-  | { status: "error"; message: string };
-
-type RepurposeState =
-  | { status: "idle" }
-  | { status: "loading" }
-  | { status: "success"; report: RepurposeReport }
-  | { status: "error"; message: string };
-
-// ─── Page ──────────────────────────────────────────────────────────
-export default function ProfilesPage() {
   const [state, setState] = useState<AnalysisState>({ status: "idle" });
   const [brandState, setBrandState] = useState<BrandIntelligenceState>({ status: "idle" });
   const [compState, setCompState] = useState<CompetitorsState>({ status: "idle" });
@@ -139,48 +57,17 @@ export default function ProfilesPage() {
   const [repurposeState, setRepurposeState] = useState<RepurposeState>({ status: "idle" });
   const [selectedCompetitor, setSelectedCompetitor] = useState<string | null>(null);
 
-  // Workspace, Export & Settings state
-  const [viewMode, setViewMode] = useState<"studio" | "workspace" | "export" | "settings">("studio");
-  const [workspaceSection, setWorkspaceSection] = useState<WorkspaceSection>("all");
-  const [projects, setProjects] = useState<SavedProject[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sortOption, setSortOption] = useState<ProjectSortOption>("newest");
-  const [stats, setStats] = useState<StorageStats>({
-    totalProjects: 0,
-    totalStorageUsedBytes: 0,
-    totalStorageUsedFormatted: "0 B",
-    largestProjectName: "None",
-    largestProjectSizeBytes: 0,
-    largestProjectSizeFormatted: "0 B",
-    averageProjectSizeBytes: 0,
-    averageProjectSizeFormatted: "0 B",
-    lastSaved: null,
-  });
   const [isSaveModalOpen, setIsSaveModalOpen] = useState(false);
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
   const [currentInstagramUrl, setCurrentInstagramUrl] = useState("");
 
-  async function loadWorkspaceData() {
-    const all = await WorkspaceService.getAll(searchQuery, sortOption);
-    let filtered = all;
-    if (workspaceSection === "recent") {
-      filtered = all.slice(0, 5);
-    }
-    setProjects(filtered);
-    const st = await WorkspaceService.getStats(all);
-    setStats(st);
-  }
-
   useEffect(() => {
-    const s = SettingsService.getSettings();
-    if (s?.workspace?.defaultLandingPage) {
-      setViewMode(s.workspace.defaultLandingPage);
+    if (id && id !== 'new') {
+      WorkspaceService.getById(id).then(proj => {
+        if (proj) handleOpenProject(proj);
+      });
     }
-  }, []);
-
-  useEffect(() => {
-    loadWorkspaceData();
-  }, [searchQuery, sortOption, workspaceSection]);
+  }, [id]);
 
   function handleCreateNewAnalysis() {
     setState({ status: "idle" });
@@ -195,7 +82,7 @@ export default function ProfilesPage() {
     setSelectedCompetitor(null);
     setCurrentProjectId(null);
     setCurrentInstagramUrl("");
-    setViewMode("studio");
+    
   }
 
   async function handleSaveProject(projectName: string) {
@@ -231,7 +118,7 @@ export default function ProfilesPage() {
       "Project Saved to Workspace",
       `Successfully saved "${projectName}" to Workspace.`
     );
-    loadWorkspaceData();
+    
   }
 
   function handleOpenProject(project: SavedProject) {
@@ -301,7 +188,7 @@ export default function ProfilesPage() {
     }
 
     setSelectedCompetitor(project.state.selectedCompetitor || null);
-    setViewMode("studio");
+    
 
     showToast(
       "Project Restored",
@@ -311,14 +198,14 @@ export default function ProfilesPage() {
 
   async function handleRenameProject(id: string, newName: string) {
     await WorkspaceService.rename(id, newName);
-    await loadWorkspaceData();
+    await 
     showToast("Project Renamed", `Renamed to "${newName}".`);
   }
 
   async function handleDuplicateProject(id: string) {
     const copy = await WorkspaceService.duplicate(id);
     if (copy) {
-      await loadWorkspaceData();
+      await 
       showToast("Project Duplicated", `Created duplicate "${copy.name}".`);
     }
   }
@@ -326,7 +213,7 @@ export default function ProfilesPage() {
   async function handleDeleteProject(id: string) {
     await WorkspaceService.delete(id);
     if (currentProjectId === id) setCurrentProjectId(null);
-    await loadWorkspaceData();
+    await 
     showToast("Project Deleted", "Permanent deletion completed.");
   }
 
@@ -733,149 +620,14 @@ export default function ProfilesPage() {
   const isPhase8Complete = scriptGenerationState.status === "success";
   const isPhase9Complete = repurposeState.status === "success";
 
-  const activeProjectForExport: SavedProject | null =
-    currentProjectId && projects.find((p) => p.id === currentProjectId)
-      ? projects.find((p) => p.id === currentProjectId)!
-      : state.status === "success"
-      ? {
-          id: currentProjectId || "temp_live_export",
-          version: "1.2.0",
-          name: `@${state.profile.username} Omnichannel Report`,
-          instagramUrl: currentInstagramUrl || `https://instagram.com/${state.profile.username}`,
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-          state: {
-            profile: state.profile,
-            brandReport: brandState.status === "success" ? brandState.report : null,
-            competitors: compState.status === "success" ? compState.competitors : null,
-            competitorAnalysis:
-              compAnalysisState.status === "success"
-                ? { competitor: compAnalysisState.competitor, analysis: compAnalysisState.analysis }
-                : null,
-            contentCollection:
-              contentCollectionState.status === "success"
-                ? { username: contentCollectionState.username, items: contentCollectionState.items }
-                : null,
-            contentIntelligence:
-              contentIntelligenceState.status === "success" ? contentIntelligenceState.reports : null,
-            contentDNA: contentDNAState.status === "success" ? contentDNAState.report : null,
-            scriptPackage: scriptGenerationState.status === "success" ? scriptGenerationState.pkg : null,
-            repurposePackage: repurposeState.status === "success" ? repurposeState.report : null,
-            selectedCompetitor,
-          },
-        }
-      : null;
-
+  
   return (
     <PageContainer>
-      {/* Top Studio vs Workspace vs Export Navigation Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6 p-4 rounded-2xl border border-violet-500/30 bg-card/80 backdrop-blur-md shadow-lg print:hidden">
-        <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-md">
-            <FolderGit2 className="h-5 w-5" />
-          </div>
-          <div>
-            <h2 className="text-sm font-bold text-white">ReelForge AI v1.3 Platform</h2>
-            <p className="text-[11px] text-muted-foreground">Studio Analysis, Workspace Repository, Export Hub & Provider Studio</p>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          {viewMode === "studio" && completedSteps.length > 0 && (
-            <Button
-              onClick={() => setIsSaveModalOpen(true)}
-              size="sm"
-              className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-xs gap-1.5 px-3.5 shadow-md shadow-violet-950/40"
-            >
-              <Save className="h-3.5 w-3.5" /> Save
-            </Button>
-          )}
-
-          <div className="inline-flex rounded-xl bg-background/60 p-1 border border-border/80">
-            <button
-              onClick={() => setViewMode("studio")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                viewMode === "studio" ? "bg-violet-600 text-white shadow" : "text-muted-foreground hover:text-white"
-              }`}
-            >
-              Studio
-            </button>
-            <button
-              onClick={() => {
-                loadWorkspaceData();
-                setViewMode("workspace");
-              }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                viewMode === "workspace" ? "bg-violet-600 text-white shadow" : "text-muted-foreground hover:text-white"
-              }`}
-            >
-              Workspace
-            </button>
-            <button
-              onClick={() => setViewMode("export")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                viewMode === "export" ? "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow font-bold" : "text-muted-foreground hover:text-white"
-              }`}
-            >
-              <Download className="h-3 w-3" /> Export Center
-            </button>
-            <button
-              onClick={() => setViewMode("settings")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 ${
-                viewMode === "settings" ? "bg-violet-600 text-white shadow font-bold" : "text-muted-foreground hover:text-white"
-              }`}
-            >
-              <SettingsIcon className="h-3 w-3" /> Settings
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {viewMode === "settings" ? (
-        <SettingsDashboard />
-      ) : viewMode === "export" ? (
-        <ExportCenter project={activeProjectForExport} />
-      ) : viewMode === "workspace" ? (
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start animate-in fade-in duration-300">
-          <aside className="lg:col-span-1 w-full">
-            <WorkspaceSidebar
-              activeSection={workspaceSection}
-              onSelectSection={(sec) => {
-                if (sec === "new") {
-                  handleCreateNewAnalysis();
-                } else {
-                  setWorkspaceSection(sec);
-                }
-              }}
-              stats={stats}
-            />
-          </aside>
-          <div className="lg:col-span-3">
-            <WorkspaceDashboard
-              projects={projects}
-              searchQuery={searchQuery}
-              onSearchChange={setSearchQuery}
-              sortOption={sortOption}
-              onSortChange={setSortOption}
-              onOpenProject={handleOpenProject}
-              onRenameProject={handleRenameProject}
-              onDuplicateProject={handleDuplicateProject}
-              onDeleteProject={handleDeleteProject}
-              onCreateNew={handleCreateNewAnalysis}
-            />
-          </div>
-        </div>
-      ) : (
-        <>
-          {/* Horizontal Workflow Progress Tracker */}
-          <WorkflowTracker completedSteps={completedSteps} activeStep={activeStep} />
-
-          <PageHeader
-            title="Instagram Profile Analysis"
-            description="Paste an Instagram profile URL to extract and analyze their content strategy."
-          />
-
-      {/* URL Input — always visible */}
+      <WorkflowTracker completedSteps={completedSteps} activeStep={activeStep} />
+      <PageHeader
+        title="Instagram Profile Analysis"
+        description="Paste an Instagram profile URL to extract and analyze their content strategy."
+      />
       <div className="mb-8">
         <ProfileUrlInput
           onAnalyze={handleAnalyze}
@@ -884,18 +636,9 @@ export default function ProfilesPage() {
         />
       </div>
 
-      {/* Empty / Onboarding state */}
       {state.status === "idle" && <EmptyOnboarding />}
-
-      {/* Loading state */}
       {state.status === "loading" && <ProfileSkeleton />}
-
-      {/* Error state */}
-      {state.status === "error" && (
-        <ProfileError message={state.message} onRetry={handleRetry} />
-      )}
-
-      {/* Success Guided Workflow */}
+      {state.status === "error" && <ProfileError message={state.message} onRetry={handleRetry} />}
       {state.status === "success" && (
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start animate-in fade-in duration-300">
           {/* Main Workflow Column (3 cols on desktop) */}
@@ -1123,8 +866,7 @@ export default function ProfilesPage() {
           </aside>
         </div>
       )}
-      </>
-      )}
+
 
       {/* Save Project Dialog Modal */}
       <SaveProjectModal
