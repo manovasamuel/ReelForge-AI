@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-// Custom typography will use standard native fonts to avoid generic SaaS looks
+import { Manrope } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ToastContainer } from "@/components/ui/toast";
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { ClerkProviderWrapper } from "@/lib/auth/clerk-provider-wrapper";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://reelforge.ai"),
@@ -41,8 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { ThemeProvider } from "@/components/theme-provider";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="font-sans h-full antialiased"
+      className={`${manrope.variable} font-sans h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex h-full overflow-hidden bg-background text-foreground">
