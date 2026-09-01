@@ -22,8 +22,8 @@ export function ClerkProviderWrapper({ children }: { children: React.ReactNode }
           colorBackground: "hsl(0, 0%, 100%)", // matches light mode background
         },
         elements: {
-          card: "border border-border shadow-none rounded-md",
-          primaryButton: "bg-primary text-primary-foreground hover:opacity-90",
+          card: "border border-border shadow-none rounded-none",
+          primaryButton: "bg-primary text-primary-foreground hover:opacity-90 rounded-none",
           footerActionLink: "text-primary hover:text-primary/90",
         }
       }}

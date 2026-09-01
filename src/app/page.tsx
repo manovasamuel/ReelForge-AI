@@ -79,7 +79,6 @@ export default function LandingPage() {
         {/* HERO SECTION */}
         <section className="pt-20 pb-12 flex flex-col items-center text-center px-4 max-w-5xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6 leading-tight">
-            Stop Guessing. <br className="hidden sm:block" />
             Engineer Content with Data.
           </h1>
 
@@ -92,137 +91,26 @@ export default function LandingPage() {
               href="/studio/new"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-14 px-8 text-lg font-semibold shadow-none rounded-md"
+                "h-14 px-8 text-lg font-semibold shadow-none rounded-none border border-foreground"
               )}
             >
               Start Analysis Workflow
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="ml-2 h-5 w-5 border border-foreground inline-flex items-center justify-center font-mono text-sm leading-none pt-0.5">&rarr;</span>
             </Link>
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-medium text-muted-foreground">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4" />
+              <span className="h-1.5 w-1.5 bg-foreground"></span>
               <span>Live Apify Integration</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4" />
+              <span className="h-1.5 w-1.5 bg-foreground"></span>
               <span>Gemini/Groq Powered</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4" />
-              <span>No Credit Card Required</span>
-            </div>
-          </div>
-        </section>
-
-        {/* PRODUCT DEMO SECTION (REAL UI VISUAL) */}
-        <section className="px-4">
-          <div className="mx-auto max-w-6xl">
-            <div className="rounded-md border border-border bg-card overflow-hidden shadow-none">
-              {/* Fake Browser/App Header */}
-              <div className="border-b border-border bg-muted/30 px-4 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="text-sm font-semibold text-foreground">ReelForge Studio</div>
-                  <div className="h-4 w-px bg-border" />
-                  <div className="text-xs font-mono text-muted-foreground">Analysis Module: Content DNA</div>
-                </div>
-                <div className="flex gap-2">
-                  <div className="text-xs px-2 py-1 bg-muted text-foreground dark:text-foreground border border-border rounded-md font-mono">
-                    STATUS: ANALYSIS_COMPLETE
-                  </div>
-                </div>
-              </div>
-              
-              {/* App Body Mock */}
-              <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {/* Left Sidebar Mock */}
-                <div className="space-y-4">
-                  <div className="border border-border rounded-md p-4 bg-muted/20">
-                    <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wider">Analyzed Target</div>
-                    <div className="flex items-center gap-3">
-                      <div className="h-12 w-12 rounded bg-muted flex items-center justify-center">
-                        <Users className="h-6 w-6 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">@competitor_profile</div>
-                        <div className="text-xs text-muted-foreground">4.2M Followers • Tech Niche</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="border border-border rounded-md p-4 space-y-3">
-                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Performance Metrics</div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="p-2 border border-border bg-muted/10 rounded">
-                        <div className="text-xs text-muted-foreground">Avg. Views</div>
-                        <div className="font-mono font-medium">842.5K</div>
-                      </div>
-                      <div className="p-2 border border-border bg-muted/10 rounded">
-                        <div className="text-xs text-muted-foreground">Engagement</div>
-                        <div className="font-mono font-medium">6.8%</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Main Content Mock */}
-                <div className="lg:col-span-2 space-y-4">
-                  <div className="border border-border rounded-md overflow-hidden">
-                    <div className="bg-muted/30 px-4 py-2 border-b border-border flex justify-between items-center">
-                      <div className="text-sm font-medium">Extracted Content DNA</div>
-                      <Activity className="h-4 w-4 text-muted-foreground" />
-                    </div>
-                    <div className="p-0">
-                      <table className="w-full text-sm">
-                        <thead className="bg-muted/10 border-b border-border">
-                          <tr>
-                            <th className="text-left font-medium p-3">Structural Element</th>
-                            <th className="text-left font-medium p-3">Identified Pattern</th>
-                            <th className="text-right font-medium p-3">Frequency</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-border">
-                          <tr>
-                            <td className="p-3 font-medium">Primary Hook</td>
-                            <td className="p-3 text-muted-foreground">"Stop doing [X], do [Y] instead" (Negative framing)</td>
-                            <td className="p-3 text-right font-mono">82%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-3 font-medium">Visual Pacing</td>
-                            <td className="p-3 text-muted-foreground">Cut every 1.8 seconds. B-roll overlay on technical terms.</td>
-                            <td className="p-3 text-right font-mono">100%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-3 font-medium">Retention Mechanism</td>
-                            <td className="p-3 text-muted-foreground">Open loop presented in first 3 seconds, resolved at second 45.</td>
-                            <td className="p-3 text-right font-mono">60%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-3 font-medium">Call to Action</td>
-                            <td className="p-3 text-muted-foreground">"Comment [WORD] for the full breakdown." (Value exchange)</td>
-                            <td className="p-3 text-right font-mono">90%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <Button className="w-full shadow-none rounded-md" variant="default">
-                      <FileText className="mr-2 h-4 w-4" />
-                      Generate Script from DNA
-                    </Button>
-                    <Button className="w-full shadow-none rounded-md" variant="outline">
-                      <LineChart className="mr-2 h-4 w-4" />
-                      View Full Competitor Analysis
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="text-center mt-4 text-sm text-muted-foreground">
-              Actual ReelForge Content DNA extraction view. We rely on hard data, not generative hallucinations.
+              <span className="h-1.5 w-1.5 bg-foreground"></span>
+              <span>Open Data Model</span>
             </div>
           </div>
         </section>
@@ -242,7 +130,7 @@ export default function LandingPage() {
             {WORKFLOW_STEPS.map((item) => (
               <div
                 key={item.step}
-                className="flex flex-col border border-border p-6 rounded-md bg-card"
+                className="flex flex-col border border-border p-6 rounded-none bg-card"
               >
                 <div className="text-xs font-mono text-muted-foreground mb-4 pb-4 border-b border-border">
                   STEP 0{item.step}
@@ -295,7 +183,7 @@ export default function LandingPage() {
 
         {/* FINAL CTA */}
         <section className="px-4 pb-12">
-          <div className="mx-auto max-w-4xl border border-border bg-card p-10 text-center rounded-md">
+          <div className="mx-auto max-w-4xl border border-border bg-card p-10 text-center rounded-none">
             <h3 className="text-3xl font-bold text-foreground tracking-tight mb-4">
               Ready to replace guesswork with data?
             </h3>
@@ -306,11 +194,11 @@ export default function LandingPage() {
               href="/studio/new"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-14 px-8 text-lg font-semibold shadow-none rounded-md"
+                "h-14 px-8 text-lg font-semibold shadow-none rounded-none border border-foreground"
               )}
             >
               Get Started Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="ml-2 h-5 w-5 border border-foreground inline-flex items-center justify-center font-mono text-sm leading-none pt-0.5">&rarr;</span>
             </Link>
           </div>
         </section>

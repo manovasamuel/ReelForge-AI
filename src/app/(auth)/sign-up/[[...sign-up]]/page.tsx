@@ -9,8 +9,8 @@ export default function SignUpPage() {
 
   if (isPlaceholder) {
     return (
-      <div className="w-full bg-card border border-border rounded-md p-8 text-center">
-        <div className="w-12 h-12 rounded-md bg-muted text-muted-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+      <div className="w-full bg-card border border-border rounded-none p-8 text-center">
+        <div className="w-12 h-12 rounded-none bg-muted text-muted-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
           RF
         </div>
         <h2 className="text-xl font-bold text-foreground mb-2">Development Mode</h2>
@@ -20,7 +20,7 @@ export default function SignUpPage() {
         </p>
         <Link
           href="/dashboard"
-          className="inline-flex items-center justify-center w-full py-3 px-4 rounded-md bg-foreground text-background font-semibold text-sm transition-colors hover:opacity-90"
+          className="inline-flex items-center justify-center w-full py-3 px-4 rounded-none bg-foreground text-background font-semibold text-sm transition-colors hover:opacity-90"
         >
           Launch Dashboard &rarr;
         </Link>
@@ -36,7 +36,7 @@ export default function SignUpPage() {
       appearance={{
         elements: {
           rootBox: "mx-auto",
-          card: "bg-card border border-border shadow-none rounded-md",
+          card: "bg-card border border-border shadow-none rounded-none",
         },
       }}
     />

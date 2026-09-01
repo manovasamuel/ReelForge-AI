@@ -10,7 +10,7 @@ export default function SignInPage() {
 
   if (isPlaceholder) {
     return (
-      <div className="w-full bg-card border border-border rounded-md p-8 text-center">
+      <div className="w-full bg-card border border-border rounded-none p-8 text-center">
         <div className="flex justify-center mb-6">
           <Logo textClassName="text-xl" />
         </div>
@@ -21,7 +21,7 @@ export default function SignInPage() {
         </p>
         <Link
           href="/dashboard"
-          className="inline-flex items-center justify-center w-full py-3 px-4 rounded-md bg-foreground text-background font-semibold text-sm transition-colors hover:opacity-90"
+          className="inline-flex items-center justify-center w-full py-3 px-4 rounded-none bg-foreground text-background font-semibold text-sm transition-colors hover:opacity-90"
         >
           Launch Dashboard &rarr;
         </Link>
@@ -37,7 +37,7 @@ export default function SignInPage() {
       appearance={{
         elements: {
           rootBox: "mx-auto",
-          card: "bg-card border border-border shadow-none rounded-md",
+          card: "bg-card border border-border shadow-none rounded-none",
         },
       }}
     />
