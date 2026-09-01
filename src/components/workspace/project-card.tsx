@@ -63,8 +63,7 @@ export function ProjectCard({
   });
 
   return (
-    <Card className="group overflow-hidden border-violet-500/30 bg-card/80 hover:bg-card/95 transition-all duration-300 shadow-xl shadow-violet-950/20 backdrop-blur-md flex flex-col justify-between">
-      <div className="h-1 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 opacity-70 group-hover:opacity-100 transition-opacity" />
+    <Card className="group overflow-hidden border-border bg-card hover:bg-accent/10 transition-colors duration-200 flex flex-col justify-between shadow-none">
 
       <CardHeader className="pb-3 pt-4">
         <div className="flex items-start justify-between gap-2">
@@ -78,7 +77,7 @@ export function ProjectCard({
                     if (e.key === "Enter") handleSaveRename();
                     if (e.key === "Escape") setIsEditing(false);
                   }}
-                  className="h-8 text-sm font-bold bg-background/80 border-violet-500/50 text-white"
+                  className="h-8 text-sm font-bold bg-background border-border text-white"
                   autoFocus
                 />
                 <Button size="icon" variant="ghost" className="h-7 w-7 text-green-400" onClick={handleSaveRename}>
@@ -119,7 +118,7 @@ export function ProjectCard({
             </div>
           </div>
 
-          <Badge variant="outline" className="border-violet-500/40 text-violet-300 bg-violet-500/10 text-[10px] shrink-0">
+          <Badge variant="outline" className="border-border text-muted-foreground bg-muted text-[10px] shrink-0">
             {completedPhases.length}/9 Phases
           </Badge>
         </div>
@@ -132,9 +131,8 @@ export function ProjectCard({
             <Badge
               key={phase}
               variant="secondary"
-              className="bg-background/60 border border-border/40 text-muted-foreground text-[10px] px-2 py-0.5"
+              className="bg-muted border border-border text-foreground text-[10px] px-2 py-0.5"
             >
-              <Sparkles className="h-2.5 w-2.5 text-fuchsia-400 mr-1" />
               {phase}
             </Badge>
           ))}
@@ -150,7 +148,7 @@ export function ProjectCard({
               variant="ghost"
               size="sm"
               onClick={() => onDuplicate(project.id)}
-              className="h-8 px-2 text-xs text-muted-foreground hover:text-white hover:bg-violet-500/10"
+              className="h-8 px-2 text-xs text-muted-foreground hover:text-white hover:bg-muted"
               title="Duplicate Project"
             >
               <Copy className="h-3.5 w-3.5 mr-1 text-violet-400" /> Duplicate
@@ -170,9 +168,9 @@ export function ProjectCard({
           <Button
             size="sm"
             onClick={() => onOpen(project)}
-            className="h-8 bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-xs gap-1.5 px-3.5 shadow-md shadow-violet-950/40"
+            className="h-8 text-xs gap-1.5 px-4 font-medium"
           >
-            <FolderOpen className="h-3.5 w-3.5" /> Open
+            Open Project
           </Button>
         </div>
       </CardContent>

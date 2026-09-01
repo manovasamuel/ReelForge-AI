@@ -41,7 +41,7 @@ export function WorkflowTracker({ completedSteps, activeStep }: WorkflowTrackerP
   return (
     <nav
       aria-label="Intelligence workflow progress"
-      className="sticky top-0 z-30 -mx-4 mb-8 border-b border-border/60 bg-background/90 px-4 py-3 backdrop-blur-md sm:-mx-8 sm:px-8"
+      className="sticky top-0 z-30 -mx-4 mb-8 border-b border-border/60 bg-background px-4 py-3 sm:-mx-8 sm:px-8"
     >
       <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
         {STEPS.map((step, idx) => {
@@ -55,16 +55,16 @@ export function WorkflowTracker({ completedSteps, activeStep }: WorkflowTrackerP
                 aria-current={isActive ? "step" : undefined}
                 className={cn(
                   "flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200",
-                  isActive && "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white shadow-md shadow-violet-500/25 ring-2 ring-violet-400/30",
-                  isCompleted && !isActive && "bg-violet-500/15 text-violet-300 border border-violet-500/30",
-                  isDisabled && "bg-muted/30 text-muted-foreground/50 border border-transparent cursor-not-allowed"
+                  isActive && "bg-muted   text-white shadow-md  ring-2 ring-violet-400/30",
+                  isCompleted && !isActive && "bg-muted text-violet-300 border border-border",
+                  isDisabled && "bg-muted text-muted-foreground/50 border border-transparent cursor-not-allowed"
                 )}
               >
                 {/* Status icon */}
                 {isCompleted && !isActive ? (
                   <Check className="h-3.5 w-3.5 shrink-0 text-violet-400" />
                 ) : isActive ? (
-                  <CircleDot className="h-3.5 w-3.5 shrink-0 animate-pulse text-white" />
+                  <CircleDot className="h-3.5 w-3.5 shrink-0 text-white" />
                 ) : (
                   <Circle className="h-3.5 w-3.5 shrink-0 text-muted-foreground/40" />
                 )}
@@ -77,7 +77,7 @@ export function WorkflowTracker({ completedSteps, activeStep }: WorkflowTrackerP
                 <div
                   className={cn(
                     "h-[2px] w-4 shrink-0 rounded-full transition-colors",
-                    isCompleted ? "bg-violet-500/40" : "bg-border/40"
+                    isCompleted ? "bg-muted" : "bg-border/40"
                   )}
                 />
               )}

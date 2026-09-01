@@ -4,13 +4,13 @@ import { Separator } from "@/components/ui/separator";
 
 export function BrandIntelligenceSkeleton() {
   return (
-    <Card className="w-full overflow-hidden border-violet-500/20 bg-card/80 backdrop-blur-md">
-      <div className="h-1.5 w-full bg-gradient-to-r from-violet-600/30 via-fuchsia-600/30 to-purple-500/30" />
+    <Card className="w-full overflow-hidden border-border bg-card">
+      <div className="h-1.5 w-full bg-muted" />
 
       <CardHeader className="pt-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <Skeleton className="h-11 w-11 rounded-xl" />
+            <Skeleton className="h-11 w-11 rounded-md" />
             <div className="space-y-2">
               <Skeleton className="h-6 w-52" />
               <Skeleton className="h-3.5 w-64" />
@@ -23,7 +23,7 @@ export function BrandIntelligenceSkeleton() {
       <CardContent className="space-y-6 pb-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="flex flex-col gap-2 rounded-xl border border-border/30 bg-muted/10 p-3.5">
+            <div key={i} className="flex flex-col gap-2 rounded-md border border-border/30 bg-muted p-3.5">
               <Skeleton className="h-3.5 w-24" />
               <Skeleton className="h-5 w-32 rounded-full" />
               <Skeleton className="h-3 w-28" />
@@ -38,12 +38,12 @@ export function BrandIntelligenceSkeleton() {
             <Skeleton className="h-4 w-44" />
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
               {[0, 1, 2, 3].map((i) => (
-                <Skeleton key={i} className="h-12 w-full rounded-xl" />
+                <Skeleton key={i} className="h-12 w-full rounded-md" />
               ))}
             </div>
           </div>
 
-          <div className="flex flex-col justify-between space-y-4 rounded-xl border border-border/30 bg-muted/10 p-4">
+          <div className="flex flex-col justify-between space-y-4 rounded-md border border-border/30 bg-muted p-4">
             <div className="space-y-3">
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-4 w-5/6" />

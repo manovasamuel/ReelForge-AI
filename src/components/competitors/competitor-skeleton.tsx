@@ -2,10 +2,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function CompetitorSkeleton() {
   return (
-    <div className="space-y-5 rounded-2xl border border-violet-500/20 bg-card/40 p-6 backdrop-blur-sm">
+    <div className="space-y-5 rounded-md border border-border bg-card p-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <Skeleton className="h-10 w-10 rounded-xl" />
+          <Skeleton className="h-10 w-10 rounded-md" />
           <div className="space-y-1.5">
             <Skeleton className="h-5 w-48" />
             <Skeleton className="h-3 w-64" />
@@ -16,7 +16,7 @@ export function CompetitorSkeleton() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {Array.from({ length: 10 }).map((_, i) => (
-          <div key={i} className="flex gap-4 rounded-xl border border-border/40 bg-card/60 p-5">
+          <div key={i} className="flex gap-4 rounded-md border border-border/40 bg-card p-5">
             <Skeleton className="h-14 w-14 shrink-0 rounded-full" />
             <div className="flex-1 space-y-2.5">
               <div className="flex items-center justify-between">

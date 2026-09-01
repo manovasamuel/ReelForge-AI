@@ -16,7 +16,7 @@ export class PlanRepository {
       id: "free",
       name: "Free Tier",
       monthlyScraperLimit: 20,
-      monthlyAiTokenLimit: 10000,
+      monthlyAiTokenLimit: -1,
       features: [
         "20 Monthly Instagram Profiles (Mock/Fallback)",
         "10,000 AI Tokens / month",

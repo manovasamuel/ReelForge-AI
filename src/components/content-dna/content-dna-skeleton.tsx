@@ -3,9 +3,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function ContentDNASkeleton() {
   return (
-    <div className="space-y-8 animate-pulse">
+    <div className="space-y-8">
       {/* Header Banner Skeleton */}
-      <Card className="border-violet-500/20 bg-card/60">
+      <Card className="border-border bg-card">
         <CardHeader className="space-y-3">
           <Skeleton className="h-6 w-48" />
           <Skeleton className="h-8 w-80" />
@@ -14,7 +14,7 @@ export function ContentDNASkeleton() {
         <CardContent>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Skeleton key={i} className="h-20 rounded-xl" />
+              <Skeleton key={i} className="h-20 rounded-md" />
             ))}
           </div>
         </CardContent>
@@ -22,19 +22,19 @@ export function ContentDNASkeleton() {
 
       {/* Sections Skeleton */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="border-violet-500/20 bg-card/60">
+        <Card className="border-border bg-card">
           <CardHeader><Skeleton className="h-6 w-40" /></CardHeader>
           <CardContent className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-12 rounded-xl" />
+              <Skeleton key={i} className="h-12 rounded-md" />
             ))}
           </CardContent>
         </Card>
-        <Card className="border-violet-500/20 bg-card/60">
+        <Card className="border-border bg-card">
           <CardHeader><Skeleton className="h-6 w-40" /></CardHeader>
           <CardContent className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <Skeleton key={i} className="h-12 rounded-xl" />
+              <Skeleton key={i} className="h-12 rounded-md" />
             ))}
           </CardContent>
         </Card>

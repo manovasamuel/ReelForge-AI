@@ -18,8 +18,6 @@ export function bootstrapAIProviders() {
   aiProviderRegistry.register(new ClaudeProvider());
   aiProviderRegistry.register(new GroqProvider());
   aiProviderRegistry.register(new OpenRouterProvider());
-  // The Orchestrator itself might not need to be registered as a leaf node, but we can register it
-  aiProviderRegistry.register(new AIOrchestratorProvider());
 }
 
 /**
@@ -28,5 +26,6 @@ export function bootstrapAIProviders() {
  * Single point of switch returning the configured AIOrchestratorProvider.
  */
 export function getAIOrchestrator(preferredProvider?: string, modelPreference?: string): IAIProvider {
+  bootstrapAIProviders();
   return new AIOrchestratorProvider(preferredProvider, modelPreference);
 }

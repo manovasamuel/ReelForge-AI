@@ -76,7 +76,7 @@ export function BillingSection() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 space-y-4 bg-slate-900/40 border border-slate-800 rounded-2xl animate-pulse">
+      <div className="flex flex-col items-center justify-center p-12 space-y-4 bg-slate-900/40 border border-slate-800 rounded-md">
         <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin" />
         <p className="text-sm text-slate-400">Loading subscription and usage metering data...</p>
       </div>
@@ -85,7 +85,7 @@ export function BillingSection() {
 
   if (error || !summary) {
     return (
-      <div className="p-6 bg-red-950/20 border border-red-500/30 rounded-2xl flex items-center justify-between">
+      <div className="p-6 bg-red-950/20 border border-red-500/30 rounded-md flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <AlertTriangle className="w-6 h-6 text-red-400 shrink-0" />
           <div>
@@ -117,17 +117,17 @@ export function BillingSection() {
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. CURRENT SUBSCRIPTION BANNER */}
-      <div className="relative overflow-hidden p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900/90 to-slate-800 border border-slate-700/60 shadow-2xl">
+      <div className="relative overflow-hidden p-6 sm:p-8 rounded-md bg-muted from-slate-900 via-slate-900/90 to-slate-800 border border-slate-700/60 shadow-none">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
             <div className="flex items-center space-x-3">
-              <span className="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full shadow-md shadow-cyan-500/20">
+              <span className="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-muted from-cyan-500 text-white rounded-full shadow-md">
                 {plan.name}
               </span>
-              <span className="text-xs font-medium text-emerald-400 flex items-center bg-emerald-950/40 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping mr-1.5" />
+              <span className="text-xs font-medium text-emerald-400 flex items-center bg-muted px-2.5 py-0.5 rounded-full border border-border">
+                <span className="w-1.5 h-1.5 bg-muted rounded-full animate-ping mr-1.5" />
                 {subscription?.status || "Active"}
               </span>
             </div>
@@ -154,7 +154,7 @@ export function BillingSection() {
               <button
                 onClick={handleOpenPortal}
                 disabled={portalLoading}
-                className="mt-3 inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition-all shadow-sm"
+                className="mt-3 inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-md transition-all shadow-sm"
               >
                 {portalLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin mr-1" /> : <ExternalLink className="w-3.5 h-3.5 mr-1" />}
                 Manage Subscription
@@ -167,10 +167,10 @@ export function BillingSection() {
       {/* 2. REAL-TIME USAGE & METERING GAUGES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Scraper Calls Gauge */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+        <div className="p-6 rounded-md bg-slate-900/60 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
-              <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-400">
+              <div className="p-2 rounded-md bg-cyan-500/10 text-cyan-400">
                 <Zap className="w-5 h-5" />
               </div>
               <div>
@@ -191,7 +191,7 @@ export function BillingSection() {
             <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
               <div
                 className={`h-full transition-all duration-500 rounded-full ${
-                  scraperPercent > 90 ? "bg-red-500" : scraperPercent > 70 ? "bg-amber-500" : "bg-cyan-500"
+                  scraperPercent > 90 ? "bg-red-500" : scraperPercent > 70 ? "bg-muted" : "bg-cyan-500"
                 }`}
                 style={{ width: `${plan.monthlyScraperLimit === -1 ? 100 : scraperPercent}%` }}
               />
@@ -203,10 +203,10 @@ export function BillingSection() {
         </div>
 
         {/* AI Tokens Gauge */}
-        <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-4">
+        <div className="p-6 rounded-md bg-slate-900/60 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
-              <div className="p-2 rounded-xl bg-purple-500/10 text-purple-400">
+              <div className="p-2 rounded-md bg-muted text-purple-400">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
@@ -227,7 +227,7 @@ export function BillingSection() {
             <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
               <div
                 className={`h-full transition-all duration-500 rounded-full ${
-                  aiPercent > 90 ? "bg-red-500" : aiPercent > 70 ? "bg-amber-500" : "bg-purple-500"
+                  aiPercent > 90 ? "bg-red-500" : aiPercent > 70 ? "bg-muted" : "bg-muted"
                 }`}
                 style={{ width: `${plan.monthlyAiTokenLimit === -1 ? 100 : aiPercent}%` }}
               />
@@ -248,8 +248,8 @@ export function BillingSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Free Tier */}
-          <div className={`p-6 rounded-2xl border flex flex-col justify-between transition-all ${
-            plan.id === "free" ? "bg-slate-900/90 border-cyan-500/50 shadow-lg shadow-cyan-500/5" : "bg-slate-900/40 border-slate-800"
+          <div className={`p-6 rounded-md border flex flex-col justify-between transition-all ${
+            plan.id === "free" ? "bg-slate-900/90 border-cyan-500/50 shadow-none " : "bg-slate-900/40 border-slate-800"
           }`}>
             <div className="space-y-4">
               <div className="flex justify-between items-start">
@@ -268,13 +268,13 @@ export function BillingSection() {
             </div>
             <div className="mt-6">
               {plan.id === "free" ? (
-                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-xl bg-slate-800 text-slate-400 border border-slate-700">
+                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-slate-800 text-slate-400 border border-slate-700">
                   Current Active Plan
                 </span>
               ) : (
                 <button
                   onClick={handleOpenPortal}
-                  className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
+                  className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
                 >
                   Downgrade to Free
                 </button>
@@ -283,10 +283,10 @@ export function BillingSection() {
           </div>
 
           {/* Pro Tier */}
-          <div className={`p-6 rounded-2xl border flex flex-col justify-between transition-all relative overflow-hidden ${
-            plan.id === "pro" ? "bg-slate-900/90 border-cyan-500 shadow-xl shadow-cyan-500/10" : "bg-slate-900/60 border-cyan-500/40"
+          <div className={`p-6 rounded-md border flex flex-col justify-between transition-all relative overflow-hidden ${
+            plan.id === "pro" ? "bg-slate-900/90 border-cyan-500 shadow-none " : "bg-slate-900/60 border-cyan-500/40"
           }`}>
-            <div className="absolute top-0 right-0 bg-gradient-to-l from-cyan-500 to-blue-500 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl shadow-sm">
+            <div className="absolute top-0 right-0 bg-muted from-cyan-500 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl shadow-sm">
               Popular
             </div>
             <div className="space-y-4">
@@ -307,14 +307,14 @@ export function BillingSection() {
             </div>
             <div className="mt-6">
               {plan.id === "pro" ? (
-                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                   Current Active Plan
                 </span>
               ) : (
                 <button
                   onClick={() => handleUpgrade("pro")}
                   disabled={checkoutLoading === "pro"}
-                  className="w-full py-2.5 px-4 text-xs font-bold text-center flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white transition-all shadow-md shadow-cyan-500/20"
+                  className="w-full py-2.5 px-4 text-xs font-bold text-center flex items-center justify-center rounded-md bg-muted from-cyan-500 hover:from-cyan-400 hover: text-white transition-all shadow-md"
                 >
                   {checkoutLoading === "pro" ? <RefreshCw className="w-3.5 h-3.5 animate-spin mr-1.5" /> : null}
                   Upgrade to Pro
@@ -324,8 +324,8 @@ export function BillingSection() {
           </div>
 
           {/* Enterprise Tier */}
-          <div className={`p-6 rounded-2xl border flex flex-col justify-between transition-all ${
-            plan.id === "enterprise" ? "bg-slate-900/90 border-purple-500 shadow-xl shadow-purple-500/10" : "bg-slate-900/40 border-purple-500/30"
+          <div className={`p-6 rounded-md border flex flex-col justify-between transition-all ${
+            plan.id === "enterprise" ? "bg-slate-900/90 border-border shadow-none " : "bg-slate-900/40 border-border"
           }`}>
             <div className="space-y-4">
               <div className="flex justify-between items-start">
@@ -345,14 +345,14 @@ export function BillingSection() {
             </div>
             <div className="mt-6">
               {plan.id === "enterprise" ? (
-                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-muted text-purple-300 border border-border">
                   Current Active Plan
                 </span>
               ) : (
                 <button
                   onClick={() => handleUpgrade("enterprise")}
                   disabled={checkoutLoading === "enterprise"}
-                  className="w-full py-2.5 px-4 text-xs font-bold text-center flex items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white transition-all shadow-md shadow-purple-500/20"
+                  className="w-full py-2.5 px-4 text-xs font-bold text-center flex items-center justify-center rounded-md bg-muted hover: hover: text-white transition-all shadow-md"
                 >
                   {checkoutLoading === "enterprise" ? <RefreshCw className="w-3.5 h-3.5 animate-spin mr-1.5" /> : null}
                   Subscribe to Enterprise

@@ -30,8 +30,8 @@ export class GroqProvider implements IAIProvider {
 
   public readonly metadata = {
     providerId: "groq" as AIProviderId,
-    defaultModel: "llama-3.1-70b-versatile",
-    fastModel: "llama-3.1-8b-instant",
+    defaultModel: "openai/gpt-oss-120b",
+    fastModel: "openai/gpt-oss-120b",
     costPer1kInputTokensMilliCents: 59,
     costPer1kOutputTokensMilliCents: 79,
   };
@@ -39,7 +39,7 @@ export class GroqProvider implements IAIProvider {
   private readonly apiKey: string | undefined;
   private readonly model: string;
 
-  constructor(model = "llama-3.1-70b-versatile") {
+  constructor(model = "openai/gpt-oss-120b") {
     this.apiKey = process.env.GROQ_API_KEY;
     this.model = process.env.AI_MODEL || model;
   }

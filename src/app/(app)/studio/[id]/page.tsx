@@ -665,7 +665,7 @@ export default function StudioPage() {
                 <BrandIntelligenceCard report={brandState.report} />
               )}
               {brandState.status === "error" && (
-                <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                   {brandState.message}
                 </div>
               )}
@@ -687,7 +687,7 @@ export default function StudioPage() {
                 />
               )}
               {compState.status === "error" && (
-                <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                   {compState.message}
                 </div>
               )}
@@ -715,7 +715,7 @@ export default function StudioPage() {
                   />
                 )}
                 {compAnalysisState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {compAnalysisState.message}
                   </div>
                 )}
@@ -745,7 +745,7 @@ export default function StudioPage() {
                   />
                 )}
                 {contentCollectionState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {contentCollectionState.message}
                   </div>
                 )}
@@ -774,7 +774,7 @@ export default function StudioPage() {
                   />
                 )}
                 {contentIntelligenceState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {contentIntelligenceState.message}
                   </div>
                 )}
@@ -797,7 +797,7 @@ export default function StudioPage() {
                   />
                 )}
                 {contentDNAState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {contentDNAState.message}
                   </div>
                 )}
@@ -820,7 +820,7 @@ export default function StudioPage() {
                   />
                 )}
                 {scriptGenerationState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {scriptGenerationState.message}
                   </div>
                 )}
@@ -840,7 +840,7 @@ export default function StudioPage() {
                   <RepurposeDashboard report={repurposeState.report} />
                 )}
                 {repurposeState.status === "error" && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
+                  <div className="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-center text-sm text-destructive">
                     {repurposeState.message}
                   </div>
                 )}

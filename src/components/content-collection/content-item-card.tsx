@@ -88,12 +88,12 @@ export function ContentItemCard({
       className={cn(
         "group relative flex flex-col overflow-hidden border transition-all duration-300 cursor-pointer select-none",
         isSelected
-          ? "border-violet-500 bg-violet-950/20 shadow-lg shadow-violet-950/40 ring-1 ring-violet-500"
-          : "border-border/60 bg-card/70 hover:border-violet-500/50 hover:bg-card hover:shadow-md"
+          ? "border-border bg-muted shadow-none  ring-1 ring-violet-500"
+          : "border-border/60 bg-card hover:border-border hover:bg-card hover:shadow-md"
       )}
     >
       {/* Media Thumbnail Container */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted/40">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
         <Image
           src={item.thumbnailUrl}
           alt={item.caption.slice(0, 40)}
@@ -104,15 +104,15 @@ export function ContentItemCard({
         />
 
         {/* Top Badges */}
-        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-2.5 bg-gradient-to-b from-black/80 via-black/40 to-transparent">
+        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-2.5 bg-muted from-black/80 via-black/40">
           <div className="flex items-center gap-1.5">
-            <Badge className="flex items-center gap-1 bg-black/70 backdrop-blur-md text-white text-[10px] border border-white/10 px-2 py-0.5 capitalize">
+            <Badge className="flex items-center gap-1 bg-black/70 text-white text-[10px] border border-white/10 px-2 py-0.5 capitalize">
               {getTypeIcon()}
               <span>{item.type}</span>
             </Badge>
 
             {item.isPinned && (
-              <Badge className="flex items-center gap-1 bg-amber-500/90 text-black font-bold text-[10px] px-1.5 py-0.5">
+              <Badge className="flex items-center gap-1 bg-muted text-black font-bold text-[10px] px-1.5 py-0.5">
                 <Pin className="h-2.5 w-2.5 fill-black" />
                 <span>Pinned</span>
               </Badge>
@@ -125,7 +125,7 @@ export function ContentItemCard({
             className={cn(
               "flex h-6 w-6 items-center justify-center rounded-md border transition-all",
               isSelected
-                ? "border-violet-400 bg-violet-600 text-white shadow-sm scale-110"
+                ? "border-border bg-muted text-white shadow-sm scale-110"
                 : "border-white/60 bg-black/50 text-transparent hover:border-white"
             )}
             title={isSelected ? "Deselect item" : "Select item for Phase 6"}
@@ -136,13 +136,13 @@ export function ContentItemCard({
 
         {/* Duration / Media Count Overlay */}
         {item.durationSeconds && (
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 backdrop-blur-md px-1.5 py-0.5 text-[10px] font-semibold text-white">
+          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
             <Clock className="h-3 w-3 text-violet-300" />
             <span>{item.durationSeconds}s</span>
           </div>
         )}
         {item.mediaCount && (
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 backdrop-blur-md px-1.5 py-0.5 text-[10px] font-semibold text-white">
+          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
             <Layers className="h-3 w-3 text-fuchsia-300" />
             <span>1/{item.mediaCount}</span>
           </div>
@@ -184,7 +184,7 @@ export function ContentItemCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 px-2 text-[11px] text-violet-300 hover:bg-violet-500/15 hover:text-violet-200"
+                    className="h-7 px-2 text-[11px] text-violet-300 hover:bg-muted hover:text-violet-200"
                   />
                 }
               >
@@ -192,20 +192,20 @@ export function ContentItemCard({
                 <span>Quick Preview</span>
               </DialogTrigger>
 
-              <DialogContent className="max-w-2xl bg-card/95 border-violet-500/30 p-6 shadow-2xl backdrop-blur-xl">
+              <DialogContent className="max-w-2xl bg-card border-border p-6 shadow-none">
                 <DialogHeader className="mb-4">
                   <DialogTitle className="flex items-center gap-2 text-lg font-bold text-foreground">
                     {getTypeIcon()}
                     <span className="capitalize">{item.type} Content Preview</span>
                     {item.isPinned && (
-                      <Badge className="bg-amber-500 text-black text-xs">Pinned</Badge>
+                      <Badge className="bg-muted text-black text-xs">Pinned</Badge>
                     )}
                   </DialogTitle>
                 </DialogHeader>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                   {/* Large Thumbnail */}
-                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-border/60 bg-muted">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md border border-border/60 bg-muted">
                     <Image
                       src={item.thumbnailUrl}
                       alt={item.caption.slice(0, 40)}
@@ -233,7 +233,7 @@ export function ContentItemCard({
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 rounded-xl border border-border/40 bg-muted/30 p-3 text-center">
+                    <div className="grid grid-cols-3 gap-3 rounded-md border border-border/40 bg-muted p-3 text-center">
                       <div>
                         <p className="text-[10px] text-muted-foreground">Views</p>
                         <p className="text-sm font-bold text-violet-400">{item.views.toLocaleString()}</p>
@@ -252,7 +252,7 @@ export function ContentItemCard({
                       <h4 className="font-bold text-muted-foreground uppercase text-[10px] tracking-wider mb-1">
                         Caption
                       </h4>
-                      <p className="text-xs text-foreground/90 leading-relaxed max-h-32 overflow-y-auto rounded-lg border border-border/40 bg-card/60 p-3">
+                      <p className="text-xs text-foreground/90 leading-relaxed max-h-32 overflow-y-auto rounded-lg border border-border/40 bg-card p-3">
                         {item.caption}
                       </p>
                     </div>
@@ -265,7 +265,7 @@ export function ContentItemCard({
                         {item.hashtags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="rounded-md bg-violet-500/15 px-2 py-0.5 text-[11px] font-medium text-violet-300 border border-violet-500/20"
+                            className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-violet-300 border border-border"
                           >
                             {tag}
                           </span>

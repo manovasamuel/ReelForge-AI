@@ -48,10 +48,10 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
   ];
 
   return (
-    <div className="rounded-2xl border border-violet-500/30 bg-card/90 backdrop-blur-xl p-6 shadow-xl space-y-6">
+    <div className="rounded-md border border-border bg-card p-6 shadow-none space-y-6">
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400">
+          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-violet-400">
             <Sliders className="h-4 w-4" />
           </div>
           <div>
@@ -59,7 +59,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
             <p className="text-xs text-muted-foreground">Select exact intelligence scope and target file format</p>
           </div>
         </div>
-        <Badge variant="secondary" className="bg-violet-500/20 text-violet-300 text-[11px]">
+        <Badge variant="secondary" className="bg-muted text-violet-300 text-[11px]">
           Granular Scope
         </Badge>
       </div>
@@ -77,10 +77,10 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
                   key={item.id}
                   type="button"
                   onClick={() => setSelectedScope(item.id)}
-                  className={`text-left p-3.5 rounded-xl border transition-all ${
+                  className={`text-left p-3.5 rounded-md border transition-all ${
                     isSelected
-                      ? "border-violet-500 bg-violet-950/40 shadow-md shadow-violet-950/50"
-                      : "border-border/70 bg-background/50 hover:bg-card/80"
+                      ? "border-border bg-muted shadow-md "
+                      : "border-border/70 bg-background hover:bg-card"
                   }`}
                 >
                   <div className="flex items-center justify-between mb-1">
@@ -108,10 +108,10 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
                   key={fmt.id}
                   type="button"
                   onClick={() => setSelectedFormat(fmt.id)}
-                  className={`p-3 rounded-xl border text-center transition-all ${
+                  className={`p-3 rounded-md border text-center transition-all ${
                     isSelected
-                      ? "border-fuchsia-500 bg-fuchsia-950/40 shadow-md text-white font-bold"
-                      : "border-border/70 bg-background/50 hover:bg-card/80 text-muted-foreground"
+                      ? "border-border bg-muted shadow-md text-white font-bold"
+                      : "border-border/70 bg-background hover:bg-card text-muted-foreground"
                   }`}
                 >
                   <div className="text-xs">{fmt.label}</div>
@@ -127,7 +127,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
             onClick={handleCustomGenerate}
             disabled={isGenerating}
             size="sm"
-            className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-xs gap-2 px-6 py-5 rounded-xl shadow-lg shadow-violet-950/60"
+            className="bg-muted hover: hover: text-white font-bold text-xs gap-2 px-6 py-5 rounded-md shadow-none"
           >
             <Download className="h-4 w-4" />
             {isGenerating ? "Compiling Report..." : "Generate Custom Export"}

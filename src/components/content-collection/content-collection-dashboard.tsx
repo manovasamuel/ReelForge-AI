@@ -199,48 +199,48 @@ export function ContentCollectionDashboard({
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. COLLECTION STATISTICS (Additional Requirement 2) */}
-      <Card className="border-violet-500/40 bg-gradient-to-br from-violet-950/30 via-card/90 to-card/90 p-6 shadow-xl shadow-violet-950/20 backdrop-blur-md">
+      <Card className="border-border bg-muted via-card/90 to-card/90 p-6 shadow-none">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/20 text-violet-300">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-violet-300">
                 <BarChart3 className="h-4 w-4" />
               </div>
               <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
                 Content Library Benchmarks: @{competitorUsername}
               </h3>
             </div>
-            <Badge className="bg-violet-500/20 text-violet-300 border border-violet-500/30">
+            <Badge className="bg-muted text-violet-300 border border-border">
               {stats.total} Media Items Extracted
             </Badge>
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Total Content</p>
               <p className="mt-1 text-lg font-bold text-foreground">{stats.total} Posts</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Reels Volume</p>
               <p className="mt-1 text-lg font-bold text-violet-400">{stats.reelsCount} Reels</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Posts Volume</p>
               <p className="mt-1 text-lg font-bold text-foreground">{stats.postsCount} Posts</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Average Views</p>
               <p className="mt-1 text-lg font-bold text-fuchsia-400">
                 {stats.hasViewsAvailable ? formatNum(stats.avgViews) : "N/A"}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Highest Views</p>
               <p className="mt-1 text-lg font-bold text-emerald-400">
                 {stats.hasViewsAvailable ? formatNum(stats.highestViews) : "N/A"}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Newest Content Age</p>
               <p className="mt-1 text-lg font-bold text-violet-300">{stats.newestAge}</p>
             </div>
@@ -251,16 +251,16 @@ export function ContentCollectionDashboard({
       {/* 2. INTERACTIVE MULTI-SELECTION SUMMARY BAR (Additional Requirement 4) */}
       <Card
         className={cn(
-          "sticky top-20 z-40 border p-4 transition-all duration-300 backdrop-blur-xl shadow-xl",
+          "sticky top-20 z-40 border p-4 transition-all duration-300  shadow-none",
           selectionSummary.count > 0
-            ? "border-violet-500 bg-gradient-to-r from-violet-950/90 via-card/95 to-card/95 shadow-violet-950/40"
-            : "border-border/60 bg-card/80"
+            ? "border-border bg-muted  via-card/95 to-card/95 "
+            : "border-border/60 bg-card"
         )}
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-600 text-white font-bold text-xs">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-white font-bold text-xs">
                 {selectionSummary.count}
               </div>
               <div>
@@ -302,7 +302,7 @@ export function ContentCollectionDashboard({
                 variant="outline"
                 size="sm"
                 onClick={handleSelectAllVisible}
-                className="text-xs border-violet-500/30 hover:bg-violet-500/10"
+                className="text-xs border-border hover:bg-muted"
               >
                 Select Top {Math.min(filteredAndSortedItems.length, MAX_SELECTION)} Visible
               </Button>
@@ -320,7 +320,7 @@ export function ContentCollectionDashboard({
             <Button
               disabled={selectionSummary.count === 0}
               onClick={handleAnalyzeSelected}
-              className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-bold text-xs shadow-md shadow-violet-600/20 hover:opacity-95"
+              className="bg-muted text-white font-bold text-xs shadow-md hover:opacity-95"
             >
               Analyze Selected Content →
             </Button>
@@ -329,7 +329,7 @@ export function ContentCollectionDashboard({
       </Card>
 
       {/* 3. CATEGORIES, FILTERS, SEARCH & SORTING (Additional Requirement 1) */}
-      <Card className="border-border/60 bg-card/80 p-5 backdrop-blur-md space-y-4">
+      <Card className="border-border/60 bg-card p-5 space-y-4">
         {/* Row 1: Categories Bar */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">
@@ -353,8 +353,8 @@ export function ContentCollectionDashboard({
                   className={cn(
                     "flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer",
                     isActive
-                      ? "bg-violet-600 text-white shadow-sm shadow-violet-600/30"
-                      : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "bg-muted text-white shadow-sm "
+                      : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
                   )}
                 >
                   <Icon className="h-3.5 w-3.5" />
@@ -385,8 +385,8 @@ export function ContentCollectionDashboard({
                   className={cn(
                     "rounded-lg px-3 py-1 text-xs font-medium transition-all cursor-pointer",
                     isActive
-                      ? "bg-fuchsia-600/20 text-fuchsia-300 border border-fuchsia-500/40"
-                      : "bg-muted/30 text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
+                      ? "bg-muted text-fuchsia-300 border border-border"
+                      : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
                   )}
                 >
                   {filt.label}
@@ -404,7 +404,7 @@ export function ContentCollectionDashboard({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search captions, hashtags, or publish date..."
-              className="pl-9 h-9 text-xs bg-muted/30 border-border/60"
+              className="pl-9 h-9 text-xs bg-muted border-border/60"
             />
           </div>
 
@@ -427,8 +427,8 @@ export function ContentCollectionDashboard({
                   className={cn(
                     "rounded-md px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer",
                     sortBy === srt.id
-                      ? "bg-violet-500/20 text-violet-300 border border-violet-500/40"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
+                      ? "bg-muted text-violet-300 border border-border"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
                   {srt.label}

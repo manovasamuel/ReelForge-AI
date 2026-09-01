@@ -4,11 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ROUTES } from "@/lib/constants";
 import {
   LayoutDashboard,
   Users,
-  Sparkles,
   Menu,
   X,
   Film,
@@ -37,9 +35,9 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   {
     label: "Dashboard",
-    href: ROUTES.HOME,
+    href: "/dashboard",
     icon: LayoutDashboard,
-    pattern: /^\/$/,
+    pattern: /^\/dashboard/,
   },
   {
     label: "Workspace",
@@ -50,7 +48,7 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Studio",
     href: "/studio/new",
-    icon: Sparkles,
+    icon: Film,
     pattern: /^\/studio/,
   },
   {
@@ -73,22 +71,12 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-function Logo({ collapsed = false }: { collapsed?: boolean }) {
+import { Logo } from "@/components/ui/logo";
+
+function SidebarLogo({ collapsed = false }: { collapsed?: boolean }) {
   return (
-    <Link href={ROUTES.HOME} className="flex items-center gap-2.5 px-2">
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-lg shadow-violet-500/25">
-        <Film className="h-4 w-4 text-white" />
-      </div>
-      {!collapsed && (
-        <div className="flex flex-col">
-          <span className="text-sm font-bold tracking-tight text-foreground">
-            ReelForge
-          </span>
-          <span className="text-[10px] font-medium uppercase tracking-widest text-violet-400">
-            AI
-          </span>
-        </div>
-      )}
+    <Link href="/" className="px-2">
+      <Logo showText={!collapsed} />
     </Link>
   );
 }
@@ -108,20 +96,20 @@ function NavLink({
     <Link
       href={item.href}
       className={cn(
-        "group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
+        "group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-all duration-200",
         isActive
-          ? "bg-violet-500/10 text-violet-400"
-          : "text-muted-foreground hover:bg-accent hover:text-foreground"
+          ? "bg-accent/50 text-foreground"
+          : "text-muted-foreground hover:bg-accent/30 hover:text-foreground"
       )}
     >
       {isActive && (
-        <div className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-violet-500" />
+        <div className="absolute left-0 top-0 h-full w-[2px] bg-foreground" />
       )}
       <Icon
         className={cn(
           "h-4 w-4 shrink-0 transition-colors",
           isActive
-            ? "text-violet-400"
+            ? "text-foreground"
             : "text-muted-foreground group-hover:text-foreground"
         )}
       />
@@ -151,13 +139,13 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "hidden border-r border-border/50 bg-card/50 backdrop-blur-xl transition-all duration-300 lg:flex lg:flex-col",
+        "hidden border-r border-border bg-sidebar transition-all duration-300 lg:flex lg:flex-col",
         collapsed ? "w-[68px]" : "w-[240px]"
       )}
     >
       {/* Logo */}
       <div className="flex h-16 items-center justify-between px-4">
-        <Logo collapsed={collapsed} />
+        <SidebarLogo collapsed={collapsed} />
         <Button
           variant="ghost"
           size="icon"
@@ -189,27 +177,7 @@ export function Sidebar() {
         </nav>
       </ScrollArea>
 
-      {/* Bottom section */}
-      <div className="border-t border-border/50 px-3 py-4">
-        <div
-          className={cn(
-            "flex items-center gap-3 rounded-lg bg-gradient-to-r from-violet-500/5 to-fuchsia-500/5 p-3",
-            collapsed && "justify-center p-2"
-          )}
-        >
-          <Sparkles className="h-4 w-4 shrink-0 text-violet-400" />
-          {!collapsed && (
-            <div className="flex flex-col">
-              <span className="text-xs font-medium text-foreground">
-                AI Powered
-              </span>
-              <span className="text-[10px] text-muted-foreground">
-                Intelligence Engine
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
+      {/* Removed decorative AI gradient box */}
     </aside>
   );
 }
@@ -236,7 +204,7 @@ export function MobileNav() {
       <SheetContent side="left" className="w-[280px] p-0">
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <div className="flex h-16 items-center justify-between px-4">
-          <Logo />
+          <SidebarLogo />
           <Button
             variant="ghost"
             size="icon"

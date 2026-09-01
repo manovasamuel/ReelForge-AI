@@ -8,7 +8,7 @@ export function CompetitorAnalysisSkeleton() {
         <Skeleton className="h-6 w-56" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-5">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={i} className="h-16 w-full rounded-xl" />
+            <Skeleton key={i} className="h-16 w-full rounded-md" />
           ))}
         </div>
       </Card>
@@ -30,7 +30,7 @@ export function CompetitorAnalysisSkeleton() {
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {Array.from({ length: 8 }).map((_, i) => (
-          <Skeleton key={i} className="h-20 w-full rounded-xl" />
+          <Skeleton key={i} className="h-20 w-full rounded-md" />
         ))}
       </div>
 

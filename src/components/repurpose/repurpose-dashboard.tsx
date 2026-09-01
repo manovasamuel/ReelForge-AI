@@ -26,7 +26,7 @@ interface RepurposeDashboardProps {
 
 function MetricsBar({ metrics, onCopy, copied }: { metrics: PlatformContentMetrics; onCopy: () => void; copied: boolean }) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3.5 rounded-xl border border-violet-500/30 bg-violet-950/20 mb-6">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3.5 rounded-md border border-border bg-muted mb-6">
       <div className="flex items-center gap-4 text-xs">
         <div className="flex items-center gap-1.5 text-violet-200 font-semibold">
           <FileText className="h-3.5 w-3.5 text-violet-400" />
@@ -45,7 +45,7 @@ function MetricsBar({ metrics, onCopy, copied }: { metrics: PlatformContentMetri
       <Button
         size="sm"
         onClick={onCopy}
-        className="bg-violet-600 hover:bg-violet-500 text-white font-bold gap-1.5 text-xs h-8 shrink-0"
+        className="bg-muted hover:bg-muted text-white font-bold gap-1.5 text-xs h-8 shrink-0"
       >
         {copied ? <Check className="h-3.5 w-3.5 text-green-300" /> : <Copy className="h-3.5 w-3.5" />}
         {copied ? "Copied Platform Package!" : "Copy Full Platform Text"}
@@ -66,20 +66,20 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* HEADER BANNER */}
-      <Card className="overflow-hidden border-violet-500/40 bg-gradient-to-br from-violet-950/60 via-card/95 to-fuchsia-950/40 shadow-2xl backdrop-blur-md">
-        <div className="h-1.5 w-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-indigo-500" />
+      <Card className="overflow-hidden border-border bg-muted via-card/95 shadow-none">
+        <div className="h-1.5 w-full bg-muted" />
         <CardHeader className="pb-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="flex items-center gap-2">
-                <Badge className="bg-violet-600 hover:bg-violet-600 text-white gap-1 px-2.5 py-0.5">
+                <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
                   <Sparkles className="h-3.5 w-3.5" /> Phase 9 Omnichannel Engine
                 </Badge>
-                <Badge variant="outline" className="border-fuchsia-500/40 text-fuchsia-300 bg-fuchsia-500/10">
+                <Badge variant="outline" className="border-border text-fuchsia-300 bg-muted">
                   6 Formats Generated
                 </Badge>
               </div>
-              <CardTitle className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-violet-100 to-fuchsia-200 bg-clip-text text-transparent">
+              <CardTitle className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight bg-muted from-white bg-clip-text text-transparent">
                 Multi-Platform Repurpose Studio
               </CardTitle>
               <CardDescription className="text-violet-300/80 text-sm mt-1">
@@ -91,14 +91,14 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
       </Card>
 
       {/* PLATFORM TABS */}
-      <Card className="border-violet-500/30 bg-card/90 shadow-xl">
+      <Card className="border-border bg-card shadow-none">
         <CardContent className="pt-6">
           <Tabs defaultValue="instagram" className="w-full">
-            <TabsList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-background/80 border border-border/80 gap-1 rounded-xl mb-6">
-              <TabsTrigger value="instagram" className="gap-2 py-2.5 data-[state=active]:bg-violet-600 data-[state=active]:text-white text-xs">
+            <TabsList className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 h-auto p-1 bg-background border border-border/80 gap-1 rounded-md mb-6">
+              <TabsTrigger value="instagram" className="gap-2 py-2.5 data-[state=active]:bg-muted data-[state=active]:text-white text-xs">
                 <Share2 className="h-4 w-4" /> Instagram
               </TabsTrigger>
-              <TabsTrigger value="linkedin" className="gap-2 py-2.5 data-[state=active]:bg-blue-600 data-[state=active]:text-white text-xs">
+              <TabsTrigger value="linkedin" className="gap-2 py-2.5 data-[state=active]:bg-muted data-[state=active]:text-white text-xs">
                 <FileText className="h-4 w-4" /> LinkedIn
               </TabsTrigger>
               <TabsTrigger value="x" className="gap-2 py-2.5 data-[state=active]:bg-zinc-800 data-[state=active]:text-white text-xs">
@@ -107,7 +107,7 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               <TabsTrigger value="threads" className="gap-2 py-2.5 data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-xs">
                 <MessageSquare className="h-4 w-4" /> Threads
               </TabsTrigger>
-              <TabsTrigger value="facebook" className="gap-2 py-2.5 data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
+              <TabsTrigger value="facebook" className="gap-2 py-2.5 data-[state=active]:bg-muted data-[state=active]:text-white text-xs">
                 <Users className="h-4 w-4" /> Facebook
               </TabsTrigger>
               <TabsTrigger value="youtube" className="gap-2 py-2.5 data-[state=active]:bg-red-600 data-[state=active]:text-white text-xs">
@@ -123,11 +123,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 onCopy={() => copyText("ig", `${report.instagram.title}\n\n${report.instagram.caption}\n\n${report.instagram.cta}\n\n${report.instagram.hashtags}`)}
               />
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                   <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Instagram Caption</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.instagram.caption}</pre>
                 </div>
-                <div className="p-4 rounded-xl border border-violet-500/30 bg-violet-950/20 space-y-1">
+                <div className="p-4 rounded-md border border-border bg-muted space-y-1">
                   <span className="text-xs font-bold text-violet-300 uppercase tracking-wider block">Lead Magnet CTA</span>
                   <p className="text-xs font-semibold text-white">{report.instagram.cta}</p>
                 </div>
@@ -142,15 +142,15 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 onCopy={() => copyText("li", `${report.linkedIn.longFormPost}\n\n${report.linkedIn.cta}\n\n${report.linkedIn.hashtags.join(" ")}`)}
               />
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-950/20 space-y-2">
+                <div className="p-4 rounded-md border border-border bg-muted space-y-2">
                   <span className="text-xs font-bold text-blue-300 uppercase tracking-wider block">Professional Opening Hook</span>
                   <p className="font-extrabold text-white text-base">"{report.linkedIn.professionalHook}"</p>
                 </div>
-                <div className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                   <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Long-Form Thought Leadership Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.linkedIn.longFormPost}</pre>
                 </div>
-                <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-950/20 space-y-1">
+                <div className="p-4 rounded-md border border-border bg-muted space-y-1">
                   <span className="text-xs font-bold text-blue-300 uppercase tracking-wider block">Engagement CTA</span>
                   <p className="text-xs font-semibold text-white">{report.linkedIn.cta}</p>
                 </div>
@@ -166,14 +166,14 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               />
               <div className="space-y-3">
                 {report.x.thread.map((tweet) => (
-                  <div key={tweet.tweetNumber} className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                  <div key={tweet.tweetNumber} className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                     <div className="flex items-center justify-between text-xs font-bold text-zinc-400">
                       <span>Tweet #{tweet.tweetNumber} / 5</span>
                     </div>
                     <p className="text-xs text-foreground whitespace-pre-wrap leading-relaxed">{tweet.content}</p>
                   </div>
                 ))}
-                <div className="p-4 rounded-xl border border-zinc-700 bg-zinc-900/60 space-y-1">
+                <div className="p-4 rounded-md border border-zinc-700 bg-zinc-900/60 space-y-1">
                   <span className="text-xs font-bold text-zinc-300 uppercase tracking-wider block">Conversion Reply CTA</span>
                   <p className="text-xs font-semibold text-white">{report.x.cta}</p>
                 </div>
@@ -188,11 +188,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 onCopy={() => copyText("th", `${report.threads.conversationalPost}\n\n${report.threads.cta}`)}
               />
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                   <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block">Conversational Threads Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.threads.conversationalPost}</pre>
                 </div>
-                <div className="p-4 rounded-xl border border-neutral-700 bg-neutral-900/60 space-y-1">
+                <div className="p-4 rounded-md border border-neutral-700 bg-neutral-900/60 space-y-1">
                   <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider block">Conversational Reply CTA</span>
                   <p className="text-xs font-semibold text-white">{report.threads.cta}</p>
                 </div>
@@ -207,11 +207,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 onCopy={() => copyText("fb", `${report.facebook.communityPost}\n\n${report.facebook.cta}`)}
               />
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                   <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider block">Community Style Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.facebook.communityPost}</pre>
                 </div>
-                <div className="p-4 rounded-xl border border-indigo-500/30 bg-indigo-950/20 space-y-1">
+                <div className="p-4 rounded-md border border-border bg-muted space-y-1">
                   <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider block">Group Discussion CTA</span>
                   <p className="text-xs font-semibold text-white">{report.facebook.cta}</p>
                 </div>
@@ -226,15 +226,15 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 onCopy={() => copyText("yt", `${report.youtubeShorts.title}\n\n${report.youtubeShorts.description}\n\n${report.youtubeShorts.cta}`)}
               />
               <div className="space-y-4 text-sm">
-                <div className="p-4 rounded-xl border border-red-500/30 bg-red-950/20 space-y-1">
+                <div className="p-4 rounded-md border border-red-500/30 bg-red-950/20 space-y-1">
                   <span className="text-xs font-bold text-red-300 uppercase tracking-wider block">YouTube Shorts Title</span>
                   <p className="font-extrabold text-white text-base">{report.youtubeShorts.title}</p>
                 </div>
-                <div className="p-4 rounded-xl border border-border/80 bg-background/60 space-y-2">
+                <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
                   <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Description & Timestamps</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.youtubeShorts.description}</pre>
                 </div>
-                <div className="p-4 rounded-xl border border-red-500/30 bg-red-950/20 space-y-1">
+                <div className="p-4 rounded-md border border-red-500/30 bg-red-950/20 space-y-1">
                   <span className="text-xs font-bold text-red-300 uppercase tracking-wider block">Pinned Comment & Subscribe CTA</span>
                   <p className="text-xs font-semibold text-white">{report.youtubeShorts.cta}</p>
                 </div>

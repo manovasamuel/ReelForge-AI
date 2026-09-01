@@ -31,9 +31,9 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
               <button
                 key={f.id}
                 onClick={() => onChange({ defaultFormat: f.id })}
-                className={`p-4 rounded-xl border text-left transition-all duration-200 ${
+                className={`p-4 rounded-md border text-left transition-all duration-200 ${
                   active
-                    ? "bg-purple-900/40 border-purple-500 text-white shadow-md"
+                    ? "bg-muted border-border text-white shadow-md"
                     : "bg-gray-900/60 border-gray-800 text-gray-300 hover:border-gray-700"
                 }`}
               >
@@ -42,7 +42,7 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
                     {f.icon}
                     {f.label}
                   </div>
-                  {active && <span className="h-2 w-2 rounded-full bg-purple-400" />}
+                  {active && <span className="h-2 w-2 rounded-full bg-muted" />}
                 </div>
                 <p className="text-xs text-gray-400">{f.desc}</p>
               </button>
@@ -52,7 +52,7 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
       </div>
 
       <div className="border-t border-gray-800 pt-6 space-y-4">
-        <div className="flex items-center justify-between p-4 bg-gray-900/60 border border-gray-800 rounded-xl">
+        <div className="flex items-center justify-between p-4 bg-gray-900/60 border border-gray-800 rounded-md">
           <div>
             <div className="font-bold text-sm text-white">Include Executive Cover Page</div>
             <p className="text-xs text-gray-400 mt-0.5">Prepend formal cover header with target profile URL and date on PDF & Markdown exports.</p>
@@ -60,14 +60,14 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
           <button
             onClick={() => onChange({ includeCoverPage: !preferences.includeCoverPage })}
             className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 ${
-              preferences.includeCoverPage ? "bg-purple-600 justify-end" : "bg-gray-800 justify-start"
+              preferences.includeCoverPage ? "bg-muted justify-end" : "bg-gray-800 justify-start"
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-white shadow-md transform transition-transform" />
           </button>
         </div>
 
-        <div className="flex items-center justify-between p-4 bg-gray-900/60 border border-gray-800 rounded-xl">
+        <div className="flex items-center justify-between p-4 bg-gray-900/60 border border-gray-800 rounded-md">
           <div>
             <div className="font-bold text-sm text-white">Include Telemetry & Engine Metadata</div>
             <p className="text-xs text-gray-400 mt-0.5">Append heuristic model versioning and confidence intervals inside compiled reports.</p>
@@ -75,7 +75,7 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
           <button
             onClick={() => onChange({ includeMetadata: !preferences.includeMetadata })}
             className={`w-12 h-6 flex items-center rounded-full p-1 transition-colors duration-300 ${
-              preferences.includeMetadata ? "bg-purple-600 justify-end" : "bg-gray-800 justify-start"
+              preferences.includeMetadata ? "bg-muted justify-end" : "bg-gray-800 justify-start"
             }`}
           >
             <span className="w-4 h-4 rounded-full bg-white shadow-md transform transition-transform" />

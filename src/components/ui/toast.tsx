@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/ui/logo";
 
 // Custom event dispatcher for lightweight, dependency-free toast notifications
 export function showToast(message: string, description?: string) {
@@ -51,15 +52,13 @@ export function ToastContainer() {
           role="status"
           aria-live="polite"
           className={cn(
-            "flex items-start justify-between gap-3 rounded-xl border border-violet-500/40",
-            "bg-card/95 p-4 shadow-2xl shadow-violet-950/40 backdrop-blur-xl",
+            "flex items-start justify-between gap-3 rounded-[min(var(--radius),8px)] border border-border",
+            "bg-card p-4 shadow-none",
             "animate-in fade-in slide-in-from-bottom-5 duration-200"
           )}
         >
           <div className="flex items-start gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white shadow-md shadow-violet-500/20">
-              <Sparkles className="h-4 w-4" />
-            </div>
+            <Logo showText={false} iconClassName="w-6 h-6 text-foreground" />
             <div className="space-y-0.5">
               <p className="text-sm font-semibold text-foreground">{toast.message}</p>
               {toast.description && (

@@ -35,10 +35,10 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
   }
 
   return (
-    <div className="rounded-2xl border border-violet-500/30 bg-card/90 backdrop-blur-xl p-6 shadow-xl space-y-5">
+    <div className="rounded-md border border-border bg-card p-6 shadow-none space-y-5">
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400">
+          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-violet-400">
             <History className="h-4 w-4" />
           </div>
           <div>
@@ -59,16 +59,16 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
       </div>
 
       {history.length === 0 ? (
-        <div className="py-10 text-center space-y-2 border border-dashed border-border/60 rounded-xl bg-background/30">
+        <div className="py-10 text-center space-y-2 border border-dashed border-border/60 rounded-md bg-background">
           <FileText className="h-8 w-8 text-muted-foreground/50 mx-auto" />
           <p className="text-sm font-semibold text-foreground">No recent exports recorded</p>
           <p className="text-xs text-muted-foreground">Generated downloads and prints will appear here automatically.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-border/60">
+        <div className="overflow-x-auto rounded-md border border-border/60">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-border/60 bg-muted/40 font-semibold text-muted-foreground">
+              <tr className="border-b border-border/60 bg-muted font-semibold text-muted-foreground">
                 <th className="py-3 px-4">Project</th>
                 <th className="py-3 px-4">Scope</th>
                 <th className="py-3 px-4">Format</th>
@@ -83,7 +83,7 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
                 const dateStr = dateObj.toLocaleDateString();
                 const timeStr = dateObj.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
                 return (
-                  <tr key={item.id} className="hover:bg-muted/20 transition-colors">
+                  <tr key={item.id} className="hover:bg-muted transition-colors">
                     <td className="py-3 px-4 font-bold text-white max-w-[180px] truncate">
                       {item.projectName}
                     </td>
@@ -91,7 +91,7 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
                       {item.scope}
                     </td>
                     <td className="py-3 px-4 uppercase font-mono text-[11px]">
-                      <Badge variant="outline" className="bg-violet-500/10 border-violet-500/30 text-violet-300">
+                      <Badge variant="outline" className="bg-muted border-border text-violet-300">
                         {item.format}
                       </Badge>
                     </td>

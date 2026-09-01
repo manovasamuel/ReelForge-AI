@@ -30,8 +30,8 @@ export class OpenRouterProvider implements IAIProvider {
 
   public readonly metadata = {
     providerId: "openrouter" as AIProviderId,
-    defaultModel: "meta-llama/llama-3-8b-instruct",
-    fastModel: "meta-llama/llama-3-8b-instruct",
+    defaultModel: "google/gemini-3.6-flash",
+    fastModel: "google/gemini-3.6-flash",
     costPer1kInputTokensMilliCents: 10,
     costPer1kOutputTokensMilliCents: 10,
   };
@@ -39,7 +39,7 @@ export class OpenRouterProvider implements IAIProvider {
   private readonly apiKey: string | undefined;
   private readonly model: string;
 
-  constructor(model = "meta-llama/llama-3-8b-instruct") {
+  constructor(model = "google/gemini-3.6-flash") {
     this.apiKey = process.env.OPENROUTER_API_KEY;
     this.model = process.env.AI_MODEL || model;
   }

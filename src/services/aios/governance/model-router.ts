@@ -33,12 +33,10 @@ export interface CandidateModel {
 
 // Simulated registry of available models (MVP)
 const AVAILABLE_MODELS: CandidateModel[] = [
-  { id: 'llama-3.3-70b-versatile', provider: 'groq', tier: 'Free', baseQualityScore: 0.85, baseLatencyMs: 600, contextWindow: 8192, jsonReliability: 0.9, costPer1kTokens: 0 },
-  { id: 'llama-3.1-8b-instant', provider: 'groq', tier: 'Free', baseQualityScore: 0.75, baseLatencyMs: 300, contextWindow: 8192, jsonReliability: 0.8, costPer1kTokens: 0 },
-  { id: 'gemini-1.5-flash', provider: 'gemini', tier: 'Free', baseQualityScore: 0.88, baseLatencyMs: 1200, contextWindow: 1048576, jsonReliability: 0.95, costPer1kTokens: 0 },
-  { id: 'gemini-1.5-pro', provider: 'gemini', tier: 'Free', baseQualityScore: 0.95, baseLatencyMs: 2500, contextWindow: 2097152, jsonReliability: 0.99, costPer1kTokens: 0 },
-  // Placeholder paid models (disabled for MVP free-first policy unless forced)
-  { id: 'claude-3-5-sonnet', provider: 'anthropic', tier: 'Paid', baseQualityScore: 0.98, baseLatencyMs: 1500, contextWindow: 200000, jsonReliability: 0.99, costPer1kTokens: 3.0 },
+  { id: 'openai/gpt-oss-120b', provider: 'groq', tier: 'Free', baseQualityScore: 0.92, baseLatencyMs: 800, contextWindow: 131072, jsonReliability: 0.95, costPer1kTokens: 0 },
+  { id: 'gemini-3.1-flash-lite', provider: 'gemini', tier: 'Free', baseQualityScore: 0.88, baseLatencyMs: 1200, contextWindow: 1048576, jsonReliability: 0.95, costPer1kTokens: 0 },
+  { id: 'gemini-3.6-flash', provider: 'gemini', tier: 'Free', baseQualityScore: 0.92, baseLatencyMs: 1000, contextWindow: 1048576, jsonReliability: 0.95, costPer1kTokens: 0 },
+  { id: 'google/gemini-3.6-flash', provider: 'openrouter', tier: 'Free', baseQualityScore: 0.9, baseLatencyMs: 1500, contextWindow: 1048576, jsonReliability: 0.9, costPer1kTokens: 0 },
 ];
 
 export interface RoutingResult {

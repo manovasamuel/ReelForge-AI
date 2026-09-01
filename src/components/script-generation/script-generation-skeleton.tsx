@@ -3,8 +3,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export function ScriptGenerationSkeleton() {
   return (
-    <div className="space-y-8 animate-pulse">
-      <Card className="border-violet-500/20 bg-card/60">
+    <div className="space-y-8">
+      <Card className="border-border bg-card">
         <CardHeader className="space-y-3">
           <Skeleton className="h-6 w-56" />
           <Skeleton className="h-8 w-96" />
@@ -13,17 +13,17 @@ export function ScriptGenerationSkeleton() {
         <CardContent>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
             {[1, 2, 3, 4].map((i) => (
-              <Skeleton key={i} className="h-16 rounded-xl col-span-2" />
+              <Skeleton key={i} className="h-16 rounded-md col-span-2" />
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <Card className="border-violet-500/20 bg-card/60">
+      <Card className="border-border bg-card">
         <CardHeader><Skeleton className="h-6 w-48" /></CardHeader>
         <CardContent className="space-y-3">
           {[1, 2, 3, 4, 5].map((i) => (
-            <Skeleton key={i} className="h-14 rounded-xl" />
+            <Skeleton key={i} className="h-14 rounded-md" />
           ))}
         </CardContent>
       </Card>

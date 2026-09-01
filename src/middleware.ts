@@ -13,6 +13,9 @@ import { isOfflineDevMode } from "@/lib/auth/config";
 const isProtectedRoute = createRouteMatcher([
   "/profiles(.*)",
   "/workspace(.*)",
+  "/dashboard(.*)",
+  "/studio(.*)",
+  "/analytics(.*)",
   "/export(.*)",
   "/settings(.*)",
   "/api/(.*)",
@@ -23,6 +26,8 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/(.*)",
   "/sign-in(.*)",
   "/sign-up(.*)",
+  "/pricing(.*)",
+  "/about(.*)",
   "/$",
 ]);
 

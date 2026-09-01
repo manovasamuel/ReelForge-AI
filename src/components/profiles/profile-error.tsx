@@ -9,7 +9,7 @@ interface ProfileErrorProps {
 
 export function ProfileError({ message, onRetry }: ProfileErrorProps) {
   return (
-    <Card className="w-full border-destructive/20 bg-destructive/5 backdrop-blur-sm">
+    <Card className="w-full border-destructive/20 bg-destructive/5">
       <CardContent className="flex flex-col items-center gap-4 py-10 text-center">
         {/* Error icon */}
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">

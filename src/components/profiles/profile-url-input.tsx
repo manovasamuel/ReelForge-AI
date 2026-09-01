@@ -65,8 +65,8 @@ export function ProfileUrlInput({ onAnalyze, isLoading, onInputChange }: Profile
             aria-describedby={error ? "url-error" : undefined}
             className={cn(
               "h-11 pl-10 pr-4 text-sm transition-all",
-              "bg-card/50 border-border/60 placeholder:text-muted-foreground/50",
-              "focus-visible:border-violet-500/60 focus-visible:ring-violet-500/20",
+              "bg-card border-border/60 placeholder:text-muted-foreground/50",
+              "focus-visible:border-border focus-visible:ring-violet-500/20",
               error && "border-destructive/60 focus-visible:border-destructive focus-visible:ring-destructive/20"
             )}
           />
@@ -79,9 +79,9 @@ export function ProfileUrlInput({ onAnalyze, isLoading, onInputChange }: Profile
           disabled={isLoading || !url.trim()}
           className={cn(
             "h-11 shrink-0 gap-2 px-5 font-medium",
-            "bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white",
-            "shadow-lg shadow-violet-500/20 transition-all",
-            "hover:shadow-violet-500/40 hover:brightness-110",
+            "bg-muted   text-white",
+            "shadow-none  transition-all",
+            "hover: hover:brightness-110",
             "disabled:opacity-50 disabled:shadow-none"
           )}
         >

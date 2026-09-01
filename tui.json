@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "tool_output": {
+    "max_lines": 200,
+    "max_bytes": 8192
+  },
+  "compaction": {
+    "auto": true,
+    "tail_turns": 15,
+    "prune": false,
+    "preserve_recent_tokens": 8000,
+    "reserved": 4000
+  },
+  "layout": "stretch",
+  "permission": {
+    "edit": "ask",
+    "bash": { "git *": "allow", "*": "ask" },
+    "external_directory": { "~/secrets/**": "deny", "*": "allow" }
+  },
+  "experimental": {
+    "primary_tools": ["edit", "bash", "glob", "grep", "read", "write", "task"],
+    "mcp_timeout": 30000,
+    "batch_tool": false,
+    "continue_loop_on_deny": false
+  }
+}

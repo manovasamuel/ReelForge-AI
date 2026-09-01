@@ -21,8 +21,8 @@ export function ExportCenter({ project }: ExportCenterProps) {
 
   if (!project) {
     return (
-      <div className="rounded-2xl border border-violet-500/30 bg-card/80 backdrop-blur-md p-12 text-center shadow-xl max-w-2xl mx-auto my-12 space-y-4">
-        <div className="h-12 w-12 rounded-2xl bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400 mx-auto">
+      <div className="rounded-md border border-border bg-card p-12 text-center shadow-none max-w-2xl mx-auto my-12 space-y-4">
+        <div className="h-12 w-12 rounded-md bg-muted border border-border flex items-center justify-center text-violet-400 mx-auto">
           <Download className="h-6 w-6" />
         </div>
         <h3 className="text-lg font-bold text-white">No Active Analysis Selected</h3>
@@ -40,13 +40,13 @@ export function ExportCenter({ project }: ExportCenterProps) {
 
       {/* Screen View */}
       <div className="print:hidden space-y-8">
-        <div className="p-6 rounded-2xl border border-violet-500/40 bg-gradient-to-br from-violet-950/40 via-card/90 to-fuchsia-950/30 backdrop-blur-xl shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div className="p-6 rounded-md border border-border bg-muted via-card/90 shadow-none flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3.5">
-            <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-violet-500/30">
+            <div className="h-12 w-12 rounded-md bg-muted flex items-center justify-center text-white shadow-none">
               <Download className="h-6 w-6" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-500/20 border border-violet-500/30 text-[11px] font-bold text-violet-300 mb-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted border border-border text-[11px] font-bold text-violet-300 mb-1">
                 <Sparkles className="h-3 w-3 text-fuchsia-400" /> ReelForge AI v2.0 Export Center
               </div>
               <h2 className="text-xl font-bold text-white">

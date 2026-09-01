@@ -21,12 +21,12 @@ export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompe
   const highestConfidence = Math.max(...competitors.map((c) => c.confidenceScore));
 
   return (
-    <div className="space-y-6 rounded-2xl border border-violet-500/30 bg-card/50 p-6 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="space-y-6 rounded-md border border-border bg-card p-6 animate-in fade-in duration-300">
       {/* Section Header */}
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 ring-1 ring-violet-500/40">
+            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-muted text-violet-400 ring-1 ring-violet-500/40">
               <Users className="h-5 w-5" />
             </div>
             <div>
@@ -42,22 +42,22 @@ export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompe
 
         {/* Compact Statistic Chips (Improvement 4) */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
-          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
             <Users className="h-3.5 w-3.5 text-violet-400" />
             <span>Total: {total} Accounts</span>
           </div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
             <TrendingUp className="h-3.5 w-3.5 text-fuchsia-400" />
             <span>Avg Match: {avgSimilarity}%</span>
           </div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-semibold text-foreground">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
             <Sparkles className="h-3.5 w-3.5 text-purple-400" />
             <span>Peak Confidence: {highestConfidence}%</span>
           </div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-violet-500/40 bg-violet-500/15 px-3 py-1.5 text-xs font-bold text-violet-300">
+          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-bold text-violet-300">
             <CheckCircle className="h-3.5 w-3.5 text-violet-400" />
             <span>Status: Complete</span>
           </div>

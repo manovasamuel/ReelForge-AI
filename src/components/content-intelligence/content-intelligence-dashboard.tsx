@@ -64,49 +64,49 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. AGGREGATE INTELLIGENCE BENCHMARKS */}
-      <Card className="border-violet-500/40 bg-gradient-to-br from-violet-950/30 via-card/90 to-card/90 p-6 shadow-xl shadow-violet-950/20 backdrop-blur-md">
+      <Card className="border-border bg-muted via-card/90 to-card/90 p-6 shadow-none">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/20 text-violet-300">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-violet-300">
                 <BrainCircuit className="h-4 w-4" />
               </div>
               <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
                 Batch Content Intelligence Teardown
               </h3>
             </div>
-            <Badge className="bg-violet-500/20 text-violet-300 border border-violet-500/30">
+            <Badge className="bg-muted text-violet-300 border border-border">
               {stats.total} Selected Items Evaluated
             </Badge>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Analyzed Batch Size</p>
               <p className="mt-1 text-lg font-bold text-foreground">{stats.total} Media Items</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Avg Virality Score</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-violet-400">
                 <Sparkles className="h-4 w-4" />
                 {stats.hasVirality ? `${stats.avgVirality} / 100` : "N/A"}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Avg Reusability Index</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-fuchsia-400">
                 <Repeat className="h-4 w-4" />
                 {stats.avgReusability} / 100
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Est. Batch Save Rate</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-emerald-400">
                 <Bookmark className="h-4 w-4" />
                 {stats.hasSaveRate ? `${stats.avgSaveRate}%` : "N/A"}
               </p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Dominant Hook Pattern</p>
               <p className="mt-1 flex items-center gap-1.5 text-xs font-bold text-violet-300 leading-tight">
                 <Zap className="h-3.5 w-3.5 shrink-0" />
@@ -129,7 +129,7 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
         <Button
           size="lg"
           onClick={handleProceed}
-          className="w-full sm:w-auto bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-violet-950/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+          className="w-full sm:w-auto bg-muted hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-none rounded-md transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Generate Content DNA →</span>
         </Button>

@@ -54,11 +54,11 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
     n >= 1_000_000 ? `${(n / 1_000_000).toFixed(1)}M` : n >= 1000 ? `${(n / 1000).toFixed(1)}K` : n.toLocaleString();
 
   return (
-    <Card className="overflow-hidden border-violet-500/40 bg-gradient-to-br from-card via-card/95 to-violet-950/10 shadow-2xl backdrop-blur-xl">
+    <Card className="overflow-hidden border-border bg-muted from-card via-card/95 shadow-none">
       {/* Top Banner Row */}
-      <div className="flex flex-col gap-4 border-b border-border/60 bg-muted/30 p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-4 border-b border-border/60 bg-muted p-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-violet-600 text-white font-black text-sm shadow-md">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-muted text-white font-black text-sm shadow-md">
             #{index + 1}
           </div>
           <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <Badge className="bg-violet-500/20 text-violet-300 border border-violet-500/30 capitalize text-[10px]">
+                <Badge className="bg-muted text-violet-300 border border-border capitalize text-[10px]">
                   {report.type}
                 </Badge>
                 <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -82,8 +82,8 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
 
         {/* Virality & Reusability Badges */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 rounded-xl border border-violet-500/40 bg-violet-500/10 px-3.5 py-2">
-            <Sparkles className="h-4 w-4 text-violet-400 animate-pulse" />
+          <div className="flex items-center gap-2 rounded-md border border-border bg-muted px-3.5 py-2">
+            <Sparkles className="h-4 w-4 text-violet-400" />
             <div>
               <p className="text-[10px] uppercase font-bold text-violet-300">Virality Score</p>
               {virality.viralityAvailable !== false ? (
@@ -99,7 +99,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             </div>
           </div>
 
-          <div className="flex items-center gap-2 rounded-xl border border-fuchsia-500/40 bg-fuchsia-500/10 px-3.5 py-2">
+          <div className="flex items-center gap-2 rounded-md border border-border bg-muted px-3.5 py-2">
             <Repeat className="h-4 w-4 text-fuchsia-400" />
             <div>
               <p className="text-[10px] uppercase font-bold text-fuchsia-300">Reusability Score</p>
@@ -113,7 +113,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
       <div className="grid grid-cols-1 gap-8 p-6 lg:grid-cols-3">
         {/* Column 1: Hook & Visual Intelligence */}
         <div className="space-y-6">
-          <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4.5">
+          <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
             <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-400">
               <Zap className="h-4 w-4" />
               Hook Teardown
@@ -134,14 +134,14 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
                 <span className="text-muted-foreground">Pattern Interrupt:</span>
                 <p className="font-medium text-foreground mt-0.5 leading-snug">{hook.patternInterrupt}</p>
               </div>
-              <div className="rounded-lg bg-muted/40 p-2.5">
+              <div className="rounded-lg bg-muted p-2.5">
                 <span className="text-[10px] font-bold text-violet-300 uppercase">First 3 Seconds Anatomy:</span>
                 <p className="mt-1 text-xs text-foreground/90 leading-relaxed">{hook.first3Seconds}</p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4.5">
+          <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
             <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-sky-400">
               <Camera className="h-4 w-4" />
               Visual & Editing Architecture
@@ -169,7 +169,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
 
         {/* Column 2: Caption & Psychology Metrics */}
         <div className="space-y-6">
-          <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4.5">
+          <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
             <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-fuchsia-400">
               <FileText className="h-4 w-4" />
               Caption & Copywriting Mechanics
@@ -200,7 +200,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             </div>
           </div>
 
-          <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4.5">
+          <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
             <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-400">
               <BrainCircuit className="h-4 w-4" />
               Psychological Drivers Radar
@@ -254,29 +254,29 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
 
         {/* Column 3: Engagement, Winning/Failure Factors & Reusability */}
         <div className="space-y-6">
-          <div className="space-y-3 rounded-xl border border-border/50 bg-card/60 p-4.5">
+          <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
             <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
               <Eye className="h-4 w-4" />
               Engagement Conversion Efficiency
             </h4>
             <div className="grid grid-cols-3 gap-2 text-center text-xs">
-              <div className="rounded-lg bg-muted/30 p-2">
+              <div className="rounded-lg bg-muted p-2">
                 <span className="text-[10px] text-muted-foreground">Views</span>
                 <p className="text-sm font-bold text-foreground mt-0.5">
                   {engagement.viewsAvailable !== false ? formatNum(engagement.views) : "N/A"}
                 </p>
               </div>
-              <div className="rounded-lg bg-muted/30 p-2">
+              <div className="rounded-lg bg-muted p-2">
                 <span className="text-[10px] text-muted-foreground">Likes</span>
                 <p className="text-sm font-bold text-rose-400 mt-0.5">{formatNum(engagement.likes)}</p>
               </div>
-              <div className="rounded-lg bg-muted/30 p-2">
+              <div className="rounded-lg bg-muted p-2">
                 <span className="text-[10px] text-muted-foreground">Comments</span>
                 <p className="text-sm font-bold text-sky-400 mt-0.5">{formatNum(engagement.comments)}</p>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
-              <div className="rounded-lg border border-emerald-500/20 bg-emerald-500/10 p-2.5 flex flex-col justify-center">
+              <div className="rounded-lg border border-border bg-muted p-2.5 flex flex-col justify-center">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1 text-emerald-300">
                     <Bookmark className="h-3.5 w-3.5" />
@@ -290,7 +290,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
                   <span className="text-[9px] text-emerald-300/70 mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
                 )}
               </div>
-              <div className="rounded-lg border border-violet-500/20 bg-violet-500/10 p-2.5 flex flex-col justify-center">
+              <div className="rounded-lg border border-border bg-muted p-2.5 flex flex-col justify-center">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1 text-violet-300">
                     <Share2 className="h-3.5 w-3.5" />
@@ -308,10 +308,10 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           </div>
 
           {/* Reusability Benchmark (Additional Requirement 3) */}
-          <div className="rounded-xl border border-fuchsia-500/30 bg-fuchsia-950/20 p-4 text-xs space-y-2">
+          <div className="rounded-md border border-border bg-muted p-4 text-xs space-y-2">
             <div className="flex items-center justify-between">
               <span className="font-bold uppercase tracking-wider text-fuchsia-300">Reusability Assessment</span>
-              <Badge className="bg-fuchsia-600 text-white font-bold">{reusability.score}% Match</Badge>
+              <Badge className="bg-muted text-white font-bold">{reusability.score}% Match</Badge>
             </div>
             <p className="font-semibold text-white">{reusability.reusabilityLevel}</p>
             <p className="text-[11px] text-fuchsia-200/80">
@@ -322,7 +322,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
       </div>
 
       {/* Bottom Row: Winning Factors, Failure Factors & Why It Worked */}
-      <div className="grid grid-cols-1 gap-6 border-t border-border/60 bg-muted/20 p-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 border-t border-border/60 bg-muted p-6 md:grid-cols-3">
         {/* Winning Factors (Additional Requirement 1) */}
         <div className="space-y-2.5">
           <h5 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-emerald-400">
@@ -332,7 +332,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           <ul className="space-y-1.5">
             {winningFactors.map((wf, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs text-emerald-200/90 leading-relaxed">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{wf}</span>
               </li>
             ))}
@@ -348,7 +348,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           <ul className="space-y-1.5">
             {failureFactors.map((ff, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs text-amber-200/90 leading-relaxed">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-400 shrink-0" />
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{ff}</span>
               </li>
             ))}
@@ -364,7 +364,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           <ul className="space-y-1.5">
             {whyItWorked.map((wiw, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs text-foreground/90 leading-relaxed">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-violet-400 shrink-0" />
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{wiw}</span>
               </li>
             ))}

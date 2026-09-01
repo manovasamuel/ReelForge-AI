@@ -31,7 +31,7 @@ export class GeminiProvider implements IAIProvider {
 
   public readonly metadata = {
     providerId: "gemini" as AIProviderId,
-    defaultModel: "gemini-2.5-pro",
+    defaultModel: "gemini-3.1-flash-lite",
     fastModel: "gemini-3.1-flash-lite",
     costPer1kInputTokensMilliCents: 15,
     costPer1kOutputTokensMilliCents: 60,

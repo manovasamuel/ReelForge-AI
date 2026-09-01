@@ -51,7 +51,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
   }
 
   return (
-    <div className="rounded-2xl border border-violet-500/30 bg-card/90 backdrop-blur-xl p-6 shadow-xl space-y-6">
+    <div className="rounded-md border border-border bg-card p-6 shadow-none space-y-6">
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div>
           <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -73,7 +73,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="outline"
               onClick={() => handleDownload("print", "PDF Report")}
               disabled={isExporting !== null}
-              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-xl border-violet-500/40 bg-violet-950/20 hover:bg-violet-900/30 text-white transition-all hover:scale-[1.02]"
+              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-muted hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
               <FileText className="h-5 w-5 text-violet-400" />
               <div className="text-center">
@@ -86,7 +86,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="outline"
               onClick={() => handleDownload("markdown", "Markdown Report")}
               disabled={isExporting !== null}
-              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-xl border-violet-500/30 bg-card/60 hover:bg-violet-500/10 text-white transition-all hover:scale-[1.02]"
+              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
               <FileCode className="h-5 w-5 text-fuchsia-400" />
               <div className="text-center">
@@ -99,7 +99,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="outline"
               onClick={() => handleDownload("html", "Standalone HTML")}
               disabled={isExporting !== null}
-              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-xl border-violet-500/30 bg-card/60 hover:bg-violet-500/10 text-white transition-all hover:scale-[1.02]"
+              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
               <FileSpreadsheet className="h-5 w-5 text-indigo-400" />
               <div className="text-center">
@@ -112,7 +112,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="outline"
               onClick={() => handleDownload("json", "JSON Backup")}
               disabled={isExporting !== null}
-              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-xl border-violet-500/30 bg-card/60 hover:bg-violet-500/10 text-white transition-all hover:scale-[1.02]"
+              className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
               <Download className="h-5 w-5 text-emerald-400" />
               <div className="text-center">
@@ -132,7 +132,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("summary", "Executive Summary")}
-              className="text-xs bg-violet-500/10 hover:bg-violet-500/20 text-violet-200 border border-violet-500/30 gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "summary" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Summary
@@ -142,7 +142,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("script", "Script Package")}
-              className="text-xs bg-violet-500/10 hover:bg-violet-500/20 text-violet-200 border border-violet-500/30 gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "script" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Script
@@ -152,7 +152,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("repurpose", "Repurpose Package")}
-              className="text-xs bg-violet-500/10 hover:bg-violet-500/20 text-violet-200 border border-violet-500/30 gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "repurpose" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Repurpose
@@ -162,7 +162,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("complete", "Complete Report")}
-              className="text-xs bg-gradient-to-r from-violet-600/30 to-fuchsia-600/30 hover:from-violet-600/40 hover:to-fuchsia-600/40 text-white border border-violet-500/50 gap-1.5 h-9 font-bold"
+              className="text-xs bg-muted hover: hover: text-white border border-border gap-1.5 h-9 font-bold"
             >
               {copiedSection === "complete" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
               Copy All

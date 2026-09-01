@@ -8,9 +8,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
  */
 export function ProfileSkeleton() {
   return (
-    <Card className="w-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm">
+    <Card className="w-full overflow-hidden border-border/50 bg-card">
       {/* Top gradient accent */}
-      <div className="h-1 w-full bg-gradient-to-r from-violet-500/30 via-fuchsia-500/30 to-pink-500/30" />
+      <div className="h-1 w-full bg-muted" />
 
       <CardHeader className="pt-6">
         {/* Avatar + identity row skeleton */}
@@ -39,7 +39,7 @@ export function ProfileSkeleton() {
         <Separator className="opacity-30" />
 
         {/* Stats skeleton */}
-        <div className="grid grid-cols-3 gap-2 rounded-xl border border-border/30 bg-muted/10 px-4 py-4">
+        <div className="grid grid-cols-3 gap-2 rounded-md border border-border/30 bg-muted px-4 py-4">
           {[0, 1, 2].map((i) => (
             <div key={i} className="flex flex-col items-center gap-1.5">
               <Skeleton className="h-6 w-16" />
@@ -49,7 +49,7 @@ export function ProfileSkeleton() {
         </div>
 
         {/* Posts count skeleton */}
-        <div className="flex items-center justify-between rounded-xl border border-border/30 bg-muted/10 px-4 py-3">
+        <div className="flex items-center justify-between rounded-md border border-border/30 bg-muted px-4 py-3">
           <Skeleton className="h-4 w-24" />
           <Skeleton className="h-4 w-12" />
         </div>

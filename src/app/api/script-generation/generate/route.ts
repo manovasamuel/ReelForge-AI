@@ -30,8 +30,10 @@ export async function POST(request: Request) {
       );
     }
     const aiService = new AIService();
-    const preferredProvider = request.headers.get("x-ai-provider") || body?.aiProvider || "gemini";
-    const modelPreference = request.headers.get("x-ai-model") || body?.aiModel || "gemini-3.1-flash-lite";
+    // Let CapabilityRouter choose optimal provider (cost/latency/health aware)
+    // Explicit user preference still honored via header/body
+    const preferredProvider = request.headers.get("x-ai-provider") || body?.aiProvider || undefined;
+    const modelPreference = request.headers.get("x-ai-model") || body?.aiModel || undefined;
 
     // 3. Execute through UsageGuard (Enforces token limits without blocking)
     const guardResult = await UsageGuard.guardAiExecution(

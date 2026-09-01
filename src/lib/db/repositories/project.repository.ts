@@ -97,6 +97,8 @@ export class ProjectRepository {
   public static async save(project: SavedProject, userId: string): Promise<SavedProject> {
     const database = this.getDb();
     const now = new Date();
+    const isValidUuid = (val: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(val);
+    const projectId = isValidUuid(project.id) ? project.id : crypto.randomUUID();
     const targetUsername =
       project.state.profile?.username ||
       project.instagramUrl
@@ -109,7 +111,7 @@ export class ProjectRepository {
     await database
       .insert(projects)
       .values({
-        id: project.id,
+        id: projectId,
         userId,
         name: project.name,
         targetUsername,
@@ -121,7 +123,7 @@ export class ProjectRepository {
           selectedCompetitor: project.state.selectedCompetitor || null,
         },
         stateSnapshot: project.state,
-        createdAt: new Date(project.createdAt),
+        createdAt: project.createdAt ? new Date(project.createdAt) : now,
         updatedAt: now,
       })
       .onConflictDoUpdate({
@@ -280,6 +282,7 @@ export class ProjectRepository {
 
     return {
       ...project,
+      id: projectId,
       version: "1.2.0",
       updatedAt: now.toISOString(),
     };

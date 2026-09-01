@@ -46,10 +46,10 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
       aria-label={`Competitor #${rank}: @${competitor.username}`}
       className={cn(
         "group relative flex flex-col justify-between cursor-pointer overflow-hidden transition-all duration-200",
-        "border bg-card/80 backdrop-blur-md hover:shadow-xl",
+        "border bg-card  hover:shadow-none",
         selected
-          ? "border-violet-500/80 bg-violet-950/20 ring-1 ring-violet-500/50 shadow-violet-950/30"
-          : "border-border/60 hover:border-violet-500/40"
+          ? "border-border bg-muted ring-1 ring-violet-500/50 "
+          : "border-border/60 hover:border-border"
       )}
     >
       {/* Selection check indicator */}
@@ -58,8 +58,8 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
           className={cn(
             "flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-200",
             selected
-              ? "border-violet-500 bg-violet-600 text-white shadow-md shadow-violet-500/30"
-              : "border-border/80 bg-muted/40 text-transparent group-hover:border-violet-500/40"
+              ? "border-border bg-muted text-white shadow-md "
+              : "border-border/80 bg-muted text-transparent group-hover:border-border"
           )}
         >
           <CheckCircle2 className="h-4 w-4" />
@@ -80,7 +80,7 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
                 unoptimized
               />
             </div>
-            <span className="absolute -bottom-1 -left-1 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-fuchsia-600 text-[11px] font-bold text-white shadow-sm ring-2 ring-card">
+            <span className="absolute -bottom-1 -left-1 flex h-6 w-6 items-center justify-center rounded-full bg-muted text-[11px] font-bold text-white shadow-sm ring-2 ring-card">
               #{rank}
             </span>
           </div>
@@ -91,7 +91,7 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
               <h4 className="text-base font-bold text-foreground group-hover:text-violet-300 transition-colors">
                 @{competitor.username}
               </h4>
-              <Badge variant="outline" className="border-violet-500/30 bg-violet-500/10 text-xs font-semibold text-violet-300">
+              <Badge variant="outline" className="border-border bg-muted text-xs font-semibold text-violet-300">
                 {competitor.similarityScore}% Match
               </Badge>
             </div>
@@ -101,18 +101,18 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
 
             {/* Badges row */}
             <div className="mt-2 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1 rounded-md bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
                 <Layers className="h-3 w-3 text-violet-400" />
                 {competitor.industry}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-md bg-muted/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+              <span className="inline-flex items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
                 <Users className="h-3 w-3 text-fuchsia-400" />
                 {formattedFollowers} Followers
               </span>
             </div>
 
             {/* Reason match */}
-            <div className="mt-3 rounded-lg border border-border/40 bg-muted/20 p-2.5">
+            <div className="mt-3 rounded-lg border border-border/40 bg-muted p-2.5">
               <p className="text-xs leading-relaxed text-muted-foreground/90">
                 <span className="font-semibold text-violet-300">Why: </span>
                 {competitor.reasonMatch}
@@ -138,9 +138,9 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
             onClick={handleAnalyzeClick}
             className={cn(
               "w-full h-10 gap-2 text-xs font-semibold text-white",
-              "bg-gradient-to-r from-violet-600 via-fuchsia-600 to-purple-600",
-              "shadow-md shadow-violet-500/20 transition-all duration-200",
-              "hover:shadow-violet-500/40 hover:brightness-110 active:scale-[0.99]"
+              "bg-muted   ",
+              "shadow-md  transition-all duration-200",
+              "hover: hover:brightness-110 active:scale-[0.99]"
             )}
           >
             <span>Analyze Competitor</span>

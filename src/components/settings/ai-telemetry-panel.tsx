@@ -99,10 +99,10 @@ export function AiTelemetryPanel() {
   // Loading Skeleton State
   if (loading) {
     return (
-      <div className="p-6 bg-gray-900/60 border border-gray-800 rounded-2xl space-y-6 animate-pulse">
+      <div className="p-6 bg-gray-900/60 border border-gray-800 rounded-md space-y-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 bg-gray-800 rounded-xl" />
+            <div className="h-10 w-10 bg-gray-800 rounded-md" />
             <div className="space-y-2">
               <div className="h-5 w-48 bg-gray-800 rounded" />
               <div className="h-3 w-64 bg-gray-800/60 rounded" />
@@ -111,9 +111,9 @@ export function AiTelemetryPanel() {
           <div className="h-8 w-24 bg-gray-800 rounded-lg" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="h-28 bg-gray-800/50 rounded-xl" />
-          <div className="h-28 bg-gray-800/50 rounded-xl" />
-          <div className="h-28 bg-gray-800/50 rounded-xl" />
+          <div className="h-28 bg-gray-800/50 rounded-md" />
+          <div className="h-28 bg-gray-800/50 rounded-md" />
+          <div className="h-28 bg-gray-800/50 rounded-md" />
         </div>
       </div>
     );
@@ -122,9 +122,9 @@ export function AiTelemetryPanel() {
   // Error State
   if (error) {
     return (
-      <div className="p-6 bg-rose-950/20 border border-rose-500/30 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="p-6 bg-rose-950/20 border border-rose-500/30 rounded-md flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-rose-500/20 text-rose-400 rounded-xl border border-rose-500/30">
+          <div className="p-3 bg-rose-500/20 text-rose-400 rounded-md border border-rose-500/30">
             <AlertCircle className="h-6 w-6" />
           </div>
           <div>
@@ -135,7 +135,7 @@ export function AiTelemetryPanel() {
         <button
           onClick={() => fetchTelemetry(true)}
           disabled={refreshing}
-          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white font-semibold text-sm rounded-xl border border-gray-700 flex items-center gap-2 transition-all shrink-0"
+          className="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white font-semibold text-sm rounded-md border border-gray-700 flex items-center gap-2 transition-all shrink-0"
         >
           <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
           Retry Connection
@@ -161,25 +161,25 @@ export function AiTelemetryPanel() {
   };
 
   const getProgressColor = (pct: number | null) => {
-    if (pct === null) return "bg-purple-500";
+    if (pct === null) return "bg-muted";
     if (pct >= 100) return "bg-rose-500";
-    if (pct >= 80) return "bg-amber-500";
-    return "bg-purple-500";
+    if (pct >= 80) return "bg-muted";
+    return "bg-muted";
   };
 
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Top Banner & Refresh Header */}
-      <div className="p-6 bg-gradient-to-br from-gray-900/90 via-gray-900/60 to-purple-950/20 border border-gray-800 rounded-2xl shadow-xl space-y-6">
+      <div className="p-6 bg-muted from-gray-900/90 via-gray-900/60 border border-gray-800 rounded-md shadow-none space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-purple-600/20 border border-purple-500/30 rounded-xl text-purple-400">
+            <div className="p-3 bg-muted border border-border rounded-md text-purple-400">
               <Activity className="h-6 w-6" />
             </div>
             <div>
               <div className="flex items-center gap-2.5">
                 <h3 className="text-lg font-bold text-white">AI Telemetry & Quota Monitor</h3>
-                <span className="px-2.5 py-0.5 text-xs font-bold bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-full">
+                <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-purple-300 rounded-full">
                   {data.planName}
                 </span>
               </div>
@@ -191,7 +191,7 @@ export function AiTelemetryPanel() {
           <button
             onClick={() => fetchTelemetry(true)}
             disabled={refreshing}
-            className="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-semibold text-sm rounded-xl border border-gray-700/80 flex items-center gap-2 transition-all self-start md:self-auto shrink-0"
+            className="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-semibold text-sm rounded-md border border-gray-700/80 flex items-center gap-2 transition-all self-start md:self-auto shrink-0"
           >
             <RefreshCw className={`h-4 w-4 text-purple-400 ${refreshing ? "animate-spin" : ""}`} />
             Refresh Telemetry
@@ -200,7 +200,7 @@ export function AiTelemetryPanel() {
 
         {/* Quota Alerts */}
         {isOverQuota && (
-          <div className="p-4 bg-rose-950/30 border border-rose-500/40 rounded-xl flex items-center justify-between gap-4 text-rose-300 text-sm font-medium">
+          <div className="p-4 bg-rose-950/30 border border-rose-500/40 rounded-md flex items-center justify-between gap-4 text-rose-300 text-sm font-medium">
             <div className="flex items-center gap-3">
               <AlertTriangle className="h-5 w-5 text-rose-400 shrink-0" />
               <span>
@@ -214,7 +214,7 @@ export function AiTelemetryPanel() {
         )}
 
         {isEmptyUsage && !p.isUnlimited && (
-          <div className="p-3.5 bg-purple-950/20 border border-purple-500/30 rounded-xl flex items-center gap-3 text-purple-300 text-sm font-medium">
+          <div className="p-3.5 bg-muted border border-border rounded-md flex items-center gap-3 text-purple-300 text-sm font-medium">
             <CheckCircle2 className="h-5 w-5 text-purple-400 shrink-0" />
             <span>
               <strong className="text-white">0 AI tokens consumed this cycle.</strong> Your monthly allocation of {p.aiTokenLimit.toLocaleString()} tokens is fully available for AI synthesis.
@@ -235,7 +235,7 @@ export function AiTelemetryPanel() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Total Tokens vs Limit Card */}
-            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-xl space-y-2">
+            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-md space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-400 font-medium">
                 <span>Total AI Tokens Used</span>
                 <Zap className="h-4 w-4 text-purple-400" />
@@ -259,7 +259,7 @@ export function AiTelemetryPanel() {
             </div>
 
             {/* Prompt vs Completion Breakdown Card */}
-            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-xl space-y-3">
+            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-md space-y-3">
               <div className="flex items-center justify-between text-xs text-gray-400 font-medium">
                 <span>Token Flow Breakdown</span>
                 <Cpu className="h-4 w-4 text-cyan-400" />
@@ -280,7 +280,7 @@ export function AiTelemetryPanel() {
             </div>
 
             {/* Cost Estimate Card */}
-            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-xl space-y-2 flex flex-col justify-between">
+            <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-md space-y-2 flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between text-xs text-gray-400 font-medium">
                   <span>Total Estimated Value</span>
@@ -300,7 +300,7 @@ export function AiTelemetryPanel() {
       </div>
 
       {/* Section B: Real-Time AI Provider Health */}
-      <div className="p-6 bg-gray-900/60 border border-gray-800 rounded-2xl space-y-4">
+      <div className="p-6 bg-gray-900/60 border border-gray-800 rounded-md space-y-4">
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-base font-bold text-white flex items-center gap-2">
@@ -321,15 +321,15 @@ export function AiTelemetryPanel() {
             const isOpen = provider.circuitState === "open";
 
             return (
-              <div key={provider.providerId} className="p-4 bg-gray-950/60 border border-gray-800/80 rounded-xl space-y-3">
+              <div key={provider.providerId} className="p-4 bg-gray-950/60 border border-gray-800/80 rounded-md space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div className="font-bold text-sm text-white">{provider.name}</div>
                   <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full border ${
                     isClosed
-                      ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30"
+                      ? "bg-muted text-emerald-400 border-border"
                       : isOpen
                       ? "bg-rose-500/20 text-rose-400 border-rose-500/30"
-                      : "bg-amber-500/20 text-amber-300 border-amber-500/30"
+                      : "bg-muted text-amber-300 border-border"
                   }`}>
                     {provider.circuitState.toUpperCase()}
                   </span>

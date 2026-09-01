@@ -40,9 +40,9 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
   const getStatusBadge = (status: ProviderStatus) => {
     switch (status) {
       case "Active":
-        return <span className="px-2.5 py-1 text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center gap-1"><CheckCircle2 className="h-3 w-3" /> Active</span>;
+        return <span className="px-2.5 py-1 text-xs font-semibold bg-muted text-emerald-400 border border-border rounded-full flex items-center gap-1"><CheckCircle2 className="h-3 w-3" /> Active</span>;
       case "Coming Soon":
-        return <span className="px-2.5 py-1 text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-full flex items-center gap-1"><Clock className="h-3 w-3" /> Coming Soon</span>;
+        return <span className="px-2.5 py-1 text-xs font-semibold bg-muted text-purple-300 border border-border rounded-full flex items-center gap-1"><Clock className="h-3 w-3" /> Coming Soon</span>;
       default:
         return <span className="px-2.5 py-1 text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700 rounded-full flex items-center gap-1"><Lock className="h-3 w-3" /> {status}</span>;
     }
@@ -64,16 +64,16 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
               <div
                 key={opt.id}
                 onClick={() => !opt.disabled && onChange({ instagramProvider: opt.id })}
-                className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-200 ${
+                className={`p-4 rounded-md border flex items-center justify-between transition-all duration-200 ${
                   active
-                    ? "bg-purple-900/30 border-purple-500 text-white shadow-md cursor-pointer"
+                    ? "bg-muted border-border text-white shadow-md cursor-pointer"
                     : opt.disabled
                     ? "bg-gray-900/40 border-gray-800/80 opacity-75 cursor-not-allowed"
                     : "bg-gray-900/60 border-gray-800 hover:border-gray-700 cursor-pointer"
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-purple-400 bg-purple-600" : "border-gray-600 bg-gray-800"}`}>
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-gray-800"}`}>
                     {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </div>
                   <div>
@@ -102,16 +102,16 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
               <div
                 key={opt.id}
                 onClick={() => !opt.disabled && onChange({ aiProvider: opt.id })}
-                className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-200 ${
+                className={`p-4 rounded-md border flex items-center justify-between transition-all duration-200 ${
                   active
-                    ? "bg-purple-900/30 border-purple-500 text-white shadow-md cursor-pointer"
+                    ? "bg-muted border-border text-white shadow-md cursor-pointer"
                     : opt.disabled
                     ? "bg-gray-900/40 border-gray-800/80 opacity-75 cursor-not-allowed"
                     : "bg-gray-900/60 border-gray-800 hover:border-gray-700 cursor-pointer"
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-purple-400 bg-purple-600" : "border-gray-600 bg-gray-800"}`}>
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-gray-800"}`}>
                     {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </div>
                   <div>

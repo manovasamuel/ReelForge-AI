@@ -33,11 +33,11 @@ export function SaveProjectModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-200 p-4">
-      <div className="w-full max-w-md rounded-2xl border border-violet-500/40 bg-card/95 p-6 shadow-2xl space-y-5 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 animate-in fade-in duration-200 p-4">
+      <div className="w-full max-w-md rounded-md border border-border bg-card p-6 shadow-none space-y-5 relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-violet-500/20 border border-violet-500/40 flex items-center justify-center text-violet-400">
+            <div className="h-9 w-9 rounded-md bg-muted border border-border flex items-center justify-center text-violet-400">
               <FolderGit2 className="h-5 w-5" />
             </div>
             <div>
@@ -60,18 +60,18 @@ export function SaveProjectModal({
               onChange={(e) => setProjectName(e.target.value)}
               placeholder="e.g., @nike Creator Teardown"
               required
-              className="bg-background/80 border-border/80 h-10 text-sm font-medium text-white focus:border-violet-500 rounded-xl"
+              className="bg-background border-border/80 h-10 text-sm font-medium text-white focus:border-border rounded-md"
               autoFocus
             />
           </div>
 
-          <div className="p-3.5 rounded-xl bg-violet-950/30 border border-violet-500/30 space-y-2 text-xs">
+          <div className="p-3.5 rounded-md bg-muted border border-border space-y-2 text-xs">
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-1.5 font-bold text-violet-200">
                 <Sparkles className="h-3.5 w-3.5 text-fuchsia-400" />
                 Snapshot Telemetry
               </span>
-              <Badge variant="secondary" className="bg-violet-500/20 text-violet-300 text-[10px]">
+              <Badge variant="secondary" className="bg-muted text-violet-300 text-[10px]">
                 v1.2.0 Schema
               </Badge>
             </div>
@@ -93,7 +93,7 @@ export function SaveProjectModal({
             <Button
               type="submit"
               size="sm"
-              className="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white font-bold text-xs gap-1.5 px-5 shadow-lg shadow-violet-950/50"
+              className="bg-muted hover: hover: text-white font-bold text-xs gap-1.5 px-5 shadow-none"
             >
               <Save className="h-3.5 w-3.5" /> Save Project
             </Button>

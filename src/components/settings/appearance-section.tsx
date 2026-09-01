@@ -17,9 +17,9 @@ export function AppearanceSection({ preferences, onChange }: AppearanceSectionPr
   ];
 
   const accents: { id: AccentColor; label: string; colorClass: string; borderClass: string }[] = [
-    { id: "purple", label: "ReelForge Purple", colorClass: "bg-purple-600", borderClass: "border-purple-500" },
-    { id: "blue", label: "Electric Blue", colorClass: "bg-blue-600", borderClass: "border-blue-500" },
-    { id: "emerald", label: "Studio Emerald", colorClass: "bg-emerald-600", borderClass: "border-emerald-500" },
+    { id: "purple", label: "ReelForge Purple", colorClass: "bg-muted", borderClass: "border-border" },
+    { id: "blue", label: "Electric Blue", colorClass: "bg-muted", borderClass: "border-border" },
+    { id: "emerald", label: "Studio Emerald", colorClass: "bg-muted", borderClass: "border-border" },
   ];
 
   return (
@@ -36,9 +36,9 @@ export function AppearanceSection({ preferences, onChange }: AppearanceSectionPr
               <button
                 key={t.id}
                 onClick={() => onChange({ theme: t.id })}
-                className={`p-4 rounded-xl border text-left transition-all duration-200 relative ${
+                className={`p-4 rounded-md border text-left transition-all duration-200 relative ${
                   active
-                    ? "bg-purple-900/40 border-purple-500 text-white shadow-lg shadow-purple-500/10"
+                    ? "bg-muted border-border text-white shadow-none "
                     : "bg-gray-900/60 border-gray-800 text-gray-300 hover:border-gray-700 hover:bg-gray-800/50"
                 }`}
               >
@@ -68,7 +68,7 @@ export function AppearanceSection({ preferences, onChange }: AppearanceSectionPr
               <button
                 key={a.id}
                 onClick={() => onChange({ accentColor: a.id })}
-                className={`p-4 rounded-xl border flex items-center justify-between transition-all duration-200 ${
+                className={`p-4 rounded-md border flex items-center justify-between transition-all duration-200 ${
                   active
                     ? `bg-gray-900/90 ${a.borderClass} text-white shadow-md`
                     : "bg-gray-900/60 border-gray-800 text-gray-300 hover:border-gray-700"

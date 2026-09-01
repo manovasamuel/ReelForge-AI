@@ -83,9 +83,9 @@ export function ProfileCard({ profile }: ProfileCardProps) {
   const latestPosts = profile.posts.slice(0, 6);
 
   return (
-    <Card className="w-full overflow-hidden border-border/50 bg-card/80 backdrop-blur-sm">
+    <Card className="w-full overflow-hidden border-border/50 bg-card">
       {/* Top gradient accent */}
-      <div className="h-1 w-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-pink-500" />
+      <div className="h-1 w-full bg-muted" />
 
       <CardHeader className="pt-6">
         {/* Avatar + identity row */}
@@ -103,7 +103,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
                   unoptimized
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-violet-500 to-fuchsia-500 text-2xl font-bold text-white">
+                <div className="flex h-full w-full items-center justify-center bg-muted text-2xl font-bold text-white">
                   {profile.username[0]?.toUpperCase()}
                 </div>
               )}
@@ -178,7 +178,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         <div
           className={cn(
             "grid grid-cols-3 gap-2",
-            "rounded-xl border border-border/40 bg-muted/20 px-4 py-4"
+            "rounded-md border border-border/40 bg-muted px-4 py-4"
           )}
         >
           <ProfileStat label="Followers" value={profile.follower_count} />
@@ -189,7 +189,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         </div>
 
         {/* Posts count separate card */}
-        <div className="flex items-center justify-between rounded-xl border border-border/40 bg-muted/20 px-4 py-3">
+        <div className="flex items-center justify-between rounded-md border border-border/40 bg-muted px-4 py-3">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Grid3X3 className="h-4 w-4" />
             Total Posts

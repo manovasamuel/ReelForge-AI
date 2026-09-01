@@ -19,19 +19,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://reelforge.ai"),
   title: {
-    default: "ReelForge AI",
+    default: "ReelForge AI | Extract Winning Patterns & Generate Viral Reels",
     template: "%s | ReelForge AI",
   },
   description:
-    "Internal AI Content Intelligence Platform — Analyze competitors, extract patterns, and generate Instagram content powered by AI.",
+    "Extract winning content patterns and generate viral Instagram Reels with AI. Discover competitors, analyze top reels, and create full content packages in seconds.",
   keywords: [
-    "Instagram",
+    "Instagram Reels",
     "content intelligence",
     "competitor analysis",
-    "AI content generation",
-    "reels",
+    "AI content generator",
+    "viral reels maker",
+    "ReelForge AI",
+    "social media AI",
   ],
+  // Removed hardcoded global canonical to allow page-level definitions
+  openGraph: {
+    title: "ReelForge AI | Extract Winning Patterns & Generate Viral Reels",
+    description: "Analyze competitors, extract patterns, and generate high-converting Instagram content powered by AI.",
+    url: "https://reelforge.ai",
+    siteName: "ReelForge AI",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ReelForge AI | Generate Viral Reels with AI",
+    description: "Extract winning content patterns and generate viral Instagram Reels in seconds.",
+    creator: "@reelforgeai",
+  },
 };
 
 export default function RootLayout({

@@ -55,7 +55,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. BUSINESS SUMMARY (Additional Requirement 1) */}
-      <Card className="border-accent/40 bg-gradient-to-br from-accent/30 via-card/90 to-card/90 p-6 shadow-xl shadow-accent/20 backdrop-blur-md">
+      <Card className="border-accent/40 bg-muted from-accent/30 via-card/90 to-card/90 p-6 shadow-none shadow-accent/20">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/20 text-accent">
@@ -66,23 +66,23 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
             </h3>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Industry</p>
               <p className="mt-1 text-sm font-bold text-foreground">{businessSummary.industry}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Market Position</p>
               <p className="mt-1 text-sm font-bold text-accent">{businessSummary.marketPosition}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Primary Audience</p>
               <p className="mt-1 text-sm font-bold text-foreground">{businessSummary.primaryAudience}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Core Differentiator</p>
               <p className="mt-1 text-xs font-semibold text-foreground leading-tight">{businessSummary.coreDifferentiator}</p>
             </div>
-            <div className="rounded-xl border border-border/40 bg-card/60 p-3.5">
+            <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Content Maturity</p>
               <p className="mt-1 text-sm font-bold text-accent">{businessSummary.contentMaturity}</p>
             </div>
@@ -91,7 +91,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </Card>
 
       {/* 2. ACCOUNT OVERVIEW */}
-      <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
+      <Card className="border-border/60 bg-card p-6">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-accent/40">
@@ -143,50 +143,50 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           Performance Metrics
         </h4>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Est. Engagement Rate</p>
             <p className="mt-1 text-2xl font-black text-accent">{performanceMetrics.estimatedEngagementRate}%</p>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Avg Likes</p>
             <p className="mt-1 flex items-center gap-1.5 text-xl font-bold text-foreground">
               <Heart className="h-4 w-4 text-rose-400" />
               {performanceMetrics.avgLikes.toLocaleString()}
             </p>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Avg Comments</p>
             <p className="mt-1 flex items-center gap-1.5 text-xl font-bold text-foreground">
               <MessageCircle className="h-4 w-4 text-sky-400" />
               {performanceMetrics.avgComments.toLocaleString()}
             </p>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Monthly Growth</p>
             <p className="mt-1 text-xl font-bold text-emerald-400">{performanceMetrics.estimatedMonthlyGrowth}</p>
           </Card>
         </div>
 
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-4">
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Posting Frequency</p>
             <p className="mt-1 text-base font-bold text-foreground">{performanceMetrics.postingFrequency}</p>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Reels Volume</p>
             <div className="mt-2 flex items-center gap-2">
               <Progress value={performanceMetrics.reelPercentage} className="h-2 flex-1" />
               <span className="text-sm font-bold">{performanceMetrics.reelPercentage}%</span>
             </div>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Carousels Volume</p>
             <div className="mt-2 flex items-center gap-2">
               <Progress value={performanceMetrics.carouselPercentage} className="h-2 flex-1" />
               <span className="text-sm font-bold">{performanceMetrics.carouselPercentage}%</span>
             </div>
           </Card>
-          <Card className="border-border/50 bg-card/70 p-4">
+          <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Images Volume</p>
             <div className="mt-2 flex items-center gap-2">
               <Progress value={performanceMetrics.imagePercentage} className="h-2 flex-1" />
@@ -197,7 +197,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </div>
 
       {/* 4. BRAND POSITION */}
-      <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
+      <Card className="border-border/60 bg-card p-6">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
           <Award className="h-4 w-4 text-accent" />
           Brand Positioning Matrix
@@ -238,7 +238,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {contentPillars.map((pillar, idx) => (
-            <Card key={idx} className="border-border/50 bg-card/70 p-4 space-y-3">
+            <Card key={idx} className="border-border/50 bg-card p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold text-foreground">{pillar.name}</span>
                 <Badge className="bg-accent/15 text-accent font-bold">{pillar.estimatedPercentage}%</Badge>
@@ -256,33 +256,33 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </div>
 
       {/* 6. CAPTION ANALYSIS */}
-      <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
+      <Card className="border-border/60 bg-card p-6">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
           <FileText className="h-4 w-4 text-sky-400" />
           Caption Strategy & Copywriting
         </h4>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">Avg Caption Length</p>
             <p className="mt-1 text-sm font-bold text-foreground">{captionAnalysis.averageCaptionLength}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">Emoji Usage</p>
             <p className="mt-1 text-sm font-bold text-foreground">{captionAnalysis.emojiUsage}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">CTA Frequency</p>
             <p className="mt-1 text-sm font-bold text-accent">{captionAnalysis.ctaFrequency}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">Hashtag Density</p>
             <p className="mt-1 text-sm font-bold text-foreground">{captionAnalysis.hashtagUsage}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">Writing Style</p>
             <p className="mt-1 text-sm font-bold text-foreground">{captionAnalysis.writingStyle}</p>
           </div>
-          <div className="rounded-xl border border-border/40 bg-muted/20 p-4">
+          <div className="rounded-md border border-border/40 bg-muted p-4">
             <p className="text-xs text-muted-foreground">Storytelling Arc</p>
             <p className="mt-1 text-sm font-bold text-accent">{captionAnalysis.storytellingLevel}</p>
           </div>
@@ -290,7 +290,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </Card>
 
       {/* 7. AUDIENCE PSYCHOLOGY */}
-      <Card className="border-border/60 bg-card/80 p-6 backdrop-blur-md">
+      <Card className="border-border/60 bg-card p-6">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold tracking-wide text-muted-foreground uppercase">
           <BrainCircuit className="h-4 w-4 text-accent" />
           Audience Psychology & Drivers
@@ -344,7 +344,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
 
       {/* 8 & 9. STRENGTHS AND WEAKNESSES */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <Card className="border-emerald-500/30 bg-emerald-950/10 p-6">
+        <Card className="border-border bg-muted p-6">
           <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-emerald-400 uppercase tracking-wide">
             <CheckCircle2 className="h-4 w-4" />
             Competitive Strengths
@@ -352,14 +352,14 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           <ul className="space-y-2.5">
             {strengths.map((str, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs font-medium text-emerald-200/90 leading-relaxed">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{str}</span>
               </li>
             ))}
           </ul>
         </Card>
 
-        <Card className="border-amber-500/30 bg-amber-950/10 p-6">
+        <Card className="border-border bg-muted p-6">
           <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-amber-400 uppercase tracking-wide">
             <AlertTriangle className="h-4 w-4" />
             Competitive Weaknesses & Blind Spots
@@ -367,7 +367,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           <ul className="space-y-2.5">
             {weaknesses.map((wk, idx) => (
               <li key={idx} className="flex items-start gap-2 text-xs font-medium text-amber-200/90 leading-relaxed">
-                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-amber-400 shrink-0" />
+                <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{wk}</span>
               </li>
             ))}
@@ -376,14 +376,14 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </div>
 
       {/* 10. RECOMMENDATIONS (Additional Requirement 2) */}
-      <Card className="border-accent/30 bg-gradient-to-r from-accent/20 via-card/80 to-card/80 p-6">
+      <Card className="border-accent/30 bg-muted from-accent/20 via-card/80 to-card/80 p-6">
         <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-accent uppercase tracking-wide">
-          <Lightbulb className="h-4 w-4 text-amber-400 animate-pulse" />
+          <Lightbulb className="h-4 w-4 text-amber-400" />
           Strategic Recommendations & Action Plan
         </h4>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {recommendations.map((rec, idx) => (
-            <div key={idx} className="flex items-center gap-3 rounded-xl border border-accent/20 bg-card/60 p-3.5">
+            <div key={idx} className="flex items-center gap-3 rounded-md border border-accent/20 bg-card p-3.5">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-accent font-bold text-xs">
                 {idx + 1}
               </div>
@@ -394,7 +394,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       </Card>
 
       {/* 11. OVERALL INTELLIGENCE SCORE */}
-      <Card className="overflow-hidden border-accent/50 bg-gradient-to-br from-accent/40 via-card to-card p-8 shadow-2xl shadow-accent/30">
+      <Card className="overflow-hidden border-accent/50 bg-muted from-accent/40 via-card to-card p-8 shadow-none shadow-accent/30">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="space-y-2">
             <Badge className="bg-accent/20 text-accent border border-accent/40">
@@ -462,7 +462,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
         <Button
           size="lg"
           onClick={() => onCollectContent?.(analysis.username)}
-          className="w-full sm:w-auto bg-accent hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-xl shadow-accent/40 rounded-xl transition-all duration-300 hover:scale-[1.02]"
+          className="w-full sm:w-auto bg-accent hover:opacity-95 text-white font-bold text-sm px-8 py-6 shadow-none shadow-accent/40 rounded-md transition-all duration-300 hover:scale-[1.02]"
         >
           <span>Collect Content →</span>
         </Button>

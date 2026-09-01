@@ -31,7 +31,7 @@ export function SettingsDashboard() {
   if (!settings || !storageDetails) {
     return (
       <div className="min-h-[500px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-purple-500" />
+        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-border" />
       </div>
     );
   }
@@ -55,15 +55,15 @@ export function SettingsDashboard() {
   return (
     <div className="max-w-7xl mx-auto space-y-8 pb-16 animate-fade-in">
       {/* Header Banner */}
-      <div className="p-6 bg-gray-900/80 backdrop-blur-xl border border-gray-800 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
+      <div className="p-6 bg-gray-900/80 border border-gray-800 rounded-md flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-none">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-purple-600/20 border border-purple-500/30 rounded-xl text-purple-400">
+          <div className="p-3 bg-muted border border-border rounded-md text-purple-400">
             <SettingsIcon className="h-7 w-7" />
           </div>
           <div>
             <h1 className="text-2xl font-black text-white flex items-center gap-3">
               Settings & Provider Studio
-              <span className="px-2.5 py-0.5 text-xs font-bold bg-purple-500/20 border border-purple-500/40 text-purple-300 rounded-full">
+              <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-purple-300 rounded-full">
                 v2.0.0
               </span>
             </h1>
@@ -77,16 +77,16 @@ export function SettingsDashboard() {
       {/* Main Settings Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         {/* Navigation Sidebar */}
-        <div className="p-3 bg-gray-900/60 backdrop-blur-md border border-gray-800 rounded-2xl space-y-1 sticky top-6">
+        <div className="p-3 bg-gray-900/60 border border-gray-800 rounded-md space-y-1 sticky top-6">
           {tabs.map((t) => {
             const active = activeTab === t.id;
             return (
               <button
                 key={t.id}
                 onClick={() => setActiveTab(t.id)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200 text-left ${
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-semibold text-sm transition-all duration-200 text-left ${
                   active
-                    ? "bg-purple-600 text-white shadow-lg shadow-purple-600/30"
+                    ? "bg-muted text-white shadow-none "
                     : "text-gray-400 hover:bg-gray-800/60 hover:text-gray-200"
                 }`}
               >
@@ -98,7 +98,7 @@ export function SettingsDashboard() {
         </div>
 
         {/* Content Area */}
-        <div className="lg:col-span-3 p-6 bg-gray-900/60 backdrop-blur-xl border border-gray-800 rounded-2xl shadow-xl min-h-[500px]">
+        <div className="lg:col-span-3 p-6 bg-gray-900/60 border border-gray-800 rounded-md shadow-none min-h-[500px]">
           {activeTab === "appearance" && (
             <AppearanceSection
               preferences={settings.appearance}

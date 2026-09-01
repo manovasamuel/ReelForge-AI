@@ -31,12 +31,12 @@ export function SummaryPanel({
   isPhase9Complete = false,
 }: SummaryPanelProps) {
   return (
-    <Card className="w-full overflow-hidden border-violet-500/30 bg-card/90 shadow-xl shadow-violet-950/20 backdrop-blur-md lg:sticky lg:top-20">
-      <div className="h-1 w-full bg-gradient-to-r from-violet-600 to-fuchsia-600" />
+    <Card className="w-full overflow-hidden border-border bg-card shadow-none lg:sticky lg:top-20">
+      <div className="h-1 w-full bg-muted" />
 
       <CardHeader className="pb-3 pt-4">
         <div className="flex items-center justify-between">
-          <Badge variant="outline" className="border-violet-500/40 text-violet-300 bg-violet-500/10 text-[10px]">
+          <Badge variant="outline" className="border-border text-violet-300 bg-muted text-[10px]">
             Live Session
           </Badge>
           <span className="text-[11px] font-medium text-muted-foreground">
@@ -79,7 +79,7 @@ export function SummaryPanel({
           {/* Brand Type */}
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Brand Type</span>
-            <Badge variant="secondary" className="bg-violet-500/15 text-[10px] text-violet-300">
+            <Badge variant="secondary" className="bg-muted text-[10px] text-violet-300">
               {brandType ?? "Pending"}
             </Badge>
           </div>
@@ -107,7 +107,7 @@ export function SummaryPanel({
         </div>
 
         {/* Status Box */}
-        <div className="mt-4 rounded-xl border border-violet-500/30 bg-violet-500/10 p-3">
+        <div className="mt-4 rounded-md border border-border bg-muted p-3">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
             <span className="font-bold text-violet-200">
