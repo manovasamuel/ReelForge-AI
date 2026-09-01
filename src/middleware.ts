@@ -92,7 +92,7 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
         }
       }
     }
-  })(req, event);
+  }, { publishableKey: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "pk_test_c3VidGxlLWpvZXktMjUuY2xlcmsuYWNjb3VudHMuZGV2JA" })(req, event);
 }
 
 export const config = {

@@ -16,6 +16,7 @@ export function ClerkProviderWrapper({ children }: { children: React.ReactNode }
 
   return (
     <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "pk_test_c3VidGxlLWpvZXktMjUuY2xlcmsuYWNjb3VudHMuZGV2JA"}
       appearance={{
         variables: {
           colorPrimary: "hsl(240, 5.9%, 10%)", // matches light mode foreground
