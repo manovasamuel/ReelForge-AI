@@ -13,21 +13,7 @@ import type {
   FilterOption,
   SortOption,
 } from "@/types/content-collection";
-import {
-  Film,
-  FileText,
-  Layers,
-  Image as ImageIcon,
-  Video,
-  Search,
-  CheckCircle2,
-  Sparkles,
-  BarChart3,
-  TrendingUp,
-  Eye,
-  Filter,
-  ArrowUpDown,
-} from "lucide-react";
+import { Box, FileText, Layers, Image as ImageIcon, Video, Search, CheckCircle2, BarChart3, TrendingUp, Eye, Filter, ArrowUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContentCollectionDashboardProps {
@@ -283,7 +269,7 @@ export function ContentCollectionDashboard({
                     <span>Avg Likes: {formatNum(selectionSummary.avgLikes)}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-foreground">
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <Box className="h-3.5 w-3.5" />
                     <span>
                       Avg Engagement:{" "}
                       {selectionSummary.hasViews
@@ -338,7 +324,7 @@ export function ContentCollectionDashboard({
           <div className="flex flex-wrap gap-1.5">
             {[
               { id: "all", label: "All Media", icon: FileText },
-              { id: "reels", label: "Reels", icon: Film },
+              { id: "reels", label: "Reels", icon: Box },
               { id: "posts", label: "Posts", icon: FileText },
               { id: "carousel", label: "Carousel", icon: Layers },
               { id: "images", label: "Images", icon: ImageIcon },

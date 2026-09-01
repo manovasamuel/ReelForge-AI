@@ -147,7 +147,7 @@ export function aggregateContentDNA(reports: ContentIntelligenceReport[]): Conte
       confidenceMeta: makeConf(0),
     },
     winningVisualStyle: {
-      dominantColors: ["Deep Violet / Purple (#6D28D9)", "High-Contrast Matte Black (#0A0A0A)", "Accent Yellow (#FACC15)"],
+      dominantColors: ["Deep Primary / Primary (#0A0A0A)", "High-Contrast Matte Black (#0A0A0A)", "Accent Yellow (#FACC15)"],
       thumbnailStyle: "Contrarian Text Banner + High-Emotion Facial Expression Focus",
       lighting: "Cinematic Dark Edge Lighting with Soft Key Diffusion",
       framing: "Vertical 9:16 Close-up Eye-Level Framing centered in safe zone",

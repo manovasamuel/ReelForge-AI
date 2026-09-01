@@ -2,7 +2,7 @@
 
 import { CompetitorCard } from "./competitor-card";
 import type { Competitor } from "@/types/competitor";
-import { Users, ShieldCheck, TrendingUp, Sparkles, CheckCircle } from "lucide-react";
+import { Users, ShieldCheck, TrendingUp, Box, CheckCircle } from "lucide-react";
 
 interface CompetitorListProps {
   competitors: Competitor[];
@@ -53,7 +53,7 @@ export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompe
           </div>
 
           <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
-            <Sparkles className="h-3.5 w-3.5 text-foreground" />
+            <Box className="h-3.5 w-3.5 text-foreground" />
             <span>Peak Confidence: {highestConfidence}%</span>
           </div>
 

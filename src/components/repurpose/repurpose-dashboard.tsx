@@ -6,18 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Share2,
-  Copy,
-  Check,
-  Globe,
-  MessageSquare,
-  Users,
-  Video,
-  FileText,
-  Clock,
-  Sparkles,
-} from "lucide-react";
+import { Share2, Copy, Check, Globe, MessageSquare, Users, Video, FileText, Clock, Box } from "lucide-react";
 import type { RepurposeReport, PlatformContentMetrics } from "@/types/repurpose";
 
 interface RepurposeDashboardProps {
@@ -28,12 +17,12 @@ function MetricsBar({ metrics, onCopy, copied }: { metrics: PlatformContentMetri
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3.5 rounded-md border border-border bg-muted mb-6">
       <div className="flex items-center gap-4 text-xs">
-        <div className="flex items-center gap-1.5 text-violet-200 font-semibold">
+        <div className="flex items-center gap-1.5 text-primary-200 font-semibold">
           <FileText className="h-3.5 w-3.5 text-foreground" />
           <span>Word Count: <strong className="text-white">{metrics.wordCount}</strong></span>
         </div>
         <span className="text-foreground">•</span>
-        <div className="flex items-center gap-1.5 text-violet-200 font-semibold">
+        <div className="flex items-center gap-1.5 text-primary-200 font-semibold">
           <span>Characters: <strong className="text-white">{metrics.characterCount}</strong></span>
         </div>
         <span className="text-foreground">•</span>
@@ -73,7 +62,7 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
             <div>
               <div className="flex items-center gap-2">
                 <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
-                  <Sparkles className="h-3.5 w-3.5" /> Phase 9 Omnichannel Engine
+                  <Box className="h-3.5 w-3.5" /> Phase 9 Omnichannel Engine
                 </Badge>
                 <Badge variant="outline" className="border-border text-foreground bg-muted">
                   6 Formats Generated

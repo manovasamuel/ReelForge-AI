@@ -7,27 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { showToast } from "@/components/ui/toast";
-import {
-  Sparkles,
-  Copy,
-  Check,
-  CheckCircle2,
-  Film,
-  Camera,
-  Mic,
-  Tv,
-  FileText,
-  Clock,
-  Award,
-  Download,
-  Share2,
-  ArrowRight,
-  Eye,
-  Video,
-  Flame,
-  Wrench,
-  AlertCircle,
-} from "lucide-react";
+import { Box, Copy, Check, CheckCircle2, Camera, Mic, Tv, FileText, Clock, Award, Download, Share2, ArrowRight, Eye, Video, Flame, Wrench, AlertCircle } from "lucide-react";
 import type { ReelContentPackage } from "@/types/script-generation";
 
 interface ScriptGenerationDashboardProps {
@@ -97,7 +77,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
             <div>
               <div className="flex items-center gap-2">
                 <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
-                  <Sparkles className="h-3.5 w-3.5" /> Phase 8 Master Production Package
+                  <Box className="h-3.5 w-3.5" /> Phase 8 Master Production Package
                 </Badge>
                 <Badge variant="outline" className="border-border text-amber-300 bg-muted">
                   Confidence: {pkg.productionScore.confidence}%
@@ -169,7 +149,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
                 {copiedHashtags ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
                 {copiedHashtags ? "Hashtags Copied!" : "Copy Hashtags"}
               </Button>
-              <Button size="sm" variant="outline" onClick={handleCopyAll} className="border-border bg-muted text-violet-200 gap-1.5 text-xs">
+              <Button size="sm" variant="outline" onClick={handleCopyAll} className="border-border bg-muted text-primary-200 gap-1.5 text-xs">
                 {copiedAll ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
                 {copiedAll ? "Package Copied!" : "Copy Complete Package"}
               </Button>
@@ -227,14 +207,14 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="lg:col-span-1 border-border bg-card shadow-none">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base font-bold flex items-center gap-2 text-violet-200">
+            <CardTitle className="text-base font-bold flex items-center gap-2 text-primary-200">
               <Camera className="h-4 w-4 text-amber-400" /> Production Studio Summary
             </CardTitle>
             <CardDescription className="text-xs">Estimated filming specs & gear list.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             <div className="flex justify-between p-2.5 rounded-lg bg-background border border-border/60">
-              <span className="text-muted-foreground font-medium">Est. Filming Time:</span>
+              <span className="text-muted-foreground font-medium">Est. Boxing Time:</span>
               <span className="font-bold text-foreground">{pkg.productionSummary.estimatedShootTime}</span>
             </div>
             <div className="flex justify-between p-2.5 rounded-lg bg-background border border-border/60">
@@ -267,7 +247,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
             <div className="p-4 rounded-md border border-border bg-muted space-y-2">
               <span className="text-xs font-bold text-foreground uppercase tracking-wider block">First 3-Seconds Hook Anatomy:</span>
               <p className="text-base font-extrabold text-white">"{pkg.hook.firstSentence}"</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-2 text-violet-200/90 border-t border-border">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-2 text-primary-200/90 border-t border-border">
                 <div><strong>Visual:</strong> {pkg.hook.openingVisual}</div>
                 <div><strong>Overlay:</strong> <span className="text-amber-300 font-mono">{pkg.hook.textOverlay}</span></div>
               </div>
@@ -283,7 +263,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
       <Card className="border-border bg-card shadow-none">
         <CardHeader>
           <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
-            <Film className="h-5 w-5 text-foreground" /> Scene-by-Scene Studio Shooting Script
+            <Box className="h-5 w-5 text-foreground" /> Scene-by-Scene Studio Shooting Script
           </CardTitle>
           <CardDescription>Expand each scene for exact visual storyboarding, teleprompter voiceover, and kinetic overlay direction.</CardDescription>
         </CardHeader>
@@ -348,7 +328,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
         <Card className="border-border bg-card shadow-none flex flex-col justify-between">
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-bold text-foreground flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-foreground" /> High-Converting CTA Variants
+              <Box className="h-4 w-4 text-foreground" /> High-Converting CTA Variants
             </CardTitle>
             <CardDescription className="text-xs">Copy tailored conversion prompts for caption and comments.</CardDescription>
           </CardHeader>
@@ -386,7 +366,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
                 <span className="text-xs font-bold text-foreground uppercase tracking-wider block">{grp.category} (5 tags):</span>
                 <div className="flex flex-wrap gap-1.5">
                   {grp.tags.map((t, i) => (
-                    <Badge key={i} variant="outline" className="bg-muted text-violet-200 border-border text-xs">
+                    <Badge key={i} variant="outline" className="bg-muted text-primary-200 border-border text-xs">
                       {t}
                     </Badge>
                   ))}
@@ -459,7 +439,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-md border border-border bg-muted via-card shadow-none">
         <div>
           <h3 className="text-lg font-bold text-white">Instagram Reel Package Compiled</h3>
-          <p className="text-sm text-violet-200/80">
+          <p className="text-sm text-primary-200/80">
             Your 5-scene shooting script and strategy package are finalized. Ready to repurpose for omnichannel distribution?
           </p>
         </div>

@@ -107,7 +107,7 @@ export function inferCompetitors(report: BrandIntelligenceReport): Competitor[] 
     createComp(4, "reddigitalcinema", "RED Digital Cinema", 1100000, 88, 89, "Competes for high-end cinema camera setup and production workflows."),
     createComp(5, "dji_official", "DJI", 4500000, 86, 88, "Shares audience of visual creators leveraging drone cinematography and gimbals."),
     createComp(6, "adobecreativecloud", "Adobe Creative Cloud", 1600000, 84, 85, "High visual similarity in transition animations, Premiere Pro, and color grading."),
-    createComp(7, "filmmakersworld", "Filmmakers World", 1800000, 82, 84, "Overlap in behind-the-scenes set breakdowns and directorial techniques."),
+    createComp(7, "filmmakersworld", "Boxmakers World", 1800000, 82, 84, "Overlap in behind-the-scenes set breakdowns and directorial techniques."),
     createComp(8, "blackmagicnewsofficial", "Blackmagic Design", 640000, 80, 83, "Similar DaVinci Resolve color grading tutorial structure and pacing."),
     createComp(9, "aputure.lighting", "Aputure Lighting", 520000, 78, 81, "Competes on analyzing top lighting setups and studio illumination techniques."),
     createComp(10, "rode", "RØDE Microphones", 980000, 76, 79, "Matches core audience of content creators, podcasters, and audio engineers."),

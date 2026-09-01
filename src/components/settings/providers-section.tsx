@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ProviderPreferences, InstagramProviderType, AIProviderType, ProviderStatus } from "@/types/settings";
-import { Database, Sparkles, CheckCircle2, Lock, Clock } from "lucide-react";
+import { Database, Box, CheckCircle2, Lock, Clock } from "lucide-react";
 import { AiTelemetryPanel } from "./ai-telemetry-panel";
 
 interface ProvidersSectionProps {
@@ -44,7 +44,7 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
       case "Coming Soon":
         return <span className="px-2.5 py-1 text-xs font-semibold bg-muted text-foreground border border-border rounded-full flex items-center gap-1"><Clock className="h-3 w-3" /> Coming Soon</span>;
       default:
-        return <span className="px-2.5 py-1 text-xs font-semibold bg-gray-800 text-gray-400 border border-gray-700 rounded-full flex items-center gap-1"><Lock className="h-3 w-3" /> {status}</span>;
+        return <span className="px-2.5 py-1 text-xs font-semibold bg-muted text-muted-foreground border border-border rounded-full flex items-center gap-1"><Lock className="h-3 w-3" /> {status}</span>;
     }
   };
 
@@ -52,11 +52,11 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
     <div className="space-y-8 animate-fade-in">
       <AiTelemetryPanel />
 
-      <div className="border-t border-gray-800 pt-6">
+      <div className="border-t border-border pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
           <Database className="h-5 w-5 text-foreground" /> Instagram Data Ingestion Provider
         </h3>
-        <p className="text-sm text-gray-400 mb-4">Select the active data acquisition backend for profile ingestion and competitor discovery.</p>
+        <p className="text-sm text-muted-foreground mb-4">Select the active data acquisition backend for profile ingestion and competitor discovery.</p>
         <div className="grid grid-cols-1 gap-3">
           {instagramOptions.map((opt) => {
             const active = preferences.instagramProvider === opt.id;
@@ -68,19 +68,19 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                   active
                     ? "bg-muted border-border text-white shadow-md cursor-pointer"
                     : opt.disabled
-                    ? "bg-gray-900/40 border-gray-800/80 opacity-75 cursor-not-allowed"
-                    : "bg-gray-900/60 border-gray-800 hover:border-gray-700 cursor-pointer"
+                    ? "bg-card border-border/80 opacity-75 cursor-not-allowed"
+                    : "bg-card border-border hover:border-border cursor-pointer"
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-gray-800"}`}>
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-muted"}`}>
                     {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-gray-20 flex items-center gap-2">
                       {opt.name}
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{opt.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{opt.desc}</p>
                   </div>
                 </div>
                 <div>{getStatusBadge(active ? "Active" : opt.status)}</div>
@@ -90,11 +90,11 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
         </div>
       </div>
 
-      <div className="border-t border-gray-800 pt-6">
+      <div className="border-t border-border pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Sparkles className="h-5 w-5 text-foreground" /> AI & Script Synthesis Provider
+          <Box className="h-5 w-5 text-foreground" /> AI & Script Synthesis Provider
         </h3>
-        <p className="text-sm text-gray-400 mb-4">Controls external large language models vs client-side deterministic synthesis.</p>
+        <p className="text-sm text-muted-foreground mb-4">Controls external large language models vs client-side deterministic synthesis.</p>
         <div className="grid grid-cols-1 gap-3">
           {aiOptions.map((opt) => {
             const active = preferences.aiProvider === opt.id;
@@ -106,19 +106,19 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                   active
                     ? "bg-muted border-border text-white shadow-md cursor-pointer"
                     : opt.disabled
-                    ? "bg-gray-900/40 border-gray-800/80 opacity-75 cursor-not-allowed"
-                    : "bg-gray-900/60 border-gray-800 hover:border-gray-700 cursor-pointer"
+                    ? "bg-card border-border/80 opacity-75 cursor-not-allowed"
+                    : "bg-card border-border hover:border-border cursor-pointer"
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-gray-800"}`}>
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-muted"}`}>
                     {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-gray-20 flex items-center gap-2">
                       {opt.name}
                     </div>
-                    <p className="text-xs text-gray-400 mt-0.5">{opt.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{opt.desc}</p>
                   </div>
                 </div>
                 <div>{getStatusBadge(active ? "Active" : opt.status)}</div>

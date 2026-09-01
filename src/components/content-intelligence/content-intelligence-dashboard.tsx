@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { showToast } from "@/components/ui/toast";
 import { IntelligenceReportCard } from "./intelligence-report-card";
 import type { ContentIntelligenceReport } from "@/types/content-intelligence";
-import { Sparkles, BrainCircuit, Bookmark, Repeat, Zap, Layers } from "lucide-react";
+import { Box, BrainCircuit, Bookmark, Repeat, Zap, Layers } from "lucide-react";
 
 interface ContentIntelligenceDashboardProps {
   reports: ContentIntelligenceReport[];
@@ -88,7 +88,7 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Avg Virality Score</p>
               <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
-                <Sparkles className="h-4 w-4" />
+                <Box className="h-4 w-4" />
                 {stats.hasVirality ? `${stats.avgVirality} / 100` : "N/A"}
               </p>
             </div>

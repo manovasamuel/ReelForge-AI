@@ -55,7 +55,7 @@ export function SettingsDashboard() {
   return (
     <div className="max-w-7xl mx-auto space-y-8 pb-16 animate-fade-in">
       {/* Header Banner */}
-      <div className="p-6 bg-gray-900/80 border border-gray-800 rounded-md flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-none">
+      <div className="p-6 bg-card border border-border rounded-md flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-none">
         <div className="flex items-center gap-3">
           <div className="p-3 bg-muted border border-border rounded-md text-foreground">
             <SettingsIcon className="h-7 w-7" />
@@ -67,7 +67,7 @@ export function SettingsDashboard() {
                 v2.0.0
               </span>
             </h1>
-            <p className="text-sm text-gray-400 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               Configure deterministic social intelligence backends, subscription tiers, and storage telemetry.
             </p>
           </div>
@@ -77,7 +77,7 @@ export function SettingsDashboard() {
       {/* Main Settings Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
         {/* Navigation Sidebar */}
-        <div className="p-3 bg-gray-900/60 border border-gray-800 rounded-md space-y-1 sticky top-6">
+        <div className="p-3 bg-card border border-border rounded-md space-y-1 sticky top-6">
           {tabs.map((t) => {
             const active = activeTab === t.id;
             return (
@@ -87,7 +87,7 @@ export function SettingsDashboard() {
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-md font-semibold text-sm transition-all duration-200 text-left ${
                   active
                     ? "bg-muted text-white shadow-none "
-                    : "text-gray-400 hover:bg-gray-800/60 hover:text-gray-200"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 }`}
               >
                 {t.icon}
@@ -98,7 +98,7 @@ export function SettingsDashboard() {
         </div>
 
         {/* Content Area */}
-        <div className="lg:col-span-3 p-6 bg-gray-900/60 border border-gray-800 rounded-md shadow-none min-h-[500px]">
+        <div className="lg:col-span-3 p-6 bg-card border border-border rounded-md shadow-none min-h-[500px]">
           {activeTab === "appearance" && (
             <AppearanceSection
               preferences={settings.appearance}

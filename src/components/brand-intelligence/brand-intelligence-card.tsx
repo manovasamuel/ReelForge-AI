@@ -3,17 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import type { BrandIntelligenceReport } from "@/types/brand-intelligence";
-import {
-  Sparkles,
-  Target,
-  Users,
-  Volume2,
-  Palette,
-  Layers,
-  Calendar,
-  TrendingUp,
-  Award,
-} from "lucide-react";
+import { Box, Target, Users, Volume2, Palette, Layers, Calendar, TrendingUp, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface BrandIntelligenceCardProps {
@@ -23,14 +13,14 @@ interface BrandIntelligenceCardProps {
 export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
   return (
     <Card className="w-full overflow-hidden border-border bg-card shadow-none">
-      {/* Top purple gradient banner */}
+      {/* Top primary gradient banner */}
       <div className="h-1.5 w-full bg-muted" />
 
       <CardHeader className="pt-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-muted ring-1 ring-border">
-              <Sparkles className="h-5 w-5 text-foreground" />
+              <Box className="h-5 w-5 text-foreground" />
             </div>
             <div>
               <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">

@@ -1,4 +1,4 @@
-import { FileText, Target, BrainCircuit, Lightbulb, TrendingUp, Sparkles, AlertCircle } from "lucide-react"
+import { FileText, Target, BrainCircuit, Lightbulb, TrendingUp, Box, AlertCircle } from "lucide-react"
 
 export const dashboardMockData = {
   user: {
@@ -42,7 +42,7 @@ export const dashboardMockData = {
       value: "8", 
       trend: "Requires review", 
       trendDirection: "warning", 
-      icon: Sparkles 
+      icon: Box 
     }
   ],
   aiActivity: [

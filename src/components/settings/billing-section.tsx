@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { CreditCard, Check, Sparkles, Zap, Shield, ExternalLink, RefreshCw, AlertTriangle } from "lucide-react";
+import { CreditCard, Check, Box, Zap, Shield, ExternalLink, RefreshCw, AlertTriangle } from "lucide-react";
 import type { IBillingSummary, PlanId } from "@/services/billing/plan.interface";
 
 export function BillingSection() {
@@ -207,7 +207,7 @@ export function BillingSection() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
               <div className="p-2 rounded-md bg-muted text-foreground">
-                <Sparkles className="w-5 h-5" />
+                <Box className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-sm font-bold text-white">AI Token Consumption</h3>

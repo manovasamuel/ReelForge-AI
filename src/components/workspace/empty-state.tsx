@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { FolderGit2, Sparkles, Plus, Layers } from "lucide-react";
+import { FolderGit2, Box, Plus, Layers } from "lucide-react";
 
 interface EmptyWorkspaceStateProps {
   onCreateNew: () => void;

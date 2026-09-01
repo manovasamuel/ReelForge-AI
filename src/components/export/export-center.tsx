@@ -6,7 +6,7 @@ import { AdvancedExportPanel } from "./advanced-export-panel";
 import { ExportHistoryTable } from "./export-history-table";
 import { PrintReportView } from "./print-report-view";
 import type { SavedProject } from "@/types/project";
-import { Download, Sparkles, FolderGit2 } from "lucide-react";
+import { Download, Box, FolderGit2 } from "lucide-react";
 
 interface ExportCenterProps {
   project: SavedProject | null;
@@ -47,7 +47,7 @@ export function ExportCenter({ project }: ExportCenterProps) {
             </div>
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted border border-border text-[11px] font-bold text-foreground mb-1">
-                <Sparkles className="h-3 w-3 text-foreground" /> ReelForge AI v2.0 Export Center
+                <Box className="h-3 w-3 text-foreground" /> ReelForge AI v2.0 Export Center
               </div>
               <h2 className="text-xl font-bold text-white">
                 Omnichannel Intelligence Export: &ldquo;{project.name}&rdquo;

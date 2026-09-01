@@ -4,17 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  LayoutDashboard,
-  Users,
-  Menu,
-  X,
-  Film,
-  ChevronLeft,
-  BarChart3,
-  Settings as SettingsIcon,
-  Download,
-} from "lucide-react";
+import { LayoutDashboard, Users, Menu, X, Box, ChevronLeft, BarChart3, Settings as SettingsIcon, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
@@ -48,7 +38,7 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Studio",
     href: "/studio/new",
-    icon: Film,
+    icon: Box,
     pattern: /^\/studio/,
   },
   {

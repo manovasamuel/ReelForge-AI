@@ -6,24 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import type { ContentIntelligenceReport } from "@/types/content-intelligence";
-import {
-  Sparkles,
-  Zap,
-  FileText,
-  Eye,
-  Heart,
-  MessageCircle,
-  Share2,
-  Bookmark,
-  BrainCircuit,
-  CheckCircle2,
-  AlertTriangle,
-  Repeat,
-  Lightbulb,
-  Film,
-  Camera,
-  Calendar,
-} from "lucide-react";
+import { Box, Zap, FileText, Eye, Heart, MessageCircle, Share2, Bookmark, BrainCircuit, CheckCircle2, AlertTriangle, Repeat, Lightbulb, Camera, Calendar } from "lucide-react";
 
 interface IntelligenceReportCardProps {
   report: ContentIntelligenceReport;
@@ -83,7 +66,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
         {/* Virality & Reusability Badges */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 rounded-md border border-border bg-muted px-3.5 py-2">
-            <Sparkles className="h-4 w-4 text-foreground" />
+            <Box className="h-4 w-4 text-foreground" />
             <div>
               <p className="text-[10px] uppercase font-bold text-foreground">Virality Score</p>
               {virality.viralityAvailable !== false ? (
@@ -314,7 +297,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
               <Badge className="bg-muted text-white font-bold">{reusability.score}% Match</Badge>
             </div>
             <p className="font-semibold text-white">{reusability.reusabilityLevel}</p>
-            <p className="text-[11px] text-fuchsia-200/80">
+            <p className="text-[11px] text-primary-200/80">
               Confidence: <span className="font-bold">{reusability.confidence}%</span>. Script Generator will map this hook structure directly into Phase 7 briefs.
             </p>
           </div>
@@ -331,7 +314,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           </h5>
           <ul className="space-y-1.5">
             {winningFactors.map((wf, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-emerald-200/90 leading-relaxed">
+              <li key={idx} className="flex items-start gap-2 text-xs text-primary-200/90 leading-relaxed">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{wf}</span>
               </li>

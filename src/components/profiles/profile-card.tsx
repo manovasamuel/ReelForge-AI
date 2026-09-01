@@ -8,21 +8,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  BadgeCheck,
-  ExternalLink,
-  Film,
-  Grid3X3,
-  ImageIcon,
-  Lock,
-  Layers,
-} from "lucide-react";
+import { BadgeCheck, ExternalLink, Box, Grid3X3, ImageIcon, Lock, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // ─── Post type icon mapping ────────────────────────────────────────
 function PostTypeIcon({ type }: { type: InstagramPost["type"] }) {
   const icons = {
-    video: <Film className="h-3 w-3 text-white" />,
+    video: <Box className="h-3 w-3 text-white" />,
     carousel: <Layers className="h-3 w-3 text-white" />,
     image: <ImageIcon className="h-3 w-3 text-white" />,
   };

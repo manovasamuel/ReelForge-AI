@@ -19,7 +19,7 @@ export function UserProfileButton() {
       <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-foreground text-xs font-semibold shadow-sm hover:bg-muted transition-colors" title="Development Placeholder Mode Active">
         <span className="w-2 h-2 rounded-full bg-muted" />
         <span className="truncate max-w-[120px]">{user?.email || "dev@reelforge.ai"}</span>
-        <span className="text-[10px] uppercase bg-muted px-1.5 py-0.5 rounded text-purple-200 font-bold tracking-wider">
+        <span className="text-[10px] uppercase bg-muted px-1.5 py-0.5 rounded text-primary-200 font-bold tracking-wider">
           Dev
         </span>
       </div>

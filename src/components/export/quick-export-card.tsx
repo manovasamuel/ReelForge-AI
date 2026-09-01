@@ -2,16 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  FileText,
-  FileCode,
-  FileSpreadsheet,
-  Printer,
-  Copy,
-  Check,
-  Sparkles,
-  Download,
-} from "lucide-react";
+import { FileText, FileCode, FileSpreadsheet, Printer, Copy, Check, Box, Download } from "lucide-react";
 import type { SavedProject } from "@/types/project";
 import { ExportService } from "@/services/export";
 import { showToast } from "@/components/ui/toast";
@@ -55,7 +46,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div>
           <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-foreground" /> Quick Export Hub
+            <Box className="h-4 w-4 text-foreground" /> Quick Export Hub
           </h3>
           <p className="text-xs text-muted-foreground mt-0.5">
             One-click instant downloads and clipboard copies for &ldquo;{project.name}&rdquo;
@@ -132,7 +123,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("summary", "Executive Summary")}
-              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-primary-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "summary" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Summary
@@ -142,7 +133,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("script", "Script Package")}
-              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-primary-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "script" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Script
@@ -152,7 +143,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               variant="secondary"
               size="sm"
               onClick={() => handleCopy("repurpose", "Repurpose Package")}
-              className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
+              className="text-xs bg-muted hover:bg-muted text-primary-200 border border-border gap-1.5 h-9"
             >
               {copiedSection === "repurpose" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Repurpose

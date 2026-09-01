@@ -5,19 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/lib/constants";
-import {
-  Users,
-  Search,
-  BarChart3,
-  ArrowRight,
-  Target,
-  TrendingUp,
-  CheckCircle2,
-  LineChart,
-  FileText,
-  Activity,
-  Play
-} from "lucide-react";
+import { Users, Search, BarChart3, ArrowRight, Target, TrendingUp, CheckCircle2, LineChart, FileText, Activity, Play } from "lucide-react";
 
 const WORKFLOW_STEPS = [
   {

@@ -5,25 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import {
-  Sparkles,
-  Zap,
-  Target,
-  FileText,
-  Video,
-  Brain,
-  Palette,
-  Layers,
-  AlertTriangle,
-  CheckCircle2,
-  TrendingUp,
-  ShieldCheck,
-  Copy,
-  ArrowRight,
-  Flame,
-  Award,
-  BarChart3,
-} from "lucide-react";
+import { Box, Zap, Target, FileText, Video, Brain, Palette, Layers, AlertTriangle, CheckCircle2, TrendingUp, ShieldCheck, Copy, ArrowRight, Flame, Award, BarChart3 } from "lucide-react";
 import type { ContentDNAReport, SectionConfidence } from "@/types/content-dna";
 
 interface ContentDNADashboardProps {
@@ -38,11 +20,11 @@ function ConfidenceHeader({ title, meta }: { title: string; meta: SectionConfide
         {title}
       </h3>
       <div className="flex items-center gap-2.5 text-xs bg-muted border border-border px-3 py-1.5 rounded-lg shrink-0">
-        <span className="text-foreground font-medium">Confidence: <strong className="text-violet-100">{meta.confidence}%</strong></span>
+        <span className="text-foreground font-medium">Confidence: <strong className="text-primary-100">{meta.confidence}%</strong></span>
         <span className="text-foreground">•</span>
-        <span className="text-foreground">Sample: <strong className="text-violet-100">{meta.sampleCount} items</strong></span>
+        <span className="text-foreground">Sample: <strong className="text-primary-100">{meta.sampleCount} items</strong></span>
         <span className="text-foreground">•</span>
-        <Badge variant="outline" className="bg-muted text-violet-200 border-border text-[10px] px-1.5 py-0">
+        <Badge variant="outline" className="bg-muted text-primary-200 border-border text-[10px] px-1.5 py-0">
           {meta.reliability}
         </Badge>
       </div>
@@ -70,7 +52,7 @@ export function ContentDNADashboard({
             <div>
               <div className="flex items-center gap-2">
                 <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
-                  <Sparkles className="h-3.5 w-3.5" /> Phase 7B Blueprint
+                  <Box className="h-3.5 w-3.5" /> Phase 7B Blueprint
                 </Badge>
                 <Badge variant="outline" className="border-border text-foreground bg-muted">
                   Sample Size: {report.snapshot.sampleSize} Analyzed Items
@@ -141,7 +123,7 @@ export function ContentDNADashboard({
       {/* ─── 2. DNA INSIGHTS SECTION ─── */}
       <Card className="border-border bg-card shadow-none">
         <CardHeader className="pb-3">
-          <CardTitle className="text-lg font-bold flex items-center gap-2 text-violet-200">
+          <CardTitle className="text-lg font-bold flex items-center gap-2 text-primary-200">
             <Zap className="h-5 w-5 text-amber-400" /> Deterministic DNA Insights
           </CardTitle>
           <CardDescription>Key algorithmic laws derived from cross-referencing your selected item teardowns.</CardDescription>
@@ -153,7 +135,7 @@ export function ContentDNADashboard({
                 <div className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-foreground font-bold text-xs shrink-0 mt-0.5">
                   #{idx + 1}
                 </div>
-                <p className="text-sm text-violet-100 leading-relaxed">{insight}</p>
+                <p className="text-sm text-primary-100 leading-relaxed">{insight}</p>
               </div>
             ))}
           </div>
@@ -261,7 +243,7 @@ export function ContentDNADashboard({
                 <dt className="text-xs font-semibold text-foreground uppercase">Dominant Color Palette</dt>
                 <dd className="flex flex-wrap gap-1.5 mt-1">
                   {report.winningVisualStyle.dominantColors.map((color, idx) => (
-                    <Badge key={idx} variant="outline" className="bg-muted text-violet-200 border-border text-xs">
+                    <Badge key={idx} variant="outline" className="bg-muted text-primary-200 border-border text-xs">
                       {color}
                     </Badge>
                   ))}
@@ -325,7 +307,7 @@ export function ContentDNADashboard({
               </div>
               <div className="p-3 rounded-md border border-border bg-muted">
                 <span className="text-xs font-bold text-foreground block mb-1">Top Primary Psychological Triggers:</span>
-                <ul className="list-disc list-inside text-xs text-violet-100 space-y-1">
+                <ul className="list-disc list-inside text-xs text-primary-100 space-y-1">
                   {report.winningPsychology.topTriggers.map((t, idx) => (
                     <li key={idx}>{t}</li>
                   ))}
@@ -364,12 +346,12 @@ export function ContentDNADashboard({
             <CardTitle className="text-lg font-bold text-white flex items-center gap-2">
               <Layers className="h-5 w-5 text-foreground" /> Blueprint Export Standard
             </CardTitle>
-            <CardDescription className="text-xs text-fuchsia-200/80">
+            <CardDescription className="text-xs text-primary-200/80">
               Read-only structured AST formula ready to be passed into the Phase 8 Script Generator.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 rounded-md border border-border bg-black/60 font-mono text-xs text-fuchsia-200 space-y-2">
+            <div className="p-4 rounded-md border border-border bg-black/60 font-mono text-xs text-primary-200 space-y-2">
               {report.blueprintExport.formulaSteps.map((step, idx) => (
                 <div key={idx} className="flex items-center gap-2">
                   <span className="text-foreground font-bold">{idx + 1}.</span>
@@ -406,7 +388,7 @@ export function ContentDNADashboard({
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-md border border-border bg-muted via-card shadow-none">
         <div>
           <h3 className="text-lg font-bold text-white">Winning Blueprint Synthesized</h3>
-          <p className="text-sm text-violet-200/80">
+          <p className="text-sm text-primary-200/80">
             Your Content DNA master blueprint is verified across 9 structural dimensions. Ready to compile production shooting briefs?
           </p>
         </div>

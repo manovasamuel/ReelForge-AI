@@ -12,21 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { CollectedContentItem } from "@/types/content-collection";
-import {
-  Film,
-  Layers,
-  Image as ImageIcon,
-  Video,
-  FileText,
-  Eye,
-  Heart,
-  MessageCircle,
-  Pin,
-  Clock,
-  Maximize2,
-  Calendar,
-  Check,
-} from "lucide-react";
+import { Box, Layers, Image as ImageIcon, Video, FileText, Eye, Heart, MessageCircle, Pin, Clock, Maximize2, Calendar, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ContentItemCardProps {
@@ -63,7 +49,7 @@ export function ContentItemCard({
   function getTypeIcon() {
     switch (item.type) {
       case "reel":
-        return <Film className="h-3 w-3 text-foreground" />;
+        return <Box className="h-3 w-3 text-foreground" />;
       case "carousel":
         return <Layers className="h-3 w-3 text-foreground" />;
       case "video":
@@ -184,7 +170,7 @@ export function ContentItemCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 px-2 text-[11px] text-foreground hover:bg-muted hover:text-violet-200"
+                    className="h-7 px-2 text-[11px] text-foreground hover:bg-muted hover:text-primary-200"
                   />
                 }
               >

@@ -5,18 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import {
-  FolderOpen,
-  Edit2,
-  Copy,
-  Trash2,
-  Check,
-  X,
-  Calendar,
-  ExternalLink,
-  Sparkles,
-  Layers,
-} from "lucide-react";
+import { FolderOpen, Edit2, Copy, Trash2, Check, X, Calendar, ExternalLink, Box, Layers } from "lucide-react";
 import type { SavedProject } from "@/types/project";
 
 interface ProjectCardProps {

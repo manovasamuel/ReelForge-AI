@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, CheckCircle2, User, Layers, Users } from "lucide-react";
+import { Box, CheckCircle2, User, Layers, Users } from "lucide-react";
 
 interface SummaryPanelProps {
   username?: string;
@@ -110,7 +110,7 @@ export function SummaryPanel({
         <div className="mt-4 rounded-md border border-border bg-muted p-3">
           <div className="flex items-center gap-2">
             <CheckCircle2 className="h-4 w-4 text-foreground shrink-0" />
-            <span className="font-bold text-violet-200">
+            <span className="font-bold text-primary-200">
               {isPhase9Complete
                 ? "Multi-Platform Suite Ready"
                 : isPhase8Complete

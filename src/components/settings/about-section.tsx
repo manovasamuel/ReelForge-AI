@@ -68,29 +68,29 @@ export function AboutSection({
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
           <Cpu className="h-5 w-5 text-foreground" /> Developer Diagnostics & Environment
         </h3>
-        <p className="text-sm text-gray-400 mb-4">Read-only runtime telemetry illustrating swappable provider layers and memory models.</p>
+        <p className="text-sm text-muted-foreground mb-4">Read-only runtime telemetry illustrating swappable provider layers and memory models.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Build Type</div>
+          <div className="p-4 bg-card border border-border rounded-md">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Build Type</div>
             <div className="text-lg font-bold text-white mt-1 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-muted" />
               {developer.buildType}
             </div>
           </div>
 
-          <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Storage Engine</div>
+          <div className="p-4 bg-card border border-border rounded-md">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Storage Engine</div>
             <div className="text-sm font-bold text-white mt-1">{developer.storageEngine}</div>
           </div>
 
-          <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Workspace Version</div>
+          <div className="p-4 bg-card border border-border rounded-md">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Workspace Version</div>
             <div className="text-lg font-bold text-white mt-1">Schema {developer.workspaceVersion}</div>
           </div>
 
-          <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md md:col-span-2">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Active Pipeline Providers</div>
+          <div className="p-4 bg-card border border-border rounded-md md:col-span-2">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Active Pipeline Providers</div>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {developer.activeProviders.map((p) => (
                 <span key={p} className="px-2.5 py-1 bg-muted border border-border text-foreground font-mono text-xs rounded-lg">
@@ -100,8 +100,8 @@ export function AboutSection({
             </div>
           </div>
 
-          <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
-            <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Mock Mode / Fallback</div>
+          <div className="p-4 bg-card border border-border rounded-md">
+            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Mock Mode / Fallback</div>
             <div className="text-sm font-bold text-foreground mt-1 flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 shrink-0" />
               {developer.mockMode ? "Mixed / Hybrid (Transitional Phase 4C)" : "Disabled (100% Live Production)"}
@@ -111,20 +111,20 @@ export function AboutSection({
       </div>
 
       {/* Read-Only Feature Flags */}
-      <div className="border-t border-gray-800 pt-6">
+      <div className="border-t border-border pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
           <Code className="h-5 w-5 text-foreground" /> Active Feature Flags (Read-Only)
         </h3>
-        <p className="text-sm text-gray-400 mb-4">Architectural switches controlling heuristic and AI synthesis paths.</p>
+        <p className="text-sm text-muted-foreground mb-4">Architectural switches controlling heuristic and AI synthesis paths.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {developer.featureFlags.map((flag) => (
-            <div key={flag.key} className="p-3 bg-gray-900/40 border border-gray-800/80 rounded-md flex items-center justify-between">
+            <div key={flag.key} className="p-3 bg-card border border-border/80 rounded-md flex items-center justify-between">
               <div>
-                <div className="font-semibold text-sm text-gray-300">{flag.label}</div>
+                <div className="font-semibold text-sm text-muted-foreground">{flag.label}</div>
                 <div className="font-mono text-xs text-gray-500">{flag.key}</div>
               </div>
-              <span className={`px-2 py-0.5 rounded text-xs font-bold ${flag.enabled ? "bg-muted text-foreground" : "bg-gray-800 text-gray-400"}`}>
+              <span className={`px-2 py-0.5 rounded text-xs font-bold ${flag.enabled ? "bg-muted text-foreground" : "bg-muted text-muted-foreground"}`}>
                 {flag.enabled ? "ENABLED" : "DISABLED"}
               </span>
             </div>
@@ -133,11 +133,11 @@ export function AboutSection({
       </div>
 
       {/* Import / Export Settings Backup (Additional Requirement 2) */}
-      <div className="border-t border-gray-800 pt-6">
+      <div className="border-t border-border pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
           <Download className="h-5 w-5 text-foreground" /> Backup & Restore Configuration
         </h3>
-        <p className="text-sm text-gray-400 mb-4">Export your custom studio preferences to a JSON backup or import them across machines.</p>
+        <p className="text-sm text-muted-foreground mb-4">Export your custom studio preferences to a JSON backup or import them across machines.</p>
 
         <div className="flex flex-wrap items-center gap-3">
           <button
@@ -153,7 +153,7 @@ export function AboutSection({
           <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" className="hidden" />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2.5 rounded-md bg-gray-900 border border-gray-700 hover:border-gray-600 font-bold text-sm text-gray-200 flex items-center gap-2 transition-all"
+            className="px-4 py-2.5 rounded-md bg-card border border-border hover:border-gray-600 font-bold text-sm text-foreground flex items-center gap-2 transition-all"
           >
             <Upload className="h-4 w-4" /> Import Settings Backup
           </button>
@@ -165,7 +165,7 @@ export function AboutSection({
                 showToast("Settings restored to factory default values.");
               }
             }}
-            className="px-4 py-2.5 rounded-md bg-gray-900/60 border border-gray-800 hover:border-gray-700 font-bold text-sm text-gray-400 hover:text-gray-200 transition-all ml-auto"
+            className="px-4 py-2.5 rounded-md bg-card border border-border hover:border-border font-bold text-sm text-muted-foreground hover:text-foreground transition-all ml-auto"
           >
             Restore Default Preferences
           </button>

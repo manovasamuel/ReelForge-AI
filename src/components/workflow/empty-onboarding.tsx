@@ -1,12 +1,12 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles, Search, Layers, Users, Film } from "lucide-react";
+import { Box, Search, Layers, Users } from "lucide-react";
 
 export function EmptyOnboarding() {
   return (
     <Card className="w-full border-border/50 bg-card p-6 sm:p-10 animate-in fade-in duration-300">
       <CardContent className="flex flex-col items-center text-center space-y-6 max-w-xl mx-auto p-0">
         <div className="flex h-16 w-16 items-center justify-center rounded-md bg-muted ring-1 ring-border">
-          <Sparkles className="h-8 w-8 text-foreground" />
+          <Box className="h-8 w-8 text-foreground" />
         </div>
 
         <div className="space-y-2">

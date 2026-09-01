@@ -7,22 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import type { CompetitorProfileAnalysis } from "@/types/competitor-analysis";
-import {
-  Sparkles,
-  TrendingUp,
-  Award,
-  CheckCircle2,
-  AlertTriangle,
-  Lightbulb,
-  Heart,
-  MessageCircle,
-  Film,
-  Layers,
-  FileText,
-  BrainCircuit,
-  Compass,
-  Zap,
-} from "lucide-react";
+import { Box, TrendingUp, Award, CheckCircle2, AlertTriangle, Lightbulb, Heart, MessageCircle, Layers, FileText, BrainCircuit, Compass, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CompetitorAnalysisDashboardProps {
@@ -351,7 +336,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           </h4>
           <ul className="space-y-2.5">
             {strengths.map((str, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs font-medium text-emerald-200/90 leading-relaxed">
+              <li key={idx} className="flex items-start gap-2 text-xs font-medium text-primary-200/90 leading-relaxed">
                 <span className="mt-1 h-1.5 w-1.5 rounded-full bg-muted shrink-0" />
                 <span>{str}</span>
               </li>

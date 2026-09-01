@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import type { Competitor } from "@/types/competitor";
-import { Users, CheckCircle2, Sparkles, Layers, ArrowRight } from "lucide-react";
+import { Users, CheckCircle2, Box, Layers, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showToast } from "@/components/ui/toast";
 
@@ -122,7 +122,7 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
             {/* Confidence Score bar */}
             <div className="mt-3 flex items-center gap-3">
               <div className="flex items-center gap-1 text-[11px] font-medium text-muted-foreground">
-                <Sparkles className="h-3 w-3 text-foreground" />
+                <Box className="h-3 w-3 text-foreground" />
                 Confidence:
                 <span className="font-bold text-foreground">{competitor.confidenceScore}%</span>
               </div>

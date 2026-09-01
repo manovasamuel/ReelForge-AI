@@ -8,14 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { WorkspaceService } from "@/services/projects";
 import type { SavedProject } from "@/types/project";
-import {
-  BarChart3,
-  TrendingUp,
-  Users,
-  Plus,
-  FolderOpen,
-  ArrowRight,
-} from "lucide-react";
+import { BarChart3, TrendingUp, Users, Plus, FolderOpen, ArrowRight } from "lucide-react";
 
 export default function DashboardPage() {
   const router = useRouter();

@@ -31,7 +31,7 @@ export const brandMockData = {
     colors: [
       { label: "Primary (Background)", hex: "#000000", isDark: true },
       { label: "Surface (Cards)", hex: "#111111", isDark: true },
-      { label: "Accent (Purple)", hex: "#7C3AED", isDark: true },
+      { label: "Accent (Primary)", hex: "#0A0A0A", isDark: true },
       { label: "Foreground (Text)", hex: "#FFFFFF", isDark: false }
     ],
     typography: {
@@ -39,7 +39,7 @@ export const brandMockData = {
       body: "Geist Sans (Medium, leading-relaxed)",
       personality: "Architectural, highly legible, modern."
     },
-    direction: "Minimal, technical, dark-mode default with subtle glassmorphism and purple emissive glows.",
+    direction: "Minimal, technical, dark-mode default with subtle glassmorphism and primary emissive glows.",
     moodboard: [
       { id: 1, type: "abstract", label: "Layered Glass" },
       { id: 2, type: "interface", label: "Clean UI Grids" },

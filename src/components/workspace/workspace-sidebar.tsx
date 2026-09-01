@@ -5,16 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
-import {
-  FolderOpen,
-  PlusCircle,
-  Clock,
-  HardDrive,
-  Sparkles,
-  Database,
-  BarChart2,
-  FileText,
-} from "lucide-react";
+import { FolderOpen, PlusCircle, Clock, HardDrive, Box, Database, BarChart2, FileText } from "lucide-react";
 import type { StorageStats } from "@/types/project";
 
 export type WorkspaceSection = "all" | "recent" | "new";

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FolderGit2, Save, X, Sparkles, CheckCircle2 } from "lucide-react";
+import { FolderGit2, Save, X, Box, CheckCircle2 } from "lucide-react";
 
 interface SaveProjectModalProps {
   isOpen: boolean;
@@ -67,8 +67,8 @@ export function SaveProjectModal({
 
           <div className="p-3.5 rounded-md bg-muted border border-border space-y-2 text-xs">
             <div className="flex items-center justify-between">
-              <span className="flex items-center gap-1.5 font-bold text-violet-200">
-                <Sparkles className="h-3.5 w-3.5 text-foreground" />
+              <span className="flex items-center gap-1.5 font-bold text-primary-200">
+                <Box className="h-3.5 w-3.5 text-foreground" />
                 Snapshot Telemetry
               </span>
               <Badge variant="secondary" className="bg-muted text-foreground text-[10px]">

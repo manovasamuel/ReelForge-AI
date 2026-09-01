@@ -3,12 +3,7 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Search,
-  SlidersHorizontal,
-  AlertTriangle,
-  FolderOpen,
-} from "lucide-react";
+import { Search, SlidersHorizontal, AlertTriangle, FolderOpen } from "lucide-react";
 import { ProjectCard } from "./project-card";
 import { EmptyWorkspaceState } from "./empty-state";
 import type { SavedProject, ProjectSortOption } from "@/types/project";

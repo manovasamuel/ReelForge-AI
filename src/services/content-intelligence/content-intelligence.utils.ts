@@ -99,7 +99,7 @@ export function inferContentIntelligence(items: CollectedContentItem[]): Content
         editingPace: isReel ? "Fast-Paced (Visual cut or overlay every 2.4s)" : "Clean structured typography layout",
         cameraStyle: isReel ? "4K Studio Talking Head + Screen Recording Overlays" : "High-contrast visual design grid",
         textOverlay: "Animated bold yellow/white kinetic typography",
-        colorStyle: "Cinematic dark grading with brand purple/violet highlights",
+        colorStyle: "Cinematic dark grading with brand primary/primary highlights",
       },
       engagement: {
         views: item.views,

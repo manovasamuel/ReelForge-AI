@@ -17,7 +17,7 @@ export function LoadingState({
       )}
     >
       <div className="relative">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-violet-500" />
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-muted border-t-primary-500" />
         <div className="absolute inset-0 h-10 w-10 animate-ping rounded-full border-4 border-border" />
       </div>
       <p className="text-sm text-muted-foreground">{message}</p>

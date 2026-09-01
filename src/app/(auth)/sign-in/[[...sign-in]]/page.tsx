@@ -1,6 +1,7 @@
 import React from "react";
 import { SignIn } from "@clerk/nextjs";
 import Link from "next/link";
+import { Logo } from "@/components/ui/logo";
 
 export default function SignInPage() {
   const isPlaceholder =

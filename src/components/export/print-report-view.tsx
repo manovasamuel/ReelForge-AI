@@ -1,7 +1,7 @@
 "use client";
 
 import type { SavedProject } from "@/types/project";
-import { Sparkles, User, Target, Users, Zap, Film, Share2 } from "lucide-react";
+import { Box, User, Target, Users, Zap, Share2 } from "lucide-react";
 
 interface PrintReportViewProps {
   project: SavedProject | null;
@@ -19,7 +19,7 @@ export function PrintReportView({ project }: PrintReportViewProps) {
       <section className="min-h-[85vh] flex flex-col justify-between border-b-2 border-black pb-12 break-after-page">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-black bg-gray-100 text-xs font-bold uppercase tracking-widest mb-8">
-            <Sparkles className="h-4 w-4" /> ReelForge AI Omnichannel Intelligence
+            <Box className="h-4 w-4" /> ReelForge AI Omnichannel Intelligence
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight mb-4">{project.name}</h1>
           <p className="text-lg text-gray-700">Target Profile: {project.instagramUrl}</p>
@@ -136,7 +136,7 @@ export function PrintReportView({ project }: PrintReportViewProps) {
       <section className="space-y-6">
         <div>
           <h2 className="text-xl font-bold border-b border-gray-300 pb-2 flex items-center gap-2 mb-3">
-            <Film className="h-5 w-5" /> Reel Production Script Package
+            <Box className="h-5 w-5" /> Reel Production Script Package
           </h2>
           {state.scriptPackage ? (
             <div className="space-y-4 text-sm">
