@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/components/theme-provider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,23 +62,30 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} dark h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex h-full overflow-hidden bg-background text-foreground">
-        <ClerkProviderWrapper>
-          <TooltipProvider delay={300}>
-            {/* Desktop sidebar */}
-            <Sidebar />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProviderWrapper>
+            <TooltipProvider delay={300}>
+              {/* Desktop sidebar */}
+              <Sidebar />
 
-            {/* Main content area */}
-            <div className="flex flex-1 flex-col overflow-hidden">
-              <Header />
-              <div className="flex-1 overflow-y-auto">{children}</div>
-            </div>
-            <ToastContainer />
-          </TooltipProvider>
-        </ClerkProviderWrapper>
+              {/* Main content area */}
+              <div className="flex flex-1 flex-col overflow-hidden">
+                <Header />
+                <div className="flex-1 overflow-y-auto">{children}</div>
+              </div>
+              <ToastContainer />
+            </TooltipProvider>
+          </ClerkProviderWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );

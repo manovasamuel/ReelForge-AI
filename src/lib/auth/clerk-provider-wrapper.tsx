@@ -15,7 +15,19 @@ export function ClerkProviderWrapper({ children }: { children: React.ReactNode }
   }
 
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: "hsl(240, 5.9%, 10%)", // matches light mode foreground
+          colorBackground: "hsl(0, 0%, 100%)", // matches light mode background
+        },
+        elements: {
+          card: "border border-border shadow-none rounded-md",
+          primaryButton: "bg-primary text-primary-foreground hover:opacity-90",
+          footerActionLink: "text-primary hover:text-primary/90",
+        }
+      }}
+    >
       <LiveClerkAuthProvider>{children}</LiveClerkAuthProvider>
     </ClerkProvider>
   );

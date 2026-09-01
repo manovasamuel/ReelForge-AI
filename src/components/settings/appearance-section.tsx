@@ -3,6 +3,7 @@
 import React from "react";
 import { AppearancePreferences, ThemeMode, AccentColor } from "@/types/settings";
 import { Moon, Sun, Laptop, Palette, Check } from "lucide-react";
+import { useTheme } from "next-themes";
 
 interface AppearanceSectionProps {
   preferences: AppearancePreferences;
@@ -10,6 +11,7 @@ interface AppearanceSectionProps {
 }
 
 export function AppearanceSection({ preferences, onChange }: AppearanceSectionProps) {
+  const { setTheme } = useTheme();
   const themes: { id: ThemeMode; label: string; icon: React.ReactNode; desc: string }[] = [
     { id: "dark", label: "Dark Mode", icon: <Moon className="h-5 w-5" />, desc: "High contrast dark environment" },
     { id: "light", label: "Light Mode", icon: <Sun className="h-5 w-5" />, desc: "Clean bright contrast studio theme" },
@@ -32,9 +34,12 @@ export function AppearanceSection({ preferences, onChange }: AppearanceSectionPr
           {themes.map((t) => {
             const active = preferences.theme === t.id;
             return (
-               <button
+              <button
                 key={t.id}
-                onClick={() => onChange({ theme: t.id })}
+                onClick={() => {
+                  onChange({ theme: t.id });
+                  setTheme(t.id);
+                }}
                 className={`p-4 rounded-md border text-left transition-all duration-200 relative ${
                   active
                     ? "bg-card border-primary text-foreground shadow-sm ring-1 ring-primary"
