@@ -51,7 +51,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
     <div className="rounded-md border border-border bg-card p-6 shadow-none space-y-6">
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-violet-400">
+          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-foreground">
             <Sliders className="h-4 w-4" />
           </div>
           <div>
@@ -59,7 +59,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
             <p className="text-xs text-muted-foreground">Select exact intelligence scope and target file format</p>
           </div>
         </div>
-        <Badge variant="secondary" className="bg-muted text-violet-300 text-[11px]">
+        <Badge variant="secondary" className="bg-muted text-foreground text-[11px]">
           Granular Scope
         </Badge>
       </div>
@@ -87,7 +87,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
                     <span className={`text-xs font-bold ${isSelected ? "text-white" : "text-foreground"}`}>
                       {item.label}
                     </span>
-                    {isSelected && <CheckCircle2 className="h-3.5 w-3.5 text-violet-400" />}
+                    {isSelected && <CheckCircle2 className="h-3.5 w-3.5 text-foreground" />}
                   </div>
                   <p className="text-[11px] text-muted-foreground leading-snug">{item.description}</p>
                 </button>
@@ -115,7 +115,7 @@ export function AdvancedExportPanel({ project, onExportTriggered }: AdvancedExpo
                   }`}
                 >
                   <div className="text-xs">{fmt.label}</div>
-                  <span className="text-[10px] text-violet-400 font-mono mt-0.5 block">{fmt.ext}</span>
+                  <span className="text-[10px] text-foreground font-mono mt-0.5 block">{fmt.ext}</span>
                 </button>
               );
             })}

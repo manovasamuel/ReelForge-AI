@@ -1,7 +1,7 @@
 // Domain types for ReelForge AI v1.3 Phase 12 — Settings & Provider Management
 
 export type ThemeMode = "dark" | "light" | "system";
-export type AccentColor = "purple" | "blue" | "emerald";
+export type AccentColor = "default" | "zinc";
 export type DefaultLandingPage = "studio" | "workspace" | "export" | "settings";
 
 export type InstagramProviderType = "mock" | "apify" | "rapidapi" | "brightdata";

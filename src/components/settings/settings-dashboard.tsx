@@ -57,13 +57,13 @@ export function SettingsDashboard() {
       {/* Header Banner */}
       <div className="p-6 bg-gray-900/80 border border-gray-800 rounded-md flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-none">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-muted border border-border rounded-md text-purple-400">
+          <div className="p-3 bg-muted border border-border rounded-md text-foreground">
             <SettingsIcon className="h-7 w-7" />
           </div>
           <div>
             <h1 className="text-2xl font-black text-white flex items-center gap-3">
               Settings & Provider Studio
-              <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-purple-300 rounded-full">
+              <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-foreground rounded-full">
                 v2.0.0
               </span>
             </h1>

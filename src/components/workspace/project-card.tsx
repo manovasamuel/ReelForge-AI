@@ -107,7 +107,7 @@ export function ProjectCard({
             )}
 
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <span className="font-medium text-violet-300 truncate">
+              <span className="font-medium text-foreground truncate">
                 {project.state.profile ? `@${project.state.profile.username}` : project.instagramUrl}
               </span>
               <span>•</span>
@@ -151,7 +151,7 @@ export function ProjectCard({
               className="h-8 px-2 text-xs text-muted-foreground hover:text-white hover:bg-muted"
               title="Duplicate Project"
             >
-              <Copy className="h-3.5 w-3.5 mr-1 text-violet-400" /> Duplicate
+              <Copy className="h-3.5 w-3.5 mr-1 text-foreground" /> Duplicate
             </Button>
 
             <Button

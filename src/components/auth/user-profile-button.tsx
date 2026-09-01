@@ -16,7 +16,7 @@ export function UserProfileButton() {
 
   if (isPlaceholderMode) {
     return (
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-purple-300 text-xs font-semibold shadow-sm hover:bg-muted transition-colors" title="Development Placeholder Mode Active">
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-muted border border-border text-foreground text-xs font-semibold shadow-sm hover:bg-muted transition-colors" title="Development Placeholder Mode Active">
         <span className="w-2 h-2 rounded-full bg-muted" />
         <span className="truncate max-w-[120px]">{user?.email || "dev@reelforge.ai"}</span>
         <span className="text-[10px] uppercase bg-muted px-1.5 py-0.5 rounded text-purple-200 font-bold tracking-wider">
@@ -33,14 +33,14 @@ export function UserProfileButton() {
           <span className="text-xs font-bold text-slate-200 leading-tight truncate max-w-[140px]">
             {user?.fullName || "ReelForge User"}
           </span>
-          <span className="text-[10px] font-semibold text-purple-400 uppercase tracking-wider">
+          <span className="text-[10px] font-semibold text-foreground uppercase tracking-wider">
             {user?.tier || "Free"} Plan
           </span>
         </div>
         <UserButton
           appearance={{
             elements: {
-              userButtonAvatarBox: "w-9 h-9 rounded-full ring-2 ring-purple-500/30 hover:ring-purple-500 transition-all shadow-md",
+              userButtonAvatarBox: "w-9 h-9 rounded-full ring-2 ring-border hover:ring-border transition-all shadow-md",
               userButtonPopoverCard: "bg-slate-900 border border-slate-800 text-slate-100 shadow-none rounded-md",
             },
           }}

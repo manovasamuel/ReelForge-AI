@@ -67,7 +67,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <Badge className="bg-muted text-violet-300 border border-border capitalize text-[10px]">
+                <Badge className="bg-muted text-foreground border border-border capitalize text-[10px]">
                   {report.type}
                 </Badge>
                 <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
@@ -83,16 +83,16 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
         {/* Virality & Reusability Badges */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 rounded-md border border-border bg-muted px-3.5 py-2">
-            <Sparkles className="h-4 w-4 text-violet-400" />
+            <Sparkles className="h-4 w-4 text-foreground" />
             <div>
-              <p className="text-[10px] uppercase font-bold text-violet-300">Virality Score</p>
+              <p className="text-[10px] uppercase font-bold text-foreground">Virality Score</p>
               {virality.viralityAvailable !== false ? (
                 <p className="text-base font-black text-white leading-none">{virality.viralityScore} / 100</p>
               ) : (
                 <div>
                   <p className="text-sm font-bold text-muted-foreground leading-none">N/A (No Reach)</p>
                   {virality.interactionProxyScore !== undefined && (
-                    <p className="text-[9px] text-violet-300/80 mt-0.5">*Proxy Score: {virality.interactionProxyScore}/100</p>
+                    <p className="text-[9px] text-foreground mt-0.5">*Proxy Score: {virality.interactionProxyScore}/100</p>
                   )}
                 </div>
               )}
@@ -100,9 +100,9 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           </div>
 
           <div className="flex items-center gap-2 rounded-md border border-border bg-muted px-3.5 py-2">
-            <Repeat className="h-4 w-4 text-fuchsia-400" />
+            <Repeat className="h-4 w-4 text-foreground" />
             <div>
-              <p className="text-[10px] uppercase font-bold text-fuchsia-300">Reusability Score</p>
+              <p className="text-[10px] uppercase font-bold text-foreground">Reusability Score</p>
               <p className="text-base font-black text-white leading-none">{reusability.score} / 100</p>
             </div>
           </div>
@@ -114,7 +114,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
         {/* Column 1: Hook & Visual Intelligence */}
         <div className="space-y-6">
           <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
-            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-violet-400">
+            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
               <Zap className="h-4 w-4" />
               Hook Teardown
             </h4>
@@ -126,7 +126,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
               <div>
                 <div className="flex justify-between text-muted-foreground mb-1">
                   <span>Hook Retention Strength</span>
-                  <span className="font-bold text-violet-300">{hook.hookStrength}%</span>
+                  <span className="font-bold text-foreground">{hook.hookStrength}%</span>
                 </div>
                 <Progress value={hook.hookStrength} className="h-1.5" />
               </div>
@@ -135,7 +135,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
                 <p className="font-medium text-foreground mt-0.5 leading-snug">{hook.patternInterrupt}</p>
               </div>
               <div className="rounded-lg bg-muted p-2.5">
-                <span className="text-[10px] font-bold text-violet-300 uppercase">First 3 Seconds Anatomy:</span>
+                <span className="text-[10px] font-bold text-foreground uppercase">First 3 Seconds Anatomy:</span>
                 <p className="mt-1 text-xs text-foreground/90 leading-relaxed">{hook.first3Seconds}</p>
               </div>
             </div>
@@ -170,7 +170,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
         {/* Column 2: Caption & Psychology Metrics */}
         <div className="space-y-6">
           <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
-            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-fuchsia-400">
+            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
               <FileText className="h-4 w-4" />
               Caption & Copywriting Mechanics
             </h4>
@@ -187,7 +187,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
               </div>
               <div>
                 <span className="text-muted-foreground">Call To Action (CTA):</span>
-                <p className="font-bold text-violet-300 mt-0.5">{captionIntelligence.cta}</p>
+                <p className="font-bold text-foreground mt-0.5">{captionIntelligence.cta}</p>
               </div>
               <div>
                 <span className="text-muted-foreground">Storytelling Arc:</span>
@@ -201,7 +201,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           </div>
 
           <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
-            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-purple-400">
+            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
               <BrainCircuit className="h-4 w-4" />
               Psychological Drivers Radar
             </h4>
@@ -244,7 +244,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
               <div>
                 <div className="flex justify-between mb-1">
                   <span className="text-muted-foreground">Relatability</span>
-                  <span className="font-bold text-violet-400">{psychology.relatability}%</span>
+                  <span className="font-bold text-foreground">{psychology.relatability}%</span>
                 </div>
                 <Progress value={psychology.relatability} className="h-1" />
               </div>
@@ -255,7 +255,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
         {/* Column 3: Engagement, Winning/Failure Factors & Reusability */}
         <div className="space-y-6">
           <div className="space-y-3 rounded-md border border-border/50 bg-card p-4.5">
-            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
+            <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-foreground">
               <Eye className="h-4 w-4" />
               Engagement Conversion Efficiency
             </h4>
@@ -278,7 +278,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
             <div className="grid grid-cols-2 gap-3 pt-1 text-xs">
               <div className="rounded-lg border border-border bg-muted p-2.5 flex flex-col justify-center">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-1 text-emerald-300">
+                  <span className="flex items-center gap-1 text-foreground">
                     <Bookmark className="h-3.5 w-3.5" />
                     Save Rate
                   </span>
@@ -287,12 +287,12 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
                   </span>
                 </div>
                 {engagement.viewsAvailable === false && (
-                  <span className="text-[9px] text-emerald-300/70 mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
+                  <span className="text-[9px] text-foreground mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
                 )}
               </div>
               <div className="rounded-lg border border-border bg-muted p-2.5 flex flex-col justify-center">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-1 text-violet-300">
+                  <span className="flex items-center gap-1 text-foreground">
                     <Share2 className="h-3.5 w-3.5" />
                     Share Rate
                   </span>
@@ -301,7 +301,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
                   </span>
                 </div>
                 {engagement.viewsAvailable === false && (
-                  <span className="text-[9px] text-violet-300/70 mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
+                  <span className="text-[9px] text-foreground mt-0.5">*Proxy: {formatNum(engagement.likes + engagement.comments)} interactions</span>
                 )}
               </div>
             </div>
@@ -310,7 +310,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
           {/* Reusability Benchmark (Additional Requirement 3) */}
           <div className="rounded-md border border-border bg-muted p-4 text-xs space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-bold uppercase tracking-wider text-fuchsia-300">Reusability Assessment</span>
+              <span className="font-bold uppercase tracking-wider text-foreground">Reusability Assessment</span>
               <Badge className="bg-muted text-white font-bold">{reusability.score}% Match</Badge>
             </div>
             <p className="font-semibold text-white">{reusability.reusabilityLevel}</p>
@@ -325,7 +325,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
       <div className="grid grid-cols-1 gap-6 border-t border-border/60 bg-muted p-6 md:grid-cols-3">
         {/* Winning Factors (Additional Requirement 1) */}
         <div className="space-y-2.5">
-          <h5 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-emerald-400">
+          <h5 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-foreground">
             <CheckCircle2 className="h-4 w-4" />
             Winning Performance Factors
           </h5>
@@ -357,7 +357,7 @@ export function IntelligenceReportCard({ report, index }: IntelligenceReportCard
 
         {/* Why It Worked */}
         <div className="space-y-2.5">
-          <h5 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-violet-300">
+          <h5 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-foreground">
             <Lightbulb className="h-4 w-4 text-amber-400" />
             Why It Worked (Core Insight)
           </h5>

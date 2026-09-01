@@ -173,13 +173,13 @@ export function AiTelemetryPanel() {
       <div className="p-6 bg-muted from-gray-900/90 via-gray-900/60 border border-gray-800 rounded-md shadow-none space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="p-3 bg-muted border border-border rounded-md text-purple-400">
+            <div className="p-3 bg-muted border border-border rounded-md text-foreground">
               <Activity className="h-6 w-6" />
             </div>
             <div>
               <div className="flex items-center gap-2.5">
                 <h3 className="text-lg font-bold text-white">AI Telemetry & Quota Monitor</h3>
-                <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-purple-300 rounded-full">
+                <span className="px-2.5 py-0.5 text-xs font-bold bg-muted border border-border text-foreground rounded-full">
                   {data.planName}
                 </span>
               </div>
@@ -193,7 +193,7 @@ export function AiTelemetryPanel() {
             disabled={refreshing}
             className="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-gray-300 hover:text-white font-semibold text-sm rounded-md border border-gray-700/80 flex items-center gap-2 transition-all self-start md:self-auto shrink-0"
           >
-            <RefreshCw className={`h-4 w-4 text-purple-400 ${refreshing ? "animate-spin" : ""}`} />
+            <RefreshCw className={`h-4 w-4 text-foreground ${refreshing ? "animate-spin" : ""}`} />
             Refresh Telemetry
           </button>
         </div>
@@ -214,8 +214,8 @@ export function AiTelemetryPanel() {
         )}
 
         {isEmptyUsage && !p.isUnlimited && (
-          <div className="p-3.5 bg-muted border border-border rounded-md flex items-center gap-3 text-purple-300 text-sm font-medium">
-            <CheckCircle2 className="h-5 w-5 text-purple-400 shrink-0" />
+          <div className="p-3.5 bg-muted border border-border rounded-md flex items-center gap-3 text-foreground text-sm font-medium">
+            <CheckCircle2 className="h-5 w-5 text-foreground shrink-0" />
             <span>
               <strong className="text-white">0 AI tokens consumed this cycle.</strong> Your monthly allocation of {p.aiTokenLimit.toLocaleString()} tokens is fully available for AI synthesis.
             </span>
@@ -225,7 +225,7 @@ export function AiTelemetryPanel() {
         {/* Section A: Persisted Database Telemetry */}
         <div className="space-y-4 pt-2">
           <div className="flex items-center justify-between text-xs font-semibold text-gray-400 uppercase tracking-wider">
-            <span className="flex items-center gap-1.5 text-purple-300">
+            <span className="flex items-center gap-1.5 text-foreground">
               <BarChart3 className="h-4 w-4" /> Persisted Database Telemetry (Historical)
             </span>
             <span className="flex items-center gap-1.5 text-gray-400">
@@ -238,7 +238,7 @@ export function AiTelemetryPanel() {
             <div className="p-4 bg-gray-900/70 border border-gray-800/80 rounded-md space-y-2">
               <div className="flex items-center justify-between text-xs text-gray-400 font-medium">
                 <span>Total AI Tokens Used</span>
-                <Zap className="h-4 w-4 text-purple-400" />
+                <Zap className="h-4 w-4 text-foreground" />
               </div>
               <div className="text-2xl font-black text-white tracking-tight flex items-baseline gap-2">
                 {p.totalTokens.toLocaleString()}
@@ -271,7 +271,7 @@ export function AiTelemetryPanel() {
                 </div>
                 <div className="p-2.5 bg-gray-950/50 rounded-lg border border-gray-800/60">
                   <span className="block text-[10px] text-gray-400 uppercase font-bold tracking-wider">Completion (Out)</span>
-                  <span className="text-base font-bold text-purple-300 mt-0.5 block">{p.aiCompletionTokens.toLocaleString()}</span>
+                  <span className="text-base font-bold text-foreground mt-0.5 block">{p.aiCompletionTokens.toLocaleString()}</span>
                 </div>
               </div>
               <div className="text-[11px] text-gray-400 text-center">
@@ -284,14 +284,14 @@ export function AiTelemetryPanel() {
               <div>
                 <div className="flex items-center justify-between text-xs text-gray-400 font-medium">
                   <span>Total Estimated Value</span>
-                  <DollarSign className="h-4 w-4 text-emerald-400" />
+                  <DollarSign className="h-4 w-4 text-foreground" />
                 </div>
                 <div className="text-2xl font-black text-white tracking-tight mt-1">
                   ${p.totalEstimatedCostUsd} <span className="text-xs font-semibold text-gray-400">USD</span>
                 </div>
               </div>
               <div className="text-xs text-gray-400 pt-2 border-t border-gray-800/60 flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                <CheckCircle2 className="h-3.5 w-3.5 text-foreground shrink-0" />
                 <span>Computed at API baseline rates</span>
               </div>
             </div>
@@ -304,7 +304,7 @@ export function AiTelemetryPanel() {
         <div className="flex items-center justify-between">
           <div>
             <h4 className="text-base font-bold text-white flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5 text-emerald-400" /> Runtime Provider Health & Circuit State
+              <ShieldCheck className="h-5 w-5 text-foreground" /> Runtime Provider Health & Circuit State
             </h4>
             <p className="text-xs text-gray-400 mt-0.5">
               Live circuit breakers monitoring API health, automatic failover thresholds, and availability across orchestrator backends.
@@ -326,7 +326,7 @@ export function AiTelemetryPanel() {
                   <div className="font-bold text-sm text-white">{provider.name}</div>
                   <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full border ${
                     isClosed
-                      ? "bg-muted text-emerald-400 border-border"
+                      ? "bg-muted text-foreground border-border"
                       : isOpen
                       ? "bg-rose-500/20 text-rose-400 border-rose-500/30"
                       : "bg-muted text-amber-300 border-border"
@@ -338,13 +338,13 @@ export function AiTelemetryPanel() {
                 <div className="space-y-1.5 text-xs text-gray-400 border-t border-gray-800/60 pt-2.5">
                   <div className="flex items-center justify-between">
                     <span>API Credentials:</span>
-                    <span className={`font-semibold ${provider.isAvailable ? "text-emerald-400" : "text-gray-500"}`}>
+                    <span className={`font-semibold ${provider.isAvailable ? "text-foreground" : "text-gray-500"}`}>
                       {provider.isAvailable ? "Configured" : "Unconfigured"}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span>Circuit Health:</span>
-                    <span className={`font-semibold ${provider.isHealthy ? "text-emerald-400" : "text-rose-400"}`}>
+                    <span className={`font-semibold ${provider.isHealthy ? "text-foreground" : "text-rose-400"}`}>
                       {provider.isHealthy ? "Healthy" : "Tripped"}
                     </span>
                   </div>

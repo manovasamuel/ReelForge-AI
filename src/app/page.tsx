@@ -140,7 +140,7 @@ export default function LandingPage() {
                   <div className="text-xs font-mono text-muted-foreground">Analysis Module: Content DNA</div>
                 </div>
                 <div className="flex gap-2">
-                  <div className="text-xs px-2 py-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-md font-mono">
+                  <div className="text-xs px-2 py-1 bg-muted text-foreground dark:text-foreground border border-border rounded-md font-mono">
                     STATUS: ANALYSIS_COMPLETE
                   </div>
                 </div>

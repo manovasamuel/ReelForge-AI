@@ -37,7 +37,7 @@ export function SaveProjectModal({
       <div className="w-full max-w-md rounded-md border border-border bg-card p-6 shadow-none space-y-5 relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-md bg-muted border border-border flex items-center justify-center text-violet-400">
+            <div className="h-9 w-9 rounded-md bg-muted border border-border flex items-center justify-center text-foreground">
               <FolderGit2 className="h-5 w-5" />
             </div>
             <div>
@@ -68,14 +68,14 @@ export function SaveProjectModal({
           <div className="p-3.5 rounded-md bg-muted border border-border space-y-2 text-xs">
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-1.5 font-bold text-violet-200">
-                <Sparkles className="h-3.5 w-3.5 text-fuchsia-400" />
+                <Sparkles className="h-3.5 w-3.5 text-foreground" />
                 Snapshot Telemetry
               </span>
-              <Badge variant="secondary" className="bg-muted text-violet-300 text-[10px]">
+              <Badge variant="secondary" className="bg-muted text-foreground text-[10px]">
                 v1.2.0 Schema
               </Badge>
             </div>
-            <p className="text-[11px] text-violet-300/80 leading-relaxed">
+            <p className="text-[11px] text-foreground leading-relaxed">
               Stores your complete application state including all {completedPhasesCount} completed phases, raw profiles, competitor analysis breakdowns, Content DNA, and generated studio packages.
             </p>
           </div>

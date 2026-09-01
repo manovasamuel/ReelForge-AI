@@ -126,7 +126,7 @@ export function BillingSection() {
               <span className="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-muted from-cyan-500 text-white rounded-full shadow-md">
                 {plan.name}
               </span>
-              <span className="text-xs font-medium text-emerald-400 flex items-center bg-muted px-2.5 py-0.5 rounded-full border border-border">
+              <span className="text-xs font-medium text-foreground flex items-center bg-muted px-2.5 py-0.5 rounded-full border border-border">
                 <span className="w-1.5 h-1.5 bg-muted rounded-full animate-ping mr-1.5" />
                 {subscription?.status || "Active"}
               </span>
@@ -206,7 +206,7 @@ export function BillingSection() {
         <div className="p-6 rounded-md bg-slate-900/60 border border-slate-800 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
-              <div className="p-2 rounded-md bg-muted text-purple-400">
+              <div className="p-2 rounded-md bg-muted text-foreground">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
@@ -260,10 +260,10 @@ export function BillingSection() {
                 <span className="text-lg font-extrabold text-white">$0</span>
               </div>
               <ul className="space-y-2.5 text-xs text-slate-300">
-                <li className="flex items-center"><Check className="w-4 h-4 text-emerald-400 mr-2 shrink-0" /> 20 Scraper Calls / mo</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-emerald-400 mr-2 shrink-0" /> 10k AI Tokens / mo</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-emerald-400 mr-2 shrink-0" /> Deterministic Engine</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-emerald-400 mr-2 shrink-0" /> Standard Exports</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> 20 Scraper Calls / mo</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> 10k AI Tokens / mo</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Deterministic Engine</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Standard Exports</li>
               </ul>
             </div>
             <div className="mt-6">
@@ -336,16 +336,16 @@ export function BillingSection() {
                 <span className="text-lg font-extrabold text-white">$199 <span className="text-xs font-normal text-slate-400">/mo</span></span>
               </div>
               <ul className="space-y-2.5 text-xs text-slate-300">
-                <li className="flex items-center"><Check className="w-4 h-4 text-purple-400 mr-2 shrink-0" /> Unlimited Scraper Calls</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-purple-400 mr-2 shrink-0" /> Unlimited AI Tokens & Fine-Tuning</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-purple-400 mr-2 shrink-0" /> VIP Priority Processing</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-purple-400 mr-2 shrink-0" /> Dedicated Account Manager</li>
-                <li className="flex items-center"><Check className="w-4 h-4 text-purple-400 mr-2 shrink-0" /> White-Label Exports</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Unlimited Scraper Calls</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Unlimited AI Tokens & Fine-Tuning</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> VIP Priority Processing</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Dedicated Account Manager</li>
+                <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> White-Label Exports</li>
               </ul>
             </div>
             <div className="mt-6">
               {plan.id === "enterprise" ? (
-                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-muted text-purple-300 border border-border">
+                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-muted text-foreground border border-border">
                   Current Active Plan
                 </span>
               ) : (

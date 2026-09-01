@@ -38,10 +38,10 @@ function ConfidenceHeader({ title, meta }: { title: string; meta: SectionConfide
         {title}
       </h3>
       <div className="flex items-center gap-2.5 text-xs bg-muted border border-border px-3 py-1.5 rounded-lg shrink-0">
-        <span className="text-violet-300 font-medium">Confidence: <strong className="text-violet-100">{meta.confidence}%</strong></span>
-        <span className="text-violet-500">•</span>
-        <span className="text-violet-300">Sample: <strong className="text-violet-100">{meta.sampleCount} items</strong></span>
-        <span className="text-violet-500">•</span>
+        <span className="text-foreground font-medium">Confidence: <strong className="text-violet-100">{meta.confidence}%</strong></span>
+        <span className="text-foreground">•</span>
+        <span className="text-foreground">Sample: <strong className="text-violet-100">{meta.sampleCount} items</strong></span>
+        <span className="text-foreground">•</span>
         <Badge variant="outline" className="bg-muted text-violet-200 border-border text-[10px] px-1.5 py-0">
           {meta.reliability}
         </Badge>
@@ -72,14 +72,14 @@ export function ContentDNADashboard({
                 <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
                   <Sparkles className="h-3.5 w-3.5" /> Phase 7B Blueprint
                 </Badge>
-                <Badge variant="outline" className="border-border text-fuchsia-300 bg-muted">
+                <Badge variant="outline" className="border-border text-foreground bg-muted">
                   Sample Size: {report.snapshot.sampleSize} Analyzed Items
                 </Badge>
               </div>
               <CardTitle className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight bg-muted from-white bg-clip-text text-transparent">
                 Unified Winning Content DNA Blueprint
               </CardTitle>
-              <CardDescription className="text-violet-300/80 text-sm mt-1">
+              <CardDescription className="text-foreground text-sm mt-1">
                 Deterministic aggregation synthesizing top virality vectors into ONE repeatable studio production standard.
               </CardDescription>
             </div>
@@ -91,7 +91,7 @@ export function ContentDNADashboard({
                 <span className="text-[10px] uppercase font-semibold tracking-wider opacity-90">Score</span>
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-violet-400">Master Standard</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-foreground">Master Standard</div>
                 <div className="text-sm font-semibold text-white mt-0.5">Confidence: {report.dnaScore.confidence}%</div>
                 <div className="text-xs text-muted-foreground mt-0.5 max-w-[160px] truncate">
                   {report.dnaScore.topPerformingPattern}
@@ -105,31 +105,31 @@ export function ContentDNADashboard({
           <Separator className="bg-muted mb-6" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             <div className="rounded-md border border-border bg-muted p-3">
-              <span className="text-[11px] text-violet-300 uppercase font-semibold block">Avg Virality</span>
+              <span className="text-[11px] text-foreground uppercase font-semibold block">Avg Virality</span>
               <span className="text-xl font-bold text-white mt-1 block flex items-center gap-1">
                 <Flame className="h-4 w-4 text-amber-400" /> {report.snapshot.avgVirality} / 100
               </span>
             </div>
             <div className="rounded-md border border-border bg-muted p-3">
-              <span className="text-[11px] text-violet-300 uppercase font-semibold block">Avg Reusability</span>
+              <span className="text-[11px] text-foreground uppercase font-semibold block">Avg Reusability</span>
               <span className="text-xl font-bold text-white mt-1 block flex items-center gap-1">
-                <Award className="h-4 w-4 text-fuchsia-400" /> {report.snapshot.avgReusability} / 100
+                <Award className="h-4 w-4 text-foreground" /> {report.snapshot.avgReusability} / 100
               </span>
             </div>
             <div className="rounded-md border border-border bg-muted p-3 col-span-2 sm:col-span-1 lg:col-span-1">
-              <span className="text-[11px] text-violet-300 uppercase font-semibold block">Dominant Hook</span>
+              <span className="text-[11px] text-foreground uppercase font-semibold block">Dominant Hook</span>
               <span className="text-xs font-bold text-white mt-1 block truncate">
                 {report.snapshot.dominantHook}
               </span>
             </div>
             <div className="rounded-md border border-border bg-muted p-3">
-              <span className="text-[11px] text-violet-300 uppercase font-semibold block">Dominant CTA</span>
+              <span className="text-[11px] text-foreground uppercase font-semibold block">Dominant CTA</span>
               <span className="text-xs font-bold text-white mt-1 block truncate">
                 {report.snapshot.dominantCTA}
               </span>
             </div>
             <div className="rounded-md border border-border bg-muted p-3 col-span-2 sm:col-span-2 lg:col-span-2">
-              <span className="text-[11px] text-violet-300 uppercase font-semibold block">Dominant Psychology</span>
+              <span className="text-[11px] text-foreground uppercase font-semibold block">Dominant Psychology</span>
               <span className="text-xs font-bold text-white mt-1 block truncate">
                 {report.snapshot.dominantPsychology}
               </span>
@@ -150,7 +150,7 @@ export function ContentDNADashboard({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {report.dnaInsights.map((insight, idx) => (
               <div key={idx} className="flex items-start gap-3 p-3 rounded-md border border-border bg-muted">
-                <div className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-violet-300 font-bold text-xs shrink-0 mt-0.5">
+                <div className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-foreground font-bold text-xs shrink-0 mt-0.5">
                   #{idx + 1}
                 </div>
                 <p className="text-sm text-violet-100 leading-relaxed">{insight}</p>
@@ -168,7 +168,7 @@ export function ContentDNADashboard({
             {report.winningHooks.topHooks.map((hook, idx) => (
               <div key={idx} className="flex items-center justify-between p-3.5 rounded-md border border-border/80 bg-background hover:border-border transition-colors">
                 <div className="flex items-center gap-3">
-                  <span className="flex items-center justify-center h-7 w-7 rounded-lg bg-muted text-violet-300 font-black text-xs">
+                  <span className="flex items-center justify-center h-7 w-7 rounded-lg bg-muted text-foreground font-black text-xs">
                     {idx + 1}
                   </span>
                   <span className="font-bold text-sm text-foreground">{hook.hookType}</span>
@@ -176,7 +176,7 @@ export function ContentDNADashboard({
                 <div className="flex items-center gap-4">
                   <div className="text-right">
                     <span className="text-[11px] text-muted-foreground block">Adoption Rate</span>
-                    <span className="text-sm font-bold text-violet-300">{hook.frequency}%</span>
+                    <span className="text-sm font-bold text-foreground">{hook.frequency}%</span>
                   </div>
                   <div className="text-right min-w-[90px]">
                     <span className="text-[11px] text-muted-foreground block">Avg Virality</span>
@@ -201,7 +201,7 @@ export function ContentDNADashboard({
                 <div key={idx} className="space-y-1.5 p-3 rounded-md border border-border/60 bg-background">
                   <div className="flex justify-between text-xs font-semibold">
                     <span className="text-foreground">{cta.ctaStyle}</span>
-                    <span className="text-violet-400">{cta.usagePercentage}%</span>
+                    <span className="text-foreground">{cta.usagePercentage}%</span>
                   </div>
                   <Progress value={cta.usagePercentage} className="h-2 bg-muted" />
                 </div>
@@ -215,15 +215,15 @@ export function ContentDNADashboard({
             <ConfidenceHeader title="3. Winning Caption Mechanics" meta={report.winningCaptionStyle.confidenceMeta} />
             <dl className="space-y-3 text-sm">
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Optimal Length</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Optimal Length</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningCaptionStyle.avgLength}</dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Emoji & Formatting</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Emoji & Formatting</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningCaptionStyle.emojiDensity}</dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Storytelling Structure</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Storytelling Structure</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningCaptionStyle.storytellingStyle}</dd>
               </div>
             </dl>
@@ -238,15 +238,15 @@ export function ContentDNADashboard({
             <ConfidenceHeader title="4. Winning Editing Velocity" meta={report.winningEditingStyle.confidenceMeta} />
             <dl className="space-y-3 text-sm">
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Editing Pace & Cut Rate</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Editing Pace & Cut Rate</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningEditingStyle.editingPace}</dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Camera Production Style</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Camera Production Style</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningEditingStyle.cameraStyle}</dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Kinetic Subtitles & Overlays</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Kinetic Subtitles & Overlays</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningEditingStyle.textOverlay}</dd>
               </div>
             </dl>
@@ -258,7 +258,7 @@ export function ContentDNADashboard({
             <ConfidenceHeader title="5. Winning Visual Architecture" meta={report.winningVisualStyle.confidenceMeta} />
             <dl className="space-y-3 text-sm">
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Dominant Color Palette</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Dominant Color Palette</dt>
                 <dd className="flex flex-wrap gap-1.5 mt-1">
                   {report.winningVisualStyle.dominantColors.map((color, idx) => (
                     <Badge key={idx} variant="outline" className="bg-muted text-violet-200 border-border text-xs">
@@ -268,11 +268,11 @@ export function ContentDNADashboard({
                 </dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Thumbnail & Cover Focus</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Thumbnail & Cover Focus</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningVisualStyle.thumbnailStyle}</dd>
               </div>
               <div className="p-3 rounded-md border border-border/60 bg-background">
-                <dt className="text-xs font-semibold text-violet-400 uppercase">Lighting & Framing</dt>
+                <dt className="text-xs font-semibold text-foreground uppercase">Lighting & Framing</dt>
                 <dd className="font-bold text-foreground mt-0.5">{report.winningVisualStyle.lighting} — {report.winningVisualStyle.framing}</dd>
               </div>
             </dl>
@@ -289,21 +289,21 @@ export function ContentDNADashboard({
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-bold">
                   <span className="text-foreground">Curiosity Gap & Open Loops</span>
-                  <span className="text-violet-400">{report.winningPsychology.curiosity}%</span>
+                  <span className="text-foreground">{report.winningPsychology.curiosity}%</span>
                 </div>
                 <Progress value={report.winningPsychology.curiosity} className="h-2 bg-muted" />
               </div>
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-bold">
                   <span className="text-foreground">Authority & Expert Proof</span>
-                  <span className="text-violet-400">{report.winningPsychology.authority}%</span>
+                  <span className="text-foreground">{report.winningPsychology.authority}%</span>
                 </div>
                 <Progress value={report.winningPsychology.authority} className="h-2 bg-muted" />
               </div>
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-bold">
                   <span className="text-foreground">Relatability & Empathy</span>
-                  <span className="text-violet-400">{report.winningPsychology.relatability}%</span>
+                  <span className="text-foreground">{report.winningPsychology.relatability}%</span>
                 </div>
                 <Progress value={report.winningPsychology.relatability} className="h-2 bg-muted" />
               </div>
@@ -312,19 +312,19 @@ export function ContentDNADashboard({
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-bold">
                   <span className="text-foreground">Social Proof & Validation</span>
-                  <span className="text-violet-400">{report.winningPsychology.socialProof}%</span>
+                  <span className="text-foreground">{report.winningPsychology.socialProof}%</span>
                 </div>
                 <Progress value={report.winningPsychology.socialProof} className="h-2 bg-muted" />
               </div>
               <div className="space-y-1.5">
                 <div className="flex justify-between text-xs font-bold">
                   <span className="text-foreground">Scarcity & Urgency</span>
-                  <span className="text-violet-400">{report.winningPsychology.scarcity}%</span>
+                  <span className="text-foreground">{report.winningPsychology.scarcity}%</span>
                 </div>
                 <Progress value={report.winningPsychology.scarcity} className="h-2 bg-muted" />
               </div>
               <div className="p-3 rounded-md border border-border bg-muted">
-                <span className="text-xs font-bold text-violet-300 block mb-1">Top Primary Psychological Triggers:</span>
+                <span className="text-xs font-bold text-foreground block mb-1">Top Primary Psychological Triggers:</span>
                 <ul className="list-disc list-inside text-xs text-violet-100 space-y-1">
                   {report.winningPsychology.topTriggers.map((t, idx) => (
                     <li key={idx}>{t}</li>
@@ -362,7 +362,7 @@ export function ContentDNADashboard({
           <CardHeader className="pb-3">
             <Badge className="w-fit bg-muted text-white mb-1">Direct Script Input</Badge>
             <CardTitle className="text-lg font-bold text-white flex items-center gap-2">
-              <Layers className="h-5 w-5 text-fuchsia-400" /> Blueprint Export Standard
+              <Layers className="h-5 w-5 text-foreground" /> Blueprint Export Standard
             </CardTitle>
             <CardDescription className="text-xs text-fuchsia-200/80">
               Read-only structured AST formula ready to be passed into the Phase 8 Script Generator.
@@ -372,10 +372,10 @@ export function ContentDNADashboard({
             <div className="p-4 rounded-md border border-border bg-black/60 font-mono text-xs text-fuchsia-200 space-y-2">
               {report.blueprintExport.formulaSteps.map((step, idx) => (
                 <div key={idx} className="flex items-center gap-2">
-                  <span className="text-fuchsia-500 font-bold">{idx + 1}.</span>
+                  <span className="text-foreground font-bold">{idx + 1}.</span>
                   <span className="font-semibold text-white">{step}</span>
                   {idx < report.blueprintExport.formulaSteps.length - 1 && (
-                    <span className="text-fuchsia-400/50 ml-auto">↓</span>
+                    <span className="text-foreground ml-auto">↓</span>
                   )}
                 </div>
               ))}

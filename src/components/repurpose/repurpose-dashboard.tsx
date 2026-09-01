@@ -29,14 +29,14 @@ function MetricsBar({ metrics, onCopy, copied }: { metrics: PlatformContentMetri
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-3.5 rounded-md border border-border bg-muted mb-6">
       <div className="flex items-center gap-4 text-xs">
         <div className="flex items-center gap-1.5 text-violet-200 font-semibold">
-          <FileText className="h-3.5 w-3.5 text-violet-400" />
+          <FileText className="h-3.5 w-3.5 text-foreground" />
           <span>Word Count: <strong className="text-white">{metrics.wordCount}</strong></span>
         </div>
-        <span className="text-violet-500">•</span>
+        <span className="text-foreground">•</span>
         <div className="flex items-center gap-1.5 text-violet-200 font-semibold">
           <span>Characters: <strong className="text-white">{metrics.characterCount}</strong></span>
         </div>
-        <span className="text-violet-500">•</span>
+        <span className="text-foreground">•</span>
         <div className="flex items-center gap-1.5 text-amber-300 font-semibold">
           <Clock className="h-3.5 w-3.5 text-amber-400" />
           <span>Est. Reading Time: <strong className="text-white">{metrics.readingTimeSeconds}s</strong></span>
@@ -75,14 +75,14 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                 <Badge className="bg-muted hover:bg-muted text-white gap-1 px-2.5 py-0.5">
                   <Sparkles className="h-3.5 w-3.5" /> Phase 9 Omnichannel Engine
                 </Badge>
-                <Badge variant="outline" className="border-border text-fuchsia-300 bg-muted">
+                <Badge variant="outline" className="border-border text-foreground bg-muted">
                   6 Formats Generated
                 </Badge>
               </div>
               <CardTitle className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight bg-muted from-white bg-clip-text text-transparent">
                 Multi-Platform Repurpose Studio
               </CardTitle>
-              <CardDescription className="text-violet-300/80 text-sm mt-1">
+              <CardDescription className="text-foreground text-sm mt-1">
                 Deterministic transformation adapting your master Reel package into native formats across 6 platforms.
               </CardDescription>
             </div>
@@ -124,11 +124,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               />
               <div className="space-y-4 text-sm">
                 <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                  <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Instagram Caption</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Instagram Caption</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.instagram.caption}</pre>
                 </div>
                 <div className="p-4 rounded-md border border-border bg-muted space-y-1">
-                  <span className="text-xs font-bold text-violet-300 uppercase tracking-wider block">Lead Magnet CTA</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Lead Magnet CTA</span>
                   <p className="text-xs font-semibold text-white">{report.instagram.cta}</p>
                 </div>
               </div>
@@ -143,15 +143,15 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               />
               <div className="space-y-4 text-sm">
                 <div className="p-4 rounded-md border border-border bg-muted space-y-2">
-                  <span className="text-xs font-bold text-blue-300 uppercase tracking-wider block">Professional Opening Hook</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Professional Opening Hook</span>
                   <p className="font-extrabold text-white text-base">"{report.linkedIn.professionalHook}"</p>
                 </div>
                 <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                  <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Long-Form Thought Leadership Post</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Long-Form Thought Leadership Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.linkedIn.longFormPost}</pre>
                 </div>
                 <div className="p-4 rounded-md border border-border bg-muted space-y-1">
-                  <span className="text-xs font-bold text-blue-300 uppercase tracking-wider block">Engagement CTA</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Engagement CTA</span>
                   <p className="text-xs font-semibold text-white">{report.linkedIn.cta}</p>
                 </div>
               </div>
@@ -208,11 +208,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               />
               <div className="space-y-4 text-sm">
                 <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                  <span className="text-xs font-bold text-indigo-400 uppercase tracking-wider block">Community Style Post</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Community Style Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.facebook.communityPost}</pre>
                 </div>
                 <div className="p-4 rounded-md border border-border bg-muted space-y-1">
-                  <span className="text-xs font-bold text-indigo-300 uppercase tracking-wider block">Group Discussion CTA</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Group Discussion CTA</span>
                   <p className="text-xs font-semibold text-white">{report.facebook.cta}</p>
                 </div>
               </div>
@@ -231,7 +231,7 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
                   <p className="font-extrabold text-white text-base">{report.youtubeShorts.title}</p>
                 </div>
                 <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                  <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">Description & Timestamps</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Description & Timestamps</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.youtubeShorts.description}</pre>
                 </div>
                 <div className="p-4 rounded-md border border-red-500/30 bg-red-950/20 space-y-1">

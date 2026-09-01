@@ -106,7 +106,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
               <CardTitle className="mt-2 text-2xl md:text-3xl font-extrabold tracking-tight bg-muted from-white bg-clip-text text-transparent">
                 {pkg.reelIdea.title}
               </CardTitle>
-              <CardDescription className="text-violet-300/80 text-sm mt-1">
+              <CardDescription className="text-foreground text-sm mt-1">
                 {pkg.reelIdea.summary}
               </CardDescription>
             </div>
@@ -118,7 +118,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
                 <span className="text-[10px] uppercase font-semibold tracking-wider opacity-90">Score</span>
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-wider text-violet-400">Production Rating</div>
+                <div className="text-xs font-bold uppercase tracking-wider text-foreground">Production Rating</div>
                 <div className="text-sm font-semibold text-white mt-0.5">{pkg.productionScore.difficulty} Difficulty</div>
                 <div className="text-xs text-amber-300 font-medium mt-0.5">
                   {pkg.productionScore.estimatedPerformance}
@@ -132,19 +132,19 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
           <Separator className="bg-muted mb-6" />
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-xs">
             <div className="rounded-md border border-border bg-muted p-2.5 col-span-2">
-              <span className="text-violet-300 font-semibold block uppercase text-[10px]">Content Goal</span>
+              <span className="text-foreground font-semibold block uppercase text-[10px]">Content Goal</span>
               <span className="font-bold text-white truncate block mt-0.5">{pkg.strategy.contentGoal}</span>
             </div>
             <div className="rounded-md border border-border bg-muted p-2.5 col-span-2">
-              <span className="text-violet-300 font-semibold block uppercase text-[10px]">Target Audience</span>
+              <span className="text-foreground font-semibold block uppercase text-[10px]">Target Audience</span>
               <span className="font-bold text-white truncate block mt-0.5">{pkg.strategy.targetAudience}</span>
             </div>
             <div className="rounded-md border border-border bg-muted p-2.5 col-span-2">
-              <span className="text-violet-300 font-semibold block uppercase text-[10px]">Content Pillar</span>
+              <span className="text-foreground font-semibold block uppercase text-[10px]">Content Pillar</span>
               <span className="font-bold text-white truncate block mt-0.5">{pkg.strategy.contentPillar}</span>
             </div>
             <div className="rounded-md border border-border bg-muted p-2.5 col-span-2">
-              <span className="text-violet-300 font-semibold block uppercase text-[10px]">Primary Emotion</span>
+              <span className="text-foreground font-semibold block uppercase text-[10px]">Primary Emotion</span>
               <span className="font-bold text-white truncate block mt-0.5">{pkg.strategy.emotion}</span>
             </div>
           </div>
@@ -156,7 +156,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs font-bold text-violet-300 mr-2 uppercase tracking-wider">Export Tools:</span>
+              <span className="text-xs font-bold text-foreground mr-2 uppercase tracking-wider">Export Tools:</span>
               <Button size="sm" variant="outline" onClick={handleCopyScript} className="border-border gap-1.5 text-xs">
                 {copiedScript ? <Check className="h-3.5 w-3.5 text-green-400" /> : <Copy className="h-3.5 w-3.5" />}
                 {copiedScript ? "Script Copied!" : "Copy Script"}
@@ -239,7 +239,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
             </div>
             <div className="flex justify-between p-2.5 rounded-lg bg-background border border-border/60">
               <span className="text-muted-foreground font-medium">Reel Duration:</span>
-              <span className="font-bold text-violet-300">{pkg.productionSummary.estimatedReelDuration}</span>
+              <span className="font-bold text-foreground">{pkg.productionSummary.estimatedReelDuration}</span>
             </div>
             <div className="flex justify-between p-2.5 rounded-lg bg-background border border-border/60">
               <span className="text-muted-foreground font-medium">B-Roll Cut Count:</span>
@@ -265,7 +265,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-4 rounded-md border border-border bg-muted space-y-2">
-              <span className="text-xs font-bold text-violet-300 uppercase tracking-wider block">First 3-Seconds Hook Anatomy:</span>
+              <span className="text-xs font-bold text-foreground uppercase tracking-wider block">First 3-Seconds Hook Anatomy:</span>
               <p className="text-base font-extrabold text-white">"{pkg.hook.firstSentence}"</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-2 text-violet-200/90 border-t border-border">
                 <div><strong>Visual:</strong> {pkg.hook.openingVisual}</div>
@@ -283,7 +283,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
       <Card className="border-border bg-card shadow-none">
         <CardHeader>
           <CardTitle className="text-lg font-bold text-foreground flex items-center gap-2">
-            <Film className="h-5 w-5 text-violet-400" /> Scene-by-Scene Studio Shooting Script
+            <Film className="h-5 w-5 text-foreground" /> Scene-by-Scene Studio Shooting Script
           </CardTitle>
           <CardDescription>Expand each scene for exact visual storyboarding, teleprompter voiceover, and kinetic overlay direction.</CardDescription>
         </CardHeader>
@@ -298,14 +298,14 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
                     </span>
                     <div>
                       <span className="font-bold text-sm text-foreground block">{scene.title}</span>
-                      <span className="text-xs text-violet-400 font-mono">{scene.duration} • {scene.transition}</span>
+                      <span className="text-xs text-foreground font-mono">{scene.duration} • {scene.transition}</span>
                     </div>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className="pb-4 pt-2 space-y-4 border-t border-border/40">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div className="p-3 rounded-lg bg-card border border-border/60 space-y-1">
-                      <span className="text-violet-400 font-bold uppercase tracking-wider block">Teleprompter Voiceover:</span>
+                      <span className="text-foreground font-bold uppercase tracking-wider block">Teleprompter Voiceover:</span>
                       <p className="text-sm font-semibold text-foreground leading-relaxed">"{scene.voiceover}"</p>
                     </div>
                     <div className="p-3 rounded-lg bg-card border border-border/60 space-y-1">
@@ -330,9 +330,9 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base font-bold text-foreground flex items-center gap-2">
-                <FileText className="h-4 w-4 text-violet-400" /> Full Instagram Caption Copy
+                <FileText className="h-4 w-4 text-foreground" /> Full Instagram Caption Copy
               </CardTitle>
-              <Button size="sm" variant="ghost" onClick={handleCopyCaption} className="text-xs h-7 px-2 text-violet-300">
+              <Button size="sm" variant="ghost" onClick={handleCopyCaption} className="text-xs h-7 px-2 text-foreground">
                 {copiedCaption ? "Copied!" : "Copy Copy"}
               </Button>
             </div>
@@ -348,13 +348,13 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
         <Card className="border-border bg-card shadow-none flex flex-col justify-between">
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-bold text-foreground flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-fuchsia-400" /> High-Converting CTA Variants
+              <Sparkles className="h-4 w-4 text-foreground" /> High-Converting CTA Variants
             </CardTitle>
             <CardDescription className="text-xs">Copy tailored conversion prompts for caption and comments.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4 text-xs">
             <div className="p-3.5 rounded-md border border-border bg-muted space-y-1">
-              <span className="text-violet-300 font-bold uppercase tracking-wider block">Primary Lead Magnet CTA:</span>
+              <span className="text-foreground font-bold uppercase tracking-wider block">Primary Lead Magnet CTA:</span>
               <p className="font-semibold text-foreground text-sm">{pkg.cta.primaryCTA}</p>
             </div>
             <div className="p-3.5 rounded-md border border-border/80 bg-background space-y-1">
@@ -375,7 +375,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base font-bold text-foreground">15 Strategically Grouped Hashtags</CardTitle>
-              <Button size="sm" variant="ghost" onClick={handleCopyHashtags} className="text-xs h-7 px-2 text-violet-300">
+              <Button size="sm" variant="ghost" onClick={handleCopyHashtags} className="text-xs h-7 px-2 text-foreground">
                 {copiedHashtags ? "Copied!" : "Copy All"}
               </Button>
             </div>
@@ -383,7 +383,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
           <CardContent className="space-y-4">
             {pkg.hashtags.groups.map((grp, idx) => (
               <div key={idx} className="space-y-1.5">
-                <span className="text-xs font-bold text-violet-400 uppercase tracking-wider block">{grp.category} (5 tags):</span>
+                <span className="text-xs font-bold text-foreground uppercase tracking-wider block">{grp.category} (5 tags):</span>
                 <div className="flex flex-wrap gap-1.5">
                   {grp.tags.map((t, i) => (
                     <Badge key={i} variant="outline" className="bg-muted text-violet-200 border-border text-xs">

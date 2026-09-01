@@ -163,7 +163,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
           </Card>
           <Card className="border-border/50 bg-card p-4">
             <p className="text-xs font-medium text-muted-foreground">Monthly Growth</p>
-            <p className="mt-1 text-xl font-bold text-emerald-400">{performanceMetrics.estimatedMonthlyGrowth}</p>
+            <p className="mt-1 text-xl font-bold text-foreground">{performanceMetrics.estimatedMonthlyGrowth}</p>
           </Card>
         </div>
 
@@ -345,7 +345,7 @@ export function CompetitorAnalysisDashboard({ analysis, onCollectContent }: Comp
       {/* 8 & 9. STRENGTHS AND WEAKNESSES */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card className="border-border bg-muted p-6">
-          <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-emerald-400 uppercase tracking-wide">
+          <h4 className="mb-4 flex items-center gap-2 text-sm font-bold text-foreground uppercase tracking-wide">
             <CheckCircle2 className="h-4 w-4" />
             Competitive Strengths
           </h4>

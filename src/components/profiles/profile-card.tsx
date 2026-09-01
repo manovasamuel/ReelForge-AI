@@ -40,7 +40,7 @@ function PostThumbnail({ post }: { post: InstagramPost }) {
       href={post.url ?? "#"}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block aspect-square overflow-hidden rounded-lg bg-muted ring-1 ring-foreground/5 transition-all hover:ring-violet-500/40"
+      className="group relative block aspect-square overflow-hidden rounded-lg bg-muted ring-1 ring-foreground/5 transition-all hover:ring-border"
       aria-label={post.caption?.slice(0, 60) ?? "View post"}
     >
       {post.thumbnail_url ? (
@@ -92,7 +92,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:items-start sm:text-left">
           {/* Profile picture */}
           <div className="relative shrink-0">
-            <div className="h-20 w-20 overflow-hidden rounded-full ring-2 ring-violet-500/30 ring-offset-2 ring-offset-card sm:h-24 sm:w-24">
+            <div className="h-20 w-20 overflow-hidden rounded-full ring-2 ring-border ring-offset-2 ring-offset-card sm:h-24 sm:w-24">
               {profile.profile_picture_url ? (
                 <Image
                   src={profile.profile_picture_url}
@@ -125,7 +125,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
                 @{profile.username}
               </h2>
               {profile.is_verified && (
-                <BadgeCheck className="h-5 w-5 shrink-0 text-violet-400" />
+                <BadgeCheck className="h-5 w-5 shrink-0 text-foreground" />
               )}
             </div>
 
@@ -154,7 +154,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
                 href={profile.external_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-1 text-xs text-violet-400 transition-colors hover:text-violet-300 sm:justify-start"
+                className="flex items-center justify-center gap-1 text-xs text-foreground transition-colors hover:text-foreground sm:justify-start"
               >
                 <ExternalLink className="h-3 w-3" />
                 {profile.external_url.replace(/^https?:\/\//, "")}
@@ -205,7 +205,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         {latestPosts.length > 0 && (
           <div className="space-y-3">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-              <Grid3X3 className="h-4 w-4 text-violet-400" />
+              <Grid3X3 className="h-4 w-4 text-foreground" />
               Latest Posts
             </h3>
             <div className="grid grid-cols-3 gap-2">

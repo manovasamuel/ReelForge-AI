@@ -46,7 +46,7 @@ export function AboutSection({
   return (
     <div className="space-y-8 animate-fade-in">
       {toast && (
-        <div className="p-3 bg-muted border border-border rounded-md flex items-center gap-2 text-emerald-300 text-sm font-medium">
+        <div className="p-3 bg-muted border border-border rounded-md flex items-center gap-2 text-foreground text-sm font-medium">
           <CheckCircle2 className="h-4 w-4" /> {toast}
         </div>
       )}
@@ -55,9 +55,9 @@ export function AboutSection({
       <div className="p-6 bg-muted to-gray-900/60 border border-border rounded-md space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Logo textClassName="text-xl font-black text-white" badgeClassName="text-purple-300" />
+            <Logo textClassName="text-xl font-black text-white" badgeClassName="text-foreground" />
           </div>
-          <span className="px-3 py-1 text-xs font-bold bg-muted border border-border text-purple-300 rounded-full">
+          <span className="px-3 py-1 text-xs font-bold bg-muted border border-border text-foreground rounded-full">
             v2.0.0
           </span>
         </div>
@@ -66,7 +66,7 @@ export function AboutSection({
       {/* Developer Diagnostics Section (Additional Requirement 1) */}
       <div>
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Cpu className="h-5 w-5 text-purple-400" /> Developer Diagnostics & Environment
+          <Cpu className="h-5 w-5 text-foreground" /> Developer Diagnostics & Environment
         </h3>
         <p className="text-sm text-gray-400 mb-4">Read-only runtime telemetry illustrating swappable provider layers and memory models.</p>
 
@@ -93,7 +93,7 @@ export function AboutSection({
             <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Active Pipeline Providers</div>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {developer.activeProviders.map((p) => (
-                <span key={p} className="px-2.5 py-1 bg-muted border border-border text-purple-300 font-mono text-xs rounded-lg">
+                <span key={p} className="px-2.5 py-1 bg-muted border border-border text-foreground font-mono text-xs rounded-lg">
                   {p}
                 </span>
               ))}
@@ -102,7 +102,7 @@ export function AboutSection({
 
           <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
             <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Mock Mode / Fallback</div>
-            <div className="text-sm font-bold text-emerald-400 mt-1 flex items-center gap-1.5">
+            <div className="text-sm font-bold text-foreground mt-1 flex items-center gap-1.5">
               <CheckCircle2 className="h-4 w-4 shrink-0" />
               {developer.mockMode ? "Mixed / Hybrid (Transitional Phase 4C)" : "Disabled (100% Live Production)"}
             </div>
@@ -113,7 +113,7 @@ export function AboutSection({
       {/* Read-Only Feature Flags */}
       <div className="border-t border-gray-800 pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Code className="h-5 w-5 text-purple-400" /> Active Feature Flags (Read-Only)
+          <Code className="h-5 w-5 text-foreground" /> Active Feature Flags (Read-Only)
         </h3>
         <p className="text-sm text-gray-400 mb-4">Architectural switches controlling heuristic and AI synthesis paths.</p>
 
@@ -124,7 +124,7 @@ export function AboutSection({
                 <div className="font-semibold text-sm text-gray-300">{flag.label}</div>
                 <div className="font-mono text-xs text-gray-500">{flag.key}</div>
               </div>
-              <span className={`px-2 py-0.5 rounded text-xs font-bold ${flag.enabled ? "bg-muted text-emerald-400" : "bg-gray-800 text-gray-400"}`}>
+              <span className={`px-2 py-0.5 rounded text-xs font-bold ${flag.enabled ? "bg-muted text-foreground" : "bg-gray-800 text-gray-400"}`}>
                 {flag.enabled ? "ENABLED" : "DISABLED"}
               </span>
             </div>
@@ -135,7 +135,7 @@ export function AboutSection({
       {/* Import / Export Settings Backup (Additional Requirement 2) */}
       <div className="border-t border-gray-800 pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Download className="h-5 w-5 text-purple-400" /> Backup & Restore Configuration
+          <Download className="h-5 w-5 text-foreground" /> Backup & Restore Configuration
         </h3>
         <p className="text-sm text-gray-400 mb-4">Export your custom studio preferences to a JSON backup or import them across machines.</p>
 

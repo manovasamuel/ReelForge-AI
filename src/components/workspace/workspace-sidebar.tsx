@@ -37,12 +37,12 @@ export function WorkspaceSidebar({
       <CardHeader className="pb-3 pt-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <FolderOpen className="h-4 w-4 text-violet-400" />
+            <FolderOpen className="h-4 w-4 text-foreground" />
             <CardTitle className="text-sm font-bold tracking-tight text-white">
               Workspace Navigation
             </CardTitle>
           </div>
-          <Badge variant="outline" className="border-border text-fuchsia-300 bg-muted text-[10px]">
+          <Badge variant="outline" className="border-border text-foreground bg-muted text-[10px]">
             v2.0.0
           </Badge>
         </div>
@@ -60,7 +60,7 @@ export function WorkspaceSidebar({
                 : "text-muted-foreground hover:text-white hover:bg-muted"
             }`}
           >
-            <PlusCircle className="h-4 w-4 text-violet-300 shrink-0" />
+            <PlusCircle className="h-4 w-4 text-foreground shrink-0" />
             New Analysis
           </Button>
 
@@ -73,9 +73,9 @@ export function WorkspaceSidebar({
                 : "text-muted-foreground hover:text-white hover:bg-muted"
             }`}
           >
-            <FolderOpen className="h-4 w-4 text-fuchsia-400 shrink-0" />
+            <FolderOpen className="h-4 w-4 text-foreground shrink-0" />
             All Projects
-            <Badge variant="secondary" className="ml-auto bg-muted text-violet-300 text-[10px] px-1.5 py-0">
+            <Badge variant="secondary" className="ml-auto bg-muted text-foreground text-[10px] px-1.5 py-0">
               {stats.totalProjects}
             </Badge>
           </Button>
@@ -100,7 +100,7 @@ export function WorkspaceSidebar({
         <div className="space-y-3 rounded-md border border-border/60 bg-background p-3.5">
           <div className="flex items-center justify-between font-bold text-foreground">
             <span className="flex items-center gap-1.5 text-xs">
-              <HardDrive className="h-3.5 w-3.5 text-violet-400" />
+              <HardDrive className="h-3.5 w-3.5 text-foreground" />
               Storage Telemetry
             </span>
             <span className="text-[10px] text-muted-foreground">Supabase Cloud</span>
@@ -114,7 +114,7 @@ export function WorkspaceSidebar({
 
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Storage Used</span>
-              <span className="font-bold text-violet-300">{stats.totalStorageUsedFormatted}</span>
+              <span className="font-bold text-foreground">{stats.totalStorageUsedFormatted}</span>
             </div>
 
             <div className="flex items-center justify-between">
@@ -130,7 +130,7 @@ export function WorkspaceSidebar({
                 <span className="text-foreground truncate max-w-[130px]" title={stats.largestProjectName}>
                   {stats.largestProjectName}
                 </span>
-                <span className="text-fuchsia-300 shrink-0">{stats.largestProjectSizeFormatted}</span>
+                <span className="text-foreground shrink-0">{stats.largestProjectSizeFormatted}</span>
               </div>
             </div>
 
@@ -148,13 +148,13 @@ export function WorkspaceSidebar({
         {/* App Version Card */}
         <div className="rounded-md border border-border bg-muted p-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Logo showText={false} iconClassName="w-5 h-5 text-violet-400" />
+            <Logo showText={false} iconClassName="w-5 h-5 text-foreground" />
             <div>
               <span className="font-bold text-white block text-xs">ReelForge AI</span>
               <span className="text-[10px] text-muted-foreground block">Workspace Edition</span>
             </div>
           </div>
-          <Badge variant="outline" className="border-border text-violet-300 text-[10px]">
+          <Badge variant="outline" className="border-border text-foreground text-[10px]">
             v2.0.0
           </Badge>
         </div>

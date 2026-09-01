@@ -78,14 +78,14 @@ export function StorageSection({
   return (
     <div className="space-y-8 animate-fade-in relative">
       {toast && (
-        <div className="p-3 bg-muted border border-border rounded-md flex items-center gap-2 text-emerald-300 text-sm font-medium">
+        <div className="p-3 bg-muted border border-border rounded-md flex items-center gap-2 text-foreground text-sm font-medium">
           <CheckCircle className="h-4 w-4" /> {toast}
         </div>
       )}
 
       <div>
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Database className="h-5 w-5 text-purple-400" /> Persistent LocalStorage Telemetry
+          <Database className="h-5 w-5 text-foreground" /> Persistent LocalStorage Telemetry
         </h3>
         <p className="text-sm text-gray-400 mb-4">ReelForge operates with 100% client-side privacy. Monitor exactly how much disk space your browser allocates.</p>
 
@@ -93,13 +93,13 @@ export function StorageSection({
           <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
             <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Total Projects</div>
             <div className="text-2xl font-black text-white mt-1">{details.totalProjects}</div>
-            <div className="text-xs text-purple-400 mt-1">{details.projectsSizeFormatted}</div>
+            <div className="text-xs text-foreground mt-1">{details.projectsSizeFormatted}</div>
           </div>
 
           <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
             <div className="text-xs font-semibold uppercase tracking-wider text-gray-400">Export Audit Log</div>
             <div className="text-2xl font-black text-white mt-1">{details.historyCount} entries</div>
-            <div className="text-xs text-purple-400 mt-1">{details.historySizeFormatted}</div>
+            <div className="text-xs text-foreground mt-1">{details.historySizeFormatted}</div>
           </div>
 
           <div className="p-4 bg-gray-900/60 border border-gray-800 rounded-md">
@@ -109,9 +109,9 @@ export function StorageSection({
           </div>
 
           <div className="p-4 bg-muted border border-border rounded-md">
-            <div className="text-xs font-semibold uppercase tracking-wider text-purple-300">Total Storage Used</div>
+            <div className="text-xs font-semibold uppercase tracking-wider text-foreground">Total Storage Used</div>
             <div className="text-2xl font-black text-white mt-1">{details.totalSizeFormatted}</div>
-            <div className="text-xs text-purple-400 mt-1">Of ~5 MB browser quota</div>
+            <div className="text-xs text-foreground mt-1">Of ~5 MB browser quota</div>
           </div>
         </div>
       </div>

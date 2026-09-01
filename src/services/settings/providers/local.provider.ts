@@ -9,7 +9,7 @@ export const DEFAULT_APP_SETTINGS: AppSettings = {
   version: "2.0.0",
   appearance: {
     theme: "dark",
-    accentColor: "purple",
+    accentColor: "default",
   },
   workspace: {
     autoSave: true,

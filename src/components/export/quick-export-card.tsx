@@ -55,7 +55,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div>
           <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-fuchsia-400" /> Quick Export Hub
+            <Sparkles className="h-4 w-4 text-foreground" /> Quick Export Hub
           </h3>
           <p className="text-xs text-muted-foreground mt-0.5">
             One-click instant downloads and clipboard copies for &ldquo;{project.name}&rdquo;
@@ -65,7 +65,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
 
       <div className="space-y-4">
         <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-violet-300 mb-2.5">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2.5">
             Document Downloads
           </h4>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -75,7 +75,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               disabled={isExporting !== null}
               className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-muted hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
-              <FileText className="h-5 w-5 text-violet-400" />
+              <FileText className="h-5 w-5 text-foreground" />
               <div className="text-center">
                 <div className="text-xs font-bold">PDF Report</div>
                 <div className="text-[10px] text-muted-foreground">Print to PDF</div>
@@ -88,7 +88,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               disabled={isExporting !== null}
               className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
-              <FileCode className="h-5 w-5 text-fuchsia-400" />
+              <FileCode className="h-5 w-5 text-foreground" />
               <div className="text-center">
                 <div className="text-xs font-bold">Markdown (.md)</div>
                 <div className="text-[10px] text-muted-foreground">Notion / GitHub</div>
@@ -101,7 +101,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               disabled={isExporting !== null}
               className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
-              <FileSpreadsheet className="h-5 w-5 text-indigo-400" />
+              <FileSpreadsheet className="h-5 w-5 text-foreground" />
               <div className="text-center">
                 <div className="text-xs font-bold">HTML Report</div>
                 <div className="text-[10px] text-muted-foreground">Standalone Doc</div>
@@ -114,7 +114,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               disabled={isExporting !== null}
               className="h-auto py-3.5 flex flex-col items-center justify-center gap-2 rounded-md border-border bg-card hover:bg-muted text-white transition-all hover:scale-[1.02]"
             >
-              <Download className="h-5 w-5 text-emerald-400" />
+              <Download className="h-5 w-5 text-foreground" />
               <div className="text-center">
                 <div className="text-xs font-bold">JSON Project</div>
                 <div className="text-[10px] text-muted-foreground">Complete Backup</div>
@@ -124,7 +124,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
         </div>
 
         <div className="pt-2">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-fuchsia-300 mb-2.5">
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground mb-2.5">
             Instant Clipboard Copy
           </h4>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -134,7 +134,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               onClick={() => handleCopy("summary", "Executive Summary")}
               className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
-              {copiedSection === "summary" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {copiedSection === "summary" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Summary
             </Button>
 
@@ -144,7 +144,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               onClick={() => handleCopy("script", "Script Package")}
               className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
-              {copiedSection === "script" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {copiedSection === "script" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Script
             </Button>
 
@@ -154,7 +154,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               onClick={() => handleCopy("repurpose", "Repurpose Package")}
               className="text-xs bg-muted hover:bg-muted text-violet-200 border border-border gap-1.5 h-9"
             >
-              {copiedSection === "repurpose" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {copiedSection === "repurpose" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy Repurpose
             </Button>
 
@@ -164,7 +164,7 @@ export function QuickExportCard({ project, onExportTriggered }: QuickExportCardP
               onClick={() => handleCopy("complete", "Complete Report")}
               className="text-xs bg-muted hover: hover: text-white border border-border gap-1.5 h-9 font-bold"
             >
-              {copiedSection === "complete" ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+              {copiedSection === "complete" ? <Check className="h-3.5 w-3.5 text-foreground" /> : <Copy className="h-3.5 w-3.5" />}
               Copy All
             </Button>
           </div>

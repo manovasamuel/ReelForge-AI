@@ -36,7 +36,7 @@ export function SummaryPanel({
 
       <CardHeader className="pb-3 pt-4">
         <div className="flex items-center justify-between">
-          <Badge variant="outline" className="border-border text-violet-300 bg-muted text-[10px]">
+          <Badge variant="outline" className="border-border text-foreground bg-muted text-[10px]">
             Live Session
           </Badge>
           <span className="text-[11px] font-medium text-muted-foreground">
@@ -53,7 +53,7 @@ export function SummaryPanel({
           {/* Current Profile */}
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-1.5 text-muted-foreground">
-              <User className="h-3.5 w-3.5 text-violet-400" />
+              <User className="h-3.5 w-3.5 text-foreground" />
               Current Profile
             </span>
             <span className="font-semibold text-foreground">
@@ -66,7 +66,7 @@ export function SummaryPanel({
           {/* Industry */}
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-1.5 text-muted-foreground">
-              <Layers className="h-3.5 w-3.5 text-violet-400" />
+              <Layers className="h-3.5 w-3.5 text-foreground" />
               Industry
             </span>
             <span className="font-medium text-foreground line-clamp-1 max-w-[140px]" title={industry ?? "Pending"}>
@@ -79,7 +79,7 @@ export function SummaryPanel({
           {/* Brand Type */}
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Brand Type</span>
-            <Badge variant="secondary" className="bg-muted text-[10px] text-violet-300">
+            <Badge variant="secondary" className="bg-muted text-[10px] text-foreground">
               {brandType ?? "Pending"}
             </Badge>
           </div>
@@ -89,7 +89,7 @@ export function SummaryPanel({
           {/* Competitors Found */}
           <div className="flex items-center justify-between">
             <span className="flex items-center gap-1.5 text-muted-foreground">
-              <Users className="h-3.5 w-3.5 text-fuchsia-400" />
+              <Users className="h-3.5 w-3.5 text-foreground" />
               Competitors Found
             </span>
             <span className="font-bold text-foreground">{competitorsCount}</span>
@@ -100,7 +100,7 @@ export function SummaryPanel({
           {/* Selected Competitor */}
           <div className="flex items-center justify-between">
             <span className="text-muted-foreground">Selected Target</span>
-            <span className="font-semibold text-violet-300">
+            <span className="font-semibold text-foreground">
               {selectedCompetitor ? `@${selectedCompetitor}` : "None Selected"}
             </span>
           </div>
@@ -109,7 +109,7 @@ export function SummaryPanel({
         {/* Status Box */}
         <div className="mt-4 rounded-md border border-border bg-muted p-3">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-violet-400 shrink-0" />
+            <CheckCircle2 className="h-4 w-4 text-foreground shrink-0" />
             <span className="font-bold text-violet-200">
               {isPhase9Complete
                 ? "Multi-Platform Suite Ready"
@@ -126,7 +126,7 @@ export function SummaryPanel({
                 : "Ready for Phase 4"}
             </span>
           </div>
-          <p className="mt-1 text-[11px] leading-tight text-violet-300/80">
+          <p className="mt-1 text-[11px] leading-tight text-foreground">
             {isPhase9Complete
               ? "Reel package successfully adapted across Instagram, LinkedIn, X, Threads, Facebook, and YouTube Shorts."
               : isPhase8Complete

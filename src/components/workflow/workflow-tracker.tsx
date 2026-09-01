@@ -55,14 +55,14 @@ export function WorkflowTracker({ completedSteps, activeStep }: WorkflowTrackerP
                 aria-current={isActive ? "step" : undefined}
                 className={cn(
                   "flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-200",
-                  isActive && "bg-muted   text-white shadow-md  ring-2 ring-violet-400/30",
-                  isCompleted && !isActive && "bg-muted text-violet-300 border border-border",
+                  isActive && "bg-muted   text-white shadow-md  ring-2 ring-border",
+                  isCompleted && !isActive && "bg-muted text-foreground border border-border",
                   isDisabled && "bg-muted text-muted-foreground/50 border border-transparent cursor-not-allowed"
                 )}
               >
                 {/* Status icon */}
                 {isCompleted && !isActive ? (
-                  <Check className="h-3.5 w-3.5 shrink-0 text-violet-400" />
+                  <Check className="h-3.5 w-3.5 shrink-0 text-foreground" />
                 ) : isActive ? (
                   <CircleDot className="h-3.5 w-3.5 shrink-0 text-white" />
                 ) : (

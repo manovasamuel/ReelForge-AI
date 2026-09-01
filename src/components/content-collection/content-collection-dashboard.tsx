@@ -203,14 +203,14 @@ export function ContentCollectionDashboard({
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-violet-300">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-foreground">
                 <BarChart3 className="h-4 w-4" />
               </div>
               <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
                 Content Library Benchmarks: @{competitorUsername}
               </h3>
             </div>
-            <Badge className="bg-muted text-violet-300 border border-border">
+            <Badge className="bg-muted text-foreground border border-border">
               {stats.total} Media Items Extracted
             </Badge>
           </div>
@@ -222,7 +222,7 @@ export function ContentCollectionDashboard({
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Reels Volume</p>
-              <p className="mt-1 text-lg font-bold text-violet-400">{stats.reelsCount} Reels</p>
+              <p className="mt-1 text-lg font-bold text-foreground">{stats.reelsCount} Reels</p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Posts Volume</p>
@@ -230,19 +230,19 @@ export function ContentCollectionDashboard({
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Average Views</p>
-              <p className="mt-1 text-lg font-bold text-fuchsia-400">
+              <p className="mt-1 text-lg font-bold text-foreground">
                 {stats.hasViewsAvailable ? formatNum(stats.avgViews) : "N/A"}
               </p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Highest Views</p>
-              <p className="mt-1 text-lg font-bold text-emerald-400">
+              <p className="mt-1 text-lg font-bold text-foreground">
                 {stats.hasViewsAvailable ? formatNum(stats.highestViews) : "N/A"}
               </p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Newest Content Age</p>
-              <p className="mt-1 text-lg font-bold text-violet-300">{stats.newestAge}</p>
+              <p className="mt-1 text-lg font-bold text-foreground">{stats.newestAge}</p>
             </div>
           </div>
         </div>
@@ -274,7 +274,7 @@ export function ContentCollectionDashboard({
                 <div className="hidden h-6 w-px bg-border sm:block" />
 
                 <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
-                  <div className="flex items-center gap-1.5 text-violet-300">
+                  <div className="flex items-center gap-1.5 text-foreground">
                     <Eye className="h-3.5 w-3.5" />
                     <span>Total Views: {selectionSummary.hasViews ? formatNum(selectionSummary.totalViews) : "N/A"}</span>
                   </div>
@@ -282,7 +282,7 @@ export function ContentCollectionDashboard({
                     <TrendingUp className="h-3.5 w-3.5" />
                     <span>Avg Likes: {formatNum(selectionSummary.avgLikes)}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-emerald-300">
+                  <div className="flex items-center gap-1.5 text-foreground">
                     <Sparkles className="h-3.5 w-3.5" />
                     <span>
                       Avg Engagement:{" "}
@@ -368,7 +368,7 @@ export function ContentCollectionDashboard({
         {/* Row 2: Filters Bar */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between pt-2 border-t border-border/40">
           <span className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-muted-foreground shrink-0">
-            <Filter className="h-3 w-3 text-violet-400" />
+            <Filter className="h-3 w-3 text-foreground" />
             <span>Filter By Attribute:</span>
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -385,7 +385,7 @@ export function ContentCollectionDashboard({
                   className={cn(
                     "rounded-lg px-3 py-1 text-xs font-medium transition-all cursor-pointer",
                     isActive
-                      ? "bg-muted text-fuchsia-300 border border-border"
+                      ? "bg-muted text-foreground border border-border"
                       : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground border border-transparent"
                   )}
                 >
@@ -410,7 +410,7 @@ export function ContentCollectionDashboard({
 
           <div className="flex items-center gap-2 shrink-0">
             <span className="flex items-center gap-1 text-xs font-semibold text-muted-foreground">
-              <ArrowUpDown className="h-3.5 w-3.5 text-violet-400" />
+              <ArrowUpDown className="h-3.5 w-3.5 text-foreground" />
               <span>Sort:</span>
             </span>
             <div className="flex gap-1">
@@ -427,7 +427,7 @@ export function ContentCollectionDashboard({
                   className={cn(
                     "rounded-md px-2.5 py-1 text-xs font-semibold transition-all cursor-pointer",
                     sortBy === srt.id
-                      ? "bg-muted text-violet-300 border border-border"
+                      ? "bg-muted text-foreground border border-border"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >

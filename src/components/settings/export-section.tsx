@@ -21,7 +21,7 @@ export function ExportSection({ preferences, onChange }: ExportSectionProps) {
     <div className="space-y-8 animate-fade-in">
       <div>
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <FileText className="h-5 w-5 text-purple-400" /> Default Report Export Format
+          <FileText className="h-5 w-5 text-foreground" /> Default Report Export Format
         </h3>
         <p className="text-sm text-gray-400 mb-4">Controls pre-selected output format when triggering 1-click Quick Exports.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

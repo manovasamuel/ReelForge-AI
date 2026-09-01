@@ -38,7 +38,7 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
     <div className="rounded-md border border-border bg-card p-6 shadow-none space-y-5">
       <div className="flex items-center justify-between border-b border-border/60 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-violet-400">
+          <div className="h-8 w-8 rounded-lg bg-muted border border-border flex items-center justify-center text-foreground">
             <History className="h-4 w-4" />
           </div>
           <div>
@@ -87,11 +87,11 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
                     <td className="py-3 px-4 font-bold text-white max-w-[180px] truncate">
                       {item.projectName}
                     </td>
-                    <td className="py-3 px-4 capitalize text-violet-300">
+                    <td className="py-3 px-4 capitalize text-foreground">
                       {item.scope}
                     </td>
                     <td className="py-3 px-4 uppercase font-mono text-[11px]">
-                      <Badge variant="outline" className="bg-muted border-border text-violet-300">
+                      <Badge variant="outline" className="bg-muted border-border text-foreground">
                         {item.format}
                       </Badge>
                     </td>
@@ -99,7 +99,7 @@ export function ExportHistoryTable({ refreshToken = 0 }: ExportHistoryTableProps
                       {item.fileSizeFormatted || "N/A"}
                     </td>
                     <td className="py-3 px-4 text-muted-foreground flex items-center gap-1.5">
-                      <Calendar className="h-3 w-3 text-violet-400" />
+                      <Calendar className="h-3 w-3 text-foreground" />
                       {dateStr} at {timeStr}
                     </td>
                     <td className="py-3 px-4 text-right">

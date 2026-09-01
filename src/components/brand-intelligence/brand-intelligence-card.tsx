@@ -29,8 +29,8 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
       <CardHeader className="pt-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-muted ring-1 ring-violet-500/40">
-              <Sparkles className="h-5 w-5 text-violet-400" />
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-muted ring-1 ring-border">
+              <Sparkles className="h-5 w-5 text-foreground" />
             </div>
             <div>
               <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
@@ -43,8 +43,8 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
           </div>
 
           {/* Market position tag */}
-          <div className="flex items-center gap-1.5 self-start rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-semibold text-violet-300 sm:self-center">
-            <Award className="h-3.5 w-3.5 text-violet-400" />
+          <div className="flex items-center gap-1.5 self-start rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-semibold text-foreground sm:self-center">
+            <Award className="h-3.5 w-3.5 text-foreground" />
             {report.estimatedMarketPosition}
           </div>
         </div>
@@ -55,11 +55,11 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col gap-1.5 rounded-md border border-border/50 bg-muted p-3.5">
             <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Layers className="h-3.5 w-3.5 text-violet-400" />
+              <Layers className="h-3.5 w-3.5 text-foreground" />
               Industry
             </span>
             <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <Badge variant="secondary" className="bg-muted text-violet-300 hover:bg-muted">
+              <Badge variant="secondary" className="bg-muted text-foreground hover:bg-muted">
                 {report.industry}
               </Badge>
             </div>
@@ -68,11 +68,11 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
 
           <div className="flex flex-col gap-1.5 rounded-md border border-border/50 bg-muted p-3.5">
             <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Users className="h-3.5 w-3.5 text-violet-400" />
+              <Users className="h-3.5 w-3.5 text-foreground" />
               Target Audience
             </span>
             <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <Badge variant="secondary" className="bg-muted text-fuchsia-300 hover:bg-muted">
+              <Badge variant="secondary" className="bg-muted text-foreground hover:bg-muted">
                 {report.estimatedAudienceAge}
               </Badge>
             </div>
@@ -83,11 +83,11 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
 
           <div className="flex flex-col gap-1.5 rounded-md border border-border/50 bg-muted p-3.5">
             <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Volume2 className="h-3.5 w-3.5 text-violet-400" />
+              <Volume2 className="h-3.5 w-3.5 text-foreground" />
               Brand Tone
             </span>
             <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <Badge variant="secondary" className="bg-muted text-purple-300 hover:bg-muted">
+              <Badge variant="secondary" className="bg-muted text-foreground hover:bg-muted">
                 {report.brandTone}
               </Badge>
             </div>
@@ -96,11 +96,11 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
 
           <div className="flex flex-col gap-1.5 rounded-md border border-border/50 bg-muted p-3.5">
             <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-              <Palette className="h-3.5 w-3.5 text-violet-400" />
+              <Palette className="h-3.5 w-3.5 text-foreground" />
               Content Style
             </span>
             <div className="flex flex-wrap items-center gap-1.5 pt-1">
-              <Badge variant="secondary" className="bg-muted text-pink-300 hover:bg-muted">
+              <Badge variant="secondary" className="bg-muted text-foreground hover:bg-muted">
                 {report.contentStyle}
               </Badge>
             </div>
@@ -115,7 +115,7 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
           {/* Content Pillars list */}
           <div className="space-y-3 md:col-span-2">
             <h3 className="flex items-center gap-2 text-sm font-semibold text-foreground">
-              <Target className="h-4 w-4 text-violet-400" />
+              <Target className="h-4 w-4 text-foreground" />
               Primary Content Pillars
             </h3>
             <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
@@ -124,7 +124,7 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
                   key={idx}
                   className="flex items-center gap-2.5 rounded-md border border-border bg-muted px-3.5 py-3 transition-colors hover:border-border"
                 >
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-muted text-xs font-bold text-violet-300">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-muted text-xs font-bold text-foreground">
                     {idx + 1}
                   </span>
                   <span className="text-xs font-medium leading-snug text-foreground sm:text-sm">
@@ -140,7 +140,7 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="flex items-center gap-1.5 text-muted-foreground">
-                  <TrendingUp className="h-3.5 w-3.5 text-violet-400" />
+                  <TrendingUp className="h-3.5 w-3.5 text-foreground" />
                   Brand Type
                 </span>
                 <span className="font-semibold text-foreground">{report.brandType}</span>
@@ -148,7 +148,7 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
               <Separator className="opacity-30" />
               <div className="flex items-center justify-between text-xs">
                 <span className="flex items-center gap-1.5 text-muted-foreground">
-                  <Calendar className="h-3.5 w-3.5 text-violet-400" />
+                  <Calendar className="h-3.5 w-3.5 text-foreground" />
                   Posting Frequency
                 </span>
                 <span className="font-semibold text-foreground">{report.postingFrequency}</span>
@@ -159,7 +159,7 @@ export function BrandIntelligenceCard({ report }: BrandIntelligenceCardProps) {
             <div className="space-y-2 rounded-lg border border-border bg-card p-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-medium text-muted-foreground">AI Confidence</span>
-                <span className="font-bold text-violet-400">{report.confidenceScore}%</span>
+                <span className="font-bold text-foreground">{report.confidenceScore}%</span>
               </div>
               <Progress value={report.confidenceScore} className="h-2 bg-muted" />
               <p className="text-[10px] text-muted-foreground/70">

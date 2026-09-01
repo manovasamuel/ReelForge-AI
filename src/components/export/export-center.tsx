@@ -22,7 +22,7 @@ export function ExportCenter({ project }: ExportCenterProps) {
   if (!project) {
     return (
       <div className="rounded-md border border-border bg-card p-12 text-center shadow-none max-w-2xl mx-auto my-12 space-y-4">
-        <div className="h-12 w-12 rounded-md bg-muted border border-border flex items-center justify-center text-violet-400 mx-auto">
+        <div className="h-12 w-12 rounded-md bg-muted border border-border flex items-center justify-center text-foreground mx-auto">
           <Download className="h-6 w-6" />
         </div>
         <h3 className="text-lg font-bold text-white">No Active Analysis Selected</h3>
@@ -46,8 +46,8 @@ export function ExportCenter({ project }: ExportCenterProps) {
               <Download className="h-6 w-6" />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted border border-border text-[11px] font-bold text-violet-300 mb-1">
-                <Sparkles className="h-3 w-3 text-fuchsia-400" /> ReelForge AI v2.0 Export Center
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-muted border border-border text-[11px] font-bold text-foreground mb-1">
+                <Sparkles className="h-3 w-3 text-foreground" /> ReelForge AI v2.0 Export Center
               </div>
               <h2 className="text-xl font-bold text-white">
                 Omnichannel Intelligence Export: &ldquo;{project.name}&rdquo;
@@ -56,7 +56,7 @@ export function ExportCenter({ project }: ExportCenterProps) {
           </div>
           <div className="text-right hidden sm:block">
             <div className="text-xs font-mono text-muted-foreground">Version {project.version}</div>
-            <div className="text-xs font-semibold text-violet-300">{project.instagramUrl}</div>
+            <div className="text-xs font-semibold text-foreground">{project.instagramUrl}</div>
           </div>
         </div>
 

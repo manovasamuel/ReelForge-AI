@@ -63,7 +63,7 @@ export function WorkspaceDashboard({
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 px-3 py-2 rounded-md bg-background border border-border text-xs text-muted-foreground shrink-0">
-            <SlidersHorizontal className="h-3.5 w-3.5 text-violet-400" />
+            <SlidersHorizontal className="h-3.5 w-3.5 text-foreground" />
             <span>Sort by:</span>
           </div>
           <select

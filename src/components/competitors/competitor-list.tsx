@@ -26,7 +26,7 @@ export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompe
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-muted text-violet-400 ring-1 ring-violet-500/40">
+            <div className="flex h-11 w-11 items-center justify-center rounded-md bg-muted text-foreground ring-1 ring-border">
               <Users className="h-5 w-5" />
             </div>
             <div>
@@ -43,22 +43,22 @@ export function CompetitorList({ competitors, onSelectCompetitor, onAnalyzeCompe
         {/* Compact Statistic Chips (Improvement 4) */}
         <div className="flex flex-wrap items-center gap-2 pt-1">
           <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
-            <Users className="h-3.5 w-3.5 text-violet-400" />
+            <Users className="h-3.5 w-3.5 text-foreground" />
             <span>Total: {total} Accounts</span>
           </div>
 
           <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
-            <TrendingUp className="h-3.5 w-3.5 text-fuchsia-400" />
+            <TrendingUp className="h-3.5 w-3.5 text-foreground" />
             <span>Avg Match: {avgSimilarity}%</span>
           </div>
 
           <div className="flex items-center gap-1.5 rounded-lg border border-border/60 bg-muted px-3 py-1.5 text-xs font-semibold text-foreground">
-            <Sparkles className="h-3.5 w-3.5 text-purple-400" />
+            <Sparkles className="h-3.5 w-3.5 text-foreground" />
             <span>Peak Confidence: {highestConfidence}%</span>
           </div>
 
-          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-bold text-violet-300">
-            <CheckCircle className="h-3.5 w-3.5 text-violet-400" />
+          <div className="flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-bold text-foreground">
+            <CheckCircle className="h-3.5 w-3.5 text-foreground" />
             <span>Status: Complete</span>
           </div>
         </div>

@@ -5,8 +5,8 @@ export function EmptyOnboarding() {
   return (
     <Card className="w-full border-border/50 bg-card p-6 sm:p-10 animate-in fade-in duration-300">
       <CardContent className="flex flex-col items-center text-center space-y-6 max-w-xl mx-auto p-0">
-        <div className="flex h-16 w-16 items-center justify-center rounded-md bg-muted ring-1 ring-violet-500/40">
-          <Sparkles className="h-8 w-8 text-violet-400" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-md bg-muted ring-1 ring-border">
+          <Sparkles className="h-8 w-8 text-foreground" />
         </div>
 
         <div className="space-y-2">
@@ -20,19 +20,19 @@ export function EmptyOnboarding() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full pt-2">
           <div className="flex flex-col items-center p-4 rounded-md border border-border/40 bg-muted">
-            <Search className="h-5 w-5 text-violet-400 mb-2" />
+            <Search className="h-5 w-5 text-foreground mb-2" />
             <h4 className="text-xs font-bold text-foreground">1. Profile Snapshot</h4>
             <p className="text-[11px] text-muted-foreground mt-1">Ingests follower metrics & recent content.</p>
           </div>
 
           <div className="flex flex-col items-center p-4 rounded-md border border-border/40 bg-muted">
-            <Layers className="h-5 w-5 text-fuchsia-400 mb-2" />
+            <Layers className="h-5 w-5 text-foreground mb-2" />
             <h4 className="text-xs font-bold text-foreground">2. Brand Strategy</h4>
             <p className="text-[11px] text-muted-foreground mt-1">Derives industry, tone & primary pillars.</p>
           </div>
 
           <div className="flex flex-col items-center p-4 rounded-md border border-border/40 bg-muted">
-            <Users className="h-5 w-5 text-purple-400 mb-2" />
+            <Users className="h-5 w-5 text-foreground mb-2" />
             <h4 className="text-xs font-bold text-foreground">3. Competitor Radar</h4>
             <p className="text-[11px] text-muted-foreground mt-1">Identifies top 10 matching accounts.</p>
           </div>

@@ -68,14 +68,14 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-violet-300">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-foreground">
                 <BrainCircuit className="h-4 w-4" />
               </div>
               <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
                 Batch Content Intelligence Teardown
               </h3>
             </div>
-            <Badge className="bg-muted text-violet-300 border border-border">
+            <Badge className="bg-muted text-foreground border border-border">
               {stats.total} Selected Items Evaluated
             </Badge>
           </div>
@@ -87,28 +87,28 @@ export function ContentIntelligenceDashboard({ reports, onProceedToPhase7 }: Con
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Avg Virality Score</p>
-              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-violet-400">
+              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
                 <Sparkles className="h-4 w-4" />
                 {stats.hasVirality ? `${stats.avgVirality} / 100` : "N/A"}
               </p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Avg Reusability Index</p>
-              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-fuchsia-400">
+              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
                 <Repeat className="h-4 w-4" />
                 {stats.avgReusability} / 100
               </p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Est. Batch Save Rate</p>
-              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-emerald-400">
+              <p className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
                 <Bookmark className="h-4 w-4" />
                 {stats.hasSaveRate ? `${stats.avgSaveRate}%` : "N/A"}
               </p>
             </div>
             <div className="rounded-md border border-border/40 bg-card p-3.5">
               <p className="text-xs font-medium text-muted-foreground">Dominant Hook Pattern</p>
-              <p className="mt-1 flex items-center gap-1.5 text-xs font-bold text-violet-300 leading-tight">
+              <p className="mt-1 flex items-center gap-1.5 text-xs font-bold text-foreground leading-tight">
                 <Zap className="h-3.5 w-3.5 shrink-0" />
                 <span>{stats.dominantHook}</span>
               </p>

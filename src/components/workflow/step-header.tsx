@@ -9,7 +9,7 @@ export function StepHeader({ step, title, description }: StepHeaderProps) {
     <div className="my-6 space-y-2 text-center animate-in fade-in duration-200">
       <div className="h-[1px] w-full bg-muted" />
       <div className="py-2">
-        <span className="inline-block text-[11px] font-bold tracking-widest text-violet-400 uppercase">
+        <span className="inline-block text-[11px] font-bold tracking-widest text-foreground uppercase">
           STEP {step}
         </span>
         <h3 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">

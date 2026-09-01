@@ -10,8 +10,8 @@ export default function SignInPage() {
   if (isPlaceholder) {
     return (
       <div className="w-full bg-card border border-border rounded-md p-8 text-center">
-        <div className="w-12 h-12 rounded-md bg-muted text-muted-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
-          RF
+        <div className="flex justify-center mb-6">
+          <Logo textClassName="text-xl" />
         </div>
         <h2 className="text-xl font-bold text-foreground mb-2">Development Mode</h2>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">

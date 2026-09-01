@@ -63,16 +63,16 @@ export function ContentItemCard({
   function getTypeIcon() {
     switch (item.type) {
       case "reel":
-        return <Film className="h-3 w-3 text-violet-400" />;
+        return <Film className="h-3 w-3 text-foreground" />;
       case "carousel":
-        return <Layers className="h-3 w-3 text-fuchsia-400" />;
+        return <Layers className="h-3 w-3 text-foreground" />;
       case "video":
         return <Video className="h-3 w-3 text-sky-400" />;
       case "image":
-        return <ImageIcon className="h-3 w-3 text-emerald-400" />;
+        return <ImageIcon className="h-3 w-3 text-foreground" />;
       case "post":
       default:
-        return <FileText className="h-3 w-3 text-purple-400" />;
+        return <FileText className="h-3 w-3 text-foreground" />;
     }
   }
 
@@ -88,7 +88,7 @@ export function ContentItemCard({
       className={cn(
         "group relative flex flex-col overflow-hidden border transition-all duration-300 cursor-pointer select-none",
         isSelected
-          ? "border-border bg-muted shadow-none  ring-1 ring-violet-500"
+          ? "border-border bg-muted shadow-none  ring-1 ring-border"
           : "border-border/60 bg-card hover:border-border hover:bg-card hover:shadow-md"
       )}
     >
@@ -137,13 +137,13 @@ export function ContentItemCard({
         {/* Duration / Media Count Overlay */}
         {item.durationSeconds && (
           <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
-            <Clock className="h-3 w-3 text-violet-300" />
+            <Clock className="h-3 w-3 text-foreground" />
             <span>{item.durationSeconds}s</span>
           </div>
         )}
         {item.mediaCount && (
           <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
-            <Layers className="h-3 w-3 text-fuchsia-300" />
+            <Layers className="h-3 w-3 text-foreground" />
             <span>1/{item.mediaCount}</span>
           </div>
         )}
@@ -159,7 +159,7 @@ export function ContentItemCard({
         {/* Metrics Row */}
         <div className="flex items-center justify-between text-[11px] font-semibold text-muted-foreground pt-1 border-t border-border/40">
           <div className="flex items-center gap-1" title={`${item.views.toLocaleString()} views`}>
-            <Eye className="h-3.5 w-3.5 text-violet-400" />
+            <Eye className="h-3.5 w-3.5 text-foreground" />
             <span>{formattedViews}</span>
           </div>
           <div className="flex items-center gap-1" title={`${item.likes.toLocaleString()} likes`}>
@@ -184,7 +184,7 @@ export function ContentItemCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 px-2 text-[11px] text-violet-300 hover:bg-muted hover:text-violet-200"
+                    className="h-7 px-2 text-[11px] text-foreground hover:bg-muted hover:text-violet-200"
                   />
                 }
               >
@@ -228,7 +228,7 @@ export function ContentItemCard({
                         Publish Date
                       </h4>
                       <p className="flex items-center gap-1.5 text-sm font-medium text-foreground">
-                        <Calendar className="h-4 w-4 text-violet-400" />
+                        <Calendar className="h-4 w-4 text-foreground" />
                         {formattedDate}
                       </p>
                     </div>
@@ -236,7 +236,7 @@ export function ContentItemCard({
                     <div className="grid grid-cols-3 gap-3 rounded-md border border-border/40 bg-muted p-3 text-center">
                       <div>
                         <p className="text-[10px] text-muted-foreground">Views</p>
-                        <p className="text-sm font-bold text-violet-400">{item.views.toLocaleString()}</p>
+                        <p className="text-sm font-bold text-foreground">{item.views.toLocaleString()}</p>
                       </div>
                       <div>
                         <p className="text-[10px] text-muted-foreground">Likes</p>
@@ -265,7 +265,7 @@ export function ContentItemCard({
                         {item.hashtags.map((tag, idx) => (
                           <span
                             key={idx}
-                            className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-violet-300 border border-border"
+                            className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-foreground border border-border"
                           >
                             {tag}
                           </span>

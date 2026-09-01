@@ -66,7 +66,7 @@ export function ProfileUrlInput({ onAnalyze, isLoading, onInputChange }: Profile
             className={cn(
               "h-11 pl-10 pr-4 text-sm transition-all",
               "bg-card border-border/60 placeholder:text-muted-foreground/50",
-              "focus-visible:border-border focus-visible:ring-violet-500/20",
+              "focus-visible:border-border focus-visible:ring-border",
               error && "border-destructive/60 focus-visible:border-destructive focus-visible:ring-destructive/20"
             )}
           />

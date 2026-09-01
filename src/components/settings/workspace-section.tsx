@@ -24,7 +24,7 @@ export function WorkspaceSection({ preferences, onChange }: WorkspaceSectionProp
       <div>
         <div className="flex items-center justify-between p-4 bg-gray-900/60 border border-gray-800 rounded-md">
           <div className="flex items-start gap-3">
-            <Save className="h-5 w-5 text-purple-400 mt-0.5" />
+            <Save className="h-5 w-5 text-foreground mt-0.5" />
             <div>
               <div className="font-bold text-sm text-white">Auto-Save Live Studio State</div>
               <p className="text-xs text-gray-400 mt-0.5">
@@ -45,7 +45,7 @@ export function WorkspaceSection({ preferences, onChange }: WorkspaceSectionProp
 
       <div className="border-t border-gray-800 pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <Home className="h-5 w-5 text-purple-400" /> Default Startup Landing View
+          <Home className="h-5 w-5 text-foreground" /> Default Startup Landing View
         </h3>
         <p className="text-sm text-gray-400 mb-4">Select which workspace hub opens automatically when launching ReelForge AI.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -74,7 +74,7 @@ export function WorkspaceSection({ preferences, onChange }: WorkspaceSectionProp
 
       <div className="border-t border-gray-800 pt-6">
         <h3 className="text-lg font-bold text-white flex items-center gap-2 mb-1">
-          <ListFilter className="h-5 w-5 text-purple-400" /> Recent Projects Display Limit
+          <ListFilter className="h-5 w-5 text-foreground" /> Recent Projects Display Limit
         </h3>
         <p className="text-sm text-gray-400 mb-4">Maximum number of recent analyses shown on the quick-switch bar.</p>
         <div className="flex flex-wrap gap-3">
