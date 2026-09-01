@@ -73,8 +73,8 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-muted"}`}>
-                    {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-border bg-muted"}`}>
+                    {active && <span className="h-1.5 w-1.5 rounded-full bg-card text-foreground" />}
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-gray-20 flex items-center gap-2">
@@ -111,8 +111,8 @@ export function ProvidersSection({ preferences, onChange }: ProvidersSectionProp
                 }`}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-gray-600 bg-muted"}`}>
-                    {active && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+                  <div className={`mt-0.5 h-4 w-4 rounded-full border flex items-center justify-center ${active ? "border-border bg-muted" : "border-border bg-muted"}`}>
+                    {active && <span className="h-1.5 w-1.5 rounded-full bg-card text-foreground" />}
                   </div>
                   <div>
                     <div className="font-semibold text-sm text-gray-20 flex items-center gap-2">

@@ -92,7 +92,7 @@ export function ContentItemCard({
         {/* Top Badges */}
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-2.5 bg-muted from-black/80 via-black/40">
           <div className="flex items-center gap-1.5">
-            <Badge className="flex items-center gap-1 bg-black/70 text-white text-[10px] border border-white/10 px-2 py-0.5 capitalize">
+            <Badge className="flex items-center gap-1 bg-background/80 text-white text-[10px] border border-white/10 px-2 py-0.5 capitalize">
               {getTypeIcon()}
               <span>{item.type}</span>
             </Badge>
@@ -112,7 +112,7 @@ export function ContentItemCard({
               "flex h-6 w-6 items-center justify-center rounded-md border transition-all",
               isSelected
                 ? "border-border bg-muted text-white shadow-sm scale-110"
-                : "border-white/60 bg-black/50 text-transparent hover:border-white"
+                : "border-white/60 bg-background/80 text-transparent hover:border-white"
             )}
             title={isSelected ? "Deselect item" : "Select item for Phase 6"}
           >
@@ -122,13 +122,13 @@ export function ContentItemCard({
 
         {/* Duration / Media Count Overlay */}
         {item.durationSeconds && (
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-semibold text-white">
             <Clock className="h-3 w-3 text-foreground" />
             <span>{item.durationSeconds}s</span>
           </div>
         )}
         {item.mediaCount && (
-          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-black/70 px-1.5 py-0.5 text-[10px] font-semibold text-white">
+          <div className="absolute bottom-2 right-2 flex items-center gap-1 rounded bg-background/80 px-1.5 py-0.5 text-[10px] font-semibold text-white">
             <Layers className="h-3 w-3 text-foreground" />
             <span>1/{item.mediaCount}</span>
           </div>
@@ -201,7 +201,7 @@ export function ContentItemCard({
                       unoptimized
                     />
                     {item.durationSeconds && (
-                      <Badge className="absolute bottom-3 right-3 bg-black/80 text-white text-xs">
+                      <Badge className="absolute bottom-3 right-3 bg-background/80 text-white text-xs">
                         {item.durationSeconds}s Duration
                       </Badge>
                     )}

@@ -351,7 +351,7 @@ export function ContentDNADashboard({
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 rounded-md border border-border bg-black/60 font-mono text-xs text-primary-200 space-y-2">
+            <div className="p-4 rounded-md border border-border bg-background/80 font-mono text-xs text-primary-200 space-y-2">
               {report.blueprintExport.formulaSteps.map((step, idx) => (
                 <div key={idx} className="flex items-center gap-2">
                   <span className="text-foreground font-bold">{idx + 1}.</span>

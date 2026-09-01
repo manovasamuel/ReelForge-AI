@@ -173,7 +173,7 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
 
       {/* DISTRACTION-FREE TELEPROMPTER VIEW (Additional Req 2) */}
       {teleprompterOpen && (
-        <Card className="border-border bg-black text-white p-8 shadow-none border-2">
+        <Card className="border-border bg-background/80 text-white p-8 shadow-none border-2">
           <div className="flex items-center justify-between mb-6 border-b border-white/20 pb-4">
             <div className="flex items-center gap-2">
               <Tv className="h-5 w-5 text-amber-400" />
@@ -189,12 +189,12 @@ export function ScriptGenerationDashboard({ pkg, onProceedToRepurpose }: ScriptG
               <p className="font-extrabold text-white text-2xl">{pkg.hook.voiceover}</p>
             </div>
             {pkg.scenes.map((scene) => (
-              <div key={scene.sceneNumber} className="p-6 rounded-md bg-zinc-900/80 border border-zinc-700">
-                <div className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2">
+              <div key={scene.sceneNumber} className="p-6 rounded-md bg-card border border-border">
+                <div className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-2">
                   SCENE {scene.sceneNumber}: {scene.title} ({scene.duration})
                 </div>
                 <p className="font-semibold text-white">{scene.voiceover}</p>
-                <div className="mt-3 pt-3 border-t border-zinc-800 text-xs text-amber-300/80">
+                <div className="mt-3 pt-3 border-t border-border text-xs text-amber-300/80">
                   ON SCREEN: [{scene.textOverlay}]
                 </div>
               </div>

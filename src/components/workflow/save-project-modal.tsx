@@ -33,7 +33,7 @@ export function SaveProjectModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 animate-in fade-in duration-200 p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 animate-in fade-in duration-200 p-4">
       <div className="w-full max-w-md rounded-md border border-border bg-card p-6 shadow-none space-y-5 relative">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">

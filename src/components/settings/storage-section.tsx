@@ -105,7 +105,7 @@ export function StorageSection({
           <div className="p-4 bg-card border border-border rounded-md">
             <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Settings Size</div>
             <div className="text-2xl font-black text-white mt-1">{details.settingsSizeFormatted}</div>
-            <div className="text-xs text-gray-500 mt-1">Config payload</div>
+            <div className="text-xs text-muted-foreground mt-1">Config payload</div>
           </div>
 
           <div className="p-4 bg-muted border border-border rounded-md">
@@ -162,7 +162,7 @@ export function StorageSection({
 
       {/* Explicit Confirmation Modal */}
       {confirmModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-4 animate-fade-in">
           <div className="bg-card border border-red-500/50 rounded-md p-6 max-w-md w-full shadow-none space-y-4">
             <div className="flex items-center gap-3 text-red-400 font-bold text-lg">
               <AlertTriangle className="h-6 w-6" />

@@ -54,7 +54,7 @@ function PostThumbnail({ post }: { post: InstagramPost }) {
       <PostTypeIcon type={post.type} />
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-background/80 opacity-0 transition-all group-hover:bg-background/80 group-hover:opacity-100">
         <span className="text-xs font-semibold text-white">
           ♥ {post.likes.toLocaleString()}
         </span>

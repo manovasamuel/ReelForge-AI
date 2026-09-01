@@ -38,7 +38,7 @@ export function WorkspaceSection({ preferences, onChange }: WorkspaceSectionProp
               preferences.autoSave ? "bg-muted justify-end" : "bg-muted justify-start"
             }`}
           >
-            <span className="w-4 h-4 rounded-full bg-white shadow-md transform transition-transform" />
+            <span className="w-4 h-4 rounded-full bg-card text-foreground shadow-md transform transition-transform" />
           </button>
         </div>
       </div>

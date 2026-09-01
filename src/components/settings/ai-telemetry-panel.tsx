@@ -252,11 +252,11 @@ export function AiTelemetryPanel() {
                 <Cpu className="h-4 w-4 text-cyan-400" />
               </div>
               <div className="grid grid-cols-2 gap-2 pt-1">
-                <div className="p-2.5 bg-gray-950/50 rounded-lg border border-border/60">
+                <div className="p-2.5 bg-card rounded-lg border border-border/60">
                   <span className="block text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Prompt (In)</span>
                   <span className="text-base font-bold text-cyan-300 mt-0.5 block">{p.aiPromptTokens.toLocaleString()}</span>
                 </div>
-                <div className="p-2.5 bg-gray-950/50 rounded-lg border border-border/60">
+                <div className="p-2.5 bg-card rounded-lg border border-border/60">
                   <span className="block text-[10px] text-muted-foreground uppercase font-bold tracking-wider">Completion (Out)</span>
                   <span className="text-base font-bold text-foreground mt-0.5 block">{p.aiCompletionTokens.toLocaleString()}</span>
                 </div>
@@ -308,7 +308,7 @@ export function AiTelemetryPanel() {
             const isOpen = provider.circuitState === "open";
 
             return (
-              <div key={provider.providerId} className="p-4 bg-gray-950/60 border border-border/80 rounded-md space-y-3">
+              <div key={provider.providerId} className="p-4 bg-card border border-border/80 rounded-md space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <div className="font-bold text-sm text-white">{provider.name}</div>
                   <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full border ${
@@ -325,7 +325,7 @@ export function AiTelemetryPanel() {
                 <div className="space-y-1.5 text-xs text-muted-foreground border-t border-border/60 pt-2.5">
                   <div className="flex items-center justify-between">
                     <span>API Credentials:</span>
-                    <span className={`font-semibold ${provider.isAvailable ? "text-foreground" : "text-gray-500"}`}>
+                    <span className={`font-semibold ${provider.isAvailable ? "text-foreground" : "text-muted-foreground"}`}>
                       {provider.isAvailable ? "Configured" : "Unconfigured"}
                     </span>
                   </div>

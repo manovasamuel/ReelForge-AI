@@ -122,7 +122,7 @@ export function AboutSection({
             <div key={flag.key} className="p-3 bg-card border border-border/80 rounded-md flex items-center justify-between">
               <div>
                 <div className="font-semibold text-sm text-muted-foreground">{flag.label}</div>
-                <div className="font-mono text-xs text-gray-500">{flag.key}</div>
+                <div className="font-mono text-xs text-muted-foreground">{flag.key}</div>
               </div>
               <span className={`px-2 py-0.5 rounded text-xs font-bold ${flag.enabled ? "bg-muted text-foreground" : "bg-muted text-muted-foreground"}`}>
                 {flag.enabled ? "ENABLED" : "DISABLED"}
@@ -153,7 +153,7 @@ export function AboutSection({
           <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" className="hidden" />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="px-4 py-2.5 rounded-md bg-card border border-border hover:border-gray-600 font-bold text-sm text-foreground flex items-center gap-2 transition-all"
+            className="px-4 py-2.5 rounded-md bg-card border border-border hover:border-border font-bold text-sm text-foreground flex items-center gap-2 transition-all"
           >
             <Upload className="h-4 w-4" /> Import Settings Backup
           </button>

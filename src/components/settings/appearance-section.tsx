@@ -20,7 +20,7 @@ export function AppearanceSection({ preferences, onChange }: AppearanceSectionPr
 
   const accents: { id: AccentColor; label: string; colorClass: string; borderClass: string }[] = [
     { id: "default", label: "Monochrome (Default)", colorClass: "bg-primary", borderClass: "border-primary" },
-    { id: "zinc", label: "Zinc Metal", colorClass: "bg-zinc-500", borderClass: "border-zinc-500" },
+    { id: "zinc", label: "Zinc Metal", colorClass: "bg-zinc-500", borderClass: "border-border" },
   ];
 
   return (

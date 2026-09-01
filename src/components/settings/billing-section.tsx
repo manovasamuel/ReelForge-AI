@@ -76,9 +76,9 @@ export function BillingSection() {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 space-y-4 bg-slate-900/40 border border-slate-800 rounded-md">
+      <div className="flex flex-col items-center justify-center p-12 space-y-4 bg-card border border-border rounded-md">
         <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin" />
-        <p className="text-sm text-slate-400">Loading subscription and usage metering data...</p>
+        <p className="text-sm text-muted-foreground">Loading subscription and usage metering data...</p>
       </div>
     );
   }
@@ -117,7 +117,7 @@ export function BillingSection() {
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       {/* 1. CURRENT SUBSCRIPTION BANNER */}
-      <div className="relative overflow-hidden p-6 sm:p-8 rounded-md bg-muted from-slate-900 via-slate-900/90 to-slate-800 border border-slate-700/60 shadow-none">
+      <div className="relative overflow-hidden p-6 sm:p-8 rounded-md bg-muted from-slate-900 via-slate-900/90 to-slate-800 border border-border shadow-none">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
@@ -134,7 +134,7 @@ export function BillingSection() {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               {plan.id === "free" ? "Free Discovery Tier" : plan.id === "pro" ? "Pro Creator Engine" : "Enterprise VIP Suite"}
             </h2>
-            <p className="text-sm text-slate-400 max-w-xl">
+            <p className="text-sm text-muted-foreground max-w-xl">
               {plan.id === "free"
                 ? "You are currently on the baseline tier with standard deterministic fallbacks and introductory AI/Scraper quotas."
                 : "You have full access to multi-model AI synthesis, priority queue scraping, and cloud workspace synchronization."}
@@ -143,10 +143,10 @@ export function BillingSection() {
 
           <div className="flex flex-col sm:items-end justify-center shrink-0">
             <div className="text-3xl font-extrabold text-white">
-              ${plan.priceUsd} <span className="text-xs font-normal text-slate-400">/ month</span>
+              ${plan.priceUsd} <span className="text-xs font-normal text-muted-foreground">/ month</span>
             </div>
             {subscription?.currentPeriodEnd && (
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Renews on {new Date(subscription.currentPeriodEnd).toLocaleDateString()}
               </p>
             )}
@@ -154,7 +154,7 @@ export function BillingSection() {
               <button
                 onClick={handleOpenPortal}
                 disabled={portalLoading}
-                className="mt-3 inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-md transition-all shadow-sm"
+                className="mt-3 inline-flex items-center space-x-2 px-4 py-2 text-xs font-semibold text-foreground bg-card hover:bg-slate-700 border border-border rounded-md transition-all shadow-sm"
               >
                 {portalLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin mr-1" /> : <ExternalLink className="w-3.5 h-3.5 mr-1" />}
                 Manage Subscription
@@ -167,7 +167,7 @@ export function BillingSection() {
       {/* 2. REAL-TIME USAGE & METERING GAUGES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Scraper Calls Gauge */}
-        <div className="p-6 rounded-md bg-slate-900/60 border border-slate-800 space-y-4">
+        <div className="p-6 rounded-md bg-card border border-border space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
               <div className="p-2 rounded-md bg-cyan-500/10 text-cyan-400">
@@ -175,20 +175,20 @@ export function BillingSection() {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-white">Instagram Scraper Calls</h3>
-                <p className="text-xs text-slate-400">Live profiles & video metadata analyzed</p>
+                <p className="text-xs text-muted-foreground">Live profiles & video metadata analyzed</p>
               </div>
             </div>
-            <span className="text-xs font-semibold text-slate-300 bg-slate-800 px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-semibold text-foreground bg-card px-2.5 py-1 rounded-lg">
               {plan.monthlyScraperLimit === -1 ? "Unlimited" : `${scraperPercent}%`}
             </span>
           </div>
 
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-medium">
-              <span className="text-slate-300">{usage.scraperCallsCount} calls used</span>
-              <span className="text-slate-500">{plan.monthlyScraperLimit === -1 ? "∞" : `${plan.monthlyScraperLimit} max`}</span>
+              <span className="text-foreground">{usage.scraperCallsCount} calls used</span>
+              <span className="text-muted-foreground">{plan.monthlyScraperLimit === -1 ? "∞" : `${plan.monthlyScraperLimit} max`}</span>
             </div>
-            <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-card rounded-full overflow-hidden">
               <div
                 className={`h-full transition-all duration-500 rounded-full ${
                   scraperPercent > 90 ? "bg-red-500" : scraperPercent > 70 ? "bg-muted" : "bg-cyan-500"
@@ -197,13 +197,13 @@ export function BillingSection() {
               />
             </div>
           </div>
-          <p className="text-[11px] text-slate-500 leading-relaxed">
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
             When quota is exceeded, requests automatically fall back to the Mock Instagram Provider without blocking your workflow.
           </p>
         </div>
 
         {/* AI Tokens Gauge */}
-        <div className="p-6 rounded-md bg-slate-900/60 border border-slate-800 space-y-4">
+        <div className="p-6 rounded-md bg-card border border-border space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2.5">
               <div className="p-2 rounded-md bg-muted text-foreground">
@@ -211,20 +211,20 @@ export function BillingSection() {
               </div>
               <div>
                 <h3 className="text-sm font-bold text-white">AI Token Consumption</h3>
-                <p className="text-xs text-slate-400">Gemini, OpenAI, & Claude synthesis</p>
+                <p className="text-xs text-muted-foreground">Gemini, OpenAI, & Claude synthesis</p>
               </div>
             </div>
-            <span className="text-xs font-semibold text-slate-300 bg-slate-800 px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-semibold text-foreground bg-card px-2.5 py-1 rounded-lg">
               {plan.monthlyAiTokenLimit === -1 ? "Unlimited" : `${aiPercent}%`}
             </span>
           </div>
 
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-medium">
-              <span className="text-slate-300">{usage.totalTokens.toLocaleString()} tokens used</span>
-              <span className="text-slate-500">{plan.monthlyAiTokenLimit === -1 ? "∞" : `${plan.monthlyAiTokenLimit.toLocaleString()} max`}</span>
+              <span className="text-foreground">{usage.totalTokens.toLocaleString()} tokens used</span>
+              <span className="text-muted-foreground">{plan.monthlyAiTokenLimit === -1 ? "∞" : `${plan.monthlyAiTokenLimit.toLocaleString()} max`}</span>
             </div>
-            <div className="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden">
+            <div className="w-full h-2.5 bg-card rounded-full overflow-hidden">
               <div
                 className={`h-full transition-all duration-500 rounded-full ${
                   aiPercent > 90 ? "bg-red-500" : aiPercent > 70 ? "bg-muted" : "bg-muted"
@@ -233,7 +233,7 @@ export function BillingSection() {
               />
             </div>
           </div>
-          <p className="text-[11px] text-slate-500 leading-relaxed">
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
             When token budget is exhausted, requests seamlessly transition to the Deterministic Heuristic Engine.
           </p>
         </div>
@@ -249,17 +249,17 @@ export function BillingSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Free Tier */}
           <div className={`p-6 rounded-md border flex flex-col justify-between transition-all ${
-            plan.id === "free" ? "bg-slate-900/90 border-cyan-500/50 shadow-none " : "bg-slate-900/40 border-slate-800"
+            plan.id === "free" ? "bg-card border-cyan-500/50 shadow-none " : "bg-card border-border"
           }`}>
             <div className="space-y-4">
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="text-base font-bold text-white">Free Discovery</h4>
-                  <p className="text-xs text-slate-400">For beginners & evaluation</p>
+                  <p className="text-xs text-muted-foreground">For beginners & evaluation</p>
                 </div>
                 <span className="text-lg font-extrabold text-white">$0</span>
               </div>
-              <ul className="space-y-2.5 text-xs text-slate-300">
+              <ul className="space-y-2.5 text-xs text-foreground">
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> 20 Scraper Calls / mo</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> 10k AI Tokens / mo</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Deterministic Engine</li>
@@ -268,13 +268,13 @@ export function BillingSection() {
             </div>
             <div className="mt-6">
               {plan.id === "free" ? (
-                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-slate-800 text-slate-400 border border-slate-700">
+                <span className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-card text-muted-foreground border border-border">
                   Current Active Plan
                 </span>
               ) : (
                 <button
                   onClick={handleOpenPortal}
-                  className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors"
+                  className="w-full py-2.5 px-4 text-xs font-bold text-center block rounded-md bg-card hover:bg-slate-700 text-foreground transition-colors"
                 >
                   Downgrade to Free
                 </button>
@@ -284,7 +284,7 @@ export function BillingSection() {
 
           {/* Pro Tier */}
           <div className={`p-6 rounded-md border flex flex-col justify-between transition-all relative overflow-hidden ${
-            plan.id === "pro" ? "bg-slate-900/90 border-cyan-500 shadow-none " : "bg-slate-900/60 border-cyan-500/40"
+            plan.id === "pro" ? "bg-card border-cyan-500 shadow-none " : "bg-card border-cyan-500/40"
           }`}>
             <div className="absolute top-0 right-0 bg-muted from-cyan-500 text-white text-[10px] font-extrabold uppercase px-3 py-1 rounded-bl-xl shadow-sm">
               Popular
@@ -293,11 +293,11 @@ export function BillingSection() {
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="text-base font-bold text-white">Pro Creator</h4>
-                  <p className="text-xs text-slate-400">For active viral creators</p>
+                  <p className="text-xs text-muted-foreground">For active viral creators</p>
                 </div>
-                <span className="text-lg font-extrabold text-white">$29 <span className="text-xs font-normal text-slate-400">/mo</span></span>
+                <span className="text-lg font-extrabold text-white">$29 <span className="text-xs font-normal text-muted-foreground">/mo</span></span>
               </div>
-              <ul className="space-y-2.5 text-xs text-slate-300">
+              <ul className="space-y-2.5 text-xs text-foreground">
                 <li className="flex items-center"><Check className="w-4 h-4 text-cyan-400 mr-2 shrink-0" /> 500 Scraper Calls / mo</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-cyan-400 mr-2 shrink-0" /> 500k AI Tokens / mo</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-cyan-400 mr-2 shrink-0" /> Multi-Model AI (Gemini, OpenAI, Claude)</li>
@@ -325,17 +325,17 @@ export function BillingSection() {
 
           {/* Enterprise Tier */}
           <div className={`p-6 rounded-md border flex flex-col justify-between transition-all ${
-            plan.id === "enterprise" ? "bg-slate-900/90 border-border shadow-none " : "bg-slate-900/40 border-border"
+            plan.id === "enterprise" ? "bg-card border-border shadow-none " : "bg-card border-border"
           }`}>
             <div className="space-y-4">
               <div className="flex justify-between items-start">
                 <div>
                   <h4 className="text-base font-bold text-white">Enterprise & Agency</h4>
-                  <p className="text-xs text-slate-400">For scaling social teams</p>
+                  <p className="text-xs text-muted-foreground">For scaling social teams</p>
                 </div>
-                <span className="text-lg font-extrabold text-white">$199 <span className="text-xs font-normal text-slate-400">/mo</span></span>
+                <span className="text-lg font-extrabold text-white">$199 <span className="text-xs font-normal text-muted-foreground">/mo</span></span>
               </div>
-              <ul className="space-y-2.5 text-xs text-slate-300">
+              <ul className="space-y-2.5 text-xs text-foreground">
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Unlimited Scraper Calls</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> Unlimited AI Tokens & Fine-Tuning</li>
                 <li className="flex items-center"><Check className="w-4 h-4 text-foreground mr-2 shrink-0" /> VIP Priority Processing</li>

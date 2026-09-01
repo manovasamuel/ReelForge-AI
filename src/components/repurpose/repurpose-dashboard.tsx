@@ -90,7 +90,7 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               <TabsTrigger value="linkedin" className="gap-2 py-2.5 data-[state=active]:bg-muted data-[state=active]:text-white text-xs">
                 <FileText className="h-4 w-4" /> LinkedIn
               </TabsTrigger>
-              <TabsTrigger value="x" className="gap-2 py-2.5 data-[state=active]:bg-zinc-800 data-[state=active]:text-white text-xs">
+              <TabsTrigger value="x" className="gap-2 py-2.5 data-[state=active]:bg-card data-[state=active]:text-white text-xs">
                 <Globe className="h-4 w-4" /> X (Twitter)
               </TabsTrigger>
               <TabsTrigger value="threads" className="gap-2 py-2.5 data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-xs">
@@ -156,14 +156,14 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               <div className="space-y-3">
                 {report.x.thread.map((tweet) => (
                   <div key={tweet.tweetNumber} className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                    <div className="flex items-center justify-between text-xs font-bold text-zinc-400">
+                    <div className="flex items-center justify-between text-xs font-bold text-muted-foreground">
                       <span>Tweet #{tweet.tweetNumber} / 5</span>
                     </div>
                     <p className="text-xs text-foreground whitespace-pre-wrap leading-relaxed">{tweet.content}</p>
                   </div>
                 ))}
-                <div className="p-4 rounded-md border border-zinc-700 bg-zinc-900/60 space-y-1">
-                  <span className="text-xs font-bold text-zinc-300 uppercase tracking-wider block">Conversion Reply CTA</span>
+                <div className="p-4 rounded-md border border-border bg-card space-y-1">
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Conversion Reply CTA</span>
                   <p className="text-xs font-semibold text-white">{report.x.cta}</p>
                 </div>
               </div>
@@ -178,11 +178,11 @@ export function RepurposeDashboard({ report }: RepurposeDashboardProps) {
               />
               <div className="space-y-4 text-sm">
                 <div className="p-4 rounded-md border border-border/80 bg-background space-y-2">
-                  <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block">Conversational Threads Post</span>
+                  <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Conversational Threads Post</span>
                   <pre className="whitespace-pre-wrap font-sans text-xs leading-relaxed text-foreground">{report.threads.conversationalPost}</pre>
                 </div>
-                <div className="p-4 rounded-md border border-neutral-700 bg-neutral-900/60 space-y-1">
-                  <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider block">Conversational Reply CTA</span>
+                <div className="p-4 rounded-md border border-border bg-card space-y-1">
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider block">Conversational Reply CTA</span>
                   <p className="text-xs font-semibold text-white">{report.threads.cta}</p>
                 </div>
               </div>

@@ -10,7 +10,7 @@ export function UserProfileButton() {
 
   if (!isLoaded) {
     return (
-      <div className="w-28 h-8 rounded-full bg-slate-800/80 border border-slate-700/50" />
+      <div className="w-28 h-8 rounded-full bg-card border border-border" />
     );
   }
 
@@ -30,7 +30,7 @@ export function UserProfileButton() {
     return (
       <div className="flex items-center gap-3">
         <div className="hidden sm:flex flex-col text-right">
-          <span className="text-xs font-bold text-slate-200 leading-tight truncate max-w-[140px]">
+          <span className="text-xs font-bold text-foreground leading-tight truncate max-w-[140px]">
             {user?.fullName || "ReelForge User"}
           </span>
           <span className="text-[10px] font-semibold text-foreground uppercase tracking-wider">
@@ -41,7 +41,7 @@ export function UserProfileButton() {
           appearance={{
             elements: {
               userButtonAvatarBox: "w-9 h-9 rounded-full ring-2 ring-border hover:ring-border transition-all shadow-md",
-              userButtonPopoverCard: "bg-slate-900 border border-slate-800 text-slate-100 shadow-none rounded-md",
+              userButtonPopoverCard: "bg-card border border-border text-slate-100 shadow-none rounded-md",
             },
           }}
         />
