@@ -16,7 +16,7 @@ export default function AboutPage() {
     <PageContainer>
       <main className="flex flex-col gap-16 pb-24 pt-20 px-4 max-w-4xl mx-auto">
         <section className="text-center mb-8">
-          <Reveal variant="clipPath" delay={0.1}>
+          <Reveal variant="heroHeadline" delay={0.05}>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6 pb-2">
               The Science of <span className="text-muted-foreground">Virality</span>
             </h1>
@@ -24,7 +24,7 @@ export default function AboutPage() {
         </section>
 
         <section className="space-y-12">
-          <Reveal variant="fadeUp" delay={0.2}>
+          <Reveal variant="supportingText" delay={0.15}>
             <p className="text-xl md:text-2xl text-foreground leading-relaxed text-left font-medium">
               ReelForge AI was built on a simple premise: content creation shouldn't rely on guesswork. 
             </p>

@@ -6,42 +6,44 @@ import { ReactNode } from "react";
 interface RevealProps {
   children: ReactNode;
   delay?: number;
-  direction?: "up" | "down" | "left" | "right" | "none";
   className?: string;
   width?: "fit-content" | "100%";
-  variant?: "fadeUp" | "clipPath" | "opacityDelay" | "scaleUp";
+  variant?: "heroHeadline" | "supportingText" | "subtleClip" | "buttonEnter" | "cardEnter";
 }
 
 export function Reveal({
   children,
   delay = 0,
-  direction = "up",
   className,
   width = "100%",
-  variant = "fadeUp",
+  variant = "supportingText",
 }: RevealProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const getHiddenState = () => {
-    if (prefersReducedMotion || direction === "none") return { opacity: 0 };
-    if (variant === "opacityDelay") return { opacity: 0, y: 0 };
-    if (variant === "clipPath") return { opacity: 0, y: 30, clipPath: "inset(100% 0% 0% 0%)" };
-    if (variant === "scaleUp") return { opacity: 0, y: 10, scale: 0.95 };
+    if (prefersReducedMotion) return { opacity: 0 };
     
-    switch (direction) {
-      case "up": return { opacity: 0, y: 20 };
-      case "down": return { opacity: 0, y: -20 };
-      case "left": return { opacity: 0, x: 20 };
-      case "right": return { opacity: 0, x: -20 };
-      default: return { opacity: 0, y: 20 };
+    switch (variant) {
+      case "heroHeadline": return { opacity: 0, y: 15, clipPath: "inset(100% 0% 0% 0%)" };
+      case "subtleClip": return { opacity: 0, y: 8, clipPath: "inset(100% 0% 0% 0%)" };
+      case "supportingText": return { opacity: 0, y: 8 };
+      case "buttonEnter": return { opacity: 0, x: -8 };
+      case "cardEnter": return { opacity: 0, y: 12 };
+      default: return { opacity: 0, y: 8 };
     }
   };
 
   const getVisibleState = () => {
-    if (prefersReducedMotion || direction === "none") return { opacity: 1 };
-    if (variant === "clipPath") return { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" };
-    if (variant === "scaleUp") return { opacity: 1, y: 0, scale: 1 };
-    return { opacity: 1, y: 0, x: 0 };
+    if (prefersReducedMotion) return { opacity: 1 };
+    
+    switch (variant) {
+      case "heroHeadline":
+      case "subtleClip": return { opacity: 1, y: 0, clipPath: "inset(-20% 0% -20% 0%)" }; // prevent shadow clipping
+      case "supportingText": return { opacity: 1, y: 0 };
+      case "buttonEnter": return { opacity: 1, x: 0 };
+      case "cardEnter": return { opacity: 1, y: 0 };
+      default: return { opacity: 1, y: 0, x: 0 };
+    }
   };
 
   return (
@@ -53,9 +55,9 @@ export function Reveal({
         }}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-10%" }}
+        viewport={{ once: true, margin: "-5%" }}
         transition={{
-          duration: variant === "clipPath" ? 0.7 : 0.5,
+          duration: variant === "heroHeadline" ? 0.6 : 0.5,
           delay: delay,
           ease: [0.16, 1, 0.3, 1], // Apple/Linear signature easing
         }}
