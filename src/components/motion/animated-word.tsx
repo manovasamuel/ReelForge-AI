@@ -40,7 +40,7 @@ export function AnimatedWord({
 
       const widths = words.map((word) => {
         measurer.textContent = word;
-        return Math.ceil(measurer.getBoundingClientRect().width);
+        return Math.ceil(measurer.getBoundingClientRect().width) + 2;
       });
 
       measurer.remove();
@@ -80,30 +80,30 @@ export function AnimatedWord({
   return (
     <motion.span
       className={cn(
-        "inline-grid [grid-template-areas:'word'] overflow-hidden align-bottom text-left",
+        "inline-grid [grid-template-areas:'word'] align-bottom text-left",
         className
       )}
       animate={{ width: wordWidths[index] }}
-      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={index}
           className="[grid-area:word] whitespace-nowrap will-change-transform"
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{
             opacity: 1,
             y: 0,
             transition: {
-              duration: 0.38,
+              duration: 0.32,
               ease: [0.16, 1, 0.3, 1],
             },
           }}
           exit={{
             opacity: 0,
-            y: -14,
+            y: -10,
             transition: {
-              duration: 0.24,
+              duration: 0.22,
               ease: [0.16, 1, 0.3, 1],
             },
           }}
