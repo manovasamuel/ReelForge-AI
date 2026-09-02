@@ -20,33 +20,41 @@ export function AnimatedWord({
   const staticRef = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  // Measure all word widths once, using a hidden DOM element that
-  // inherits the exact computed font from the parent h1.
+  // Measure all word widths accurately once web fonts are fully loaded
   useEffect(() => {
-    const el = staticRef.current;
-    if (!el || wordWidths) return;
+    const measure = () => {
+      const el = staticRef.current;
+      if (!el) return;
 
-    const parent = el.parentElement;
-    if (!parent) return;
+      const parent = el.parentElement;
+      if (!parent) return;
 
-    const measurer = document.createElement("span");
-    measurer.style.cssText =
-      "position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none";
-    const cs = window.getComputedStyle(el);
-    measurer.style.font = cs.font;
-    measurer.style.letterSpacing = cs.letterSpacing;
-    parent.appendChild(measurer);
+      const measurer = document.createElement("span");
+      measurer.style.cssText =
+        "position:absolute;visibility:hidden;white-space:nowrap;pointer-events:none";
+      const cs = window.getComputedStyle(el);
+      measurer.style.font = cs.font;
+      measurer.style.letterSpacing = cs.letterSpacing;
+      measurer.style.fontWeight = cs.fontWeight;
+      parent.appendChild(measurer);
 
-    const widths = words.map((word) => {
-      measurer.textContent = word;
-      return Math.ceil(measurer.getBoundingClientRect().width) + 1;
-    });
+      const widths = words.map((word) => {
+        measurer.textContent = word;
+        return Math.ceil(measurer.getBoundingClientRect().width);
+      });
 
-    measurer.remove();
-    setWordWidths(widths);
-  }, [words, wordWidths]);
+      measurer.remove();
+      setWordWidths(widths);
+    };
 
-  // Cycle words
+    if (typeof document !== "undefined" && document.fonts?.ready) {
+      document.fonts.ready.then(measure);
+    } else {
+      measure();
+    }
+  }, [words]);
+
+  // Cycle words continuously every `interval` ms
   useEffect(() => {
     if (prefersReducedMotion) return;
     const timer = setInterval(() => {
@@ -60,8 +68,7 @@ export function AnimatedWord({
     return <span className={className}>{words[0]}</span>;
   }
 
-  // Pre-measurement: static render that matches SSR output.
-  // Reveal starts at opacity 0, so this brief static render is invisible.
+  // Pre-measurement: static render that matches SSR output
   if (!wordWidths) {
     return (
       <span ref={staticRef} className={cn("inline-block", className)}>
@@ -73,22 +80,32 @@ export function AnimatedWord({
   return (
     <motion.span
       className={cn(
-        "inline-grid [grid-template-areas:'word'] overflow-hidden align-bottom",
+        "inline-grid [grid-template-areas:'word'] overflow-hidden align-bottom text-left",
         className
       )}
       animate={{ width: wordWidths[index] }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
     >
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={index}
           className="[grid-area:word] whitespace-nowrap will-change-transform"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{
-            duration: 0.35,
-            ease: [0.16, 1, 0.3, 1],
+          initial={{ opacity: 0, y: 14 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.38,
+              ease: [0.16, 1, 0.3, 1],
+            },
+          }}
+          exit={{
+            opacity: 0,
+            y: -14,
+            transition: {
+              duration: 0.24,
+              ease: [0.16, 1, 0.3, 1],
+            },
           }}
         >
           {words[index]}
