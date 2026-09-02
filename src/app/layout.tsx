@@ -14,7 +14,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://reelforge.ai"),
+  metadataBase: new URL("https://reel-forge-ai-psi.vercel.app"),
   title: {
     default: "ReelForge AI | Extract Winning Patterns & Generate Viral Reels",
     template: "%s | ReelForge AI",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ReelForge AI | Extract Winning Patterns & Generate Viral Reels",
     description: "Analyze competitors, extract patterns, and generate high-converting Instagram content powered by AI.",
-    url: "https://reelforge.ai",
+    url: "https://reel-forge-ai-psi.vercel.app",
     siteName: "ReelForge AI",
     locale: "en_US",
     type: "website",

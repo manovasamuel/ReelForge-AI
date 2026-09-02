@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://reelforge.ai';
+  const baseUrl = 'https://reel-forge-ai-psi.vercel.app';
 
   return [
     {

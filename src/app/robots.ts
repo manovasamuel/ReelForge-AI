@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: 'https://reelforge.ai/sitemap.xml',
+    sitemap: 'https://reel-forge-ai-psi.vercel.app/sitemap.xml',
   };
 }
