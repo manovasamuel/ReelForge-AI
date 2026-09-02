@@ -131,16 +131,15 @@ export function CompetitorCard({ competitor, rank, onSelect, onAnalyze }: Compet
           </div>
         </div>
 
-        {/* Primary CTA (Improvement 3) */}
         <div className="mt-5 pt-3 border-t border-border/30">
           <Button
             type="button"
             onClick={handleAnalyzeClick}
             className={cn(
-              "w-full h-10 gap-2 text-xs font-semibold text-white",
-              "bg-muted   ",
-              "shadow-md  transition-all duration-200",
-              "hover: hover:brightness-110 active:scale-[0.99]"
+              "w-full h-10 gap-2 text-xs font-semibold transition-all duration-200",
+              selected 
+                ? "bg-foreground text-background hover:bg-foreground/90 shadow-sm hover:-translate-y-[1px]" 
+                : "bg-muted text-muted-foreground hover:bg-muted/80 opacity-80"
             )}
           >
             <span>Analyze Competitor</span>

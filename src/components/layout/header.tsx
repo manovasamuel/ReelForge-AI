@@ -10,10 +10,10 @@ export function Header() {
 
       {/* Main Navigation Links */}
       <nav className="hidden md:flex items-center gap-6 ml-4">
-        <Link href="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+        <Link href="/pricing" className="inline-block text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:-translate-y-[1px] active:translate-y-0">
           Pricing
         </Link>
-        <Link href="/about" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+        <Link href="/about" className="inline-block text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200 hover:-translate-y-[1px] active:translate-y-0">
           About
         </Link>
       </nav>
