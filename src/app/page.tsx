@@ -11,7 +11,7 @@ const WORKFLOW_STEPS = [
   {
     step: 1,
     title: "Data Ingestion",
-    description: "Input an Instagram profile URL. ReelForge connects to the Apify live pipeline to extract complete profile data, post history, and engagement metrics.",
+    description: "Input an Instagram profile URL. ReelForge AI connects to the Apify live pipeline to extract complete profile data, post history, and engagement metrics.",
   },
   {
     step: 2,
@@ -26,7 +26,7 @@ const WORKFLOW_STEPS = [
   {
     step: 4,
     title: "Script Generation",
-    description: "Using the proven data points, ReelForge generates ready-to-shoot scripts engineered to replicate the success of the analyzed viral content.",
+    description: "Using the proven data points, ReelForge AI generates ready-to-shoot scripts engineered to replicate the success of the analyzed viral content.",
   }
 ];
 
@@ -83,7 +83,7 @@ export default function LandingPage() {
           </h1>
 
           <p className="max-w-2xl text-lg text-muted-foreground mb-10 leading-relaxed">
-            ReelForge is professional creative-analysis software that reverse-engineers viral Instagram content. We extract the exact hooks, formats, and retention strategies your competitors use, allowing you to generate data-backed scripts with proven success metrics.
+            ReelForge AI is professional creative-analysis software that reverse-engineers viral Instagram content. We extract the exact hooks, formats, and retention strategies your competitors use, allowing you to generate data-backed scripts with proven success metrics.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -122,7 +122,7 @@ export default function LandingPage() {
               The Analytical Workflow
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              ReelForge processes data through a deterministic pipeline to ensure the content generated is based strictly on provable performance metrics.
+              ReelForge AI processes data through a deterministic pipeline to ensure the content generated is based strictly on provable performance metrics.
             </p>
           </div>
 
@@ -156,7 +156,7 @@ export default function LandingPage() {
               <div className="space-y-3">
                 <h3 className="text-lg font-bold">What is ReelForge AI?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  ReelForge is a professional creative-analysis software that reverse-engineers viral social media content. It extracts objective performance data from your niche to eliminate guesswork.
+                  ReelForge AI is a professional creative-analysis software that reverse-engineers viral social media content. It extracts objective performance data from your niche to eliminate guesswork.
                 </p>
               </div>
               <div className="space-y-3">
@@ -174,7 +174,7 @@ export default function LandingPage() {
               <div className="space-y-3">
                 <h3 className="text-lg font-bold">How does it generate scripts?</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  ReelForge uses the mapped Content DNA—the successful hooks, pacing, and calls to action—to autonomously generate ready-to-shoot scripts engineered to replicate that success.
+                  ReelForge AI uses the mapped Content DNA—the successful hooks, pacing, and calls to action—to autonomously generate ready-to-shoot scripts engineered to replicate that success.
                 </p>
               </div>
             </div>
@@ -202,6 +202,23 @@ export default function LandingPage() {
             </Link>
           </div>
         </section>
+        
+        {/* FOOTER / INTERNAL LINKS */}
+        <footer className="px-4 border-t border-border mt-12 pt-8">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+            <div className="mb-4 md:mb-0">
+              © {new Date().getFullYear()} ReelForge AI. All rights reserved.
+            </div>
+            <div className="flex gap-6">
+              <Link href="/about" className="hover:text-foreground transition-colors">
+                About
+              </Link>
+              <Link href="/pricing" className="hover:text-foreground transition-colors">
+                Pricing
+              </Link>
+            </div>
+          </div>
+        </footer>
         
       </main>
     </PageContainer>
