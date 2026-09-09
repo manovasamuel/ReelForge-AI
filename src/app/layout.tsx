@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import Script from "next/script";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ToastContainer } from "@/components/ui/toast";
 import { Sidebar } from "@/components/layout/sidebar";
@@ -7,6 +8,8 @@ import { Header } from "@/components/layout/header";
 import { ClerkProviderWrapper } from "@/lib/auth/clerk-provider-wrapper";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+
+const GOOGLE_ADS_ID = "AW-18396355739";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -58,6 +61,21 @@ export default function RootLayout({
       className={`${manrope.variable} font-sans h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Google Ads tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-config" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
+      </head>
       <body className="flex h-full overflow-hidden bg-background text-foreground">
         <ThemeProvider
           attribute="class"
