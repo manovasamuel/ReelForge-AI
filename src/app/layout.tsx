@@ -10,6 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18396355739";
+const GA_MEASUREMENT_ID = "G-03MQ1003FP";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -62,17 +63,18 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Google Ads tag (gtag.js) */}
+        {/* Google Ads & Google Analytics 4 (gtag.js) */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
           strategy="afterInteractive"
         />
-        <Script id="google-ads-config" strategy="afterInteractive">
+        <Script id="google-tags-config" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GOOGLE_ADS_ID}');
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
 
