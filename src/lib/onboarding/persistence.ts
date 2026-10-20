@@ -13,19 +13,17 @@ function getStorageKey(userId?: string | null): string {
 export function getLocalOnboardingState(userId?: string | null): OnboardingState | null {
   if (typeof window === "undefined") return null;
   try {
-    // Try per-user key first
+    // Strictly isolate by per-user key; never migrate untrusted legacy state across users
     const key = getStorageKey(userId);
     const raw = localStorage.getItem(key);
     if (raw) return JSON.parse(raw) as OnboardingState;
 
-    // Fall back to legacy shared key (for users who completed before this fix)
-    if (userId) {
-      const legacy = localStorage.getItem("reelforge_onboarding_state");
-      if (legacy) {
-        const parsed = JSON.parse(legacy) as OnboardingState;
-        // Migrate: write to per-user key and remove legacy if found
-        localStorage.setItem(key, JSON.stringify(parsed));
-        return parsed;
+    // Clean up any unkeyed legacy item to avoid cross-contamination
+    if (localStorage.getItem("reelforge_onboarding_state")) {
+      try {
+        localStorage.removeItem("reelforge_onboarding_state");
+      } catch {
+        // no-op
       }
     }
 
@@ -85,27 +83,24 @@ export async function persistOnboardingState(
 ): Promise<void> {
   const userId = clerkUser?.id ?? null;
 
-  // 1. Immediately cache locally (per-user key) for instant UI responsiveness
-  setLocalOnboardingState(state, userId);
-
-  // 2. Persist to Clerk user unsafeMetadata (cross-device source of truth)
+  // 1. If authenticated, update Clerk metadata as primary cross-device source of truth.
+  //    Must throw if it fails so caller can display retry error and not claim false success.
   if (clerkUser && typeof clerkUser.update === "function") {
-    try {
-      await clerkUser.update({
-        unsafeMetadata: {
-          ...(clerkUser.unsafeMetadata || {}),
-          onboardingCompleted: state.completed,
-          onboardingSkipped: state.skipped,
-          onboardingAnswers: state.answers,
-          onboardedAt: state.completedAt || new Date().toISOString(),
-        },
-      });
-    } catch (err) {
-      console.warn("[onboarding] Clerk metadata sync error (non-fatal):", err);
-    }
+    await clerkUser.update({
+      unsafeMetadata: {
+        ...(clerkUser.unsafeMetadata || {}),
+        onboardingCompleted: state.completed,
+        onboardingSkipped: state.skipped,
+        onboardingAnswers: state.answers,
+        onboardedAt: state.completedAt || new Date().toISOString(),
+      },
+    });
   }
 
-  // 3. Best-effort backend sync without requiring schema migrations
+  // 2. Only cache locally once primary persistence has succeeded (or for anon flow)
+  setLocalOnboardingState(state, userId);
+
+  // 3. Best-effort backend sync to Postgres/API
   try {
     await fetch("/api/user/onboarding", {
       method: "POST",
@@ -113,6 +108,6 @@ export async function persistOnboardingState(
       body: JSON.stringify(state),
     });
   } catch {
-    // Network errors are non-fatal to onboarding flow
+    // Network errors on auxiliary endpoint are non-fatal once Clerk/local is persisted
   }
 }

@@ -275,12 +275,17 @@
   position: relative !important;
 }
 
-.cl-modalCloseButton {
+.cl-modalCloseButton,
+.cl-userProfileModalCloseButton,
+.cl-modalCloseButton__userProfile,
+.cl-modalContent button[aria-label="Close modal"] {
   position: absolute !important;
   top: 16px !important;
   right: 16px !important;
   width: 32px !important;
   height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -289,22 +294,46 @@
   background: transparent !important;
   border: 1px solid transparent !important;
   border-radius: 0 !important;
-  transition: color 0.15s, border-color 0.15s !important;
-  z-index: 10 !important;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s !important;
+  z-index: 20 !important;
+  cursor: pointer !important;
 }
 
-.cl-modalCloseButton:hover {
+.cl-modalCloseButton:hover,
+.cl-userProfileModalCloseButton:hover,
+.cl-modalCloseButton__userProfile:hover,
+.cl-modalContent button[aria-label="Close modal"]:hover {
   color: var(--foreground) !important;
   border-color: var(--border) !important;
-  background: transparent !important;
+  background-color: var(--muted) !important;
 }
 
-.cl-modalCloseButton:focus-visible {
+.cl-modalCloseButton:focus-visible,
+.cl-userProfileModalCloseButton:focus-visible,
+.cl-modalCloseButton__userProfile:focus-visible,
+.cl-modalContent button[aria-label="Close modal"]:focus-visible {
   outline: 2px solid var(--ring) !important;
   outline-offset: 2px !important;
 }
 
-.cl-modalCloseButton svg {
+.cl-modalCloseButton svg,
+.cl-userProfileModalCloseButton svg,
+.cl-modalCloseButton__userProfile svg,
+.cl-modalContent button[aria-label="Close modal"] svg {
   width: 16px !important;
   height: 16px !important;
+}
+
+@media (max-width: 640px) {
+  .cl-modalCloseButton,
+  .cl-userProfileModalCloseButton,
+  .cl-modalCloseButton__userProfile,
+  .cl-modalContent button[aria-label="Close modal"] {
+    top: 12px !important;
+    right: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
 }

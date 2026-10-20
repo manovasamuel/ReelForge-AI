@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -10,32 +10,25 @@ import { Logo } from "@/components/ui/logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getLocalOnboardingState } from "@/lib/onboarding/persistence";
-import { trackPageView } from "@/lib/analytics/events";
 
 export default function OnboardingCompletePage() {
   const { user, isLoaded } = useUser();
   const router = useRouter();
-  const hasTracked = useRef(false);
 
-  // Track completion page view once
-  useEffect(() => {
-    if (!hasTracked.current) {
-      hasTracked.current = true;
-      trackPageView("/onboarding/complete", "ReelForge AI — You're all set");
-    }
-  }, []);
-
-  // Guard: if the user loads and has NOT actually completed, redirect them
-  // to start onboarding properly. Prevents bookmark-skip of the completion page.
+  // Guard: if the user loads and has NOT actually completed onboarding, redirect
+  // them to start onboarding properly. Prevents bookmark-skip / direct access.
   useEffect(() => {
     if (!isLoaded) return;
-    if (!user) return; // still loading
 
-    const state = getLocalOnboardingState(user.id);
-    const meta = user.unsafeMetadata as Record<string, unknown> | undefined;
-    const hasCompleted =
-      state?.completed ||
-      meta?.onboardingCompleted === true;
+    let hasCompleted = false;
+    if (user) {
+      const state = getLocalOnboardingState(user.id);
+      const meta = user.unsafeMetadata as Record<string, unknown> | undefined;
+      hasCompleted = !!(state?.completed || meta?.onboardingCompleted === true);
+    } else {
+      const anonState = getLocalOnboardingState(null);
+      hasCompleted = !!anonState?.completed;
+    }
 
     if (!hasCompleted) {
       router.replace("/onboarding");

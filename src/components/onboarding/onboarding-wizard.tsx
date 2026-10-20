@@ -368,17 +368,28 @@ export function OnboardingWizard({
                       </span>
                     </div>
 
-                    {/* Selected chevron */}
-                    {isSelected && (
-                      <motion.span
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="shrink-0 text-foreground"
-                        aria-hidden="true"
-                      >
-                        <ChevronRight className="w-4 h-4" />
-                      </motion.span>
-                    )}
+                    {/* Key badge / selected indicator */}
+                    <span
+                      className={cn(
+                        "hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono tracking-wider transition-all duration-150",
+                        isSelected
+                          ? "text-foreground font-semibold"
+                          : "text-muted-foreground/50 border border-border/60 group-hover:border-foreground/30 group-hover:text-muted-foreground"
+                      )}
+                      aria-hidden="true"
+                    >
+                      {isSelected ? (
+                        <motion.span
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="flex items-center gap-1"
+                        >
+                          <ChevronRight className="w-3.5 h-3.5" />
+                        </motion.span>
+                      ) : (
+                        `KEY ${idx + 1}`
+                      )}
+                    </span>
                   </motion.button>
                 );
               })}
