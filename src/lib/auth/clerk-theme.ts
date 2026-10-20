@@ -27,6 +27,7 @@ export function getClerkAppearance(isDark: boolean) {
       cardBox: "shadow-none rounded-none border border-border bg-card",
       modalBackdrop: "bg-black/80 backdrop-blur-xs",
       modalContent: "bg-card border border-border shadow-2xl rounded-none text-foreground overflow-hidden max-w-4xl",
+      modalCloseButton: "text-muted-foreground hover:text-foreground hover:bg-muted rounded-none size-8 flex items-center justify-center transition-colors transform-none hover:transform-none",
       userProfileModal: "bg-card border border-border text-foreground",
       userProfileRoot: "bg-card text-foreground",
       userProfileCard: "bg-card border border-border text-foreground shadow-none rounded-none",

@@ -295,6 +295,7 @@
   border: 1px solid transparent !important;
   border-radius: 0 !important;
   transition: color 0.15s, border-color 0.15s, background-color 0.15s !important;
+  transform: none !important;
   z-index: 20 !important;
   cursor: pointer !important;
 }
@@ -306,6 +307,7 @@
   color: var(--foreground) !important;
   border-color: var(--border) !important;
   background-color: var(--muted) !important;
+  transform: none !important;
 }
 
 .cl-modalCloseButton:focus-visible,

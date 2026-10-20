@@ -186,19 +186,21 @@ export function MobileNav() {
             size="icon"
             className="lg:hidden"
             aria-label="Open navigation menu"
+            onClick={() => setOpen(true)}
           />
         }
       >
         <Menu className="h-5 w-5" />
       </SheetTrigger>
-      <SheetContent side="left" className="w-[280px] p-0">
+      <SheetContent side="left" className="w-[280px] p-0" showCloseButton={false}>
         <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
         <div className="flex h-16 items-center justify-between px-4">
           <SidebarLogo />
           <Button
             variant="ghost"
             size="icon"
-            className="h-7 w-7"
+            className="size-8 hover:translate-y-0 active:translate-y-0 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors rounded-none"
+            aria-label="Close navigation menu"
             onClick={() => setOpen(false)}
           >
             <X className="h-4 w-4" />
