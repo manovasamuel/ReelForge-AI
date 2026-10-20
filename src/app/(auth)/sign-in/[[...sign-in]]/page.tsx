@@ -34,12 +34,7 @@ export default function SignInPage() {
       path="/sign-in"
       routing="path"
       signUpUrl="/sign-up"
-      appearance={{
-        elements: {
-          rootBox: "mx-auto",
-          card: "bg-card border border-border shadow-none rounded-none",
-        },
-      }}
+      fallbackRedirectUrl="/dashboard"
     />
   );
 }

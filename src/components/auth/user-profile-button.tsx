@@ -40,8 +40,8 @@ export function UserProfileButton() {
         <UserButton
           appearance={{
             elements: {
-              userButtonAvatarBox: "w-9 h-9 rounded-full ring-2 ring-border hover:ring-border transition-all shadow-md",
-              userButtonPopoverCard: "bg-card border border-border text-slate-100 shadow-none rounded-md",
+              userButtonAvatarBox: "w-9 h-9 rounded-full ring-2 ring-border hover:ring-foreground/40 transition-all",
+              userButtonPopoverCard: "bg-card border border-border text-foreground shadow-2xl rounded-none",
             },
           }}
         />
@@ -52,7 +52,7 @@ export function UserProfileButton() {
   return (
     <Link
       href="/sign-in"
-      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md bg-muted hover: hover: text-white text-xs font-bold transition-all shadow-md"
+      className="inline-flex items-center gap-2 px-4 py-1.5 rounded-none bg-foreground text-background text-xs font-semibold hover:opacity-90 transition-all"
     >
       Sign In &rarr;
     </Link>

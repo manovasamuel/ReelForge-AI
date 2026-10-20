@@ -150,3 +150,94 @@
     @apply text-sm leading-none text-muted-foreground font-medium;
   }
 }
+
+/* Clerk Authentication & Account Modal Theme Alignment */
+.cl-modalBackdrop {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.cl-modalContent {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.cl-userProfile-root,
+.cl-userProfileCard,
+.cl-pageScrollBox,
+.cl-scrollBox,
+.cl-profilePage {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+}
+
+.cl-navbar {
+  background-color: var(--sidebar) !important;
+  border-right: 1px solid var(--border) !important;
+}
+
+.cl-navbarButton {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-navbarButton:hover,
+.cl-navbarButton[data-active="true"] {
+  color: var(--foreground) !important;
+  background-color: var(--muted) !important;
+}
+
+.cl-card,
+.cl-cardBox {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.cl-headerTitle {
+  color: var(--foreground) !important;
+}
+
+.cl-headerSubtitle {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-formFieldLabel {
+  color: var(--foreground) !important;
+}
+
+.cl-formFieldInput {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  border-color: var(--input) !important;
+}
+
+.cl-formButtonPrimary {
+  background-color: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  border-radius: 0px !important;
+}
+
+.cl-footerActionLink {
+  color: var(--foreground) !important;
+}
+
+.cl-footerActionText {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-userButtonPopoverCard {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.cl-userButtonPopoverActionButton {
+  color: var(--foreground) !important;
+}
+
+.cl-userButtonPopoverActionButton:hover {
+  background-color: var(--muted) !important;
+}

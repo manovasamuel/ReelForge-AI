@@ -7,6 +7,7 @@ import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
 import { ClerkProviderWrapper } from "@/lib/auth/clerk-provider-wrapper";
 import { ThemeProvider } from "@/components/theme-provider";
+import { OnboardingModal } from "@/components/onboarding/onboarding-modal";
 import "./globals.css";
 
 const GOOGLE_ADS_ID = "AW-18396355739";
@@ -122,6 +123,7 @@ export default function RootLayout({
                 <div className="flex-1 overflow-y-auto">{children}</div>
               </div>
               <ToastContainer />
+              <OnboardingModal />
             </TooltipProvider>
           </ClerkProviderWrapper>
         </ThemeProvider>

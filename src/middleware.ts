@@ -18,6 +18,7 @@ const isProtectedRoute = createRouteMatcher([
   "/analytics(.*)",
   "/export(.*)",
   "/settings(.*)",
+  "/onboarding(.*)",
   "/api/(.*)",
 ]);
 
