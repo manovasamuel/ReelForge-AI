@@ -22,15 +22,18 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 const isPublicRoute = createRouteMatcher([
+  "/",
+  "/about(.*)",
+  "/pricing(.*)",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/onboarding(.*)",
   "/api/v2/health(.*)",
   "/api/webhooks/(.*)",
   "/api/user/onboarding(.*)",
-  "/sign-in(.*)",
-  "/sign-up(.*)",
-  "/pricing(.*)",
-  "/about(.*)",
-  "/onboarding(.*)",
-  "/$",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/llms.txt",
 ]);
 
 
@@ -61,7 +64,6 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
   // If in offline dev mode, bypass authentication blocking
   // to allow local development, static builds, and Playwright tests to execute cleanly.
   // In production, isOfflineDevMode() always returns false.
-  // If in offline dev mode, bypass authentication blocking
   if (isOfflineDevMode()) {
     return NextResponse.next();
   }
@@ -72,6 +74,13 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
     req.headers.get("x-e2e-bypass") === bypassToken &&
     process.env.VERCEL_ENV !== "production"
   ) {
+    return NextResponse.next();
+  }
+
+  // Public marketing, auth, and informational routes bypass Clerk middleware entirely.
+  // This prevents Clerk development/test instance handshake redirects (__clerk_hs_reason=dev-browser-missing)
+  // on public pages when accessed by crawlers (Screaming Frog, Googlebot) or unauthenticated users.
+  if (isPublicRoute(req)) {
     return NextResponse.next();
   }
 
@@ -101,7 +110,7 @@ export default async function middleware(req: NextRequest, event: NextFetchEvent
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|txt|xml)).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",
   ],

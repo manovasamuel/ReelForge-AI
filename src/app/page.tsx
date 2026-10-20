@@ -61,24 +61,6 @@ export default function LandingPage() {
                 "publisher": {
                   "@id": "https://reel-forge-ai-psi.vercel.app/#organization"
                 }
-              },
-              {
-                "@type": "SoftwareApplication",
-                "@id": "https://reel-forge-ai-psi.vercel.app/#software",
-                "name": "ReelForge AI",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "url": "https://reel-forge-ai-psi.vercel.app/",
-                "description": "Professional creative-analysis software. Extract data-driven content patterns and generate scripts based on actual competitor performance metrics.",
-                "author": {
-                  "@id": "https://reel-forge-ai-psi.vercel.app/#organization"
-                },
-                "offers": {
-                  "@type": "Offer",
-                  "price": "49.00",
-                  "priceCurrency": "USD",
-                  "url": "https://reel-forge-ai-psi.vercel.app/pricing"
-                }
               }
             ]
           })
