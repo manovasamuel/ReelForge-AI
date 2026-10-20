@@ -220,6 +220,29 @@
   border-radius: 0px !important;
 }
 
+.cl-socialButtonsBlockButton {
+  background-color: var(--muted) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+}
+
+.cl-socialButtonsBlockButtonText {
+  color: var(--foreground) !important;
+}
+
+.cl-dividerLine {
+  background-color: var(--border) !important;
+}
+
+.cl-dividerText {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-footer {
+  background-color: transparent !important;
+  color: var(--muted-foreground) !important;
+}
+
 .cl-footerActionLink {
   color: var(--foreground) !important;
 }

@@ -27,6 +27,7 @@ export function ClerkProviderWrapper({ children }: { children: React.ReactNode }
 
   return (
     <ClerkProvider
+      key={isDark ? "clerk-dark" : "clerk-light"}
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "pk_test_c3VidGxlLWpvZXktMjUuY2xlcmsuYWNjb3VudHMuZGV2JA"}
       appearance={appearance}
     >
