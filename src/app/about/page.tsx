@@ -134,6 +134,23 @@ export default function AboutPage() {
             </StaggerItem>
           </StaggerGroup>
         </section>
+
+        {/* PLATFORM INTEGRITY & DATA ETHICS */}
+        <section className="space-y-6 border-t border-border pt-12">
+          <Reveal variant="supportingText" delay={0.45}>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
+              Platform Integrity &amp; Data Ethics
+            </h2>
+          </Reveal>
+          <Reveal variant="supportingText" delay={0.5}>
+            <p className="text-base text-muted-foreground leading-relaxed">
+              ReelForge AI is committed to responsible creative intelligence. Our analysis models focus strictly on architectural formatting, pacing rhythms, and delivery mechanics. We never copy creative assets, scrape private accounts, or replicate copyrighted media.
+            </p>
+            <p className="text-base text-muted-foreground leading-relaxed mt-3">
+              By isolating why content performs rather than copying what was said, creators develop original work tailored to their unique voice while benefiting from proven engagement psychology.
+            </p>
+          </Reveal>
+        </section>
       </main>
     </PageContainer>
   );

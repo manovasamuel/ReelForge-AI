@@ -222,6 +222,42 @@ export default function PricingPage() {
                 </p>
               </div>
             </StaggerItem>
+
+            <StaggerItem>
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-foreground">What formats can I export my generated scripts and briefs in?</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Export complete production dossiers in Markdown (.md), clean PDF briefing documents, and structured JSON. All exports include beat-by-beat visual directions, teleprompter-ready narration, on-screen text overlays, and audio cues.
+                </p>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-foreground">What happens when I hit my profile ingestion limit?</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  You retain full access to analyze, generate scripts from, and export all existing dossiers in your workspace library. You can wait for your scheduled monthly billing reset or upgrade instantly with automatic proration.
+                </p>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-foreground">Does ReelForge AI store or redistribute raw creator media?</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  No. Media is processed ephemerally solely to extract structural metadata, timing pacing, and transcripts. We never store raw video binaries on permanent storage or resell creator data to third parties.
+                </p>
+              </div>
+            </StaggerItem>
+
+            <StaggerItem>
+              <div className="space-y-2">
+                <h3 className="text-base font-bold text-foreground">Are team seats and multi-user workspaces available?</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Pro plans are designed for individual creators and strategists with cloud sync across devices. For agencies, marketing teams, or studios requiring multi-seat role management and centralized billing, select our Enterprise plan.
+                </p>
+              </div>
+            </StaggerItem>
           </StaggerGroup>
         </section>
       </main>

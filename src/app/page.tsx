@@ -72,6 +72,12 @@ export default function LandingPage() {
                 "description": "Professional creative-analysis software. Extract data-driven content patterns and generate scripts based on actual competitor performance metrics.",
                 "author": {
                   "@id": "https://reel-forge-ai-psi.vercel.app/#organization"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": "49.00",
+                  "priceCurrency": "USD",
+                  "url": "https://reel-forge-ai-psi.vercel.app/pricing"
                 }
               }
             ]
@@ -117,6 +123,53 @@ export default function LandingPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+        </section>
+
+        {/* STRUCTURAL DIMENSIONS SECTION */}
+        <section className="px-4">
+          <Reveal variant="subtleClip">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground pb-1">
+                Five Structural Dimensions of High-Retention Content
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Every high-performing reel follows reproducible structural principles. ReelForge AI isolates each dimension to ensure every generated script hits proven retention thresholds.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
+            <div className="border border-border p-6 bg-card">
+              <h3 className="text-base font-bold text-foreground mb-2">1. Visual &amp; Spoken Hook Archetypes</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                The first three seconds determine 80% of video retention. ReelForge AI categorizes hooks into proven framing models—including contrarian statements, negative problem-framing, curiosity gaps, and demonstration teasers.
+              </p>
+            </div>
+            <div className="border border-border p-6 bg-card">
+              <h3 className="text-base font-bold text-foreground mb-2">2. Visual Cut Velocity &amp; Pacing</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Modern audience drop-off accelerates after 2.5 seconds of static screen time. Our analysis engine maps cut frequency, B-roll overlays, kinetic text placement, and visual changes across entire videos.
+              </p>
+            </div>
+            <div className="border border-border p-6 bg-card">
+              <h3 className="text-base font-bold text-foreground mb-2">3. Narrative Open Loops</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Retention drops when viewers anticipate the resolution too early. We analyze narrative pacing to engineer psychological open loops that keep viewers engaged through the end of the video.
+              </p>
+            </div>
+            <div className="border border-border p-6 bg-card">
+              <h3 className="text-base font-bold text-foreground mb-2">4. Audio Cadence &amp; Energy Dynamics</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Speech-to-text sentiment analysis extracts vocal cadence, inflection shifts, and music alignment, helping creators match their delivery style to audience expectations in their specific niche.
+              </p>
+            </div>
+            <div className="border border-border p-6 bg-card md:col-span-2">
+              <h3 className="text-base font-bold text-foreground mb-2">5. High-Converting Value Exchange (CTA)</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Viral reach requires comment velocity and share metrics. ReelForge AI engineers natural value-exchange calls to action—prompting viewers with downloadable templates, cheat sheets, or specific comment triggers that signal relevance to the distribution algorithm.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* AEO SECTION */}
