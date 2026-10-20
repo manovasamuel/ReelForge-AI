@@ -18,17 +18,18 @@ const isProtectedRoute = createRouteMatcher([
   "/analytics(.*)",
   "/export(.*)",
   "/settings(.*)",
-  "/onboarding(.*)",
   "/api/(.*)",
 ]);
 
 const isPublicRoute = createRouteMatcher([
   "/api/v2/health(.*)",
   "/api/webhooks/(.*)",
+  "/api/user/onboarding(.*)",
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/pricing(.*)",
   "/about(.*)",
+  "/onboarding(.*)",
   "/$",
 ]);
 
