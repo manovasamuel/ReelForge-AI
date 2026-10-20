@@ -1,0 +1,28 @@
+# ReelForge AI
+
+> Content Intelligence & Creative Engineering Platform for Instagram Reels
+
+ReelForge AI is a professional creative-analysis software platform designed to reverse-engineer viral short-form social video content. It replaces guesswork with empirical performance data by analyzing high-performing Instagram Reels and extracting actionable content patterns.
+
+## Target Audience
+- Short-form video creators and influencers
+- Social media strategists and creative directors
+- Marketing agencies managing brand social accounts
+- Performance marketers and content production teams
+
+## Core Capabilities
+- **Competitor Discovery**: Identifies top-performing accounts in any target niche.
+- **Data Ingestion**: Pulls public profile metrics, reel engagement, and post history via automated data pipelines.
+- **Content DNA Extraction**: Breaks down viral reels frame-by-frame to analyze hook archetypes, visual pacing, audio choices, retention mechanisms, and call-to-action structures.
+- **Data-Backed Script Generation**: Generates production-ready video scripts engineered around proven structural formats using multi-model AI synthesis (Google Gemini, Claude, OpenAI).
+- **Export & Workspace**: Exports intelligence reports and scripts in Markdown, PDF, HTML, and JSON formats.
+
+## Key Public Pages
+- Homepage: https://reel-forge-ai-psi.vercel.app/
+- About Us: https://reel-forge-ai-psi.vercel.app/about
+- Pricing & Plans: https://reel-forge-ai-psi.vercel.app/pricing
+
+## Technical Details
+- Architecture: Next.js App Router, TypeScript, Tailwind CSS
+- Authentication: Clerk (Protected Routes: /dashboard, /workspace, /studio, /analytics, /export, /settings)
+- Security: HTTPS / TLSv1.3, rate-limited API endpoints, strict content policies

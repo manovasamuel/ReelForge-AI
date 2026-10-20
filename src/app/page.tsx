@@ -32,7 +32,7 @@ const WORKFLOW_STEPS = [
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "/",
+    canonical: "https://reel-forge-ai-psi.vercel.app/",
   },
 };
 
@@ -43,34 +43,39 @@ export default function LandingPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            {
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              "name": "ReelForge AI",
-              "applicationCategory": "BusinessApplication",
-              "operatingSystem": "Web",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://reel-forge-ai-psi.vercel.app/#organization",
+                "name": "ReelForge AI",
+                "url": "https://reel-forge-ai-psi.vercel.app/",
+                "logo": "https://reel-forge-ai-psi.vercel.app/icon"
               },
-              "description": "Professional creative-analysis software. Extract data-driven content patterns and generate scripts based on actual competitor performance metrics.",
-              "url": "https://reel-forge-ai-psi.vercel.app"
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "ReelForge AI",
-              "url": "https://reel-forge-ai-psi.vercel.app"
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "ReelForge AI",
-              "url": "https://reel-forge-ai-psi.vercel.app"
-            }
-          ])
+              {
+                "@type": "WebSite",
+                "@id": "https://reel-forge-ai-psi.vercel.app/#website",
+                "name": "ReelForge AI",
+                "url": "https://reel-forge-ai-psi.vercel.app/",
+                "publisher": {
+                  "@id": "https://reel-forge-ai-psi.vercel.app/#organization"
+                }
+              },
+              {
+                "@type": "SoftwareApplication",
+                "@id": "https://reel-forge-ai-psi.vercel.app/#software",
+                "name": "ReelForge AI",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web",
+                "url": "https://reel-forge-ai-psi.vercel.app/",
+                "description": "Professional creative-analysis software. Extract data-driven content patterns and generate scripts based on actual competitor performance metrics.",
+                "author": {
+                  "@id": "https://reel-forge-ai-psi.vercel.app/#organization"
+                }
+              }
+            ]
+          })
         }}
       />
 
