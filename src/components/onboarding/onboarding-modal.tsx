@@ -18,24 +18,29 @@ export function OnboardingModal() {
   useEffect(() => {
     if (!isLoaded) return;
 
-    // Do not trigger on auth routes or dedicated onboarding page
+    // Do not trigger on auth routes or dedicated onboarding/completion pages
     if (
       pathname?.startsWith("/sign-in") ||
       pathname?.startsWith("/sign-up") ||
-      pathname === "/onboarding"
+      pathname?.startsWith("/onboarding")
     ) {
       setIsOpen(false);
+      setChecked(true);
       return;
     }
 
-    if (isSignedIn) {
-      const localState = getLocalOnboardingState();
-      const onboarded = isUserOnboarded(localState, user?.unsafeMetadata as Record<string, unknown>);
-      if (!onboarded) {
-        setIsOpen(true);
-      } else {
-        setIsOpen(false);
-      }
+    if (isSignedIn && user) {
+      // Wait until Clerk user object is fully loaded (unsafeMetadata available)
+      // useUser() returns user=null briefly during hydration
+      const localState = getLocalOnboardingState(user.id);
+      const onboarded = isUserOnboarded(
+        localState,
+        user.unsafeMetadata as Record<string, unknown>
+      );
+      setIsOpen(!onboarded);
+    } else if (isSignedIn && !user) {
+      // Clerk user not yet loaded — wait, don't show modal yet
+      return;
     } else {
       setIsOpen(false);
     }
@@ -51,6 +56,7 @@ export function OnboardingModal() {
           className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
           role="dialog"
           aria-modal="true"
+          aria-label="Welcome to ReelForge AI"
         >
           {/* Backdrop */}
           <motion.div
@@ -58,17 +64,16 @@ export function OnboardingModal() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-xs"
-            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm"
           />
 
           {/* Modal Container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            initial={{ opacity: 0, scale: 0.97, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: 8 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-full max-w-xl"
+            exit={{ opacity: 0, scale: 0.97, y: 12 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-full max-w-2xl"
           >
             <OnboardingWizard
               isModal

@@ -264,3 +264,47 @@
 .cl-userButtonPopoverActionButton:hover {
   background-color: var(--muted) !important;
 }
+
+/* ── Clerk Modal Close Button — Alignment Fix ──────────────────────────
+   The close button must be positioned inside the card boundary with
+   sufficient padding so it never clips against the logo/header area.
+   We remove any absolute-position overrides Clerk sets and re-anchor
+   it cleanly within the card top-right corner.
+─────────────────────────────────────────────────────────────────────── */
+.cl-modalContent {
+  position: relative !important;
+}
+
+.cl-modalCloseButton {
+  position: absolute !important;
+  top: 16px !important;
+  right: 16px !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--muted-foreground) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  transition: color 0.15s, border-color 0.15s !important;
+  z-index: 10 !important;
+}
+
+.cl-modalCloseButton:hover {
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+  background: transparent !important;
+}
+
+.cl-modalCloseButton:focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+.cl-modalCloseButton svg {
+  width: 16px !important;
+  height: 16px !important;
+}

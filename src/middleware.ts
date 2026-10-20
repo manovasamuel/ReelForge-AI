@@ -33,6 +33,7 @@ const isPublicRoute = createRouteMatcher([
   "/$",
 ]);
 
+
 export default async function middleware(req: NextRequest, event: NextFetchEvent) {
   // Enforce edge rate limiting on all API routes (except public health checks and webhooks)
   if (req.nextUrl.pathname.startsWith("/api/") && !isPublicRoute(req)) {
