@@ -30,7 +30,6 @@ const isPublicRoute = createRouteMatcher([
   "/onboarding(.*)",
   "/api/v2/health(.*)",
   "/api/webhooks/(.*)",
-  "/api/user/onboarding(.*)",
   "/robots.txt",
   "/sitemap.xml",
   "/llms.txt",

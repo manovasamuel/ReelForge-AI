@@ -100,14 +100,16 @@ export async function persistOnboardingState(
   // 2. Only cache locally once primary persistence has succeeded (or for anon flow)
   setLocalOnboardingState(state, userId);
 
-  // 3. Best-effort backend sync to Postgres/API
-  try {
-    await fetch("/api/user/onboarding", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(state),
-    });
-  } catch {
-    // Network errors on auxiliary endpoint are non-fatal once Clerk/local is persisted
+  // 3. Best-effort backend sync to Postgres/API for authenticated users
+  if (userId) {
+    try {
+      await fetch("/api/user/onboarding", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(state),
+      });
+    } catch {
+      // Network errors on auxiliary endpoint are non-fatal once Clerk/local is persisted
+    }
   }
 }
